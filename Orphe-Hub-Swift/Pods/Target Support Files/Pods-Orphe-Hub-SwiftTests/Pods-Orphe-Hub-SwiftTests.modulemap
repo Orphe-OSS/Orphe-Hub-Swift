@@ -1,0 +1,6 @@
+framework module Pods_Orphe_Hub_SwiftTests {
+  umbrella header "Pods-Orphe-Hub-SwiftTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

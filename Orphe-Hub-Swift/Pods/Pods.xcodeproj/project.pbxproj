@@ -1,0 +1,1148 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05000057FA749E395EB02A5EFDE57487 /* Pods-Orphe-Hub-SwiftUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C7E24E6C542B23E9C8B6AD2DAF09804 /* Pods-Orphe-Hub-SwiftUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0693FA738DFCC06899A841C24BFE6E72 /* OSCServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 971173DCAFC053622ED0EB7F2044EF65 /* OSCServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		173B400F21D9658A660602F7BD9E8226 /* OscException.h in Headers */ = {isa = PBXBuildFile; fileRef = 4139178A2204B3BCA7E32A92F4401086 /* OscException.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		1CCD1006B0850BD0E1F7D205D048650D /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5780C355502C167D60B20F8931FB1F65 /* CocoaAsyncSocket.framework */; };
+		1D272549864488B39AF843CBC578ABB2 /* OscOutboundPacketStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 85C91166F7984FC8AD03FF5EC091096C /* OscOutboundPacketStream.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		214F34E0E470B6A4BED51FF1EDD9509C /* Pods-Orphe-Hub-Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 08CDEDBCC85E12AE93B9D5E5B2CEF49D /* Pods-Orphe-Hub-Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29433254103F2050C47C08E206F796C7 /* Pods-Orphe-Hub-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B261CD11CBD713D81DDB0506E3ADE6 /* Pods-Orphe-Hub-Swift-dummy.m */; };
+		2ED0E344DD3830EEF5DA4E27ADE1A0AB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE208E995C148E77C8DB17519B692E2 /* Cocoa.framework */; };
+		3144345774E1197710DF187304F8C5F4 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A36C325C07EE05B776AC315BAC42FEF8 /* Security.framework */; };
+		3ABC0ACC268F04A2C49E4BA3F69EDFD1 /* OSCKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8238E0F3DCF901A737C53907B8178FAA /* OSCKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3D07F17DC33F3E8FD28A0CB0522F5C16 /* OSCProtocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = B146253372B29F44AA4663EDD48FB033 /* OSCProtocol.mm */; };
+		4AB8B0F353AE7D609EB0434381EEAD8E /* OSCProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A52FD15E01EB12E01722C96D7B278A6 /* OSCProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4C73D8E3518F0D5C0CA5F4B3E5D7F90A /* OSCMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = A264D0497F09D4879ED033B0392294E7 /* OSCMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4C857190FB7DA56F5777E5684E9D5983 /* OscTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 25F4CEB6DE17A0520F0D9CF7B4B51570 /* OscTypes.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4D788943A39078871A704EE569A921A9 /* MessageMappingOscPacketListener.h in Headers */ = {isa = PBXBuildFile; fileRef = B81705F11576FB01BE116D1129758BF8 /* MessageMappingOscPacketListener.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		55D269CDEB18F8F75CA246FB7AA99848 /* Pods-Orphe-Hub-SwiftTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 590DB35CC12B3109BFFEFB449CFA2F42 /* Pods-Orphe-Hub-SwiftTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5EB1B262F845459BB2DB2E84A8810CAE /* OscOutboundPacketStream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 82CB8710621BD2BDC04BD6FBEDBE6582 /* OscOutboundPacketStream.cpp */; };
+		63C78BDC7D67D1E287FBE9AA3C507E7D /* OSCKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A7D4F22EB1D1C4D413CAA293BD4217D6 /* OSCKit-dummy.m */; };
+		721F36E4CDAB242714D13493FB4CE681 /* OscHostEndianness.h in Headers */ = {isa = PBXBuildFile; fileRef = D38E55FF1286F23CA0A4C4A388B6AB6F /* OscHostEndianness.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		781C271B7443AD52B0979D3732ACD05F /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5D064E431DFCA2A069DC8C71ED4C10AE /* CoreServices.framework */; };
+		7E4F0161B4D135DA3A0763619A56C2F5 /* CocoaAsyncSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 417E8A73CD78D288152007A462483CAD /* CocoaAsyncSocket-dummy.m */; };
+		7FDA3DA6F6AFF14E83FDF8C444F76100 /* OSCClient.h in Headers */ = {isa = PBXBuildFile; fileRef = B25410473DAE67E9BD032D209DE374BA /* OSCClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		812AB57F4E03756F2EA43B076C0617E7 /* OscPacketListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 717DBD9915689F50CDFCE3237A05E16F /* OscPacketListener.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		8428C418F5BA60ED16ECC059882902BD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE208E995C148E77C8DB17519B692E2 /* Cocoa.framework */; };
+		8480493AEC1C7AF1B5C0E0BF2F70FB44 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = C29D67AE944573C3B2C9D70AD4EED1C7 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		873C70DB42C386C010504549A1024629 /* OscTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DC11316D27CAA912DD5A03F1B460EDD /* OscTypes.cpp */; };
+		96EBA492B827B66636EF9BED009D1086 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE208E995C148E77C8DB17519B692E2 /* Cocoa.framework */; };
+		98C866918C7B03F3FC1400D0625B2AFB /* OSCMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 810F781237879C8378AC40326BBF0A12 /* OSCMessage.m */; };
+		A882891E5A89CADF96C2CA79606409CA /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C1C7B68418C66E2E0212FCF584BADD4 /* GCDAsyncSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A88832B74F4A63464CFC117FDBF7D4B9 /* Pods-Orphe-Hub-SwiftUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D1FB71512E2047DDE45633BE9F89F /* Pods-Orphe-Hub-SwiftUITests-dummy.m */; };
+		AC7DC2A21843CD99040DCD79FF3BE91B /* GCDAsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 5198CA689B26B63663740BE30DBE12E4 /* GCDAsyncUdpSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEE9644DA0EFCF945438E125BA4F0724 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B7164B8C8E961769ACDF335F31419457 /* GCDAsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B142AA784A6D9FBB4D00E97B4A705CC6 /* OscPrintReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 834A21753186EAB73E48CDD40D270FDF /* OscPrintReceivedElements.cpp */; };
+		C48AB028BF64F558C4671ADA227E9F40 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE208E995C148E77C8DB17519B692E2 /* Cocoa.framework */; };
+		C53CB621C46CA1F6B3670ED0F9861D76 /* OscReceivedElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 9FE4E4400E59EAAC37FCEF694B542DE5 /* OscReceivedElements.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D562C2E9611C50F38B02EB2B18697CDE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BE208E995C148E77C8DB17519B692E2 /* Cocoa.framework */; };
+		D74EF48EF0A040B12B5A5801D95658B8 /* OSCKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A106D3252DFE588D5AFC919650A4162B /* OSCKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3C3074E071A8C0818C084E924B405AC /* Pods-Orphe-Hub-SwiftTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D74A702AE1890019650404F52A04646 /* Pods-Orphe-Hub-SwiftTests-dummy.m */; };
+		E4230DB0D114C94B081018C1AC1E9972 /* CocoaAsyncSocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 16A04D133E91FA7019263223EAE77DAE /* CocoaAsyncSocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E97B57F3070F23E9A57E00C1D1B0F815 /* OscReceivedElements.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0C938FBB82029576DADC3497E6FCC138 /* OscReceivedElements.cpp */; };
+		EC1D123DFCDDBF895DA7622FC04FDD01 /* OscPrintReceivedElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 9BCD0709650268598AEA6806E0C3A06D /* OscPrintReceivedElements.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EEC1FFD229ABF167D6B900E4EE8336E9 /* OSCServer.m in Sources */ = {isa = PBXBuildFile; fileRef = D93D789B66568DEE9EC82C1DF1902283 /* OSCServer.m */; };
+		F757931D3E42B9F7852CA4985B8B1445 /* OSCClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F6D7BC850C99927D586ADABA5DF49EAD /* OSCClient.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		414EF1DFB9C38A1EB03D15D2F2496A21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 708FC2B08C8CF11EB4D5E8B7CACF6B66;
+			remoteInfo = OSCKit;
+		};
+		64D6C8A68648B850F5AD2830EB425BB4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC0D2D2B4EE7C873431AB3502859CA60;
+			remoteInfo = CocoaAsyncSocket;
+		};
+		FD6CAC2DF88E13C103E16315AA0F55B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AC0D2D2B4EE7C873431AB3502859CA60;
+			remoteInfo = CocoaAsyncSocket;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05B5772A5524BFE357C539315C26BD56 /* Pods-Orphe-Hub-SwiftUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Orphe-Hub-SwiftUITests-frameworks.sh"; sourceTree = "<group>"; };
+		078215D06E3CE8587D1A454E7102F1D8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08CDEDBCC85E12AE93B9D5E5B2CEF49D /* Pods-Orphe-Hub-Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Orphe-Hub-Swift-umbrella.h"; sourceTree = "<group>"; };
+		0C938FBB82029576DADC3497E6FCC138 /* OscReceivedElements.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = OscReceivedElements.cpp; path = OSCKit/oscpack/OscReceivedElements.cpp; sourceTree = "<group>"; };
+		0FB7F245195C2936C0B36966388B4DB0 /* Pods-Orphe-Hub-Swift-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Orphe-Hub-Swift-acknowledgements.markdown"; sourceTree = "<group>"; };
+		110CF0ED79251988BE48C252987E4266 /* OSCKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = OSCKit.modulemap; sourceTree = "<group>"; };
+		121B3D203C2C5AC523C7BE5700E69CDA /* Pods-Orphe-Hub-SwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Orphe-Hub-SwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
+		16A04D133E91FA7019263223EAE77DAE /* CocoaAsyncSocket-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CocoaAsyncSocket-umbrella.h"; sourceTree = "<group>"; };
+		1A52FD15E01EB12E01722C96D7B278A6 /* OSCProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSCProtocol.h; path = OSCKit/OSCProtocol.h; sourceTree = "<group>"; };
+		1C00316BF2667B5C07ADD87E93418433 /* Pods-Orphe-Hub-SwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Orphe-Hub-SwiftTests.release.xcconfig"; sourceTree = "<group>"; };
+		1C1C7B68418C66E2E0212FCF584BADD4 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = Source/GCD/GCDAsyncSocket.h; sourceTree = "<group>"; };
+		25F4CEB6DE17A0520F0D9CF7B4B51570 /* OscTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OscTypes.h; path = OSCKit/oscpack/OscTypes.h; sourceTree = "<group>"; };
+		260E01B33DEBB16FFE2B0DCC2E82AE6C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2CC459B5019ECFC8E0D0716B54BB90D6 /* Pods_Orphe_Hub_SwiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Orphe_Hub_SwiftUITests.framework; path = "Pods-Orphe-Hub-SwiftUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		329EB9FA4FDBAFEE629EC2A8CDB037DB /* CocoaAsyncSocket.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CocoaAsyncSocket.modulemap; sourceTree = "<group>"; };
+		32B43F5E39B42CD4DDFC7BB85B391AEA /* Pods-Orphe-Hub-SwiftTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Orphe-Hub-SwiftTests-resources.sh"; sourceTree = "<group>"; };
+		3BE208E995C148E77C8DB17519B692E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		3CE8AE35522463124B72D2F73D43F9B2 /* Pods-Orphe-Hub-SwiftTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Orphe-Hub-SwiftTests-frameworks.sh"; sourceTree = "<group>"; };
+		3D74A702AE1890019650404F52A04646 /* Pods-Orphe-Hub-SwiftTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Orphe-Hub-SwiftTests-dummy.m"; sourceTree = "<group>"; };
+		3DC11316D27CAA912DD5A03F1B460EDD /* OscTypes.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = OscTypes.cpp; path = OSCKit/oscpack/OscTypes.cpp; sourceTree = "<group>"; };
+		3DCAE5731BC58B346467A3C39B76B878 /* Pods-Orphe-Hub-SwiftUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Orphe-Hub-SwiftUITests-resources.sh"; sourceTree = "<group>"; };
+		4139178A2204B3BCA7E32A92F4401086 /* OscException.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OscException.h; path = OSCKit/oscpack/OscException.h; sourceTree = "<group>"; };
+		417E8A73CD78D288152007A462483CAD /* CocoaAsyncSocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CocoaAsyncSocket-dummy.m"; sourceTree = "<group>"; };
+		5128E3767971578C67DD6499A4BA9D36 /* Pods-Orphe-Hub-SwiftUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Orphe-Hub-SwiftUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		5198CA689B26B63663740BE30DBE12E4 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = Source/GCD/GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		5780C355502C167D60B20F8931FB1F65 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58B261CD11CBD713D81DDB0506E3ADE6 /* Pods-Orphe-Hub-Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Orphe-Hub-Swift-dummy.m"; sourceTree = "<group>"; };
+		590DB35CC12B3109BFFEFB449CFA2F42 /* Pods-Orphe-Hub-SwiftTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Orphe-Hub-SwiftTests-umbrella.h"; sourceTree = "<group>"; };
+		5D064E431DFCA2A069DC8C71ED4C10AE /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		5D6430F3E19F9F3E7EEEBC8723D8A8CE /* Pods-Orphe-Hub-SwiftUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Orphe-Hub-SwiftUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		656E88B619FADC7A230C257C9977D7FE /* Pods-Orphe-Hub-Swift-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Orphe-Hub-Swift-frameworks.sh"; sourceTree = "<group>"; };
+		717DBD9915689F50CDFCE3237A05E16F /* OscPacketListener.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OscPacketListener.h; path = OSCKit/oscpack/OscPacketListener.h; sourceTree = "<group>"; };
+		7489D120C710CBE69D69CEF04F558489 /* OSCKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = OSCKit.xcconfig; sourceTree = "<group>"; };
+		7ABEFD40806E70797C52A4A506A8FF3D /* Pods-Orphe-Hub-SwiftUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Orphe-Hub-SwiftUITests.modulemap"; sourceTree = "<group>"; };
+		7EE55876310E629A45E81036992C2E12 /* CocoaAsyncSocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CocoaAsyncSocket.xcconfig; sourceTree = "<group>"; };
+		810F781237879C8378AC40326BBF0A12 /* OSCMessage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSCMessage.m; path = OSCKit/OSCMessage.m; sourceTree = "<group>"; };
+		8238E0F3DCF901A737C53907B8178FAA /* OSCKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSCKit.h; path = OSCKit/OSCKit.h; sourceTree = "<group>"; };
+		82CB8710621BD2BDC04BD6FBEDBE6582 /* OscOutboundPacketStream.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = OscOutboundPacketStream.cpp; path = OSCKit/oscpack/OscOutboundPacketStream.cpp; sourceTree = "<group>"; };
+		834A21753186EAB73E48CDD40D270FDF /* OscPrintReceivedElements.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = OscPrintReceivedElements.cpp; path = OSCKit/oscpack/OscPrintReceivedElements.cpp; sourceTree = "<group>"; };
+		85C91166F7984FC8AD03FF5EC091096C /* OscOutboundPacketStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OscOutboundPacketStream.h; path = OSCKit/oscpack/OscOutboundPacketStream.h; sourceTree = "<group>"; };
+		86422D4492F3094183D71D3D794D10A8 /* Pods-Orphe-Hub-SwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Orphe-Hub-SwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		961364B88D42AC0C19B74E43D20D6F5D /* CocoaAsyncSocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CocoaAsyncSocket-prefix.pch"; sourceTree = "<group>"; };
+		96E21EDB608DCB8F5F31E8DD1D3E7D4F /* Pods-Orphe-Hub-SwiftTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Orphe-Hub-SwiftTests.modulemap"; sourceTree = "<group>"; };
+		971173DCAFC053622ED0EB7F2044EF65 /* OSCServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSCServer.h; path = OSCKit/OSCServer.h; sourceTree = "<group>"; };
+		9931C6301116CE53E6E18A092D8947CE /* Pods-Orphe-Hub-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Orphe-Hub-Swift.release.xcconfig"; sourceTree = "<group>"; };
+		9A2D1FB71512E2047DDE45633BE9F89F /* Pods-Orphe-Hub-SwiftUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Orphe-Hub-SwiftUITests-dummy.m"; sourceTree = "<group>"; };
+		9A570267198CAB2B72E34CD0782A17D0 /* Pods_Orphe_Hub_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Orphe_Hub_Swift.framework; path = "Pods-Orphe-Hub-Swift.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BCD0709650268598AEA6806E0C3A06D /* OscPrintReceivedElements.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OscPrintReceivedElements.h; path = OSCKit/oscpack/OscPrintReceivedElements.h; sourceTree = "<group>"; };
+		9C7E24E6C542B23E9C8B6AD2DAF09804 /* Pods-Orphe-Hub-SwiftUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Orphe-Hub-SwiftUITests-umbrella.h"; sourceTree = "<group>"; };
+		9FE4E4400E59EAAC37FCEF694B542DE5 /* OscReceivedElements.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OscReceivedElements.h; path = OSCKit/oscpack/OscReceivedElements.h; sourceTree = "<group>"; };
+		A106D3252DFE588D5AFC919650A4162B /* OSCKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OSCKit-umbrella.h"; sourceTree = "<group>"; };
+		A264D0497F09D4879ED033B0392294E7 /* OSCMessage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSCMessage.h; path = OSCKit/OSCMessage.h; sourceTree = "<group>"; };
+		A36C325C07EE05B776AC315BAC42FEF8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
+		A7D4F22EB1D1C4D413CAA293BD4217D6 /* OSCKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "OSCKit-dummy.m"; sourceTree = "<group>"; };
+		AD76D1A4F6AEAE134193B4800C04CF68 /* Pods-Orphe-Hub-Swift-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Orphe-Hub-Swift-resources.sh"; sourceTree = "<group>"; };
+		AEBBB70506AA09FAC4BA5A11EE0EDB70 /* Pods-Orphe-Hub-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Orphe-Hub-Swift.debug.xcconfig"; sourceTree = "<group>"; };
+		B146253372B29F44AA4663EDD48FB033 /* OSCProtocol.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = OSCProtocol.mm; path = OSCKit/OSCProtocol.mm; sourceTree = "<group>"; };
+		B1C6796CAF7FC84CB6ED957DCF984148 /* Pods-Orphe-Hub-Swift-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Orphe-Hub-Swift-acknowledgements.plist"; sourceTree = "<group>"; };
+		B25410473DAE67E9BD032D209DE374BA /* OSCClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OSCClient.h; path = OSCKit/OSCClient.h; sourceTree = "<group>"; };
+		B7164B8C8E961769ACDF335F31419457 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = Source/GCD/GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		B81705F11576FB01BE116D1129758BF8 /* MessageMappingOscPacketListener.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MessageMappingOscPacketListener.h; path = OSCKit/oscpack/MessageMappingOscPacketListener.h; sourceTree = "<group>"; };
+		B9CB07AFD3CE1C79D4BBC03E91C86A0F /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CocoaAsyncSocket.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD2694DB3F3DA5FE9766421C01B5C8DF /* OSCKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "OSCKit-prefix.pch"; sourceTree = "<group>"; };
+		C29D67AE944573C3B2C9D70AD4EED1C7 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = Source/GCD/GCDAsyncSocket.m; sourceTree = "<group>"; };
+		C4DAC6CF48BB2F7361AE075CE1F97AF5 /* Pods_Orphe_Hub_SwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Orphe_Hub_SwiftTests.framework; path = "Pods-Orphe-Hub-SwiftTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA37E89D54DA585DC89435A78CB86329 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D38E55FF1286F23CA0A4C4A388B6AB6F /* OscHostEndianness.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OscHostEndianness.h; path = OSCKit/oscpack/OscHostEndianness.h; sourceTree = "<group>"; };
+		D93D789B66568DEE9EC82C1DF1902283 /* OSCServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSCServer.m; path = OSCKit/OSCServer.m; sourceTree = "<group>"; };
+		D95B59865AEFE2D1A8871B35F596B776 /* OSCKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = OSCKit.framework; path = OSCKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D9A6BAC2B782C9B2E7DDB7D8133BEB6B /* Pods-Orphe-Hub-SwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Orphe-Hub-SwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DBF2F7FCE16708A668A9D17F53949DCB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0118731635AE550776C93CBB8D2873C /* Pods-Orphe-Hub-SwiftTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Orphe-Hub-SwiftTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EEBD2661790173AB320AA14B5378CEE8 /* Pods-Orphe-Hub-Swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Orphe-Hub-Swift.modulemap"; sourceTree = "<group>"; };
+		F6D7BC850C99927D586ADABA5DF49EAD /* OSCClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OSCClient.m; path = OSCKit/OSCClient.m; sourceTree = "<group>"; };
+		FC43793410C729D1F17FF81F8855DBB8 /* Pods-Orphe-Hub-SwiftTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Orphe-Hub-SwiftTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		FD3139562F5BA78D1D5CFF76B3EBA476 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		56F1CF1723C2208B2104DF7025B50422 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96EBA492B827B66636EF9BED009D1086 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6A6FC95AC8C6D032470939581FD64D79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8428C418F5BA60ED16ECC059882902BD /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		89A0509148874948D754353264EED462 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D562C2E9611C50F38B02EB2B18697CDE /* Cocoa.framework in Frameworks */,
+				1CCD1006B0850BD0E1F7D205D048650D /* CocoaAsyncSocket.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93F869EDFDD36756BA537EB665793449 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C48AB028BF64F558C4671ADA227E9F40 /* Cocoa.framework in Frameworks */,
+				781C271B7443AD52B0979D3732ACD05F /* CoreServices.framework in Frameworks */,
+				3144345774E1197710DF187304F8C5F4 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E41145B6F27B1620E87B2742587DB443 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ED0E344DD3830EEF5DA4E27ADE1A0AB /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0085E942656BF303D62B36261DC070DA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				32678288903AC847F56DF28F0048207B /* CocoaAsyncSocket */,
+				92690F1B464B8199D874C6A6DF58A2D1 /* OSCKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		1158253D7C0D6CF9910AE931978F3ADA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5780C355502C167D60B20F8931FB1F65 /* CocoaAsyncSocket.framework */,
+				197B7B88A27AEA1C39A41C79C6AF559D /* OS X */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		197B7B88A27AEA1C39A41C79C6AF559D /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				3BE208E995C148E77C8DB17519B692E2 /* Cocoa.framework */,
+				5D064E431DFCA2A069DC8C71ED4C10AE /* CoreServices.framework */,
+				A36C325C07EE05B776AC315BAC42FEF8 /* Security.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		32678288903AC847F56DF28F0048207B /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				1C1C7B68418C66E2E0212FCF584BADD4 /* GCDAsyncSocket.h */,
+				C29D67AE944573C3B2C9D70AD4EED1C7 /* GCDAsyncSocket.m */,
+				5198CA689B26B63663740BE30DBE12E4 /* GCDAsyncUdpSocket.h */,
+				B7164B8C8E961769ACDF335F31419457 /* GCDAsyncUdpSocket.m */,
+				DC5F4D9AD0F164E384CF8157BA4ECBED /* Support Files */,
+			);
+			name = CocoaAsyncSocket;
+			path = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		58A7C19B9250144BABAE9475B34CFD44 /* Pods-Orphe-Hub-SwiftTests */ = {
+			isa = PBXGroup;
+			children = (
+				260E01B33DEBB16FFE2B0DCC2E82AE6C /* Info.plist */,
+				96E21EDB608DCB8F5F31E8DD1D3E7D4F /* Pods-Orphe-Hub-SwiftTests.modulemap */,
+				E0118731635AE550776C93CBB8D2873C /* Pods-Orphe-Hub-SwiftTests-acknowledgements.markdown */,
+				FC43793410C729D1F17FF81F8855DBB8 /* Pods-Orphe-Hub-SwiftTests-acknowledgements.plist */,
+				3D74A702AE1890019650404F52A04646 /* Pods-Orphe-Hub-SwiftTests-dummy.m */,
+				3CE8AE35522463124B72D2F73D43F9B2 /* Pods-Orphe-Hub-SwiftTests-frameworks.sh */,
+				32B43F5E39B42CD4DDFC7BB85B391AEA /* Pods-Orphe-Hub-SwiftTests-resources.sh */,
+				590DB35CC12B3109BFFEFB449CFA2F42 /* Pods-Orphe-Hub-SwiftTests-umbrella.h */,
+				121B3D203C2C5AC523C7BE5700E69CDA /* Pods-Orphe-Hub-SwiftTests.debug.xcconfig */,
+				1C00316BF2667B5C07ADD87E93418433 /* Pods-Orphe-Hub-SwiftTests.release.xcconfig */,
+			);
+			name = "Pods-Orphe-Hub-SwiftTests";
+			path = "Target Support Files/Pods-Orphe-Hub-SwiftTests";
+			sourceTree = "<group>";
+		};
+		78CCE100AD01ACA7F9F0E79EBC1904F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B9CB07AFD3CE1C79D4BBC03E91C86A0F /* CocoaAsyncSocket.framework */,
+				D95B59865AEFE2D1A8871B35F596B776 /* OSCKit.framework */,
+				9A570267198CAB2B72E34CD0782A17D0 /* Pods_Orphe_Hub_Swift.framework */,
+				C4DAC6CF48BB2F7361AE075CE1F97AF5 /* Pods_Orphe_Hub_SwiftTests.framework */,
+				2CC459B5019ECFC8E0D0716B54BB90D6 /* Pods_Orphe_Hub_SwiftUITests.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				1158253D7C0D6CF9910AE931978F3ADA /* Frameworks */,
+				0085E942656BF303D62B36261DC070DA /* Pods */,
+				78CCE100AD01ACA7F9F0E79EBC1904F3 /* Products */,
+				FB5AA8115C9FE98192A545C676E27AC3 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		92690F1B464B8199D874C6A6DF58A2D1 /* OSCKit */ = {
+			isa = PBXGroup;
+			children = (
+				B81705F11576FB01BE116D1129758BF8 /* MessageMappingOscPacketListener.h */,
+				B25410473DAE67E9BD032D209DE374BA /* OSCClient.h */,
+				F6D7BC850C99927D586ADABA5DF49EAD /* OSCClient.m */,
+				4139178A2204B3BCA7E32A92F4401086 /* OscException.h */,
+				D38E55FF1286F23CA0A4C4A388B6AB6F /* OscHostEndianness.h */,
+				8238E0F3DCF901A737C53907B8178FAA /* OSCKit.h */,
+				A264D0497F09D4879ED033B0392294E7 /* OSCMessage.h */,
+				810F781237879C8378AC40326BBF0A12 /* OSCMessage.m */,
+				82CB8710621BD2BDC04BD6FBEDBE6582 /* OscOutboundPacketStream.cpp */,
+				85C91166F7984FC8AD03FF5EC091096C /* OscOutboundPacketStream.h */,
+				717DBD9915689F50CDFCE3237A05E16F /* OscPacketListener.h */,
+				834A21753186EAB73E48CDD40D270FDF /* OscPrintReceivedElements.cpp */,
+				9BCD0709650268598AEA6806E0C3A06D /* OscPrintReceivedElements.h */,
+				1A52FD15E01EB12E01722C96D7B278A6 /* OSCProtocol.h */,
+				B146253372B29F44AA4663EDD48FB033 /* OSCProtocol.mm */,
+				0C938FBB82029576DADC3497E6FCC138 /* OscReceivedElements.cpp */,
+				9FE4E4400E59EAAC37FCEF694B542DE5 /* OscReceivedElements.h */,
+				971173DCAFC053622ED0EB7F2044EF65 /* OSCServer.h */,
+				D93D789B66568DEE9EC82C1DF1902283 /* OSCServer.m */,
+				3DC11316D27CAA912DD5A03F1B460EDD /* OscTypes.cpp */,
+				25F4CEB6DE17A0520F0D9CF7B4B51570 /* OscTypes.h */,
+				D31E0A4A0A4BE0B592B159AE9BF6F1C6 /* Support Files */,
+			);
+			name = OSCKit;
+			path = OSCKit;
+			sourceTree = "<group>";
+		};
+		A0ACEF0E54F0D948C90136C830D1E766 /* Pods-Orphe-Hub-SwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CA37E89D54DA585DC89435A78CB86329 /* Info.plist */,
+				7ABEFD40806E70797C52A4A506A8FF3D /* Pods-Orphe-Hub-SwiftUITests.modulemap */,
+				5D6430F3E19F9F3E7EEEBC8723D8A8CE /* Pods-Orphe-Hub-SwiftUITests-acknowledgements.markdown */,
+				5128E3767971578C67DD6499A4BA9D36 /* Pods-Orphe-Hub-SwiftUITests-acknowledgements.plist */,
+				9A2D1FB71512E2047DDE45633BE9F89F /* Pods-Orphe-Hub-SwiftUITests-dummy.m */,
+				05B5772A5524BFE357C539315C26BD56 /* Pods-Orphe-Hub-SwiftUITests-frameworks.sh */,
+				3DCAE5731BC58B346467A3C39B76B878 /* Pods-Orphe-Hub-SwiftUITests-resources.sh */,
+				9C7E24E6C542B23E9C8B6AD2DAF09804 /* Pods-Orphe-Hub-SwiftUITests-umbrella.h */,
+				86422D4492F3094183D71D3D794D10A8 /* Pods-Orphe-Hub-SwiftUITests.debug.xcconfig */,
+				D9A6BAC2B782C9B2E7DDB7D8133BEB6B /* Pods-Orphe-Hub-SwiftUITests.release.xcconfig */,
+			);
+			name = "Pods-Orphe-Hub-SwiftUITests";
+			path = "Target Support Files/Pods-Orphe-Hub-SwiftUITests";
+			sourceTree = "<group>";
+		};
+		D31E0A4A0A4BE0B592B159AE9BF6F1C6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FD3139562F5BA78D1D5CFF76B3EBA476 /* Info.plist */,
+				110CF0ED79251988BE48C252987E4266 /* OSCKit.modulemap */,
+				7489D120C710CBE69D69CEF04F558489 /* OSCKit.xcconfig */,
+				A7D4F22EB1D1C4D413CAA293BD4217D6 /* OSCKit-dummy.m */,
+				BD2694DB3F3DA5FE9766421C01B5C8DF /* OSCKit-prefix.pch */,
+				A106D3252DFE588D5AFC919650A4162B /* OSCKit-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/OSCKit";
+			sourceTree = "<group>";
+		};
+		DA14C44040B7440D635E8BBA7119B580 /* Pods-Orphe-Hub-Swift */ = {
+			isa = PBXGroup;
+			children = (
+				078215D06E3CE8587D1A454E7102F1D8 /* Info.plist */,
+				EEBD2661790173AB320AA14B5378CEE8 /* Pods-Orphe-Hub-Swift.modulemap */,
+				0FB7F245195C2936C0B36966388B4DB0 /* Pods-Orphe-Hub-Swift-acknowledgements.markdown */,
+				B1C6796CAF7FC84CB6ED957DCF984148 /* Pods-Orphe-Hub-Swift-acknowledgements.plist */,
+				58B261CD11CBD713D81DDB0506E3ADE6 /* Pods-Orphe-Hub-Swift-dummy.m */,
+				656E88B619FADC7A230C257C9977D7FE /* Pods-Orphe-Hub-Swift-frameworks.sh */,
+				AD76D1A4F6AEAE134193B4800C04CF68 /* Pods-Orphe-Hub-Swift-resources.sh */,
+				08CDEDBCC85E12AE93B9D5E5B2CEF49D /* Pods-Orphe-Hub-Swift-umbrella.h */,
+				AEBBB70506AA09FAC4BA5A11EE0EDB70 /* Pods-Orphe-Hub-Swift.debug.xcconfig */,
+				9931C6301116CE53E6E18A092D8947CE /* Pods-Orphe-Hub-Swift.release.xcconfig */,
+			);
+			name = "Pods-Orphe-Hub-Swift";
+			path = "Target Support Files/Pods-Orphe-Hub-Swift";
+			sourceTree = "<group>";
+		};
+		DC5F4D9AD0F164E384CF8157BA4ECBED /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				329EB9FA4FDBAFEE629EC2A8CDB037DB /* CocoaAsyncSocket.modulemap */,
+				7EE55876310E629A45E81036992C2E12 /* CocoaAsyncSocket.xcconfig */,
+				417E8A73CD78D288152007A462483CAD /* CocoaAsyncSocket-dummy.m */,
+				961364B88D42AC0C19B74E43D20D6F5D /* CocoaAsyncSocket-prefix.pch */,
+				16A04D133E91FA7019263223EAE77DAE /* CocoaAsyncSocket-umbrella.h */,
+				DBF2F7FCE16708A668A9D17F53949DCB /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/CocoaAsyncSocket";
+			sourceTree = "<group>";
+		};
+		FB5AA8115C9FE98192A545C676E27AC3 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				DA14C44040B7440D635E8BBA7119B580 /* Pods-Orphe-Hub-Swift */,
+				58A7C19B9250144BABAE9475B34CFD44 /* Pods-Orphe-Hub-SwiftTests */,
+				A0ACEF0E54F0D948C90136C830D1E766 /* Pods-Orphe-Hub-SwiftUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		066131069354C4CC132CAB645145E8F7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4230DB0D114C94B081018C1AC1E9972 /* CocoaAsyncSocket-umbrella.h in Headers */,
+				A882891E5A89CADF96C2CA79606409CA /* GCDAsyncSocket.h in Headers */,
+				AC7DC2A21843CD99040DCD79FF3BE91B /* GCDAsyncUdpSocket.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		294AE9B542570AEE9EE3B2719A961DA9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				214F34E0E470B6A4BED51FF1EDD9509C /* Pods-Orphe-Hub-Swift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F0A1AE3703B64D28EB16798553EF2DB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D788943A39078871A704EE569A921A9 /* MessageMappingOscPacketListener.h in Headers */,
+				7FDA3DA6F6AFF14E83FDF8C444F76100 /* OSCClient.h in Headers */,
+				173B400F21D9658A660602F7BD9E8226 /* OscException.h in Headers */,
+				721F36E4CDAB242714D13493FB4CE681 /* OscHostEndianness.h in Headers */,
+				D74EF48EF0A040B12B5A5801D95658B8 /* OSCKit-umbrella.h in Headers */,
+				3ABC0ACC268F04A2C49E4BA3F69EDFD1 /* OSCKit.h in Headers */,
+				4C73D8E3518F0D5C0CA5F4B3E5D7F90A /* OSCMessage.h in Headers */,
+				1D272549864488B39AF843CBC578ABB2 /* OscOutboundPacketStream.h in Headers */,
+				812AB57F4E03756F2EA43B076C0617E7 /* OscPacketListener.h in Headers */,
+				EC1D123DFCDDBF895DA7622FC04FDD01 /* OscPrintReceivedElements.h in Headers */,
+				4AB8B0F353AE7D609EB0434381EEAD8E /* OSCProtocol.h in Headers */,
+				C53CB621C46CA1F6B3670ED0F9861D76 /* OscReceivedElements.h in Headers */,
+				0693FA738DFCC06899A841C24BFE6E72 /* OSCServer.h in Headers */,
+				4C857190FB7DA56F5777E5684E9D5983 /* OscTypes.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3A289AFAC9F8EDE908D8D05CDD24DE9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55D269CDEB18F8F75CA246FB7AA99848 /* Pods-Orphe-Hub-SwiftTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D11A017484157C8F408DA2194440A336 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05000057FA749E395EB02A5EFDE57487 /* Pods-Orphe-Hub-SwiftUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		468B65064EF30261B51C3DA25A075D4A /* Pods-Orphe-Hub-SwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D558B36518A2D6D176F7B28E94FE8AF /* Build configuration list for PBXNativeTarget "Pods-Orphe-Hub-SwiftUITests" */;
+			buildPhases = (
+				4363173A68D69FCE7527E474172C4B3D /* Sources */,
+				56F1CF1723C2208B2104DF7025B50422 /* Frameworks */,
+				D11A017484157C8F408DA2194440A336 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Orphe-Hub-SwiftUITests";
+			productName = "Pods-Orphe-Hub-SwiftUITests";
+			productReference = 2CC459B5019ECFC8E0D0716B54BB90D6 /* Pods_Orphe_Hub_SwiftUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		60A036323BCBBE5E7738BF0034E7C3C2 /* Pods-Orphe-Hub-SwiftTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C0A74066AD55CDD7892712B8521CBF80 /* Build configuration list for PBXNativeTarget "Pods-Orphe-Hub-SwiftTests" */;
+			buildPhases = (
+				EF81C6CDD7EF45E4A92866E2B38F4B63 /* Sources */,
+				E41145B6F27B1620E87B2742587DB443 /* Frameworks */,
+				C3A289AFAC9F8EDE908D8D05CDD24DE9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Orphe-Hub-SwiftTests";
+			productName = "Pods-Orphe-Hub-SwiftTests";
+			productReference = C4DAC6CF48BB2F7361AE075CE1F97AF5 /* Pods_Orphe_Hub_SwiftTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		708FC2B08C8CF11EB4D5E8B7CACF6B66 /* OSCKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B7CBE91C0061672BA77411BCC32080C5 /* Build configuration list for PBXNativeTarget "OSCKit" */;
+			buildPhases = (
+				BCA63E75E41C99B78513823A3DB8A517 /* Sources */,
+				89A0509148874948D754353264EED462 /* Frameworks */,
+				6F0A1AE3703B64D28EB16798553EF2DB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AD53BA16466B102EADD1B4B80586D293 /* PBXTargetDependency */,
+			);
+			name = OSCKit;
+			productName = OSCKit;
+			productReference = D95B59865AEFE2D1A8871B35F596B776 /* OSCKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		72A905181450C78180B128EA735129C0 /* Pods-Orphe-Hub-Swift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45185F22B8D1A178C91AD875FE660CFE /* Build configuration list for PBXNativeTarget "Pods-Orphe-Hub-Swift" */;
+			buildPhases = (
+				17587571DF2085BBCBC6CCB15E54BFC6 /* Sources */,
+				6A6FC95AC8C6D032470939581FD64D79 /* Frameworks */,
+				294AE9B542570AEE9EE3B2719A961DA9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFC5A47A0C7A94582C80010777A84C18 /* PBXTargetDependency */,
+				EAA3D2AB7BEF2C527D1A0CFFE197F761 /* PBXTargetDependency */,
+			);
+			name = "Pods-Orphe-Hub-Swift";
+			productName = "Pods-Orphe-Hub-Swift";
+			productReference = 9A570267198CAB2B72E34CD0782A17D0 /* Pods_Orphe_Hub_Swift.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		AC0D2D2B4EE7C873431AB3502859CA60 /* CocoaAsyncSocket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2A03B912F777B2BFB05E7B9E903B15F /* Build configuration list for PBXNativeTarget "CocoaAsyncSocket" */;
+			buildPhases = (
+				FD452A203117FF8DFA26B0711D439093 /* Sources */,
+				93F869EDFDD36756BA537EB665793449 /* Frameworks */,
+				066131069354C4CC132CAB645145E8F7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CocoaAsyncSocket;
+			productName = CocoaAsyncSocket;
+			productReference = B9CB07AFD3CE1C79D4BBC03E91C86A0F /* CocoaAsyncSocket.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = 78CCE100AD01ACA7F9F0E79EBC1904F3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AC0D2D2B4EE7C873431AB3502859CA60 /* CocoaAsyncSocket */,
+				708FC2B08C8CF11EB4D5E8B7CACF6B66 /* OSCKit */,
+				72A905181450C78180B128EA735129C0 /* Pods-Orphe-Hub-Swift */,
+				60A036323BCBBE5E7738BF0034E7C3C2 /* Pods-Orphe-Hub-SwiftTests */,
+				468B65064EF30261B51C3DA25A075D4A /* Pods-Orphe-Hub-SwiftUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		17587571DF2085BBCBC6CCB15E54BFC6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29433254103F2050C47C08E206F796C7 /* Pods-Orphe-Hub-Swift-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4363173A68D69FCE7527E474172C4B3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A88832B74F4A63464CFC117FDBF7D4B9 /* Pods-Orphe-Hub-SwiftUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCA63E75E41C99B78513823A3DB8A517 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F757931D3E42B9F7852CA4985B8B1445 /* OSCClient.m in Sources */,
+				63C78BDC7D67D1E287FBE9AA3C507E7D /* OSCKit-dummy.m in Sources */,
+				98C866918C7B03F3FC1400D0625B2AFB /* OSCMessage.m in Sources */,
+				5EB1B262F845459BB2DB2E84A8810CAE /* OscOutboundPacketStream.cpp in Sources */,
+				B142AA784A6D9FBB4D00E97B4A705CC6 /* OscPrintReceivedElements.cpp in Sources */,
+				3D07F17DC33F3E8FD28A0CB0522F5C16 /* OSCProtocol.mm in Sources */,
+				E97B57F3070F23E9A57E00C1D1B0F815 /* OscReceivedElements.cpp in Sources */,
+				EEC1FFD229ABF167D6B900E4EE8336E9 /* OSCServer.m in Sources */,
+				873C70DB42C386C010504549A1024629 /* OscTypes.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF81C6CDD7EF45E4A92866E2B38F4B63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3C3074E071A8C0818C084E924B405AC /* Pods-Orphe-Hub-SwiftTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD452A203117FF8DFA26B0711D439093 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E4F0161B4D135DA3A0763619A56C2F5 /* CocoaAsyncSocket-dummy.m in Sources */,
+				8480493AEC1C7AF1B5C0E0BF2F70FB44 /* GCDAsyncSocket.m in Sources */,
+				AEE9644DA0EFCF945438E125BA4F0724 /* GCDAsyncUdpSocket.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AD53BA16466B102EADD1B4B80586D293 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CocoaAsyncSocket;
+			target = AC0D2D2B4EE7C873431AB3502859CA60 /* CocoaAsyncSocket */;
+			targetProxy = 64D6C8A68648B850F5AD2830EB425BB4 /* PBXContainerItemProxy */;
+		};
+		EAA3D2AB7BEF2C527D1A0CFFE197F761 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OSCKit;
+			target = 708FC2B08C8CF11EB4D5E8B7CACF6B66 /* OSCKit */;
+			targetProxy = 414EF1DFB9C38A1EB03D15D2F2496A21 /* PBXContainerItemProxy */;
+		};
+		FFC5A47A0C7A94582C80010777A84C18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CocoaAsyncSocket;
+			target = AC0D2D2B4EE7C873431AB3502859CA60 /* CocoaAsyncSocket */;
+			targetProxy = FD6CAC2DF88E13C103E16315AA0F55B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		01BA49B6B9A9370EF11110186F4E1A33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9931C6301116CE53E6E18A092D8947CE /* Pods-Orphe-Hub-Swift.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Orphe-Hub-Swift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Orphe_Hub_Swift;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		0C11FAF63420809B46747AEDD48F2C61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9A6BAC2B782C9B2E7DDB7D8133BEB6B /* Pods-Orphe-Hub-SwiftUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Orphe-Hub-SwiftUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-Orphe-Hub-SwiftUITests/Pods-Orphe-Hub-SwiftUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Orphe_Hub_SwiftUITests;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		299C4435C9E9148754A324D01E103856 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C00316BF2667B5C07ADD87E93418433 /* Pods-Orphe-Hub-SwiftTests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Orphe-Hub-SwiftTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-Orphe-Hub-SwiftTests/Pods-Orphe-Hub-SwiftTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Orphe_Hub_SwiftTests;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		35B60CECB461E1DD4FCD2BA9153E9212 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EE55876310E629A45E81036992C2E12 /* CocoaAsyncSocket.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CocoaAsyncSocket/CocoaAsyncSocket-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CocoaAsyncSocket/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MODULEMAP_FILE = "Target Support Files/CocoaAsyncSocket/CocoaAsyncSocket.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CocoaAsyncSocket;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3BE50E21C3CA9367D3AC0DD9B30FA777 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 121B3D203C2C5AC523C7BE5700E69CDA /* Pods-Orphe-Hub-SwiftTests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Orphe-Hub-SwiftTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-Orphe-Hub-SwiftTests/Pods-Orphe-Hub-SwiftTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Orphe_Hub_SwiftTests;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6564F26210619876C406992F2602BAC8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EE55876310E629A45E81036992C2E12 /* CocoaAsyncSocket.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CocoaAsyncSocket/CocoaAsyncSocket-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CocoaAsyncSocket/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MODULEMAP_FILE = "Target Support Files/CocoaAsyncSocket/CocoaAsyncSocket.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CocoaAsyncSocket;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7814FCD224C991C81A2A470AB3B2F86C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEBBB70506AA09FAC4BA5A11EE0EDB70 /* Pods-Orphe-Hub-Swift.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Orphe-Hub-Swift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Orphe_Hub_Swift;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		847EE7EF765CCEAC22EFAA29156B65B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7489D120C710CBE69D69CEF04F558489 /* OSCKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OSCKit/OSCKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/OSCKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MODULEMAP_FILE = "Target Support Files/OSCKit/OSCKit.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = OSCKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9420A7205B8F85520AF134F4EE25F7CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E1CD3C1BEAA7F3633A07B8731BEFA937 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86422D4492F3094183D71D3D794D10A8 /* Pods-Orphe-Hub-SwiftUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Orphe-Hub-SwiftUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-Orphe-Hub-SwiftUITests/Pods-Orphe-Hub-SwiftUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Orphe_Hub_SwiftUITests;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F098AB1E2543B344337AF1D15917C0D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7489D120C710CBE69D69CEF04F558489 /* OSCKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/OSCKit/OSCKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/OSCKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MODULEMAP_FILE = "Target Support Files/OSCKit/OSCKit.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = OSCKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F653E316AB5F825D3AD0CAE700E37071 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE_SPECIFIER = NO_SIGNING/;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F653E316AB5F825D3AD0CAE700E37071 /* Debug */,
+				9420A7205B8F85520AF134F4EE25F7CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		45185F22B8D1A178C91AD875FE660CFE /* Build configuration list for PBXNativeTarget "Pods-Orphe-Hub-Swift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7814FCD224C991C81A2A470AB3B2F86C /* Debug */,
+				01BA49B6B9A9370EF11110186F4E1A33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D558B36518A2D6D176F7B28E94FE8AF /* Build configuration list for PBXNativeTarget "Pods-Orphe-Hub-SwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1CD3C1BEAA7F3633A07B8731BEFA937 /* Debug */,
+				0C11FAF63420809B46747AEDD48F2C61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B7CBE91C0061672BA77411BCC32080C5 /* Build configuration list for PBXNativeTarget "OSCKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F098AB1E2543B344337AF1D15917C0D2 /* Debug */,
+				847EE7EF765CCEAC22EFAA29156B65B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C0A74066AD55CDD7892712B8521CBF80 /* Build configuration list for PBXNativeTarget "Pods-Orphe-Hub-SwiftTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BE50E21C3CA9367D3AC0DD9B30FA777 /* Debug */,
+				299C4435C9E9148754A324D01E103856 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F2A03B912F777B2BFB05E7B9E903B15F /* Build configuration list for PBXNativeTarget "CocoaAsyncSocket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6564F26210619876C406992F2602BAC8 /* Debug */,
+				35B60CECB461E1DD4FCD2BA9153E9212 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
