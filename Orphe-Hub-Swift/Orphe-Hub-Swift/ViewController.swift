@@ -126,7 +126,6 @@ extension  ViewController: ORPManagerDelegate{
     }
     
     func orpheDidUpdateRSSI(orphe:ORPData){
-        print("didUpdateRSSI", orphe.RSSI)
         if let index = ORPManager.sharedInstance.availableORPDataArray.index(of: orphe){
             if let cell = tableView.view(atColumn: 1, row: index, makeIfNecessary: false) as? NSTableCellView{
                 cell.textField?.stringValue = String(describing: orphe.RSSI)

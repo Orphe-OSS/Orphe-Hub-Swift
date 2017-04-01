@@ -109,17 +109,39 @@ class OSCManager:NSObject, OSCServerDelegate{
                 orphe.triggerLight(lightNum: message.arguments[3] as! UInt8)
                 
             case "triggerLightWithHSVColor":
-                break
+                let lightNum = message.arguments[0] as! UInt8
+                let hue = message.arguments[1] as! UInt16
+                let sat = message.arguments[2] as! UInt8
+                let bri = message.arguments[3] as! UInt8
+                orphe.triggerLightWithHSVColor(lightNum: lightNum, hue: hue, saturation: sat, brightness: bri)
+                
             case "triggerLightWithRGBColor":
-                break
+                let lightNum = message.arguments[0] as! UInt8
+                let red = message.arguments[1] as! UInt8
+                let green = message.arguments[2] as! UInt8
+                let blue = message.arguments[3] as! UInt8
+                orphe.triggerLightWithRGBColor(lightNum: lightNum, red: red, green: green, blue: blue)
+                
             case "setLightOn":
-                break
+                orphe.switchLight(lightNum: message.arguments[0] as! UInt8, flag: true)
+                
             case "setLightOff":
-                break
+                orphe.switchLight(lightNum: message.arguments[0] as! UInt8, flag: false)
+                
             case "setHSVColor":
-                break
+                let lightNum = message.arguments[0] as! UInt8
+                let hue = message.arguments[1] as! UInt16
+                let sat = message.arguments[2] as! UInt8
+                let bri = message.arguments[3] as! UInt8
+                orphe.setColorHSV(lightNum: lightNum, hue: hue, saturation: sat, brightness: bri)
+                
             case "setRGBColor":
-                break
+                let lightNum = message.arguments[0] as! UInt8
+                let red = message.arguments[1] as! UInt8
+                let green = message.arguments[2] as! UInt8
+                let blue = message.arguments[3] as! UInt8
+                orphe.setColorRGB(lightNum: lightNum, red: red, green: green, blue: blue)
+                
             default:
                 PRINT("No such command")
                 break
