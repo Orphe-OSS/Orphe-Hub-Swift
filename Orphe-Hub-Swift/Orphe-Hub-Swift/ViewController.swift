@@ -31,6 +31,8 @@ class ViewController: NSViewController {
         ORPManager.sharedInstance.startScan()
         
         rssiTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.readRSSI), userInfo: nil, repeats: true)
+        
+        OSCManager.sharedInstance
     }
     
     override var representedObject: Any? {
