@@ -8,12 +8,20 @@
 
 import Cocoa
 import Orphe
+import OSCKit
 
 class ViewController: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet weak var leftSensorLabel: NSTextField!
     @IBOutlet weak var rightSensorLabel: NSTextField!
+    
+    @IBOutlet weak var oscHostTextField: NSTextField!
+    @IBOutlet weak var oscSenderTextField: NSTextField!
+    @IBOutlet weak var oscReceiverTextField: NSTextField!
+    @IBOutlet var oscLogTextView: NSTextView!
+    
+    
     var rssiTimer: Timer?
     
     var leftGesture = ""
@@ -32,7 +40,12 @@ class ViewController: NSViewController {
         
         rssiTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.readRSSI), userInfo: nil, repeats: true)
         
-        OSCManager.sharedInstance
+        //OSC view
+        OSCManager.sharedInstance.delegate = self
+        oscHostTextField.stringValue = OSCManager.sharedInstance.clientHost
+        oscSenderTextField.stringValue = String(OSCManager.sharedInstance.clientPort)
+        oscReceiverTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
+        
     }
     
     override var representedObject: Any? {
@@ -59,17 +72,36 @@ class ViewController: NSViewController {
         }
     }
     
-    override func keyDown(with theEvent: NSEvent) {
-        super.keyDown(with: theEvent)
-        if let lightNum:UInt8 = UInt8(theEvent.characters!){
-            for orp in ORPManager.sharedInstance.connectedORPDataArray{
-                orp.triggerLight(lightNum: lightNum)
-            }
-        }
+//    override func keyDown(with theEvent: NSEvent) {
+//        super.keyDown(with: theEvent)
+//        if let lightNum:UInt8 = UInt8(theEvent.characters!){
+//            for orp in ORPManager.sharedInstance.connectedORPDataArray{
+//                orp.triggerLight(lightNum: lightNum)
+//            }
+//        }
+//    }
+    
+//    @IBAction func oscHostTextFieldInput(_ sender: Any) {
+//        print(sender)
+//        
+//    }
+    
+    @IBAction func oscHostTextFieldInput(_ sender: NSTextField) {
+        OSCManager.sharedInstance.clientHost = sender.stringValue
+        print(sender.stringValue)
+    }
+    
+    @IBAction func oscSenderPortTextFieldInput(_ sender: NSTextField) {
+        OSCManager.sharedInstance.clientPort = sender.integerValue
+    }
+    
+    @IBAction func oscReceiverPortTextFieldInput(_ sender: NSTextField) {
+        OSCManager.sharedInstance.serverPort = sender.integerValue
     }
     
 }
 
+//MARK: - NSTableViewDelegate
 extension  ViewController: NSTableViewDelegate{
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?{
@@ -103,6 +135,7 @@ extension  ViewController: NSTableViewDelegate{
     
 }
 
+//MARK: - NSTableViewDataSource
 extension ViewController: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -112,9 +145,9 @@ extension ViewController: NSTableViewDataSource {
     
 }
 
+//MARK: - ORPManagerDelegate
 extension  ViewController: ORPManagerDelegate{
     
-    //MARK: - ORPManagerDelegate
     func orpheDidUpdateBLEState(state:CBCentralManagerState){
         PRINT("didUpdateBLEState", state)
         switch state {
@@ -176,7 +209,6 @@ extension  ViewController: ORPManagerDelegate{
         }
     }
     
-    //MARK: - Others
     func readRSSI(){
         for orp in ORPManager.sharedInstance.connectedORPDataArray {
             orp.readRSSI()
@@ -232,5 +264,11 @@ extension  ViewController: ORPManagerDelegate{
             rightGesture = "Gesture: " + kind + "\n"
             rightGesture += "power: " + String(power)
         }
+    }
+}
+
+extension ViewController: OSCManagerDelegate{
+    func oscDidReceiveMessage(message:String) {
+        oscLogTextView.string = message + "\n" + oscLogTextView.string!
     }
 }

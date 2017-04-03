@@ -9,27 +9,33 @@
 import Orphe
 import OSCKit
 
+@objc public protocol OSCManagerDelegate : NSObjectProtocol {
+    @objc optional func oscDidReceiveMessage(message:String)
+}
+
 class OSCManager:NSObject, OSCServerDelegate{
     
     static let sharedInstance = OSCManager()
+    weak var delegate:OSCManagerDelegate?
     
     var server:OSCServer!
     var client:OSCClient!
     var clientPath = "udp://localhost:1234"
     var clientHost = "localhost" {
         didSet{
-            clientPath = "udp://" + clientHost + ":" + clientPort
+            clientPath = "udp://" + clientHost + ":" + String(clientPort)
         }
     }
     
-    var clientPort = "1234" {
+    var clientPort = 1234 {
         didSet{
-            clientPath = "udp://" + clientPort + ":" + clientPort
+            clientPath = "udp://" + clientHost + ":" + String(clientPort)
         }
     }
     
     var serverPort = 4321{
         didSet{
+            server.stop()
             server.listen(serverPort)
         }
     }
@@ -47,11 +53,13 @@ class OSCManager:NSObject, OSCServerDelegate{
         
     }
     
-    func setHost(_ host:String){
-        clientPath = clientPath + host + ":" + clientPort
+    func stopReceive(){
+        server.stop()
     }
     
-    
+    func startReceive(){
+        server.listen(serverPort)
+    }
     
     func sendSensorValues(orphe:ORPData){
         var address = ""
@@ -91,62 +99,88 @@ class OSCManager:NSObject, OSCServerDelegate{
     
     func handle(_ message: OSCMessage!) {
         let oscAddress = message.address.components(separatedBy: "/")
-        print(oscAddress)
-        print(message.arguments)
         
         var side = ORPSide.left
         if oscAddress[1] == "RIGHT"{
             side = .right
         }
         
+        //TODO: 左右ではなくID指定Orpheを選ぶようにする
         let orphes = ORPManager.sharedInstance.getOrpheArray(side: side)
-        var orphe:ORPData!
-        if orphes.count > 0{
-            orphe = orphes[0]
+        var isNoCommand = false
+        var mString = ""
             
-            switch oscAddress[2] {
-            case "triggerLight":
+        switch oscAddress[2] {
+        case "triggerLight":
+            for orphe in orphes{
                 orphe.triggerLight(lightNum: message.arguments[3] as! UInt8)
-                
-            case "triggerLightWithHSVColor":
-                let lightNum = message.arguments[0] as! UInt8
-                let hue = message.arguments[1] as! UInt16
-                let sat = message.arguments[2] as! UInt8
-                let bri = message.arguments[3] as! UInt8
-                orphe.triggerLightWithHSVColor(lightNum: lightNum, hue: hue, saturation: sat, brightness: bri)
-                
-            case "triggerLightWithRGBColor":
-                let lightNum = message.arguments[0] as! UInt8
-                let red = message.arguments[1] as! UInt8
-                let green = message.arguments[2] as! UInt8
-                let blue = message.arguments[3] as! UInt8
-                orphe.triggerLightWithRGBColor(lightNum: lightNum, red: red, green: green, blue: blue)
-                
-            case "setLightOn":
-                orphe.switchLight(lightNum: message.arguments[0] as! UInt8, flag: true)
-                
-            case "setLightOff":
-                orphe.switchLight(lightNum: message.arguments[0] as! UInt8, flag: false)
-                
-            case "setHSVColor":
-                let lightNum = message.arguments[0] as! UInt8
-                let hue = message.arguments[1] as! UInt16
-                let sat = message.arguments[2] as! UInt8
-                let bri = message.arguments[3] as! UInt8
-                orphe.setColorHSV(lightNum: lightNum, hue: hue, saturation: sat, brightness: bri)
-                
-            case "setRGBColor":
-                let lightNum = message.arguments[0] as! UInt8
-                let red = message.arguments[1] as! UInt8
-                let green = message.arguments[2] as! UInt8
-                let blue = message.arguments[3] as! UInt8
-                orphe.setColorRGB(lightNum: lightNum, red: red, green: green, blue: blue)
-                
-            default:
-                PRINT("No such command")
-                break
             }
+            
+        case "triggerLightWithHSVColor":
+            let lightNum = message.arguments[0] as! UInt8
+            let hue = message.arguments[1] as! UInt16
+            let sat = message.arguments[2] as! UInt8
+            let bri = message.arguments[3] as! UInt8
+            
+            for orphe in orphes{
+                orphe.triggerLightWithHSVColor(lightNum: lightNum, hue: hue, saturation: sat, brightness: bri)
+            }
+            
+        case "triggerLightWithRGBColor":
+            let lightNum = message.arguments[0] as! UInt8
+            let red = message.arguments[1] as! UInt8
+            let green = message.arguments[2] as! UInt8
+            let blue = message.arguments[3] as! UInt8
+            
+            for orphe in orphes{
+                orphe.triggerLightWithRGBColor(lightNum: lightNum, red: red, green: green, blue: blue)
+            }
+            
+        case "setLightOn":
+            for orphe in orphes{
+                orphe.switchLight(lightNum: message.arguments[0] as! UInt8, flag: true)
+            }
+            
+        case "setLightOff":
+            for orphe in orphes{
+                orphe.switchLight(lightNum: message.arguments[0] as! UInt8, flag: false)
+            }
+            
+        case "setHSVColor":
+            let lightNum = message.arguments[0] as! UInt8
+            let hue = message.arguments[1] as! UInt16
+            let sat = message.arguments[2] as! UInt8
+            let bri = message.arguments[3] as! UInt8
+            for orphe in orphes{
+                orphe.setColorHSV(lightNum: lightNum, hue: hue, saturation: sat, brightness: bri)
+            }
+            
+        case "setRGBColor":
+            let lightNum = message.arguments[0] as! UInt8
+            let red = message.arguments[1] as! UInt8
+            let green = message.arguments[2] as! UInt8
+            let blue = message.arguments[3] as! UInt8
+            for orphe in orphes{
+                orphe.setColorRGB(lightNum: lightNum, red: red, green: green, blue: blue)
+            }
+            
+        default:
+            isNoCommand = true
+            PRINT("No such command")
+            break
         }
+        
+        var args = ""
+        if isNoCommand{
+            mString = "No such command."
+        }
+        else{
+            for arg in message.arguments{
+                args +=  " " + String(describing: arg)
+            }
+            mString = message.address + args
+        }
+        delegate?.oscDidReceiveMessage?(message: mString)
     }
     
     //MARK: - Notifications
