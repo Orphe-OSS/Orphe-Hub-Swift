@@ -33,18 +33,12 @@ class OSCManager:NSObject, OSCServerDelegate{
         }
     }
     
-    var serverPort = 4321{
-        didSet{
-            server.stop()
-            server.listen(serverPort)
-        }
-    }
+    var serverPort = 4321
     
     private override init() {
         super.init()
         server = OSCServer()
         server.delegate = self
-        server.listen(serverPort)
         
         client = OSCClient()
         
@@ -57,8 +51,14 @@ class OSCManager:NSObject, OSCServerDelegate{
         server.stop()
     }
     
-    func startReceive(){
-        server.listen(serverPort)
+    func startReceive()->Bool{
+        if server.listen(serverPort) {
+            return true
+        }
+        else{
+            print("can not listen")
+            return false
+        }
     }
     
     func sendSensorValues(orphe:ORPData){

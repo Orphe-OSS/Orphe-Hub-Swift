@@ -42,6 +42,9 @@ class ViewController: NSViewController {
         
         //OSC view
         OSCManager.sharedInstance.delegate = self
+        if !OSCManager.sharedInstance.startReceive(){
+            oscReceiverTextField.textColor = .red
+        }
         oscHostTextField.stringValue = OSCManager.sharedInstance.clientHost
         oscSenderTextField.stringValue = String(OSCManager.sharedInstance.clientPort)
         oscReceiverTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
@@ -96,7 +99,14 @@ class ViewController: NSViewController {
     }
     
     @IBAction func oscReceiverPortTextFieldInput(_ sender: NSTextField) {
+        OSCManager.sharedInstance.stopReceive()
         OSCManager.sharedInstance.serverPort = sender.integerValue
+        if !OSCManager.sharedInstance.startReceive(){
+            oscReceiverTextField.textColor = .red
+        }
+        else{
+            oscReceiverTextField.textColor = .black
+        }
     }
     
 }
