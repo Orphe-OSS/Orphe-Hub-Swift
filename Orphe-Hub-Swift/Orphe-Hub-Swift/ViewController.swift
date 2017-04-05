@@ -211,12 +211,6 @@ extension  ViewController: ORPManagerDelegate{
     
     func orpheDidUpdateOrpheInfo(orphe:ORPData){
         PRINT("didUpdateOrpheInfo")
-        for orp in ORPManager.sharedInstance.connectedORPDataArray {
-            if orp != orphe && orp.side == orphe.side{
-                orp.switchToOppositeSide()
-                PRINT("switch to opposite side")
-            }
-        }
     }
     
     func readRSSI(){
