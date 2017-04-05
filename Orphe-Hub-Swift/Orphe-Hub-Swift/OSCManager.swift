@@ -91,7 +91,23 @@ class OSCManager:NSObject, OSCServerDelegate{
         }
         address += "/gesture"
         var arguments = [Any]()
-        arguments.append(gesture.getGestureKindString())
+        switch gesture.getGestureKind() {
+        case .KICK:
+            arguments.append("KICK")
+            arguments.append("")
+        case .STEP_TOE:
+            arguments.append("STEP")
+            arguments.append("TOE")
+        case .STEP_FLAT:
+            arguments.append("STEP")
+            arguments.append("FLAT")
+        case .STEP_HEEL:
+            arguments.append("STEP")
+            arguments.append("HEEL")
+        default:
+            break
+        }
+        
         arguments.append(gesture.getPower())
         let message = OSCMessage(address: address, arguments: arguments)
         client.send(message, to: clientPath)
