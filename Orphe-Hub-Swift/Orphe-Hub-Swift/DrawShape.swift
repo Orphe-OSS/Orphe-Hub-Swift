@@ -7,3 +7,33 @@
 //
 
 import Foundation
+
+import Cocoa
+import Orphe
+import OSCKit
+
+class DrawCircle: NSView{
+    override func draw(_ dirtyRect: NSRect) {
+        
+        let context = NSGraphicsContext.current()?.cgContext
+        NSColor.blue.set()
+        context?.addEllipse(in: dirtyRect)
+        context?.fillPath()
+        
+    }
+}
+
+class DrawRectangle: NSView{
+    var bColor:NSColor = NSColor.blue
+    
+    override func draw(_ dirtyRect: NSRect) {
+        let context = NSGraphicsContext.current()?.cgContext
+        bColor.set()
+        context?.addRect(dirtyRect)
+        context?.fillPath()
+    }
+    
+    func setColor(_ color:NSColor){
+        bColor = color
+    }
+}

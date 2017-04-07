@@ -10,6 +10,9 @@ import Cocoa
 import Orphe
 import OSCKit
 
+let numData = 15
+let numQuat = 4
+
 class ViewController: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
@@ -21,6 +24,40 @@ class ViewController: NSViewController {
     @IBOutlet weak var oscReceiverTextField: NSTextField!
     @IBOutlet var oscLogTextView: NSTextView!
     
+    //hira
+    @IBOutlet weak var leftView: NSView!
+    @IBOutlet weak var rightView: NSView!
+    //let r = NSRect(x:0, y:0, width:100, height:100)
+    
+    @IBOutlet weak var leftQuatView: NSView!
+    @IBOutlet weak var rightQuatView: NSView!
+    
+    
+    @IBAction func switchButton(_ sender: Any) {
+        for (index, _) in ORPManager.sharedInstance.availableORPDataArray.enumerated(){
+            let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
+            orphe.switchToOppositeSide()
+        }
+    }
+    
+    //NSView
+    var views = NSView()
+    var views2 = NSView()
+    var subview = Array<NSView>(repeating:NSView(), count:numData)
+    var leftSubView = Array<NSView>(repeating:NSView(), count:numData)
+    var rightSubView = Array<NSView>(repeating:NSView(), count:numData)
+    
+    var leftQuatSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numQuat)
+    //var leftQuatSubView = Array<LabelGraphView>(repeating:LabelGraphView(frame: NSRect(x: 0, y: 0, width: 100, height: 100)), count:numQuat)
+    //var leftQuatSubView = Array<NSView>(repeating:NSView(), count:numQuat)
+    //var leftQuatText = Array<NSTextView>(repeating:NSTextView(frame: NSRect(x: 0, y: 0, width: 100, height: 100)), count:numQuat)
+    //var leftQuatText = NSTextView(frame: NSRect(x: 0, y: 0, width: 100, height: 100))
+    
+    var rightQuatSubView = Array<NSView>(repeating:NSView(), count:numQuat)
+    //var rightQuatText = NSTextView(frame: NSRect(x: 0, y: 0, width: 100, height: 100))
+    var rightQuatText = Array<NSTextView>(repeating:NSTextView(frame: NSRect(x: 0, y: 0, width: 100, height: 100)), count:numQuat)
+    
+    var leftText = NSTextField(frame: NSRect(x: 0, y: 1, width: 18, height: 23))
     
     var rssiTimer: Timer?
     
@@ -28,11 +65,38 @@ class ViewController: NSViewController {
     var rightGesture = ""
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.target = self
         tableView.allowsTypeSelect = false
+        
+        //subviewの初期化
+        for i in 0..<numData {
+            leftSubView[i] = DrawRectangle(frame: NSRect(x: 0, y: 0, width: 0, height: 0))
+            leftView.addSubview(leftSubView[i])
+            leftView.addSubview(leftText)
+            rightSubView[i] = DrawRectangle(frame: NSRect(x: 0, y: 0, width: 0, height: 0))
+            rightView.addSubview(rightSubView[i])
+        }
+        //----------Quat----------
+        //leftQuatText.drawsBackground = true
+        //leftQuatText.wantsLayer = true
+        //leftQuatText.backgroundColor = NSColor.clear
+        leftQuatView.layer?.borderWidth = 1.0
+        for i in 0..<numQuat {
+            //LEFT
+            leftQuatSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(leftQuatView.bounds.height) - 25*(i+1), width: 200, height: 25))
+            leftQuatView.addSubview(leftQuatSubView[i])
+            //RIGHT
+            rightQuatText[i].backgroundColor = NSColor.clear
+            rightQuatSubView[i] = DrawRectangle(frame: NSRect(x: 0, y: 0, width: 0, height: 0))
+            rightQuatView.addSubview(rightQuatSubView[i])
+            rightQuatView.addSubview(rightQuatText[i])
+            //rightQuatText.frame = NSRect(x: 0, y: Int(rightQuatView.bounds.height), width: 100, height: 100)
+        }
+        
         
         ORPManager.sharedInstance.delegate = self
         ORPManager.sharedInstance.isEnableAutoReconnection = false
@@ -218,14 +282,31 @@ extension  ViewController: ORPManagerDelegate{
     func orpheDidUpdateSensorData(orphe: ORPData) {
         let sideInfo:Int32 = Int32(orphe.side.rawValue)
         var text = ""
+        let fontSize = Int((leftSensorLabel.font?.pointSize)!)+5
+        var dateCount = 0
+        
         let quat = orphe.getQuat()
         for (i, q) in quat.enumerated() {
             text += "Quat\(i): "+String(q) + "\n"
+            //leftSubView[i].draw
+            if sideInfo == 0 {
+                leftSubView[i].frame = NSRect(x: Int(leftView.bounds.width)/2, y: Int(leftView.bounds.height) - (dateCount+i)*fontSize, width: Int(q*100), height: 10)
+            }
+            else{
+                rightSubView[i].frame = NSRect(x: Int(leftView.bounds.width)/2, y: Int(rightView.bounds.height) - (dateCount+i)*fontSize, width: Int(q*100), height: 10)
+            }
         }
+        dateCount += quat.count
         
         let euler = orphe.getEuler()
         for (i, e) in euler.enumerated() {
-            text += "Euler\(i): "+String(e) + "\n"
+            text += "Euler\(i):\(rightSensorLabel.frame.origin):\(leftSubView[dateCount+i].frame.origin): "+String(e) + "\n"
+            if sideInfo == 0 {
+                leftSubView[dateCount+i].frame = NSRect(x: Int(leftView.bounds.width)/2, y: Int(leftView.bounds.height) - (dateCount+i)*fontSize, width: Int(e), height: 10)
+            }
+            else{
+                rightSubView[dateCount+i].frame = NSRect(x: Int(leftView.bounds.width)/2, y: Int(rightView.bounds.height) - (dateCount+i)*fontSize, width: Int(e), height: 10)
+            }
         }
         
         let acc = orphe.getAcc()
@@ -246,9 +327,36 @@ extension  ViewController: ORPManagerDelegate{
         
         if sideInfo == 0 {
             leftSensorLabel.stringValue = "LEFT\n\n" + text + "\n" + leftGesture
+            leftText.stringValue = "LEFT\n\n" + text + "\n" + leftGesture
         }
         else{
             rightSensorLabel.stringValue = "RIGHT\n\n" + text + "\n" + rightGesture
+        }
+        
+        //-----------hira
+        //var quatText = "Quat\n"
+        //leftQuatText.frame = NSRect(x: 0, y: Int(leftQuatView.bounds.height), width: 100, height: 100)
+        
+        for (i, q) in quat.enumerated() {
+            //quatText += "\(i):" + String(q)
+            if sideInfo == 0 {
+                //leftQuatSubView[i].frame = NSRect(x: Int(leftQuatView.bounds.width)/2, y: Int(leftQuatView.bounds.height)-10*i, width: 100, height: 100)
+                leftQuatSubView[i].textSubView.string = "\(i):" + String(q)
+                //leftQuatSubView[i].graphSubView.frame = NSRect(x: 50, y: 0, width: Int(q*100), height: 10)
+                leftQuatSubView[i].setGratphWidth(100, Int(q*100))
+            }else{
+                //rightQuatText.string = quatText
+                rightQuatText[i].string = "\(i):" + String(q)
+                let textY = (rightQuatView.bounds.height - CGFloat(10*i))
+                rightQuatText[i].bounds.origin.y = textY
+                rightQuatSubView[i].frame = NSRect(x: Int(leftQuatView.bounds.width)/2, y: Int(leftQuatView.bounds.height)-10*i, width: Int(q*100), height: 10)
+                
+                //左の残骸
+//                leftQuatText[i].string = "\(i):" + String(q)
+//                let textY = leftQuatView.bounds.height - CGFloat(10*i)
+//                leftQuatText[i].bounds.origin.y = textY
+//                leftQuatSubView[i].frame = NSRect(x: Int(leftQuatView.bounds.width)/2, y: Int(leftQuatView.bounds.height)-10*i, width: Int(q*100), height: 10)
+            }
         }
     }
     
