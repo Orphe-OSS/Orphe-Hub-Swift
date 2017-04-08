@@ -12,6 +12,7 @@ import OSCKit
 
 let numData = 15
 let numQuat = 4
+let numEuler = 3
 
 class ViewController: NSViewController {
     
@@ -31,40 +32,55 @@ class ViewController: NSViewController {
     @IBOutlet weak var rightView: NSView!
     //let r = NSRect(x:0, y:0, width:100, height:100)
     
+    //Quat&EulerView
     @IBOutlet weak var leftQuatView: NSView!
     @IBOutlet weak var rightQuatView: NSView!
+    @IBOutlet weak var leftEulerView: NSView!
+    @IBOutlet weak var rightEulerView: NSView!
     
+    //PullDown式データ表示
+    @IBOutlet weak var dataPopUp: NSPopUpButton!
+    @IBAction func setDataTitle(_ sender: Any) {
+        dataPopUp.title = (dataPopUp.selectedItem?.title)!
+    }
+    @IBOutlet weak var dataParamPopUp: NSPopUpButton!
+    @IBAction func setDataParamTitle(_ sender: Any) {
+        dataParamPopUp.title = (dataParamPopUp.selectedItem?.title)!
+    }
     
-    @IBAction func switchButton(_ sender: Any) {
+    //SelectedDataView
+    @IBOutlet weak var leftDataView: NSView!
+    @IBOutlet weak var rightDataView: NSView!
+    
+    @IBAction func switchToOppositeSide(_ sender: Any) {
         for (index, _) in ORPManager.sharedInstance.availableORPDataArray.enumerated(){
             let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
             orphe.switchToOppositeSide()
         }
     }
     
-    //NSView
-    var views = NSView()
-    var views2 = NSView()
-    var subview = Array<NSView>(repeating:NSView(), count:numData)
-    var leftSubView = Array<NSView>(repeating:NSView(), count:numData)
-    var rightSubView = Array<NSView>(repeating:NSView(), count:numData)
-    
     var leftQuatSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numQuat)
-    //var leftQuatSubView = Array<LabelGraphView>(repeating:LabelGraphView(frame: NSRect(x: 0, y: 0, width: 100, height: 100)), count:numQuat)
-    //var leftQuatSubView = Array<NSView>(repeating:NSView(), count:numQuat)
-    //var leftQuatText = Array<NSTextView>(repeating:NSTextView(frame: NSRect(x: 0, y: 0, width: 100, height: 100)), count:numQuat)
-    //var leftQuatText = NSTextView(frame: NSRect(x: 0, y: 0, width: 100, height: 100))
+    var rightQuatSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numQuat)
     
-    var rightQuatSubView = Array<NSView>(repeating:NSView(), count:numQuat)
-    //var rightQuatText = NSTextView(frame: NSRect(x: 0, y: 0, width: 100, height: 100))
-    var rightQuatText = Array<NSTextView>(repeating:NSTextView(frame: NSRect(x: 0, y: 0, width: 100, height: 100)), count:numQuat)
+    var leftEulerSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numEuler)
+    var rightEulerSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numEuler)
     
-    var leftText = NSTextField(frame: NSRect(x: 0, y: 1, width: 18, height: 23))
+    //===SelectedData===
+    
+    //var leftDataSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:4)
+    //var rightDataSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:4)
+    var leftDataSubView = LabelGraphView()
+    var rightDataSubView = LabelGraphView()
+    
     
     var rssiTimer: Timer?
     
     var leftGesture = ""
     var rightGesture = ""
+    
+    let dataItem:[String] = ["Quat","Euler","Acc","Gyro","Mag","Shock"]
+    let dataParamItem:[String] = ["0","1","2","3"]
+    
     
     override func viewDidLoad() {
         
@@ -74,30 +90,55 @@ class ViewController: NSViewController {
         tableView.target = self
         tableView.allowsTypeSelect = false
         
-        //subviewの初期化
-        for i in 0..<numData {
-            leftSubView[i] = DrawRectangle(frame: NSRect(x: 0, y: 0, width: 0, height: 0))
-            leftView.addSubview(leftSubView[i])
-            leftView.addSubview(leftText)
-            rightSubView[i] = DrawRectangle(frame: NSRect(x: 0, y: 0, width: 0, height: 0))
-            rightView.addSubview(rightSubView[i])
-        }
+        //PopUpButtonのリストをリセット
+        dataPopUp.removeAllItems()
+        dataPopUp.addItems(withTitles: dataItem)
+        dataParamPopUp.removeAllItems()
+        dataParamPopUp.addItems(withTitles: dataParamItem)
+        
+        //AllDataText
+        leftSensorLabel.layer?.borderWidth = 2.0
+        rightSensorLabel.layer?.borderWidth = 2.0
+        
         //----------Quat----------
-        //leftQuatText.drawsBackground = true
-        //leftQuatText.wantsLayer = true
-        //leftQuatText.backgroundColor = NSColor.clear
         leftQuatView.layer?.borderWidth = 1.0
+        rightQuatView.layer?.borderWidth = 1.0
         for i in 0..<numQuat {
             //LEFT
             leftQuatSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(leftQuatView.bounds.height) - 25*(i+1), width: 200, height: 25))
             leftQuatView.addSubview(leftQuatSubView[i])
             //RIGHT
-            rightQuatText[i].backgroundColor = NSColor.clear
-            rightQuatSubView[i] = DrawRectangle(frame: NSRect(x: 0, y: 0, width: 0, height: 0))
+            rightQuatSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(rightQuatView.bounds.height) - 25*(i+1), width: 200, height: 25))
             rightQuatView.addSubview(rightQuatSubView[i])
-            rightQuatView.addSubview(rightQuatText[i])
-            //rightQuatText.frame = NSRect(x: 0, y: Int(rightQuatView.bounds.height), width: 100, height: 100)
         }
+        //----------Euler----------
+        leftEulerView.layer?.borderWidth = 1.0
+        rightEulerView.layer?.borderWidth = 1.0
+        for i in 0..<numEuler {
+            //LEFT
+            leftEulerSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(leftEulerView.bounds.height) - 25*(i+1), width: 200, height: 25))
+            leftEulerView.addSubview(leftEulerSubView[i])
+            //RIGHT
+            rightEulerSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(rightEulerView.bounds.height) - 25*(i+1), width: 200, height: 25))
+            rightEulerView.addSubview(rightEulerSubView[i])
+        }
+        //----------Acc----------
+        
+        //----------Gyro----------
+        
+        //----------Mag----------
+        
+        //----------Quat----------
+        
+        //----------Shock----------
+        
+        //----SelectedData----
+        leftDataView.layer?.borderWidth = 1.0
+        leftDataSubView = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(rightDataView.bounds.height) - 25, width: 200, height: 25))
+        leftDataView.addSubview(leftDataSubView)
+        rightDataView.layer?.borderWidth = 1.0
+        rightDataSubView = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(rightDataView.bounds.height) - 25, width: 200, height: 25))
+        rightDataView.addSubview(rightDataSubView)
         
         
         ORPManager.sharedInstance.delegate = self
@@ -291,31 +332,15 @@ extension  ViewController: ORPManagerDelegate{
     func orpheDidUpdateSensorData(orphe: ORPData) {
         let sideInfo:Int32 = Int32(orphe.side.rawValue)
         var text = ""
-        let fontSize = Int((leftSensorLabel.font?.pointSize)!)+5
-        var dateCount = 0
         
         let quat = orphe.getQuat()
         for (i, q) in quat.enumerated() {
             text += "Quat\(i): "+String(q) + "\n"
-            //leftSubView[i].draw
-            if sideInfo == 0 {
-                leftSubView[i].frame = NSRect(x: Int(leftView.bounds.width)/2, y: Int(leftView.bounds.height) - (dateCount+i)*fontSize, width: Int(q*100), height: 10)
-            }
-            else{
-                rightSubView[i].frame = NSRect(x: Int(leftView.bounds.width)/2, y: Int(rightView.bounds.height) - (dateCount+i)*fontSize, width: Int(q*100), height: 10)
-            }
         }
-        dateCount += quat.count
         
         let euler = orphe.getEuler()
         for (i, e) in euler.enumerated() {
-            text += "Euler\(i):\(rightSensorLabel.frame.origin):\(leftSubView[dateCount+i].frame.origin): "+String(e) + "\n"
-            if sideInfo == 0 {
-                leftSubView[dateCount+i].frame = NSRect(x: Int(leftView.bounds.width)/2, y: Int(leftView.bounds.height) - (dateCount+i)*fontSize, width: Int(e), height: 10)
-            }
-            else{
-                rightSubView[dateCount+i].frame = NSRect(x: Int(leftView.bounds.width)/2, y: Int(rightView.bounds.height) - (dateCount+i)*fontSize, width: Int(e), height: 10)
-            }
+            text += "Euler\(i): "+String(e) + "\n"
         }
         
         let acc = orphe.getAcc()
@@ -336,7 +361,6 @@ extension  ViewController: ORPManagerDelegate{
         
         if sideInfo == 0 {
             leftSensorLabel.stringValue = "LEFT\n\n" + text + "\n" + leftGesture
-            leftText.stringValue = "LEFT\n\n" + text + "\n" + leftGesture
         }
         else{
             rightSensorLabel.stringValue = "RIGHT\n\n" + text + "\n" + rightGesture
@@ -348,22 +372,89 @@ extension  ViewController: ORPManagerDelegate{
             MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: pitchBendValue)
         }
         
+        //-----------Quat--------------
         for (i, q) in quat.enumerated() {
             //quatText += "\(i):" + String(q)
             if sideInfo == 0 {
-                //leftQuatSubView[i].frame = NSRect(x: Int(leftQuatView.bounds.width)/2, y: Int(leftQuatView.bounds.height)-10*i, width: 100, height: 100)
                 leftQuatSubView[i].textSubView.string = "\(i):" + String(q)
-                //leftQuatSubView[i].graphSubView.frame = NSRect(x: 50, y: 0, width: Int(q*100), height: 10)
                 leftQuatSubView[i].setGratphWidth(100, Int(q*100))
             }else{
-                //rightQuatText.string = quatText
-                rightQuatText[i].string = "\(i):" + String(q)
-                let textY = (rightQuatView.bounds.height - CGFloat(10*i))
-                rightQuatText[i].bounds.origin.y = textY
-                rightQuatSubView[i].frame = NSRect(x: Int(leftQuatView.bounds.width)/2, y: Int(leftQuatView.bounds.height)-10*i, width: Int(q*100), height: 10)
+                rightQuatSubView[i].textSubView.string = "\(i):" + String(q)
+                rightQuatSubView[i].setGratphWidth(100, Int(q*100))
                 
+                //rightQuatText.string = quatText
+                //rightQuatText[i].string = "\(i):" + String(q)
+                //let textY = (rightQuatView.bounds.height - CGFloat(10*i))
+                //rightQuatText[i].bounds.origin.y = textY
+                //rightQuatSubView[i].frame = NSRect(x: Int(leftQuatView.bounds.width)/2, y: Int(leftQuatView.bounds.height)-10*i, width: Int(q*100), height: 10)
             }
         }
+        //----------Euler----------
+        for (i, e) in euler.enumerated() {
+            //quatText += "\(i):" + String(q)
+            if sideInfo == 0 {
+                leftEulerSubView[i].textSubView.string = "\(i):" + String(e)
+                leftEulerSubView[i].setGratphWidth(100, Int(e*100))
+            }else{
+                rightEulerSubView[i].textSubView.string = "\(i):" + String(e)
+                rightEulerSubView[i].setGratphWidth(100, Int(e*100))
+            }
+        }
+        //----------Acc----------
+        
+        //----------Gyro----------
+        
+        //----------Mag----------
+        
+        //----------Quat----------
+        
+        //----------Shock----------
+        
+        //----SelectedData----
+        switch dataPopUp.title {
+        case "Quat":
+            let quatForGratph = quat.map{ $0 * 100 } //棒グラフ表示用に値を調整
+            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:quat, orpheDispDataForGratph: quatForGratph)
+        case "Euler":
+            let eulerForGratph = euler.map{ $0 * (100/180) }
+            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:euler, orpheDispDataForGratph: eulerForGratph)
+        case "Acc":
+            let accForGratph = acc.map{ $0 * 100 }
+            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:acc, orpheDispDataForGratph: accForGratph)
+        case "Gyro":
+            let gyroForGratph = gyro.map{ $0 * 100 }
+            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:gyro, orpheDispDataForGratph: gyroForGratph)
+        case "Mag":
+            let magArray:[Float] = [Float(mag)]
+            let magForGratph:[Float] = [magArray[0]*(100/359)]
+            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:magArray, orpheDispDataForGratph: magForGratph)
+        case "Shock":
+            let shockArray:[Float] = [Float(shock)]
+            let shockForGratph:[Float] = [shockArray[0]*(100/255)]
+            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:shockArray, orpheDispDataForGratph: shockForGratph)
+        default:
+            break
+        }
+    }
+    
+    func orpheDataDisplay(sideInfo:Int32,orpheDispData:[Float],orpheDispDataForGratph:[Float]){
+        
+        if sideInfo == 0 { //LEFT
+            for i in 0..<orpheDispData.count{
+                if i == dataParamPopUp.indexOfSelectedItem{
+                    leftDataSubView.textSubView.string = "\(i):" + String(orpheDispData[i])
+                    leftDataSubView.setGratphWidth(100, Int(orpheDispDataForGratph[i]))
+                }
+            }
+        }else{ //RIGHT
+            for i in 0..<orpheDispData.count{
+                if i == dataParamPopUp.indexOfSelectedItem{
+                    rightDataSubView.textSubView.string = "\(i):" + String(orpheDispData[i])
+                    rightDataSubView.setGratphWidth(100, Int(orpheDispDataForGratph[i]))
+                }
+            }
+        }
+        
     }
     
     func orpheDidCatchGestureEvent(gestureEvent:ORPGestureEventArgs, orphe:ORPData) {

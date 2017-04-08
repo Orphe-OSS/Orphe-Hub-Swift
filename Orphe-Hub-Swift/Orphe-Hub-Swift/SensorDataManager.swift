@@ -40,7 +40,7 @@ class SensorDataTuner{
             pitch = maxValue
         }
         let pitchbendValue = UInt16(Int16(pitch * (16383.0 / minValue))) //-8192~8191
-        print("pitchbend:",pitchbendValue)
+//        print("pitchbend:",pitchbendValue)
         return pitchbendValue
     }
     
@@ -48,7 +48,6 @@ class SensorDataTuner{
         if euler > -5.0 && euler < 5.0 {
             sum += euler
             counter += 1
-            print(String(counter))
             
             if counter > 99 {
                 print("Floor calibration!" + String(sum / Double(counter)))
