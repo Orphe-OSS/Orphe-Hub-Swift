@@ -15,7 +15,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         print("applicationDidFinishLaunching")
-        MIDIManager.sharedInstance.initMIDI()
         // Insert code here to initialize your application
     }
 

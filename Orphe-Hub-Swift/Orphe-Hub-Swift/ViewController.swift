@@ -21,6 +21,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var oscReceiverTextField: NSTextField!
     @IBOutlet var oscLogTextView: NSTextView!
     
+    var sensorDataTuner:SensorDataTuner!
     
     var rssiTimer: Timer?
     
@@ -49,6 +50,9 @@ class ViewController: NSViewController {
         oscSenderTextField.stringValue = String(OSCManager.sharedInstance.clientPort)
         oscReceiverTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
         
+        //MIDI
+        MIDIManager.sharedInstance.initMIDI()
+        sensorDataTuner = SensorDataTuner()
     }
     
     override var representedObject: Any? {
@@ -253,6 +257,12 @@ extension  ViewController: ORPManagerDelegate{
         }
         else{
             rightSensorLabel.stringValue = "RIGHT\n\n" + text + "\n" + rightGesture
+        }
+        
+        if orphe.side == .left{
+            let pitchBendValue = sensorDataTuner.getPitchbendValue(value: Double(euler[0]))
+            sensorDataTuner.calibrateFloorAngle(euler: Double(euler[0]))
+            MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: pitchBendValue)
         }
     }
     
