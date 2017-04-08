@@ -790,7 +790,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="51G-zd-oB8">
-                                <rect key="frame" x="234" y="247" width="185" height="348"/>
+                                <rect key="frame" x="335" y="0.0" width="185" height="348"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="5rM-1a-ek0">
                                     <font key="font" metaFont="system"/>
@@ -801,7 +801,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Akz-Mu-QqI">
-                                <rect key="frame" x="460" y="247" width="185" height="348"/>
+                                <rect key="frame" x="679" y="0.0" width="185" height="348"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" id="tnP-QA-Kz0">
                                     <font key="font" metaFont="system"/>
@@ -901,6 +901,42 @@
                                     <action selector="oscReceiverPortTextFieldInput:" target="XfG-lQ-9wD" id="4nx-hW-Aak"/>
                                 </connections>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="btg-G2-Gsa">
+                                <rect key="frame" x="110" y="147" width="71" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="switch" bezelStyle="rounded" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dwe-Q2-JoE">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="switchButton:" target="XfG-lQ-9wD" id="gfa-Bs-rPi"/>
+                                </connections>
+                            </button>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T57-W9-gc6">
+                                <rect key="frame" x="517" y="0.0" width="163" height="312"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y8S-mu-bDp">
+                                <rect key="frame" x="861" y="0.0" width="163" height="312"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u8p-Ci-hM8">
+                                <rect key="frame" x="238" y="515" width="200" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hst-ex-eNC">
+                                <rect key="frame" x="530" y="468" width="255" height="152"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n3x-DH-QCW">
+                                <rect key="frame" x="236" y="619" width="67" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Quat:LEFT" id="LHJ-yA-to5">
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="iLd-Hr-cnL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hwO-lF-wrf"/>
@@ -908,12 +944,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="leftQuatView" destination="u8p-Ci-hM8" id="4PQ-Vt-R7L"/>
                         <outlet property="leftSensorLabel" destination="51G-zd-oB8" id="JLM-df-cGC"/>
+                        <outlet property="leftView" destination="T57-W9-gc6" id="MVg-9F-END"/>
                         <outlet property="oscHostTextField" destination="JcH-oy-LY3" id="Jhs-CO-9g2"/>
                         <outlet property="oscLogTextView" destination="Xjo-5d-G0Q" id="i38-rH-d9e"/>
                         <outlet property="oscReceiverTextField" destination="f60-z6-bkU" id="yPL-rF-DNZ"/>
                         <outlet property="oscSenderTextField" destination="whu-rb-lWs" id="wY0-y4-IIu"/>
+                        <outlet property="rightQuatView" destination="Hst-ex-eNC" id="HBu-CG-aK2"/>
                         <outlet property="rightSensorLabel" destination="Akz-Mu-QqI" id="LFb-aZ-8y4"/>
+                        <outlet property="rightView" destination="y8S-mu-bDp" id="dv0-sD-6M7"/>
                         <outlet property="tableView" destination="h75-vc-pKQ" id="h8M-6Z-WJ6"/>
                     </connections>
                 </viewController>
