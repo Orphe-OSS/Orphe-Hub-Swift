@@ -15,15 +15,16 @@
   return self;
 }
 
-- (void)listen:(NSInteger)port {
+- (BOOL)listen:(NSInteger)port {
 
   NSError *error = nil;
   [self.socket bindToPort:port error:&error];
   
   if (error) {
-    [[NSException exceptionWithName:@"OSCProtocolException"
-                             reason:[NSString stringWithFormat:@"OSCServer could not bind: %@", error]
-                           userInfo:@{@"error":error}] raise];
+//    [[NSException exceptionWithName:@"OSCProtocolException"
+//                             reason:[NSString stringWithFormat:@"OSCServer could not bind: %@", error]
+//                           userInfo:@{@"error":error}] raise];
+      return NO;
   } else {
     NSLog(@"[OSCServer] listening on port %li", (long)port);
   }
@@ -32,10 +33,13 @@
   [self.socket beginReceiving:&error];
   
   if (error) {
-    [[NSException exceptionWithName:@"OSCProtocolException"
-                             reason:[NSString stringWithFormat:@"OSCServer could not start receiving: %@", error]
-                           userInfo:@{@"error":error}] raise];
+//    [[NSException exceptionWithName:@"OSCProtocolException"
+//                             reason:[NSString stringWithFormat:@"OSCServer could not start receiving: %@", error]
+      //                           userInfo:@{@"error":error}] raise];
+      return NO;
   }
+    
+    return YES;
 }
 
 - (void)stop {

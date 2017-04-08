@@ -13,7 +13,7 @@
 
 @property (strong) id <OSCServerDelegate> delegate;
 
-- (void)listen:(NSInteger)port;
+- (BOOL)listen:(NSInteger)port;
 - (void)stop;
 
 @end
