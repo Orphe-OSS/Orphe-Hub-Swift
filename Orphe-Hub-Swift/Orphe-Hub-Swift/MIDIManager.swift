@@ -730,7 +730,6 @@ class MIDIManager: NSObject {
         packet.timeStamp = MIDITimeStamp(AudioConvertHostTimeToNanos(AudioGetCurrentHostTime()))
         packet.length    = 3
         
-        print("cc:",value)
         packet.data.0    = UInt8(0xB0) + UInt8(ch)                              // 0 is channel number
         packet.data.1    = ctNum
         packet.data.2    = value

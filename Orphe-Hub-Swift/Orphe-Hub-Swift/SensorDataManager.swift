@@ -13,12 +13,37 @@ class SensorDataManager{
     
     static let sharedInstance = SensorDataManager()
     
-    
-    
-    
 }
 
-enum SensorKind:String{
+public protocol EnumEnumerable {
+    associatedtype Case = Self
+}
+
+public extension EnumEnumerable where Case: Hashable {
+    fileprivate static var generator: AnyIterator<Case> {
+        var n = 0
+        return AnyIterator {
+            defer { n += 1 }
+            let next = withUnsafePointer(to: &n) { UnsafeRawPointer($0).load(as: Case.self) }
+            return next.hashValue == n ? next : nil
+        }
+    }
+    
+    @warn_unused_result
+    public static func enumerate() -> EnumeratedSequence<AnySequence<Case>> {
+        return AnySequence(generator).enumerated()
+    }
+    
+    public static var cases: [Case] {
+        return Array(generator)
+    }
+    
+    public static var count: Int {
+        return cases.count
+    }
+}
+
+enum SensorKind:String, EnumEnumerable{
     case eulerX = "eulerX"
     case eulerY = "eulerY"
     case eulerZ = "eulerZ"
@@ -31,27 +56,15 @@ enum SensorKind:String{
 
 }
 
-enum MIDIStatus{
-    case pitchBend
-    case controlChange
+enum MIDIStatus:String, EnumEnumerable{
+    case pitchBend = "Pitch Bend"
+    case controlChange = "Control Change"
 }
 
 class SensorDataTuner:NSObject{
     
     let controlChangeMaxValue = 127.0
     let pitchBendMaxValue = 16383.0
-    
-    static let sensorKindArray = [
-        "eulerX",
-        "eulerY",
-        "eulerZ",
-        "gyroX",
-        "gyroY",
-        "gyroZ",
-        "accX",
-        "accY",
-        "accZ"
-        ]
     
     weak var orphe:ORPData!
     
@@ -62,6 +75,8 @@ class SensorDataTuner:NSObject{
     
     var valueArray = [Double]()
     var smooth = 0 //平均する配列の数
+    
+    var isAbsolute = false //絶対値にする
     
     var activeCalibration = false //今のところ足の水平だけ
     var isInvert = true //値の最大最小を逆転
@@ -179,7 +194,6 @@ class SensorDataTuner:NSObject{
     func getPitchbendValue() -> UInt16 {
         currentOutputValue = map(value: currentInputValue, inputMin: minValue, inputMax: maxValue, outputMin: 0, outputMax: pitchBendMaxValue, clamp: true)
         let pitchbendValue = UInt16(currentOutputValue) //0~16383.0
-        print("pitchbend:",pitchbendValue)
         return pitchbendValue
     }
     

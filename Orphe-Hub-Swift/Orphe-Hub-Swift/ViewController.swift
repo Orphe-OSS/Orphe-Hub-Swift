@@ -42,6 +42,9 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBOutlet weak var midiStatusPopUp: NSPopUpButton!
+    
+    
     //SelectedDataView
     @IBOutlet weak var leftSelectedDataView: NSView!
     @IBOutlet weak var rightSelectedDataView: NSView!
@@ -72,8 +75,6 @@ class ViewController: NSViewController {
     var leftGesture = ""
     var rightGesture = ""
     
-    let dataParamItem:[String] = ["0","1","2","3"]
-    
     
     override func viewDidLoad() {
         
@@ -84,8 +85,19 @@ class ViewController: NSViewController {
         tableView.allowsTypeSelect = false
         
         //PopUpButtonのリストをリセット
+        var skArray = [String]()
+        for sk in SensorKind.cases{
+            skArray.append(sk.rawValue)
+        }
         dataPopUp.removeAllItems()
-        dataPopUp.addItems(withTitles: SensorDataTuner.sensorKindArray)
+        dataPopUp.addItems(withTitles: skArray)
+        
+        var msArray = [String]()
+        for ms in MIDIStatus.cases{
+            msArray.append(ms.rawValue)
+        }
+        midiStatusPopUp.removeAllItems()
+        midiStatusPopUp.addItems(withTitles: msArray)
         
         //AllDataText
         
@@ -107,15 +119,6 @@ class ViewController: NSViewController {
             rightEulerSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(rightEulerView.bounds.height) - 25*(i+1), width: 200, height: 25))
             rightEulerView.addSubview(rightEulerSubView[i])
         }
-        //----------Acc----------
-        
-        //----------Gyro----------
-        
-        //----------Mag----------
-        
-        //----------Quat----------
-        
-        //----------Shock----------
         
         //----SelectedData----
         leftSelectedDataSubView = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(rightSelectedDataView.bounds.height) - 25, width: 200, height: 25))
@@ -177,6 +180,30 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBAction func smoothValueTextFieldInput(_ sender: NSTextField) {
+        for std in sensorDataTuner{
+            if std.orphe.side == .left{
+                std.smooth = sender.integerValue
+            }
+        }
+    }
+    
+    @IBAction func minValueTextFieldInput(_ sender: NSTextField) {
+        for std in sensorDataTuner{
+            if std.orphe.side == .left{
+                std.minValue = sender.doubleValue
+            }
+        }
+    }
+    
+    @IBAction func maxValueTextFieldInput(_ sender: NSTextField) {
+        for std in sensorDataTuner{
+            if std.orphe.side == .left{
+                std.maxValue = sender.doubleValue
+            }
+        }
+    }
+    
     @IBAction func oscHostTextFieldInput(_ sender: NSTextField) {
         OSCManager.sharedInstance.clientHost = sender.stringValue
         print(sender.stringValue)
@@ -196,6 +223,16 @@ class ViewController: NSViewController {
             oscReceiverTextField.textColor = .black
         }
     }
+    
+    @IBAction func midiStatusPopUpAction(_ sender: Any) {
+        midiStatusPopUp.title = (midiStatusPopUp.selectedItem?.title)!
+        for std in sensorDataTuner{
+            if std.orphe.side == .left{
+                std.midiStatus = MIDIStatus(rawValue: midiStatusPopUp.selectedItem!.title)!
+            }
+        }
+    }
+    
     
 }
 
