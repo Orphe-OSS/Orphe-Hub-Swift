@@ -65,7 +65,43 @@ class SensorDataTuner:NSObject{
     var midiStatus = MIDIStatus.pitchBend
     var sensorKind:SensorKind = .eulerX {
         didSet{
-            
+            if sensorKind == .eulerX{
+                activeCalibration = true
+            }
+            else{
+                activeCalibration = false
+            }
+            switch sensorKind {
+            case .accX:
+                maxValue = 1
+                minValue = -1
+            case .accY:
+                maxValue = 1
+                minValue = -1
+            case .accZ:
+                maxValue = 1
+                minValue = -1
+            case .eulerX:
+                maxValue = 0
+                minValue = -38.0
+            case .eulerY:
+                maxValue = 180
+                minValue = -180
+            case .eulerZ:
+                maxValue = 180
+                minValue = -180
+            case .gyroX:
+                maxValue = 1
+                minValue = -1
+            case .gyroY:
+                maxValue = 1
+                minValue = -1
+            case .gyroZ:
+                maxValue = 1
+                minValue = -1
+            default:
+                break
+            }
         }
     }
     

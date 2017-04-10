@@ -17,8 +17,6 @@ let numEuler = 3
 class ViewController: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
-    @IBOutlet weak var leftSensorLabel: NSTextField!
-    @IBOutlet weak var rightSensorLabel: NSTextField!
     
     @IBOutlet weak var oscHostTextField: NSTextField!
     @IBOutlet weak var oscSenderTextField: NSTextField!
@@ -42,10 +40,6 @@ class ViewController: NSViewController {
                 std.sensorKind = SensorKind(rawValue: (dataPopUp.selectedItem?.title)!)!
             }
         }
-    }
-    @IBOutlet weak var dataParamPopUp: NSPopUpButton!
-    @IBAction func setDataParamTitle(_ sender: Any) {
-        dataParamPopUp.title = (dataParamPopUp.selectedItem?.title)!
     }
     
     //SelectedDataView
@@ -89,8 +83,6 @@ class ViewController: NSViewController {
         //PopUpButtonのリストをリセット
         dataPopUp.removeAllItems()
         dataPopUp.addItems(withTitles: SensorDataTuner.sensorKindArray)
-        dataParamPopUp.removeAllItems()
-        dataParamPopUp.addItems(withTitles: dataParamItem)
         
         //AllDataText
         
@@ -149,8 +141,6 @@ class ViewController: NSViewController {
     }
     
     override func viewDidLayout() {
-        leftSensorLabel.layer?.borderWidth = 2.0
-        rightSensorLabel.layer?.borderWidth = 2.0
         leftQuatView.layer?.borderWidth = 1.0
         rightQuatView.layer?.borderWidth = 1.0
         leftEulerView.layer?.borderWidth = 1.0
@@ -344,46 +334,11 @@ extension  ViewController: ORPManagerDelegate{
     }
     
     func orpheDidUpdateSensorData(orphe: ORPData) {
-        let sideInfo:Int32 = Int32(orphe.side.rawValue)
-        var text = ""
         
-        let quat = orphe.getQuat()
-        for (i, q) in quat.enumerated() {
-            text += "Quat\(i): "+String(format: "%.3f", q) + "\n"
-        }
-        
-        let euler = orphe.getEuler()
-        for (i, e) in euler.enumerated() {
-            text += "Euler\(i): "+String(format: "%.3f", e) + "\n"
-        }
-        
-        let acc = orphe.getAcc()
-        for (i, a) in acc.enumerated() {
-            text += "Acc\(i): "+String(format: "%.3f", a) + "\n"
-        }
-        
-        let gyro = orphe.getGyro()
-        for (i, g) in gyro.enumerated() {
-            text +=  "Gyro\(i): "+String(format: "%.3f", g) + "\n"
-        }
-        
-        let mag = orphe.getMag()
-        text +=  "Mag: "+String(format: "%.3f", mag) + "\n"
-        
-        let shock = orphe.getShock()
-        text += "Shock: "+String(format: "%.3f", shock) + "\n"
-        
-        if sideInfo == 0 {
-            leftSensorLabel.stringValue = "LEFT\n\n" + text + "\n" + leftGesture
-        }
-        else{
-            rightSensorLabel.stringValue = "RIGHT\n\n" + text + "\n" + rightGesture
-        }
         
         //-----------Quat--------------
-        for (i, q) in quat.enumerated() {
-            //quatText += "\(i):" + String(q)
-            if sideInfo == 0 {
+        for (i, q) in orphe.getQuat().enumerated() {
+            if orphe.side == .left {
                 leftQuatSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", q)
                 leftQuatSubView[i].setGratphWidth(100, Int(q*100))
             }else{
@@ -392,9 +347,8 @@ extension  ViewController: ORPManagerDelegate{
             }
         }
         //----------Euler----------
-        for (i, e) in euler.enumerated() {
-            //quatText += "\(i):" + String(q)
-            if sideInfo == 0 {
+        for (i, e) in orphe.getEuler().enumerated() {
+            if orphe.side == .left {
                 leftEulerSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", e)
                 leftEulerSubView[i].setGratphWidth(100, Int(e*100))
             }else{
