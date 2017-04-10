@@ -20,10 +20,7 @@ class SensorDataManager{
 
 class SensorDataTuner{
     
-    var valueRange = Double(0.0)
-    
-    var counter = 0
-    var sum = Double(0.0)
+    var currentValue = Double(0.0)
     var minValue = Double(-38.0)
     var maxValue = Double(0.0)
     
@@ -33,11 +30,10 @@ class SensorDataTuner{
     var activeCalibration = false //今のところ足の水平だけ
     var isInvert = true //値の最大最小を逆転
     
-    var currentValue = Double(0.0)
     
     
     init() {
-        valueRange = maxValue - minValue
+        
     }
     
     func updateValue(_ value:Double){
@@ -114,17 +110,20 @@ class SensorDataTuner{
         return pitchbendValue
     }
     
+    var calibCounter = 0
+    var calibSum = Double(0.0)
     func calibrateFloorAngle(euler:Double) {
         if euler > -5.0 && euler < 5.0 {
-            sum += euler
-            counter += 1
+            calibSum += euler
+            calibCounter += 1
             
-            if counter > 99 {
-                print("Floor calibration!" + String(sum / Double(counter)))
-                maxValue = sum / Double(counter)
+            if calibCounter > 99 {
+                print("Floor calibration!" + String(calibSum / Double(calibCounter)))
+                let valueRange = maxValue - minValue
+                maxValue = calibSum / Double(calibCounter)
                 minValue = maxValue - valueRange
-                counter = 0
-                sum = Double(0.0)
+                calibCounter = 0
+                calibSum = Double(0.0)
             }
         }
     }

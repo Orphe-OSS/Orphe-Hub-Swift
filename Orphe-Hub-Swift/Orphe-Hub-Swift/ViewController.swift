@@ -25,7 +25,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var oscReceiverTextField: NSTextField!
     @IBOutlet var oscLogTextView: NSTextView!
     
-    var sensorDataTuner:SensorDataTuner!
+    var sensorDataTunerLeft:SensorDataTuner!
+    var sensorDataTunerRight:SensorDataTuner!
     
     //hira
     @IBOutlet weak var leftView: NSView!
@@ -158,7 +159,8 @@ class ViewController: NSViewController {
         
         //MIDI
         MIDIManager.sharedInstance.initMIDI()
-        sensorDataTuner = SensorDataTuner()
+        sensorDataTunerLeft = SensorDataTuner()
+        sensorDataTunerRight = SensorDataTuner()
     }
     
     override var representedObject: Any? {
@@ -367,15 +369,13 @@ extension  ViewController: ORPManagerDelegate{
         }
         
         if orphe.side == .left{
-            sensorDataTuner.updateValue(Double(euler[0]))
-            let pitchBendValue = sensorDataTuner.getPitchbendValue()
-            sensorDataTuner.calibrateFloorAngle(euler: Double(euler[0]))
+            sensorDataTunerLeft.updateValue(Double(euler[0]))
+            let pitchBendValue = sensorDataTunerLeft.getPitchbendValue()
             MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: pitchBendValue)
         }
         else{
-            sensorDataTuner.updateValue(Double(euler[0]))
-            let value = sensorDataTuner.getCCValue()
-            sensorDataTuner.calibrateFloorAngle(euler: Double(euler[0]))
+            sensorDataTunerRight.updateValue(Double(euler[0]))
+            let value = sensorDataTunerRight.getCCValue()
             MIDIManager.sharedInstance.controlChangeReceive(ch: 0, ctNum: 0, value: value)
         }
         
