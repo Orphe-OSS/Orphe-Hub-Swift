@@ -46,6 +46,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var leftSelectedDataView: NSView!
     @IBOutlet weak var rightSelectedDataView: NSView!
     
+    @IBOutlet weak var leftMappedValueGraph: LabelGraphView!
+    
+    
     @IBAction func switchToOppositeSide(_ sender: Any) {
         for (index, _) in ORPManager.sharedInstance.availableORPDataArray.enumerated(){
             let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
@@ -141,6 +144,7 @@ class ViewController: NSViewController {
     }
     
     override func viewDidLayout() {
+        leftMappedValueGraph.layer?.borderWidth = 1.0
         leftQuatView.layer?.borderWidth = 1.0
         rightQuatView.layer?.borderWidth = 1.0
         leftEulerView.layer?.borderWidth = 1.0
@@ -172,20 +176,6 @@ class ViewController: NSViewController {
             
         }
     }
-    
-//    override func keyDown(with theEvent: NSEvent) {
-//        super.keyDown(with: theEvent)
-//        if let lightNum:UInt8 = UInt8(theEvent.characters!){
-//            for orp in ORPManager.sharedInstance.connectedORPDataArray{
-//                orp.triggerLight(lightNum: lightNum)
-//            }
-//        }
-//    }
-    
-//    @IBAction func oscHostTextFieldInput(_ sender: Any) {
-//        print(sender)
-//        
-//    }
     
     @IBAction func oscHostTextFieldInput(_ sender: NSTextField) {
         OSCManager.sharedInstance.clientHost = sender.stringValue
@@ -340,20 +330,20 @@ extension  ViewController: ORPManagerDelegate{
         for (i, q) in orphe.getQuat().enumerated() {
             if orphe.side == .left {
                 leftQuatSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", q)
-                leftQuatSubView[i].setGratphWidth(100, Int(q*100))
+                leftQuatSubView[i].setGratphWidth(CGFloat(q*100))
             }else{
                 rightQuatSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", q)
-                rightQuatSubView[i].setGratphWidth(100, Int(q*100))
+                rightQuatSubView[i].setGratphWidth( CGFloat(q*100))
             }
         }
         //----------Euler----------
         for (i, e) in orphe.getEuler().enumerated() {
             if orphe.side == .left {
                 leftEulerSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", e)
-                leftEulerSubView[i].setGratphWidth(100, Int(e*100))
+                leftEulerSubView[i].setGratphWidth( CGFloat(e*100))
             }else{
                 rightEulerSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", e)
-                rightEulerSubView[i].setGratphWidth(100, Int(e*100))
+                rightEulerSubView[i].setGratphWidth( CGFloat(e*100))
             }
         }
         //----------Acc----------
@@ -371,10 +361,13 @@ extension  ViewController: ORPManagerDelegate{
             if sdt.orphe == orphe{
                 if orphe.side == .left {
                     leftSelectedDataSubView.textSubView.string = String(format: "%.3f", sdt.getSelectedSensorValue())
-                    leftSelectedDataSubView.setGratphWidth(100, Int(sdt.getNormalizedSelectedSensorValue()*100))
+                    leftSelectedDataSubView.setGraphValue(CGFloat(sdt.getNormalizedSelectedSensorValue()))
+                    
+                    leftMappedValueGraph.textSubView.string = String(format: "%.3f", sdt.currentOutputValue)
+                    leftMappedValueGraph.setGraphValue(CGFloat(sdt.getNormalizedCurrnetValue()))
                 }else{ //RIGHT
                     rightSelectedDataSubView.textSubView.string = String(format: "%.3f", sdt.getSelectedSensorValue())
-                    rightSelectedDataSubView.setGratphWidth(100, Int(sdt.getNormalizedSelectedSensorValue()*100))
+                    rightSelectedDataSubView.setGraphValue(CGFloat(sdt.getNormalizedSelectedSensorValue()))
                 }
             }
         }

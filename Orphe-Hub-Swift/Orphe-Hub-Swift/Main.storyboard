@@ -978,6 +978,10 @@
                                 <rect key="frame" x="789" y="548" width="215" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kfs-Eb-3pR" customClass="LabelGraphView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
+                                <rect key="frame" x="393" y="419" width="215" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8n-cr-evo">
                                 <rect key="frame" x="391" y="620" width="64" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -996,6 +1000,7 @@
                     <connections>
                         <outlet property="dataPopUp" destination="Aar-86-eTN" id="epb-9u-Ky9"/>
                         <outlet property="leftEulerView" destination="Dvy-cN-4Wf" id="jZc-G6-cPT"/>
+                        <outlet property="leftMappedValueGraph" destination="kfs-Eb-3pR" id="Moj-cP-7e4"/>
                         <outlet property="leftQuatView" destination="u8p-Ci-hM8" id="4PQ-Vt-R7L"/>
                         <outlet property="leftSelectedDataView" destination="GQT-nG-BMq" id="yMH-9q-hqr"/>
                         <outlet property="oscHostTextField" destination="JcH-oy-LY3" id="Jhs-CO-9g2"/>

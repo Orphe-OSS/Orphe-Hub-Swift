@@ -11,30 +11,70 @@ import Cocoa
 class LabelGraphView : NSView{
     
     //var labelGraphView = NSView()
+    var graphBorderView:DrawRectangle!
     var graphSubView:DrawRectangle!
     var textSubView:NSTextView!
     
+    var graphX = CGFloat(0)
+    var graphHalfWidth = CGFloat(0)
     
     override init(frame frameRect: NSRect){
         super.init(frame: frameRect)
         
-        graphSubView = DrawRectangle(frame: NSRect(x: 100, y: 0, width: 0, height: 10))
-        textSubView = NSTextView(frame: NSRect(x: 0, y: 10, width: 100, height: 10))
+        commonInit()
+        
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        commonInit()
+        
+    }
+    
+    public required init?(coder aDecoder: NSCoder){
+        super.init(coder: aDecoder)
+    }
+    
+    func commonInit(){
+        let x = self.frame.width/2
+        graphX = x
+        graphHalfWidth = self.frame.width/2
+        let h = self.frame.height/2
+        graphSubView = DrawRectangle(frame: NSRect(x: x, y: 0, width: 0, height: h))
+        
+        graphBorderView = DrawRectangle(frame: NSRect(x: 0, y: 0, width: self.frame.width, height: h))
+        graphBorderView.wantsLayer = true
+        graphBorderView.layer?.borderWidth = 1.0
+        graphBorderView.layer?.borderColor = CGColor(gray: 0.4, alpha: 1)
+        graphBorderView.setColor(.clear)
+        
+        textSubView = NSTextView(frame: NSRect(x: 0, y: h, width: self.frame.width, height: h))
         textSubView.backgroundColor = NSColor.clear
         textSubView.string = ""
         textSubView.font = NSFont(name: textSubView.font!.fontName, size: 10)
         
         self.addSubview(graphSubView)
+        self.addSubview(graphBorderView)
         self.addSubview(textSubView)
-        
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func setGraphValue(_ value:CGFloat){
+        var width = graphHalfWidth * value
+        var x_ = graphX
+        var w_ = width
+        if (w_ < 0) {
+            w_ = -w_
+            x_ = x_ - w_
+            graphSubView.setColor(NSColor.red)
+        }else{
+            graphSubView.setColor(NSColor.blue)
+        }
+        //graphSubView = DrawRectangle(frame: NSRect(x: x_, y: 0, width: w_, height: 10))
+        graphSubView.frame = NSRect(x: x_, y: 0, width: w_, height: 10)
     }
     
-    func setGratphWidth(_ x:Int,_ width:Int){
-        var x_ = x
+    func setGratphWidth(_ width:CGFloat){
+        var x_ = graphX
         var w_ = width
         if (w_ < 0) {
             w_ = -w_

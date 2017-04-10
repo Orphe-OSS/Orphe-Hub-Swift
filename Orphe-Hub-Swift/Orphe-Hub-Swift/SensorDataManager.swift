@@ -38,6 +38,9 @@ enum MIDIStatus{
 
 class SensorDataTuner:NSObject{
     
+    let controlChangeMaxValue = 127.0
+    let pitchBendMaxValue = 16383.0
+    
     static let sensorKindArray = [
         "eulerX",
         "eulerY",
@@ -52,7 +55,8 @@ class SensorDataTuner:NSObject{
     
     weak var orphe:ORPData!
     
-    var currentValue = Double(0.0)
+    var currentInputValue = Double(0.0)
+    var currentOutputValue = Double(0.0)
     var minValue = Double(-38.0)
     var maxValue = Double(0.0)
     
@@ -123,11 +127,11 @@ class SensorDataTuner:NSObject{
             for val in valueArray {
                 valueSum += val
             }
-            currentValue = valueSum / Double(valueArray.count)
+            currentInputValue = valueSum / Double(valueArray.count)
             
         }
         else{
-            currentValue = value
+            currentInputValue = value
         }
         
         
@@ -173,15 +177,15 @@ class SensorDataTuner:NSObject{
     
     
     func getPitchbendValue() -> UInt16 {
-        let mappedValue = map(value: currentValue, inputMin: minValue, inputMax: maxValue, outputMin: 0, outputMax: 16383.0, clamp: true)
-        let pitchbendValue = UInt16(mappedValue) //0~16383.0
+        currentOutputValue = map(value: currentInputValue, inputMin: minValue, inputMax: maxValue, outputMin: 0, outputMax: pitchBendMaxValue, clamp: true)
+        let pitchbendValue = UInt16(currentOutputValue) //0~16383.0
         print("pitchbend:",pitchbendValue)
         return pitchbendValue
     }
     
     func getCCValue() -> UInt8 {
-        let mappedValue = map(value: currentValue, inputMin: minValue, inputMax: maxValue, outputMin: 0, outputMax: 127, clamp: true)
-        let pitchbendValue = UInt8(mappedValue) //0~127
+        currentOutputValue = map(value: currentInputValue, inputMin: minValue, inputMax: maxValue, outputMin: 0, outputMax: controlChangeMaxValue, clamp: true)
+        let pitchbendValue = UInt8(currentOutputValue) //0~127
         return pitchbendValue
     }
     
@@ -279,6 +283,17 @@ class SensorDataTuner:NSObject{
             break
         }
         return 0
+    }
+    
+    func getNormalizedCurrnetValue()->Double{
+        switch midiStatus {
+        case .pitchBend:
+            return currentOutputValue/pitchBendMaxValue
+        case .controlChange:
+            return currentOutputValue/controlChangeMaxValue
+        default:
+            return 0
+        }
     }
     
 }

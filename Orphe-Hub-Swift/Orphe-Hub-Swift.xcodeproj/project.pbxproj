@@ -153,7 +153,6 @@
 				E674880B1E98F15600DA7D9C /* SensorDataManager.swift */,
 				E613936F1E926DE5002DD502 /* MIDIManager.swift */,
 				E67488131E992A8D00DA7D9C /* UI */,
-				1B3E39031E950921008DA5D1 /* DrawShape.swift */,
 				E61393131E8FCC2A002DD502 /* OSCManager.swift */,
 				E61393111E8E6A6D002DD502 /* Main.storyboard */,
 				E61393061E8E6A31002DD502 /* Assets.xcassets */,
@@ -167,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */,
+				1B3E39031E950921008DA5D1 /* DrawShape.swift */,
 			);
 			name = UI;
 			sourceTree = "<group>";
