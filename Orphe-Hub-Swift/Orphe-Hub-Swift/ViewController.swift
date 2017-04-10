@@ -25,8 +25,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var oscReceiverTextField: NSTextField!
     @IBOutlet var oscLogTextView: NSTextView!
     
-    var sensorDataTunerLeft:SensorDataTuner!
-    var sensorDataTunerRight:SensorDataTuner!
+    var sensorDataTuner = [SensorDataTuner]()
     
     //hira
     @IBOutlet weak var leftView: NSView!
@@ -159,8 +158,6 @@ class ViewController: NSViewController {
         
         //MIDI
         MIDIManager.sharedInstance.initMIDI()
-        sensorDataTunerLeft = SensorDataTuner()
-        sensorDataTunerRight = SensorDataTuner()
     }
     
     override var representedObject: Any? {
@@ -310,6 +307,12 @@ extension  ViewController: ORPManagerDelegate{
         PRINT("didDisconnect")
         tableView.reloadData()
         updateCellsState()
+        
+        for (index, sdt) in sensorDataTuner.enumerated(){
+            if sdt.orphe == orphe {
+                sensorDataTuner.remove(at: index)
+            }
+        }
     }
     
     func orpheDidConnect(orphe:ORPData){
@@ -319,6 +322,16 @@ extension  ViewController: ORPManagerDelegate{
         
         orphe.setScene(.sceneSDK)
         orphe.setGestureSensitivity(.high)
+        
+        let std = SensorDataTuner(orphe: orphe)
+        if orphe.side == .left{
+            std.midiStatus = .pitchBend
+        }
+        else{
+            std.midiStatus = .controlChange
+        }
+        sensorDataTuner.append(std)
+        
     }
     
     func orpheDidUpdateOrpheInfo(orphe:ORPData){
@@ -368,17 +381,6 @@ extension  ViewController: ORPManagerDelegate{
             rightSensorLabel.stringValue = "RIGHT\n\n" + text + "\n" + rightGesture
         }
         
-        if orphe.side == .left{
-            sensorDataTunerLeft.updateValue(Double(euler[0]))
-            let pitchBendValue = sensorDataTunerLeft.getPitchbendValue()
-            MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: pitchBendValue)
-        }
-        else{
-            sensorDataTunerRight.updateValue(Double(euler[0]))
-            let value = sensorDataTunerRight.getCCValue()
-            MIDIManager.sharedInstance.controlChangeReceive(ch: 0, ctNum: 0, value: value)
-        }
-        
         //-----------Quat--------------
         for (i, q) in quat.enumerated() {
             //quatText += "\(i):" + String(q)
@@ -418,30 +420,32 @@ extension  ViewController: ORPManagerDelegate{
         //----------Shock----------
         
         //----SelectedData----
+        var selectedDataArray = [Float]()
+        var mappedDataArray = [Float]()
         switch dataPopUp.title {
         case "Quat":
-            let quatForGratph = quat.map{ $0 * 100 } //棒グラフ表示用に値を調整
-            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:quat, orpheDispDataForGratph: quatForGratph)
+            selectedDataArray = quat
+            mappedDataArray = quat.map{ $0 * 100 } //棒グラフ表示用に値を調整
         case "Euler":
-            let eulerForGratph = euler.map{ $0 * (100/180) }
-            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:euler, orpheDispDataForGratph: eulerForGratph)
+            selectedDataArray = euler
+            mappedDataArray = euler.map{ $0 * (100/180) }
         case "Acc":
-            let accForGratph = acc.map{ $0 * 100 }
-            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:acc, orpheDispDataForGratph: accForGratph)
+            selectedDataArray = acc
+            mappedDataArray = acc.map{ $0 * 100 }
         case "Gyro":
-            let gyroForGratph = gyro.map{ $0 * 100 }
-            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:gyro, orpheDispDataForGratph: gyroForGratph)
+            selectedDataArray = gyro
+            mappedDataArray = gyro.map{ $0 * 100 }
         case "Mag":
-            let magArray:[Float] = [Float(mag)]
-            let magForGratph:[Float] = [magArray[0]*(100/359)]
-            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:magArray, orpheDispDataForGratph: magForGratph)
+            selectedDataArray = [Float(mag)]
+            mappedDataArray = [Float(mag*(100/359))]
         case "Shock":
-            let shockArray:[Float] = [Float(shock)]
-            let shockForGratph:[Float] = [shockArray[0]*(100/255)]
-            orpheDataDisplay(sideInfo: sideInfo, orpheDispData:shockArray, orpheDispDataForGratph: shockForGratph)
+            selectedDataArray = [Float(shock)]
+            mappedDataArray = [Float(shock*(100/255))]
         default:
             break
         }
+        orpheDataDisplay(sideInfo: sideInfo, orpheDispData:selectedDataArray, orpheDispDataForGratph: mappedDataArray)
+        
     }
     
     func orpheDataDisplay(sideInfo:Int32,orpheDispData:[Float],orpheDispDataForGratph:[Float]){

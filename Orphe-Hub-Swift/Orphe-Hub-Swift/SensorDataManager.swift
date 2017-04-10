@@ -18,7 +18,27 @@ class SensorDataManager{
     
 }
 
-class SensorDataTuner{
+enum SensorKind{
+    case eulerX
+    case eulerY
+    case eulerZ
+    case gyroX
+    case gyroY
+    case gyroZ
+    case accX
+    case accY
+    case accZ
+
+}
+
+enum MIDIStatus{
+    case pitchBend
+    case controlChange
+}
+
+class SensorDataTuner:NSObject{
+    
+    weak var orphe:ORPData!
     
     var currentValue = Double(0.0)
     var minValue = Double(-38.0)
@@ -30,10 +50,17 @@ class SensorDataTuner{
     var activeCalibration = false //今のところ足の水平だけ
     var isInvert = true //値の最大最小を逆転
     
+    var midiStatus = MIDIStatus.pitchBend
+    var sensorKind:SensorKind = .eulerX {
+        didSet{
+            
+        }
+    }
     
-    
-    init() {
-        
+    init(orphe:ORPData) {
+        super.init()
+        self.orphe = orphe
+        NotificationCenter.default.addObserver(self, selector: #selector(orpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
     }
     
     func updateValue(_ value:Double){
@@ -126,6 +153,52 @@ class SensorDataTuner{
                 calibSum = Double(0.0)
             }
         }
+    }
+    
+    func orpheDidUpdateSensorData(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
+        
+        if orphe == self.orphe{
+            
+            //select sensor value
+            switch sensorKind {
+            case .accX:
+                updateValue(Double(orphe.getAcc()[0]))
+            case .accY:
+                updateValue(Double(orphe.getAcc()[1]))
+            case .accZ:
+                updateValue(Double(orphe.getAcc()[2]))
+            case .eulerX:
+                updateValue(Double(orphe.getEuler()[0]))
+            case .eulerY:
+                updateValue(Double(orphe.getEuler()[1]))
+            case .eulerZ:
+                updateValue(Double(orphe.getEuler()[2]))
+            case .gyroX:
+                updateValue(Double(orphe.getGyro()[0]))
+            case .gyroY:
+                updateValue(Double(orphe.getGyro()[1]))
+            case .gyroZ:
+                updateValue(Double(orphe.getGyro()[2]))
+            default:
+                break
+            }
+            
+            // select control
+            switch midiStatus {
+            case .pitchBend:
+                let value = getPitchbendValue()
+                MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: value)
+            case .controlChange:
+                let value = getCCValue()
+                MIDIManager.sharedInstance.controlChangeReceive(ch: 0, ctNum: 0, value: value)
+            default:
+                break
+            }
+            
+        }
+        
     }
     
 }
