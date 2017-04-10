@@ -14,7 +14,12 @@ class MIDIMappingView : NSView{
     weak var orphe:ORPData?{
         didSet{
             if orphe != nil{
-                sensorDataTuner = SensorDataTuner(orphe: orphe!)
+                if sensorDataTuner == nil{
+                    sensorDataTuner = SensorDataTuner(orphe: orphe!)
+                }
+                else{
+                    sensorDataTuner!.orphe = orphe!
+                }
             }
         }
     }

@@ -23,54 +23,12 @@ class ViewController: NSViewController {
     @IBOutlet weak var oscReceiverTextField: NSTextField!
     @IBOutlet var oscLogTextView: NSTextView!
     
-    var sensorDataTuner = [SensorDataTuner]()
-    
     @IBOutlet weak var rightMIDIMappingViewHolder:NSView!
+    @IBOutlet weak var leftMIDIMappingViewHolder:NSView!
     var rightMIDIMappingView:MIDIMappingView!
-    
-    //Quat&EulerView
-    @IBOutlet weak var leftQuatView: NSView!
-    @IBOutlet weak var leftEulerView: NSView!
-    
-    //PullDown式データ表示
-    @IBOutlet weak var dataPopUp: NSPopUpButton!
-    @IBAction func setDataTitle(_ sender: Any) {
-        dataPopUp.title = (dataPopUp.selectedItem?.title)!
-        for std in sensorDataTuner{
-            if std.orphe.side == .left{
-                std.sensorKind = SensorKind(rawValue: (dataPopUp.selectedItem?.title)!)!
-            }
-        }
-    }
-    
-    @IBOutlet weak var midiStatusPopUp: NSPopUpButton!
-    
-    
-    //SelectedDataView
-    @IBOutlet weak var leftSelectedDataView: NSView!
-    
-    @IBOutlet weak var leftMappedValueGraph: LabelGraphView!
-    
-    
-    @IBAction func switchToOppositeSide(_ sender: Any) {
-        for (index, _) in ORPManager.sharedInstance.availableORPDataArray.enumerated(){
-            let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
-            orphe.switchToOppositeSide()
-        }
-    }
-    
-    var leftQuatSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numQuat)
-    
-    var leftEulerSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numEuler)
-    
-    //===SelectedData===
-    var leftSelectedDataSubView = LabelGraphView()
-    
+    var leftMIDIMappingView:MIDIMappingView!
     
     var rssiTimer: Timer?
-    
-    var leftGesture = ""
-    var rightGesture = ""
     
     
     override func viewDidLoad() {
@@ -80,45 +38,13 @@ class ViewController: NSViewController {
         rightMIDIMappingView = MIDIMappingView.newMIDIMappingView()
         rightMIDIMappingViewHolder.addSubview(rightMIDIMappingView)
         
+        leftMIDIMappingView = MIDIMappingView.newMIDIMappingView()
+        leftMIDIMappingViewHolder.addSubview(leftMIDIMappingView)
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.target = self
         tableView.allowsTypeSelect = false
-        
-        //PopUpButtonのリストをリセット
-        var skArray = [String]()
-        for sk in SensorKind.cases{
-            skArray.append(sk.rawValue)
-        }
-        dataPopUp.removeAllItems()
-        dataPopUp.addItems(withTitles: skArray)
-        
-        var msArray = [String]()
-        for ms in MIDIStatus.cases{
-            msArray.append(ms.rawValue)
-        }
-        midiStatusPopUp.removeAllItems()
-        midiStatusPopUp.addItems(withTitles: msArray)
-        
-        //AllDataText
-        
-        //----------Quat----------
-        for i in 0..<numQuat {
-            //LEFT
-            leftQuatSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(leftQuatView.bounds.height) - 25*(i+1), width: 200, height: 25))
-            leftQuatView.addSubview(leftQuatSubView[i])
-        }
-        //----------Euler----------
-        for i in 0..<numEuler {
-            //LEFT
-            leftEulerSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(leftEulerView.bounds.height) - 25*(i+1), width: 200, height: 25))
-            leftEulerView.addSubview(leftEulerSubView[i])
-        }
-        
-        //----SelectedData----
-        leftSelectedDataSubView = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(leftSelectedDataSubView.bounds.height) - 25, width: 200, height: 25))
-        leftSelectedDataView.addSubview(leftSelectedDataSubView)
-        
         
         ORPManager.sharedInstance.delegate = self
         ORPManager.sharedInstance.isEnableAutoReconnection = false
@@ -137,13 +63,6 @@ class ViewController: NSViewController {
         
         //MIDI
         MIDIManager.sharedInstance.initMIDI()
-    }
-    
-    override func viewDidLayout() {
-        leftMappedValueGraph.layer?.borderWidth = 1.0
-        leftQuatView.layer?.borderWidth = 1.0
-        leftEulerView.layer?.borderWidth = 1.0
-        leftSelectedDataView.layer?.borderWidth = 1.0
     }
     
     override var representedObject: Any? {
@@ -170,38 +89,6 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func smoothValueTextFieldInput(_ sender: NSTextField) {
-        for std in sensorDataTuner{
-            if std.orphe.side == .left{
-                std.smooth = sender.integerValue
-            }
-        }
-    }
-    
-    @IBAction func minValueTextFieldInput(_ sender: NSTextField) {
-        for std in sensorDataTuner{
-            if std.orphe.side == .left{
-                std.minValue = sender.doubleValue
-            }
-        }
-    }
-    
-    @IBAction func maxValueTextFieldInput(_ sender: NSTextField) {
-        for std in sensorDataTuner{
-            if std.orphe.side == .left{
-                std.maxValue = sender.doubleValue
-            }
-        }
-    }
-    
-    @IBAction func controlNumberTextFieldInput(_ sender: NSTextField) {
-        for std in sensorDataTuner{
-            if std.orphe.side == .left{
-                std.controlNumber = UInt8(sender.integerValue)
-            }
-        }
-    }
-    
     @IBAction func oscHostTextFieldInput(_ sender: NSTextField) {
         OSCManager.sharedInstance.clientHost = sender.stringValue
         print(sender.stringValue)
@@ -222,15 +109,16 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func midiStatusPopUpAction(_ sender: Any) {
-        midiStatusPopUp.title = (midiStatusPopUp.selectedItem?.title)!
-        for std in sensorDataTuner{
-            if std.orphe.side == .left{
-                std.midiStatus = MIDIStatus(rawValue: midiStatusPopUp.selectedItem!.title)!
-            }
+    @IBAction func switchToOppositeSide(_ sender: Any) {
+        for (index, _) in ORPManager.sharedInstance.availableORPDataArray.enumerated(){
+            let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
+            orphe.switchToOppositeSide()
         }
+        var tempOrphe =
+            leftMIDIMappingView.orphe
+        leftMIDIMappingView.orphe = rightMIDIMappingView.orphe
+        rightMIDIMappingView.orphe = tempOrphe
     }
-    
     
 }
 
@@ -322,11 +210,6 @@ extension  ViewController: ORPManagerDelegate{
         tableView.reloadData()
         updateCellsState()
         
-        for (index, sdt) in sensorDataTuner.enumerated(){
-            if sdt.orphe == orphe {
-                sensorDataTuner.remove(at: index)
-            }
-        }
     }
     
     func orpheDidConnect(orphe:ORPData){
@@ -337,17 +220,8 @@ extension  ViewController: ORPManagerDelegate{
         orphe.setScene(.sceneSDK)
         orphe.setGestureSensitivity(.high)
         
-        let std = SensorDataTuner(orphe: orphe)
         if orphe.side == .left{
-            std.midiStatus = .pitchBend
-        }
-        else{
-            std.midiStatus = .controlChange
-        }
-        sensorDataTuner.append(std)
-        
-        if orphe.side == .left{
-            
+            leftMIDIMappingView.orphe = orphe
         }
         else{
             rightMIDIMappingView.orphe = orphe
@@ -366,60 +240,15 @@ extension  ViewController: ORPManagerDelegate{
     
     func orpheDidUpdateSensorData(orphe: ORPData) {
         
+        leftMIDIMappingView.orpheDidUpdateSensorData(orphe: orphe)
         rightMIDIMappingView.orpheDidUpdateSensorData(orphe: orphe)
-        //-----------Quat--------------
-        for (i, q) in orphe.getQuat().enumerated() {
-            if orphe.side == .left {
-                leftQuatSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", q)
-                leftQuatSubView[i].setGratphWidth(CGFloat(q*100))
-            }else{
-            }
-        }
-        //----------Euler----------
-        for (i, e) in orphe.getEuler().enumerated() {
-            if orphe.side == .left {
-                leftEulerSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", e)
-                leftEulerSubView[i].setGratphWidth( CGFloat(e*100))
-            }else{
-            }
-        }
-        //----------Acc----------
         
-        //----------Gyro----------
-        
-        //----------Mag----------
-        
-        //----------Quat----------
-        
-        //----------Shock----------
-        
-        //----SelectedData----
-        for sdt in sensorDataTuner{
-            if sdt.orphe == orphe{
-                if orphe.side == .left {
-                    leftSelectedDataSubView.textSubView.string = String(format: "%.3f", sdt.getSelectedSensorValue())
-                    leftSelectedDataSubView.setGraphValue(CGFloat(sdt.getNormalizedSelectedSensorValue()))
-                    
-                    leftMappedValueGraph.textSubView.string = String(format: "%.3f", sdt.currentOutputValue)
-                    leftMappedValueGraph.setGraphValue(CGFloat(sdt.getNormalizedCurrnetValue()))
-                }else{ //RIGHT
-                }
-            }
-        }
     }
     
     func orpheDidCatchGestureEvent(gestureEvent:ORPGestureEventArgs, orphe:ORPData) {
-        let side = orphe.side
-        let kind = gestureEvent.getGestureKindString() as String
-        let power = gestureEvent.getPower()
-        if side == ORPSide.left {
-            leftGesture = "Gesture: " + kind + "\n"
-            leftGesture += "power: " + String(power)
-        }
-        else{
-            rightGesture = "Gesture: " + kind + "\n"
-            rightGesture += "power: " + String(power)
-        }
+//        let side = orphe.side
+//        let kind = gestureEvent.getGestureKindString() as String
+//        let power = gestureEvent.getPower()
     }
 }
 
