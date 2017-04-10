@@ -10,10 +10,6 @@ import Cocoa
 import Orphe
 import OSCKit
 
-let numData = 15
-let numQuat = 4
-let numEuler = 3
-
 class ViewController: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
@@ -218,6 +214,7 @@ extension  ViewController: ORPManagerDelegate{
         updateCellsState()
         
         orphe.setScene(.sceneSDK)
+        orphe.switchLight(lightNum: 5, flag: true)
         orphe.setGestureSensitivity(.high)
         
         if orphe.side == .left{

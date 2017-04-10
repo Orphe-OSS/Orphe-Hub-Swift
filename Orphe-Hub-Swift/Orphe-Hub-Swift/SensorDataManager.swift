@@ -243,6 +243,7 @@ class SensorDataTuner:NSObject{
         }
     }
     
+    var sendMessageOrpheTimeStamp:Double = 0
     func orpheDidUpdateSensorData(notification:Notification){
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
@@ -252,6 +253,14 @@ class SensorDataTuner:NSObject{
             updateValue(Double(getSelectedSensorValue()))
             
             currentOutputValue = map(value: currentInputValue, inputMin: minValue, inputMax: maxValue, outputMin: outputMinValue, outputMax: outputMaxValue, clamp: true)
+            
+            let elapsedTime = NSDate().timeIntervalSince1970 - sendMessageOrpheTimeStamp
+            if elapsedTime > 30 {
+                var hue = (currentOutputValue/outputMaxValue*0.5 + 0.5) * 359
+                var bri = currentOutputValue/outputMaxValue * 255
+                orphe.setColorHSV(lightNum: 5, hue: UInt16(hue), saturation: 255, brightness: UInt8(bri))
+            }
+            
             // select control
             switch midiStatus {
             case .pitchBend:

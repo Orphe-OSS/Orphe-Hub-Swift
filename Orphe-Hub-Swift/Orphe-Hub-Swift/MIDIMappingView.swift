@@ -42,10 +42,11 @@ class MIDIMappingView : NSView{
     
     
     //Quat&EulerView
+
     @IBOutlet weak var QuatView: NSView!
     @IBOutlet weak var EulerView: NSView!
-    var QuatSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numQuat)
-    var EulerSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numEuler)
+    var QuatSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:4)
+    var EulerSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:3)
     
     //===SelectedData===
     //SelectedDataView
@@ -101,13 +102,13 @@ class MIDIMappingView : NSView{
         midiStatusPopUp.addItems(withTitles: msArray)
         
         //----------Quat----------
-        for i in 0..<numQuat {
+        for i in 0..<QuatSubView.count {
             //LEFT
             QuatSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(QuatView.bounds.height) - 25*(i+1), width: 200, height: 25))
             QuatView.addSubview(QuatSubView[i])
         }
         //----------Euler----------
-        for i in 0..<numEuler {
+        for i in 0..<EulerSubView.count {
             //LEFT
             EulerSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(EulerView.bounds.height) - 25*(i+1), width: 200, height: 25))
             EulerView.addSubview(EulerSubView[i])
