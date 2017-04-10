@@ -64,6 +64,7 @@ enum MIDIStatus:String, EnumEnumerable{
 class SensorDataTuner:NSObject{
     
     let controlChangeMaxValue = 127.0
+    var controlNumber = UInt8(0)
     let pitchBendMaxValue = 16383.0
     
     weak var orphe:ORPData!
@@ -236,7 +237,7 @@ class SensorDataTuner:NSObject{
                 MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: value)
             case .controlChange:
                 let value = getCCValue()
-                MIDIManager.sharedInstance.controlChangeReceive(ch: 0, ctNum: 0, value: value)
+                MIDIManager.sharedInstance.controlChangeReceive(ch: 0, ctNum: controlNumber, value: value)
             default:
                 break
             }

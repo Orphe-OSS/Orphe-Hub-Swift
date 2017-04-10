@@ -204,6 +204,14 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBAction func controlNumberTextFieldInput(_ sender: NSTextField) {
+        for std in sensorDataTuner{
+            if std.orphe.side == .left{
+                std.controlNumber = UInt8(sender.integerValue)
+            }
+        }
+    }
+    
     @IBAction func oscHostTextFieldInput(_ sender: NSTextField) {
         OSCManager.sharedInstance.clientHost = sender.stringValue
         print(sender.stringValue)
