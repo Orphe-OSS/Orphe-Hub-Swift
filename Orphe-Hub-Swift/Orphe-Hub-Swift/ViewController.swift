@@ -25,11 +25,12 @@ class ViewController: NSViewController {
     
     var sensorDataTuner = [SensorDataTuner]()
     
+    @IBOutlet weak var rightMIDIMappingViewHolder:NSView!
+    var rightMIDIMappingView:MIDIMappingView!
+    
     //Quat&EulerView
     @IBOutlet weak var leftQuatView: NSView!
-    @IBOutlet weak var rightQuatView: NSView!
     @IBOutlet weak var leftEulerView: NSView!
-    @IBOutlet weak var rightEulerView: NSView!
     
     //PullDown式データ表示
     @IBOutlet weak var dataPopUp: NSPopUpButton!
@@ -47,7 +48,6 @@ class ViewController: NSViewController {
     
     //SelectedDataView
     @IBOutlet weak var leftSelectedDataView: NSView!
-    @IBOutlet weak var rightSelectedDataView: NSView!
     
     @IBOutlet weak var leftMappedValueGraph: LabelGraphView!
     
@@ -60,14 +60,11 @@ class ViewController: NSViewController {
     }
     
     var leftQuatSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numQuat)
-    var rightQuatSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numQuat)
     
     var leftEulerSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numEuler)
-    var rightEulerSubView = Array<LabelGraphView>(repeating:LabelGraphView(), count:numEuler)
     
     //===SelectedData===
     var leftSelectedDataSubView = LabelGraphView()
-    var rightSelectedDataSubView = LabelGraphView()
     
     
     var rssiTimer: Timer?
@@ -79,6 +76,10 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        rightMIDIMappingView = MIDIMappingView.newMIDIMappingView()
+        rightMIDIMappingViewHolder.addSubview(rightMIDIMappingView)
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.target = self
@@ -106,25 +107,17 @@ class ViewController: NSViewController {
             //LEFT
             leftQuatSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(leftQuatView.bounds.height) - 25*(i+1), width: 200, height: 25))
             leftQuatView.addSubview(leftQuatSubView[i])
-            //RIGHT
-            rightQuatSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(rightQuatView.bounds.height) - 25*(i+1), width: 200, height: 25))
-            rightQuatView.addSubview(rightQuatSubView[i])
         }
         //----------Euler----------
         for i in 0..<numEuler {
             //LEFT
             leftEulerSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(leftEulerView.bounds.height) - 25*(i+1), width: 200, height: 25))
             leftEulerView.addSubview(leftEulerSubView[i])
-            //RIGHT
-            rightEulerSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(rightEulerView.bounds.height) - 25*(i+1), width: 200, height: 25))
-            rightEulerView.addSubview(rightEulerSubView[i])
         }
         
         //----SelectedData----
-        leftSelectedDataSubView = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(rightSelectedDataView.bounds.height) - 25, width: 200, height: 25))
+        leftSelectedDataSubView = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(leftSelectedDataSubView.bounds.height) - 25, width: 200, height: 25))
         leftSelectedDataView.addSubview(leftSelectedDataSubView)
-        rightSelectedDataSubView = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(rightSelectedDataView.bounds.height) - 25, width: 200, height: 25))
-        rightSelectedDataView.addSubview(rightSelectedDataSubView)
         
         
         ORPManager.sharedInstance.delegate = self
@@ -149,11 +142,8 @@ class ViewController: NSViewController {
     override func viewDidLayout() {
         leftMappedValueGraph.layer?.borderWidth = 1.0
         leftQuatView.layer?.borderWidth = 1.0
-        rightQuatView.layer?.borderWidth = 1.0
         leftEulerView.layer?.borderWidth = 1.0
-        rightEulerView.layer?.borderWidth = 1.0
         leftSelectedDataView.layer?.borderWidth = 1.0
-        rightSelectedDataView.layer?.borderWidth = 1.0
     }
     
     override var representedObject: Any? {
@@ -356,6 +346,12 @@ extension  ViewController: ORPManagerDelegate{
         }
         sensorDataTuner.append(std)
         
+        if orphe.side == .left{
+            
+        }
+        else{
+            rightMIDIMappingView.orphe = orphe
+        }
     }
     
     func orpheDidUpdateOrpheInfo(orphe:ORPData){
@@ -370,15 +366,13 @@ extension  ViewController: ORPManagerDelegate{
     
     func orpheDidUpdateSensorData(orphe: ORPData) {
         
-        
+        rightMIDIMappingView.orpheDidUpdateSensorData(orphe: orphe)
         //-----------Quat--------------
         for (i, q) in orphe.getQuat().enumerated() {
             if orphe.side == .left {
                 leftQuatSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", q)
                 leftQuatSubView[i].setGratphWidth(CGFloat(q*100))
             }else{
-                rightQuatSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", q)
-                rightQuatSubView[i].setGratphWidth( CGFloat(q*100))
             }
         }
         //----------Euler----------
@@ -387,8 +381,6 @@ extension  ViewController: ORPManagerDelegate{
                 leftEulerSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", e)
                 leftEulerSubView[i].setGratphWidth( CGFloat(e*100))
             }else{
-                rightEulerSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", e)
-                rightEulerSubView[i].setGratphWidth( CGFloat(e*100))
             }
         }
         //----------Acc----------
@@ -411,8 +403,6 @@ extension  ViewController: ORPManagerDelegate{
                     leftMappedValueGraph.textSubView.string = String(format: "%.3f", sdt.currentOutputValue)
                     leftMappedValueGraph.setGraphValue(CGFloat(sdt.getNormalizedCurrnetValue()))
                 }else{ //RIGHT
-                    rightSelectedDataSubView.textSubView.string = String(format: "%.3f", sdt.getSelectedSensorValue())
-                    rightSelectedDataSubView.setGraphValue(CGFloat(sdt.getNormalizedSelectedSensorValue()))
                 }
             }
         }

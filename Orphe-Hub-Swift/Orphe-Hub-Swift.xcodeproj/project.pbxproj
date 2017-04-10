@@ -12,6 +12,8 @@
 		6ADCBB8F73F10784C8C69865 /* Pods_Orphe_Hub_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59FAF910D4516659E01E5E99 /* Pods_Orphe_Hub_Swift.framework */; };
 		970CE3B296A0649233F785DF /* Pods_Orphe_Hub_SwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA01EC53DA1308C04022ABE5 /* Pods_Orphe_Hub_SwiftUITests.framework */; };
 		C678207C50C1356C48F18B88 /* Pods_Orphe_Hub_SwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508B9A273B967592056C8820 /* Pods_Orphe_Hub_SwiftTests.framework */; };
+		E60826681E9BB23C003BA8D6 /* MIDIMappingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E60826671E9BB23C003BA8D6 /* MIDIMappingView.xib */; };
+		E608266A1E9BB2B0003BA8D6 /* MIDIMappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60826691E9BB2B0003BA8D6 /* MIDIMappingView.swift */; };
 		E61393021E8E52DA002DD502 /* Orphe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E61393011E8E52DA002DD502 /* Orphe.framework */; };
 		E61393041E8E52DD002DD502 /* Orphe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E61393011E8E52DA002DD502 /* Orphe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E613930A1E8E6A31002DD502 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61393051E8E6A31002DD502 /* AppDelegate.swift */; };
@@ -66,6 +68,8 @@
 		86A16C2C08FFA8C1762DC546 /* Pods-Orphe-Hub-SwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-SwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-SwiftTests/Pods-Orphe-Hub-SwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		98E9168548B33620B4C286EC /* Pods-Orphe-Hub-SwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-SwiftUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-SwiftUITests/Pods-Orphe-Hub-SwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA01EC53DA1308C04022ABE5 /* Pods_Orphe_Hub_SwiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphe_Hub_SwiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E60826671E9BB23C003BA8D6 /* MIDIMappingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MIDIMappingView.xib; path = "Orphe-Hub-Swift/MIDIMappingView.xib"; sourceTree = SOURCE_ROOT; };
+		E60826691E9BB2B0003BA8D6 /* MIDIMappingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIDIMappingView.swift; path = "Orphe-Hub-Swift/MIDIMappingView.swift"; sourceTree = SOURCE_ROOT; };
 		E6117D001E0A5A8200A2C89F /* Orphe-Hub-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Orphe-Hub-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6117D111E0A5A8200A2C89F /* Orphe-Hub-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orphe-Hub-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6117D1C1E0A5A8200A2C89F /* Orphe-Hub-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orphe-Hub-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,12 +153,14 @@
 			isa = PBXGroup;
 			children = (
 				E61393051E8E6A31002DD502 /* AppDelegate.swift */,
+				E61393111E8E6A6D002DD502 /* Main.storyboard */,
 				E61393091E8E6A31002DD502 /* ViewController.swift */,
+				E60826671E9BB23C003BA8D6 /* MIDIMappingView.xib */,
+				E60826691E9BB2B0003BA8D6 /* MIDIMappingView.swift */,
 				E674880B1E98F15600DA7D9C /* SensorDataManager.swift */,
 				E613936F1E926DE5002DD502 /* MIDIManager.swift */,
 				E67488131E992A8D00DA7D9C /* UI */,
 				E61393131E8FCC2A002DD502 /* OSCManager.swift */,
-				E61393111E8E6A6D002DD502 /* Main.storyboard */,
 				E61393061E8E6A31002DD502 /* Assets.xcassets */,
 				E61393081E8E6A31002DD502 /* Info.plist */,
 			);
@@ -307,6 +313,7 @@
 			files = (
 				E613930B1E8E6A31002DD502 /* Assets.xcassets in Resources */,
 				E613930D1E8E6A31002DD502 /* Info.plist in Resources */,
+				E60826681E9BB23C003BA8D6 /* MIDIMappingView.xib in Resources */,
 				E61393121E8E6A6D002DD502 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +479,7 @@
 			files = (
 				1BF25CB71E9797FB00C1D576 /* LabelGraphView.swift in Sources */,
 				E613930E1E8E6A31002DD502 /* ViewController.swift in Sources */,
+				E608266A1E9BB2B0003BA8D6 /* MIDIMappingView.swift in Sources */,
 				1B3E39041E950921008DA5D1 /* DrawShape.swift in Sources */,
 				E61393141E8FCC2A002DD502 /* OSCManager.swift in Sources */,
 				E61393701E926DE5002DD502 /* MIDIManager.swift in Sources */,
