@@ -371,6 +371,11 @@ extension  ViewController: ORPManagerDelegate{
             sensorDataTuner.calibrateFloorAngle(euler: Double(euler[0]))
             MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: pitchBendValue)
         }
+        else{
+            let value = sensorDataTuner.getCCValue(value: Double(euler[0]))
+            sensorDataTuner.calibrateFloorAngle(euler: Double(euler[0]))
+            MIDIManager.sharedInstance.controlChangeReceive(ch: 0, ctNum: 0, value: value)
+        }
         
         //-----------Quat--------------
         for (i, q) in quat.enumerated() {

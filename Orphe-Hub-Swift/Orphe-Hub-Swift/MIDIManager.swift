@@ -713,10 +713,27 @@ class MIDIManager: NSObject {
         packet.timeStamp = MIDITimeStamp(AudioConvertHostTimeToNanos(AudioGetCurrentHostTime()))
         packet.length    = 3
         
-        packet.data.0    = UInt8(0xE0)                              // 0 is channel number
+        packet.data.0    = UInt8(0xE0) + UInt8(ch)                              // 0 is channel number
         packet.data.1    = UInt8(pitchbendValue & 0x007f)           // lowwer
         packet.data.2    = UInt8((pitchbendValue >> 7) & 0x007f)    // upper
         
+        var packetlist = MIDIPacketList(numPackets: 1, packet: packet)
+        let status = MIDIReceived(virtualSourceEndpointRef, &packetlist)
+        if status != noErr {
+            print("bad status \(status) receiving msg")
+            CheckError(status)
+        }
+    }
+    
+    func controlChangeReceive(ch:Int, ctNum:UInt8, value:UInt8) {
+        var packet       = MIDIPacket()
+        packet.timeStamp = MIDITimeStamp(AudioConvertHostTimeToNanos(AudioGetCurrentHostTime()))
+        packet.length    = 3
+        
+        print("cc:",value)
+        packet.data.0    = UInt8(0xB0) + UInt8(ch)                              // 0 is channel number
+        packet.data.1    = ctNum
+        packet.data.2    = value
         var packetlist = MIDIPacketList(numPackets: 1, packet: packet)
         let status = MIDIReceived(virtualSourceEndpointRef, &packetlist)
         if status != noErr {
