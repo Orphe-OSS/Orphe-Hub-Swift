@@ -73,6 +73,9 @@ class SensorDataTuner:NSObject{
     var currentOutputValue = Double(0.0)
     var minValue = Double(-38.0)
     var maxValue = Double(0.0)
+    var outputMinValue = Double(0.0)
+    var outputMaxValue = Double(0.0)
+    
     
     var valueArray = [Double]()
     var smooth = 0 //平均する配列の数
@@ -82,7 +85,21 @@ class SensorDataTuner:NSObject{
     var activeCalibration = false //今のところ足の水平だけ
     var isInvert = true //値の最大最小を逆転
     
-    var midiStatus = MIDIStatus.pitchBend
+    var midiStatus = MIDIStatus.pitchBend{
+        didSet{
+            switch midiStatus {
+            case .controlChange:
+                outputMinValue = 0
+                outputMaxValue = controlChangeMaxValue
+            case .pitchBend:
+                outputMinValue = 0
+                outputMaxValue = pitchBendMaxValue
+            default:
+                break
+            }
+            
+        }
+    }
     var sensorKind:SensorKind = .eulerX {
         didSet{
             if sensorKind == .eulerX{
@@ -129,6 +146,10 @@ class SensorDataTuner:NSObject{
         super.init()
         self.orphe = orphe
         NotificationCenter.default.addObserver(self, selector: #selector(orpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
+        
+        midiStatus = .controlChange
+        outputMinValue = 0
+        outputMaxValue = controlChangeMaxValue
     }
     
     func updateValue(_ value:Double){
@@ -230,14 +251,13 @@ class SensorDataTuner:NSObject{
             
             updateValue(Double(getSelectedSensorValue()))
             
+            currentOutputValue = map(value: currentInputValue, inputMin: minValue, inputMax: maxValue, outputMin: outputMinValue, outputMax: outputMaxValue, clamp: true)
             // select control
             switch midiStatus {
             case .pitchBend:
-                let value = getPitchbendValue()
-                MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: value)
+                MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: UInt16(currentOutputValue))
             case .controlChange:
-                let value = getCCValue()
-                MIDIManager.sharedInstance.controlChangeReceive(ch: 0, ctNum: controlNumber, value: value)
+                MIDIManager.sharedInstance.controlChangeReceive(ch: 0, ctNum: controlNumber, value: UInt8(currentOutputValue))
             default:
                 break
             }

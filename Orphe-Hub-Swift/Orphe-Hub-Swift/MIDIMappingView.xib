@@ -181,6 +181,9 @@
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <action selector="outputMinValueTextFieldInput:" target="c22-O7-iKe" id="JnJ-Dm-lfL"/>
+                    </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vpz-Ng-dPn">
                     <rect key="frame" x="173" y="242" width="94" height="14"/>
@@ -199,6 +202,9 @@
                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <action selector="outputMaxValueTextFieldInput:" target="c22-O7-iKe" id="1tM-71-xcf"/>
+                    </connections>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1U-WX-ac6">
                     <rect key="frame" x="173" y="284" width="67" height="14"/>
@@ -221,14 +227,32 @@
                         <action selector="controlNumberTextFieldInput:" target="c22-O7-iKe" id="8KV-iF-HxH"/>
                     </connections>
                 </textField>
+                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Thh-Kd-wst">
+                    <rect key="frame" x="174" y="204" width="63" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Invert" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" state="on" inset="2" id="cu6-ht-7xu">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="miniSystem"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="invertCheckButtonAction:" target="c22-O7-iKe" id="a1a-yw-TWu"/>
+                    </connections>
+                </button>
             </subviews>
             <connections>
                 <outlet property="EulerView" destination="b2U-8d-EjW" id="Zvf-3x-FGf"/>
                 <outlet property="QuatView" destination="ng5-gP-MII" id="tql-Al-wyr"/>
+                <outlet property="controlNumTextField" destination="zrj-dS-frD" id="n29-Ti-hqQ"/>
+                <outlet property="inputMaxValueTextField" destination="x2h-bi-CMT" id="3oi-LB-fNW"/>
+                <outlet property="inputMinValueTextField" destination="W6r-8A-GZZ" id="Eyy-69-g9g"/>
+                <outlet property="invertCheckButton" destination="Thh-Kd-wst" id="XPZ-Ao-ivI"/>
                 <outlet property="midiStatusPopUp" destination="Mdv-Yc-HYZ" id="gK6-zd-nXp"/>
+                <outlet property="outputMaxTextField" destination="gJQ-Ed-IhL" id="ebB-33-kRn"/>
+                <outlet property="outputMinTextField" destination="d0i-ra-fnC" id="6aS-uQ-vPg"/>
                 <outlet property="outputValueGraph" destination="rJz-bj-ymt" id="JRc-jq-OfH"/>
                 <outlet property="selectDataPopUp" destination="mnT-yZ-EY8" id="IJ2-Y5-LjW"/>
                 <outlet property="selectedDataView" destination="4LG-87-PY3" id="J85-sb-2Cj"/>
+                <outlet property="smoothValueTextField" destination="Rqe-fD-9mP" id="b1L-WI-7la"/>
             </connections>
             <point key="canvasLocation" x="170" y="278"/>
         </customView>

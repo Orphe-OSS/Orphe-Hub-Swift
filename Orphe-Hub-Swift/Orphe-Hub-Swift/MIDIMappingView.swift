@@ -23,7 +23,23 @@ class MIDIMappingView : NSView{
             }
         }
     }
-    var sensorDataTuner:SensorDataTuner?
+    var sensorDataTuner:SensorDataTuner?{
+        didSet{
+            updateUIValues()
+        }
+    }
+    
+    
+    @IBOutlet weak var inputMinValueTextField: NSTextField!
+    @IBOutlet weak var inputMaxValueTextField: NSTextField!
+    @IBOutlet weak var smoothValueTextField: NSTextField!
+    
+    @IBOutlet weak var controlNumTextField: NSTextField!
+    @IBOutlet weak var outputMinTextField: NSTextField!
+    @IBOutlet weak var outputMaxTextField: NSTextField!
+    
+    @IBOutlet weak var invertCheckButton: NSButton!
+    
     
     //Quat&EulerView
     @IBOutlet weak var QuatView: NSView!
@@ -41,6 +57,7 @@ class MIDIMappingView : NSView{
     @IBAction func selectDataPopUpAction(_ sender: Any) {
         selectDataPopUp.title = (selectDataPopUp.selectedItem?.title)!
         sensorDataTuner?.sensorKind = SensorKind(rawValue: (selectDataPopUp.selectedItem?.title)!)!
+        updateUIValues()
     }
     
     @IBOutlet weak var midiStatusPopUp: NSPopUpButton!
@@ -109,6 +126,22 @@ class MIDIMappingView : NSView{
         EulerView.layer?.borderWidth = 1.0
         selectedDataView.wantsLayer = true
         selectedDataView.layer?.borderWidth = 1.0
+        
+    }
+    
+    func updateUIValues(){
+        guard let sensorDataTuner = self.sensorDataTuner else {
+            return
+        }
+        inputMinValueTextField.stringValue = String(sensorDataTuner.minValue)
+        inputMaxValueTextField.stringValue = String(sensorDataTuner.maxValue)
+        smoothValueTextField.stringValue = String(sensorDataTuner.smooth)
+        controlNumTextField.stringValue = String(sensorDataTuner.controlNumber)
+        outputMinTextField.stringValue = String(sensorDataTuner.outputMinValue)
+        outputMaxTextField.stringValue = String(sensorDataTuner.outputMaxValue)
+        
+        selectDataPopUp.title = sensorDataTuner.sensorKind.rawValue
+        midiStatusPopUp.title = sensorDataTuner.midiStatus.rawValue
     }
     
     @IBAction func smoothValueTextFieldInput(_ sender: NSTextField) {
@@ -123,6 +156,15 @@ class MIDIMappingView : NSView{
         sensorDataTuner?.maxValue = sender.doubleValue
     }
     
+    @IBAction func outputMinValueTextFieldInput(_ sender: NSTextField) {
+        sensorDataTuner?.outputMinValue = sender.doubleValue
+    }
+    
+    @IBAction func outputMaxValueTextFieldInput(_ sender: NSTextField) {
+        sensorDataTuner?.outputMaxValue = sender.doubleValue
+    }
+    
+    
     @IBAction func controlNumberTextFieldInput(_ sender: NSTextField) {
         sensorDataTuner?.controlNumber = UInt8(sender.integerValue)
     }
@@ -130,7 +172,13 @@ class MIDIMappingView : NSView{
     @IBAction func midiStatusPopUpAction(_ sender: Any) {
         midiStatusPopUp.title = (midiStatusPopUp.selectedItem?.title)!
         sensorDataTuner?.midiStatus = MIDIStatus(rawValue: midiStatusPopUp.selectedItem!.title)!
+        updateUIValues()
     }
+    
+    @IBAction func invertCheckButtonAction(_ sender: NSButton) {
+        sensorDataTuner?.isInvert = sender.state == 1
+    }
+    
     
     func orpheDidUpdateSensorData(orphe: ORPData) {
         if orphe != self.orphe { return }
