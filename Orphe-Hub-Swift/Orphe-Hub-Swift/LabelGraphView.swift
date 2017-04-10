@@ -22,6 +22,7 @@ class LabelGraphView : NSView{
         textSubView = NSTextView(frame: NSRect(x: 0, y: 10, width: 100, height: 10))
         textSubView.backgroundColor = NSColor.clear
         textSubView.string = ""
+        textSubView.font = NSFont(name: textSubView.font!.fontName, size: 10)
         
         self.addSubview(graphSubView)
         self.addSubview(textSubView)

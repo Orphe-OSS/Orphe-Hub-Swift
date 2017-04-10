@@ -18,16 +18,16 @@ class SensorDataManager{
     
 }
 
-enum SensorKind{
-    case eulerX
-    case eulerY
-    case eulerZ
-    case gyroX
-    case gyroY
-    case gyroZ
-    case accX
-    case accY
-    case accZ
+enum SensorKind:String{
+    case eulerX = "eulerX"
+    case eulerY = "eulerY"
+    case eulerZ = "eulerZ"
+    case gyroX = "gyroX"
+    case gyroY = "gyroY"
+    case gyroZ = "gyroZ"
+    case accX = "accX"
+    case accY = "accY"
+    case accZ = "accZ"
 
 }
 
@@ -37,6 +37,18 @@ enum MIDIStatus{
 }
 
 class SensorDataTuner:NSObject{
+    
+    static let sensorKindArray = [
+        "eulerX",
+        "eulerY",
+        "eulerZ",
+        "gyroX",
+        "gyroY",
+        "gyroZ",
+        "accX",
+        "accY",
+        "accZ"
+        ]
     
     weak var orphe:ORPData!
     
@@ -161,29 +173,7 @@ class SensorDataTuner:NSObject{
         
         if orphe == self.orphe{
             
-            //select sensor value
-            switch sensorKind {
-            case .accX:
-                updateValue(Double(orphe.getAcc()[0]))
-            case .accY:
-                updateValue(Double(orphe.getAcc()[1]))
-            case .accZ:
-                updateValue(Double(orphe.getAcc()[2]))
-            case .eulerX:
-                updateValue(Double(orphe.getEuler()[0]))
-            case .eulerY:
-                updateValue(Double(orphe.getEuler()[1]))
-            case .eulerZ:
-                updateValue(Double(orphe.getEuler()[2]))
-            case .gyroX:
-                updateValue(Double(orphe.getGyro()[0]))
-            case .gyroY:
-                updateValue(Double(orphe.getGyro()[1]))
-            case .gyroZ:
-                updateValue(Double(orphe.getGyro()[2]))
-            default:
-                break
-            }
+            updateValue(Double(getSelectedSensorValue()))
             
             // select control
             switch midiStatus {
@@ -199,6 +189,60 @@ class SensorDataTuner:NSObject{
             
         }
         
+    }
+    
+    func getSelectedSensorValue()->Float{
+        switch sensorKind {
+        case .accX:
+            return orphe.getAcc()[0]
+        case .accY:
+            return orphe.getAcc()[1]
+        case .accZ:
+            return orphe.getAcc()[2]
+        case .eulerX:
+            return orphe.getEuler()[0]
+        case .eulerY:
+            return orphe.getEuler()[1]
+        case .eulerZ:
+            return orphe.getEuler()[2]
+        case .gyroX:
+            return orphe.getGyro()[0]
+        case .gyroY:
+            return orphe.getGyro()[1]
+        case .gyroZ:
+            return orphe.getGyro()[2]
+        default:
+            break
+        }
+        return 0
+    }
+    
+    let EULER_MAX = 180
+    
+    func getNormalizedSelectedSensorValue()->Float{
+        switch sensorKind {
+        case .accX:
+            return orphe.getAcc()[0]
+        case .accY:
+            return orphe.getAcc()[1]
+        case .accZ:
+            return orphe.getAcc()[2]
+        case .eulerX:
+            return orphe.getEuler()[0] / Float(EULER_MAX)
+        case .eulerY:
+            return orphe.getEuler()[1] / Float(EULER_MAX)
+        case .eulerZ:
+            return orphe.getEuler()[2] / Float(EULER_MAX)
+        case .gyroX:
+            return orphe.getGyro()[0]
+        case .gyroY:
+            return orphe.getGyro()[1]
+        case .gyroZ:
+            return orphe.getGyro()[2]
+        default:
+            break
+        }
+        return 0
     }
     
 }
