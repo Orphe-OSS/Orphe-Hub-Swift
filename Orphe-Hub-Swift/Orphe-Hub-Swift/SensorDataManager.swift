@@ -30,7 +30,10 @@ class SensorDataTuner{
     var valueArray = [Double]()
     var smooth = 0 //平均する配列の数
     
-    var activeCalibration = false
+    var activeCalibration = false //今のところ足の水平だけ
+    var isInvert = true //値の最大最小を逆転
+    
+    var currentValue = Double(0.0)
     
     
     init() {
@@ -44,6 +47,16 @@ class SensorDataTuner{
             if valueArray.count > smooth{
                 valueArray.remove(at: 0)
             }
+            
+            var valueSum = 0.0
+            for val in valueArray {
+                valueSum += val
+            }
+            currentValue = valueSum / Double(valueArray.count)
+            
+        }
+        else{
+            currentValue = value
         }
         
         
@@ -52,38 +65,52 @@ class SensorDataTuner{
         }
     }
     
-    func getPitchbendValue(value:Double) -> UInt16 {
-        
-        var pitch = value - maxValue
-        if pitch < minValue {
-            pitch = minValue
+    func map(value:Double, inputMin:Double, inputMax:Double, outputMin:Double, outputMax:Double, clamp:Bool)->Double{
+        if fabs(inputMin - inputMax) < DBL_EPSILON{
+            return outputMin;
         }
-        else if value > maxValue{
-            pitch = maxValue
+        else {
+            var _inputMin = inputMin
+            var _inputMax = inputMax
+            if isInvert{
+                _inputMin = inputMax
+                _inputMax = inputMin
+            }
+            
+            var outVal = ((value - _inputMin) / (_inputMax - _inputMin) * (outputMax - outputMin) + outputMin)
+            
+            if( clamp ){
+                if(outputMax < outputMin){
+                    if outVal < outputMax {
+                        outVal = outputMax
+                    }
+                    else if outVal > outputMin {
+                        outVal = outputMin
+                    }
+                }else{
+                    if outVal > outputMax {
+                        outVal = outputMax
+                    }
+                    else if outVal < outputMin {
+                        outVal = outputMin
+                    }
+                }
+            }
+            return outVal;
         }
-        var mappedValue = pitch / minValue
-        if mappedValue < 0{
-            mappedValue = 0
-        }
-        let pitchbendValue = UInt16(Int16(mappedValue * 16383.0)) //0~16383.0
-//        print("pitchbend:",pitchbendValue)
+    }
+    
+    
+    func getPitchbendValue() -> UInt16 {
+        let mappedValue = map(value: currentValue, inputMin: minValue, inputMax: maxValue, outputMin: 0, outputMax: 16383.0, clamp: true)
+        let pitchbendValue = UInt16(mappedValue) //0~16383.0
+        print("pitchbend:",pitchbendValue)
         return pitchbendValue
     }
     
-    func getCCValue(value:Double) -> UInt8 {
-        var pitch = value - maxValue
-        if pitch < minValue {
-            pitch = minValue
-        }
-        else if value > maxValue{
-            pitch = maxValue
-        }
-        var val = pitch * (127 / minValue)
-        if val < 0 {
-            val = -val
-        }
-        let pitchbendValue = UInt8(val) //0~127
-        //        print("pitchbend:",pitchbendValue)
+    func getCCValue() -> UInt8 {
+        let mappedValue = map(value: currentValue, inputMin: minValue, inputMax: maxValue, outputMin: 0, outputMax: 127, clamp: true)
+        let pitchbendValue = UInt8(mappedValue) //0~127
         return pitchbendValue
     }
     

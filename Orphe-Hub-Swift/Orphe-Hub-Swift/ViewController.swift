@@ -367,12 +367,14 @@ extension  ViewController: ORPManagerDelegate{
         }
         
         if orphe.side == .left{
-            let pitchBendValue = sensorDataTuner.getPitchbendValue(value: Double(euler[0]))
+            sensorDataTuner.updateValue(Double(euler[0]))
+            let pitchBendValue = sensorDataTuner.getPitchbendValue()
             sensorDataTuner.calibrateFloorAngle(euler: Double(euler[0]))
             MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: pitchBendValue)
         }
         else{
-            let value = sensorDataTuner.getCCValue(value: Double(euler[0]))
+            sensorDataTuner.updateValue(Double(euler[0]))
+            let value = sensorDataTuner.getCCValue()
             sensorDataTuner.calibrateFloorAngle(euler: Double(euler[0]))
             MIDIManager.sharedInstance.controlChangeReceive(ch: 0, ctNum: 0, value: value)
         }
