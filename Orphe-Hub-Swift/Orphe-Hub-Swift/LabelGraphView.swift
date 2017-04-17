@@ -73,7 +73,7 @@ class LabelGraphView : NSView{
         graphSubView.frame = NSRect(x: x_, y: 0, width: w_, height: 10)
     }
     
-    func setGratphWidth(_ width:CGFloat){
+    func setGraphWidth(_ width:CGFloat){
         var x_ = graphX
         var w_ = width
         if (w_ < 0) {

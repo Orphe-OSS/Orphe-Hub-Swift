@@ -187,12 +187,12 @@ class MIDIMappingView : NSView{
         //-----------Quat--------------
         for (i, q) in orphe.getQuat().enumerated() {
             QuatSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", q)
-            QuatSubView[i].setGratphWidth(CGFloat(q*100))
+            QuatSubView[i].setGraphWidth(CGFloat(q*100))
         }
         //----------Euler----------
         for (i, e) in orphe.getEuler().enumerated() {
             EulerSubView[i].textSubView.string = "\(i):" + String(format: "%.3f", e)
-            EulerSubView[i].setGratphWidth( CGFloat(e*100))
+            EulerSubView[i].setGraphWidth( CGFloat(e*100))
         }
         
         //----SelectedData----
