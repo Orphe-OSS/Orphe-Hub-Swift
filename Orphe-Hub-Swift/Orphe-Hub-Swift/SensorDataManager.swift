@@ -256,19 +256,17 @@ class SensorDataTuner:NSObject{
             
             let elapsedTime = NSDate().timeIntervalSince1970 - sendMessageOrpheTimeStamp
             if elapsedTime > 30 {
-                var hue = (currentOutputValue/outputMaxValue*0.5 + 0.5) * 359
-                var bri = currentOutputValue/outputMaxValue * 255
+                let hue = (currentOutputValue/outputMaxValue*0.5 + 0.5) * 359
+                let bri = currentOutputValue/outputMaxValue * 255
                 orphe.setColorHSV(lightNum: 5, hue: UInt16(hue), saturation: 255, brightness: UInt8(bri))
             }
             
             // select control
             switch midiStatus {
             case .pitchBend:
-                MIDIManager.sharedInstance.ccPitchbendReceive(ch: 0, pitchbendValue: UInt16(currentOutputValue))
+                MIDIManager.sharedInstance.pitchbendReceive(ch: 0, pitchbendValue: UInt16(currentOutputValue))
             case .controlChange:
                 MIDIManager.sharedInstance.controlChangeReceive(ch: 0, ctNum: controlNumber, value: UInt8(currentOutputValue))
-            default:
-                break
             }
             
         }

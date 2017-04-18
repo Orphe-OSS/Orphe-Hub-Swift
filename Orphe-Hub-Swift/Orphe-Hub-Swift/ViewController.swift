@@ -110,8 +110,7 @@ class ViewController: NSViewController {
             let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
             orphe.switchToOppositeSide()
         }
-        var tempOrphe =
-            leftMIDIMappingView.orphe
+        let tempOrphe = leftMIDIMappingView.orphe
         leftMIDIMappingView.orphe = rightMIDIMappingView.orphe
         rightMIDIMappingView.orphe = tempOrphe
     }

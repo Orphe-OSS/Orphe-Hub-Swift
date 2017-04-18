@@ -123,7 +123,6 @@ class MIDIManager: NSObject {
         
     }
     
-    // MARK: ID chacha
     func saveVirtualSourceID() {
         
         
@@ -250,7 +249,7 @@ class MIDIManager: NSObject {
         
     }
     
-    //MARK: - input event?
+    //MARK: - input event
     func MyMIDIReadBlock(packetList: UnsafePointer<MIDIPacketList>, srcConnRefCon: UnsafeMutableRawPointer?) -> Swift.Void {
         print("---------MyMIDIReadBlock--------")
         let packets = packetList.pointee
@@ -347,55 +346,6 @@ class MIDIManager: NSObject {
             CheckError(status)
         }
         return status
-    }
-    
-    
-    //MARK: - なにこれ
-    ///  Take the packets emitted frome the MusicSequence and forward them to the virtual source.
-    ///
-    ///  - parameter packetList:    packets from the MusicSequence
-    ///  - parameter srcConnRefCon: not used
-    func MIDIPassThru(packetList: UnsafePointer<MIDIPacketList>, srcConnRefCon: Optional<UnsafeMutableRawPointer>) -> () {
-        print("---------------MIDIPassThru---------------")
-        print("sending packets to source \(packetList)")
-        MIDIReceived(virtualSourceEndpointRef, packetList)
-        
-        dumpPacketList(packetlist: packetList.pointee)//情報を表示するだけの関数っぽい
-    }
-    
-    func dumpPacketList(packetlist:MIDIPacketList) {
-        let packet = packetlist.packet
-        var ap = UnsafeMutablePointer<MIDIPacket>.allocate(capacity: 1)
-        ap.initialize(to: packet)
-        for _ in 0 ..< packetlist.numPackets {
-            let p = ap.pointee
-            dump(packet: p)
-            ap = MIDIPacketNext(ap)
-        }
-    }
-    
-    func dump(packet:MIDIPacket) {
-        let status = packet.data.0
-        let rawStatus = status & 0xF0 // without channel
-        let channel = status & 0x0F
-        print("--dump--")
-        print("timeStamp: \(packet.timeStamp)")
-        print("status: \(status)  \(String(format:"0x%X", status))")
-        print("rawStatus: \(rawStatus) \(String(format:"0x%X", rawStatus))")
-        print("channel: \(channel)")
-        print("length: \(packet.length)")
-        
-        print("data: ", terminator:"")
-        let mirror = Mirror(reflecting: packet.data)
-        for (index,d) in mirror.children.enumerated() {
-            if index == Int(packet.length) {
-                print("")
-                break
-            }
-            let hex = String(format:"0x%X", d.value as! UInt8)
-            print("\(hex) ", terminator:"")
-            //print("d: \(d.label) : \(d.value)")
-        }
     }
     
     
@@ -653,24 +603,6 @@ class MIDIManager: NSObject {
         }
     }
     
-//    func getStringProperty(propertyName: CFString, midiObject: MIDIObjectRef) -> String {
-//        var property: Unmanaged<CFString>?
-//        let status = MIDIObjectGetStringProperty(midiObject, propertyName, &property)
-//        defer { property?.release() }
-//        if status != noErr {
-//            print("error getting string \(propertyName) : \(status)")
-//            CheckError(status)
-//            return "status error"
-//        }
-//        let cfstring = Unmanaged.fromOpaque(
-//            property!.toOpaque()).takeUnretainedValue() as CFString
-//        if CFGetTypeID(cfstring) == CFStringGetTypeID() {
-//            return cfstring as String
-//        }
-//        
-//        return "unknown error"
-//    }
-    
     // send directly to the midi source
     func noteOnReceive() {
         var packet       = MIDIPacket()
@@ -708,7 +640,7 @@ class MIDIManager: NSObject {
     
     
     // add
-    func ccPitchbendReceive(ch:Int, pitchbendValue:UInt16) {
+    func pitchbendReceive(ch:Int, pitchbendValue:UInt16) {
         var packet       = MIDIPacket()
         packet.timeStamp = MIDITimeStamp(AudioConvertHostTimeToNanos(AudioGetCurrentHostTime()))
         packet.length    = 3
