@@ -52,13 +52,20 @@ class OSCManager:NSObject, OSCServerDelegate{
     }
     
     func startReceive()->Bool{
-        if server.listen(serverPort) {
-            return true
-        }
-        else{
-            print("can not listen")
+        
+        do {
+            try execute {
+                self.server.listen(self.serverPort)
+            }
+        } catch let e {
             return false
         }
+        return true
+        
+    }
+    
+    func execute(_ tryBlock: () -> ()) throws {
+        try ObjC_Exception.catch(try: tryBlock)
     }
     
     func sendSensorValues(orphe:ORPData){
