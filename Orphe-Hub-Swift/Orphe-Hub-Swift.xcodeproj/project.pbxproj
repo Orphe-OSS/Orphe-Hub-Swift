@@ -14,8 +14,6 @@
 		C678207C50C1356C48F18B88 /* Pods_Orphe_Hub_SwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508B9A273B967592056C8820 /* Pods_Orphe_Hub_SwiftTests.framework */; };
 		E60826681E9BB23C003BA8D6 /* MIDIMappingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E60826671E9BB23C003BA8D6 /* MIDIMappingView.xib */; };
 		E608266A1E9BB2B0003BA8D6 /* MIDIMappingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E60826691E9BB2B0003BA8D6 /* MIDIMappingView.swift */; };
-		E61393021E8E52DA002DD502 /* Orphe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E61393011E8E52DA002DD502 /* Orphe.framework */; };
-		E61393041E8E52DD002DD502 /* Orphe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E61393011E8E52DA002DD502 /* Orphe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E613930A1E8E6A31002DD502 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61393051E8E6A31002DD502 /* AppDelegate.swift */; };
 		E613930B1E8E6A31002DD502 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E61393061E8E6A31002DD502 /* Assets.xcassets */; };
 		E613930D1E8E6A31002DD502 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E61393081E8E6A31002DD502 /* Info.plist */; };
@@ -24,6 +22,8 @@
 		E61393141E8FCC2A002DD502 /* OSCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61393131E8FCC2A002DD502 /* OSCManager.swift */; };
 		E61393701E926DE5002DD502 /* MIDIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E613936F1E926DE5002DD502 /* MIDIManager.swift */; };
 		E61393721E926EF9002DD502 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E61393711E926EF9002DD502 /* CoreMIDI.framework */; };
+		E673F7281EA5F6360022CFD3 /* Orphe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E673F7271EA5F6360022CFD3 /* Orphe.framework */; };
+		E673F7291EA5F6360022CFD3 /* Orphe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E673F7271EA5F6360022CFD3 /* Orphe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E674880C1E98F15700DA7D9C /* SensorDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674880B1E98F15600DA7D9C /* SensorDataManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,7 +51,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E61393041E8E52DD002DD502 /* Orphe.framework in Embed Frameworks */,
+				E673F7291EA5F6360022CFD3 /* Orphe.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,7 +73,6 @@
 		E6117D001E0A5A8200A2C89F /* Orphe-Hub-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Orphe-Hub-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6117D111E0A5A8200A2C89F /* Orphe-Hub-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orphe-Hub-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6117D1C1E0A5A8200A2C89F /* Orphe-Hub-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orphe-Hub-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E61393011E8E52DA002DD502 /* Orphe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Orphe.framework; path = "Orphe-Swift-SDK/macOS/Orphe.framework"; sourceTree = SOURCE_ROOT; };
 		E61393051E8E6A31002DD502 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Orphe-Hub-Swift/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		E61393061E8E6A31002DD502 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Orphe-Hub-Swift/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		E61393081E8E6A31002DD502 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Orphe-Hub-Swift/Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -82,6 +81,7 @@
 		E61393131E8FCC2A002DD502 /* OSCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSCManager.swift; path = "Orphe-Hub-Swift/OSCManager.swift"; sourceTree = SOURCE_ROOT; };
 		E613936F1E926DE5002DD502 /* MIDIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIDIManager.swift; path = "Orphe-Hub-Swift/MIDIManager.swift"; sourceTree = SOURCE_ROOT; };
 		E61393711E926EF9002DD502 /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
+		E673F7271EA5F6360022CFD3 /* Orphe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Orphe.framework; sourceTree = "<group>"; };
 		E674880B1E98F15600DA7D9C /* SensorDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorDataManager.swift; path = "Orphe-Hub-Swift/SensorDataManager.swift"; sourceTree = SOURCE_ROOT; };
 		F20B72AB02DB0372E61B20AA /* Pods-Orphe-Hub-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		F96CE5BD2DD3FB50B8CDD740 /* Pods-Orphe-Hub-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.release.xcconfig"; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E61393721E926EF9002DD502 /* CoreMIDI.framework in Frameworks */,
-				E61393021E8E52DA002DD502 /* Orphe.framework in Frameworks */,
+				E673F7281EA5F6360022CFD3 /* Orphe.framework in Frameworks */,
 				6ADCBB8F73F10784C8C69865 /* Pods_Orphe_Hub_Swift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,7 +131,7 @@
 		E6117CF71E0A5A8200A2C89F = {
 			isa = PBXGroup;
 			children = (
-				E61393011E8E52DA002DD502 /* Orphe.framework */,
+				E673F7271EA5F6360022CFD3 /* Orphe.framework */,
 				E6117D021E0A5A8200A2C89F /* Orphe-Hub-Swift */,
 				E6117D011E0A5A8200A2C89F /* Products */,
 				F8CE49B909FF879396EA5470 /* Pods */,
