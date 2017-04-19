@@ -61,7 +61,7 @@ enum MIDIStatus:String, EnumEnumerable{
     case controlChange = "Control Change"
 }
 
-class SensorDataTuner:NSObject{
+class MIDISensorMapper:NSObject{
     
     let controlChangeMaxValue = 127.0
     var controlNumber = UInt8(0)
