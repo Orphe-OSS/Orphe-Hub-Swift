@@ -247,7 +247,7 @@ class MIDISensorMapper:NSObject{
     func orpheDidUpdateSensorData(notification:Notification){
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
-        
+        if self.orphe == nil {return}
         if orphe == self.orphe{
             
             updateValue(Double(getSelectedSensorValue()))
