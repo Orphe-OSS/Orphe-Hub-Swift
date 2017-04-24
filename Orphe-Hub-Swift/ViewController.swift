@@ -19,23 +19,12 @@ class ViewController: NSViewController {
     @IBOutlet weak var oscReceiverTextField: NSTextField!
     @IBOutlet var oscLogTextView: NSTextView!
     
-    @IBOutlet weak var rightMIDIMappingViewHolder:NSView!
-    @IBOutlet weak var leftMIDIMappingViewHolder:NSView!
-    var rightMIDIMappingView:MIDIMappingView!
-    var leftMIDIMappingView:MIDIMappingView!
-    
     var rssiTimer: Timer?
     
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        rightMIDIMappingView = MIDIMappingView.newMIDIMappingView()
-        rightMIDIMappingViewHolder.addSubview(rightMIDIMappingView)
-        
-        leftMIDIMappingView = MIDIMappingView.newMIDIMappingView()
-        leftMIDIMappingViewHolder.addSubview(leftMIDIMappingView)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -57,8 +46,6 @@ class ViewController: NSViewController {
         oscSenderTextField.stringValue = String(OSCManager.sharedInstance.clientPort)
         oscReceiverTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
         
-        //MIDI
-        MIDIManager.sharedInstance.initMIDI()
     }
     
     override var representedObject: Any? {
@@ -110,9 +97,6 @@ class ViewController: NSViewController {
             let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
             orphe.switchToOppositeSide()
         }
-        let tempOrphe = leftMIDIMappingView.orphe
-        leftMIDIMappingView.orphe = rightMIDIMappingView.orphe
-        rightMIDIMappingView.orphe = tempOrphe
     }
     
 }
@@ -213,15 +197,8 @@ extension  ViewController: ORPManagerDelegate{
         updateCellsState()
         
         orphe.setScene(.sceneSDK)
-        orphe.switchLight(lightNum: 5, flag: true)
         orphe.setGestureSensitivity(.high)
         
-        if orphe.side == .left{
-            leftMIDIMappingView.orphe = orphe
-        }
-        else{
-            rightMIDIMappingView.orphe = orphe
-        }
     }
     
     func orpheDidUpdateOrpheInfo(orphe:ORPData){
@@ -235,9 +212,6 @@ extension  ViewController: ORPManagerDelegate{
     }
     
     func orpheDidUpdateSensorData(orphe: ORPData) {
-        
-        leftMIDIMappingView.orpheDidUpdateSensorData(orphe: orphe)
-        rightMIDIMappingView.orpheDidUpdateSensorData(orphe: orphe)
         
     }
     
