@@ -104,6 +104,14 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBAction func calibrationButtonAction(_ sender: Any) {
+        for orphe in ORPManager.sharedInstance.connectedORPDataArray{
+            orphe.calibrateAngle(axis: .X)
+//            orphe.calibrateAngle(axis: .Y) //なんかおかしい
+            orphe.calibrateAngle(axis: .Z)
+        }
+    }
+    
 }
 
 //MARK: - NSTableViewDelegate
