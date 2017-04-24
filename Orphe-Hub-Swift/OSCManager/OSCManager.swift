@@ -189,13 +189,13 @@ class OSCManager:NSObject, OSCServerDelegate{
             
         default:
             isNoCommand = true
-            PRINT("No such command")
+            PRINT("Wrong command")
             break
         }
         
         var args = ""
         if isNoCommand{
-            mString = "No such command."
+            mString = "Wrong command."
         }
         else{
             for arg in message.arguments{

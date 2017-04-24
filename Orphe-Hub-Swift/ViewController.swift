@@ -45,6 +45,7 @@ class ViewController: NSViewController {
         oscHostTextField.stringValue = OSCManager.sharedInstance.clientHost
         oscSenderTextField.stringValue = String(OSCManager.sharedInstance.clientPort)
         oscReceiverTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
+        oscLogTextView.font = NSFont(name: oscLogTextView.font!.fontName, size: 10)
         
     }
     
@@ -222,8 +223,19 @@ extension  ViewController: ORPManagerDelegate{
     }
 }
 
+var lines = [String]()
 extension ViewController: OSCManagerDelegate{
     func oscDidReceiveMessage(message:String) {
-        oscLogTextView.string = message + "\n" + oscLogTextView.string!
+        lines.append(message)
+        if lines.count > 30{
+            lines.remove(at: 0)
+        }
+        
+        var drawLines = ""
+        for line in lines{
+            drawLines = line + "\n" + drawLines
+        }
+        oscLogTextView.string = drawLines
     }
+    
 }
