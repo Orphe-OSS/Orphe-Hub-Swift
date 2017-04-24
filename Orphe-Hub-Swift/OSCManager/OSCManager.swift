@@ -123,16 +123,26 @@ class OSCManager:NSObject, OSCServerDelegate{
     func handle(_ message: OSCMessage!) {
         let oscAddress = message.address.components(separatedBy: "/")
         
-        var side = ORPSide.left
-        if oscAddress[1] == "RIGHT"{
-            side = .right
-        }
-        
-        //TODO: 左右ではなくID指定Orpheを選ぶようにする
-        let orphes = ORPManager.sharedInstance.getOrpheArray(side: side)
         var isNoCommand = false
         var mString = ""
-            
+        
+        //TODO: 左右ではなくID指定Orpheを選ぶようにする
+        var orphes = [ORPData]()
+        if oscAddress[1] == "LEFT"{
+            orphes = ORPManager.sharedInstance.getOrpheArray(side: .left)
+        }
+        else if oscAddress[1] == "RIGHT"{
+            orphes = ORPManager.sharedInstance.getOrpheArray(side: .right)
+        }
+        else if oscAddress[1] == "BOTH"{
+            orphes = ORPManager.sharedInstance.connectedORPDataArray
+        }
+        else{
+            mString = "You have to add '/BOTH' or '/LEFT' or '/RIGHT' to beginning of address. "
+            delegate?.oscDidReceiveMessage?(message: mString)
+            return
+        }
+        
         switch oscAddress[2] {
         case "triggerLight":
             for orphe in orphes{
