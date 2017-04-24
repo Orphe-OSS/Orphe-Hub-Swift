@@ -21,6 +21,10 @@ class ViewController: NSViewController {
     
     var rssiTimer: Timer?
     
+    @IBOutlet weak var leftSensorLabel: NSTextField!
+    @IBOutlet weak var rightSensorLabel: NSTextField!
+    @IBOutlet weak var leftGestureLabel: NSTextField!
+    @IBOutlet weak var rightGestureLabel: NSTextField!
     
     override func viewDidLoad() {
         
@@ -213,13 +217,54 @@ extension  ViewController: ORPManagerDelegate{
     }
     
     func orpheDidUpdateSensorData(orphe: ORPData) {
+        let sideInfo:Int32 = Int32(orphe.side.rawValue)
+        var text = ""
+        let quat = orphe.getQuat()
+        for (i, q) in quat.enumerated() {
+            text += "Quat\(i): "+String(q) + "\n"
+        }
         
+        let euler = orphe.getEuler()
+        for (i, e) in euler.enumerated() {
+            text += "Euler\(i): "+String(e) + "\n"
+        }
+        
+        let acc = orphe.getAcc()
+        for (i, a) in acc.enumerated() {
+            text += "Acc\(i): "+String(a) + "\n"
+        }
+        
+        let gyro = orphe.getGyro()
+        for (i, g) in gyro.enumerated() {
+            text +=  "Gyro\(i): "+String(g) + "\n"
+        }
+        
+        let mag = orphe.getMag()
+        text +=  "Mag: "+String(mag) + "\n"
+        
+        let shock = orphe.getShock()
+        text += "Shock: "+String(shock) + "\n"
+        
+        if sideInfo == 0 {
+            leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
+        }
+        else{
+            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
+        }
     }
     
     func orpheDidCatchGestureEvent(gestureEvent:ORPGestureEventArgs, orphe:ORPData) {
-//        let side = orphe.side
-//        let kind = gestureEvent.getGestureKindString() as String
-//        let power = gestureEvent.getPower()
+        let side = orphe.side
+        let kind = gestureEvent.getGestureKindString() as String
+        let power = gestureEvent.getPower()
+        let text = "Gesture: " + kind + "\n" + "power: " + String(power)
+        
+        if side == .left {
+            leftGestureLabel.stringValue = "LEFT Gesture\n\n" + text
+        }
+        else{
+            rightGestureLabel.stringValue = "RIGHT Gesture\n\n" + text
+        }
     }
 }
 
