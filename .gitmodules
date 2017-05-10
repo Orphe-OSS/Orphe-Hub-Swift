@@ -1,0 +1,3 @@
+[submodule "OrpheSDK_Swift"]
+	path = OrpheSDK_Swift
+	url = https://github.com/no-new-folk/OrpheSDK_Swift

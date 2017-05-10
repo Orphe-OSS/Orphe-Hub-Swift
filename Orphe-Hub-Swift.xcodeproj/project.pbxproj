@@ -20,8 +20,8 @@
 		E61393721E926EF9002DD502 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E61393711E926EF9002DD502 /* CoreMIDI.framework */; };
 		E6401E871EA6317300DEBC32 /* OSCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6401E841EA6317300DEBC32 /* OSCManager.swift */; };
 		E6401E881EA6317300DEBC32 /* ObjC_Exception.m in Sources */ = {isa = PBXBuildFile; fileRef = E6401E861EA6317300DEBC32 /* ObjC_Exception.m */; };
-		E673F7281EA5F6360022CFD3 /* Orphe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E673F7271EA5F6360022CFD3 /* Orphe.framework */; };
-		E673F7291EA5F6360022CFD3 /* Orphe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E673F7271EA5F6360022CFD3 /* Orphe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E666C40A1EC33750005DFF17 /* Orphe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E666C4071EC33748005DFF17 /* Orphe.framework */; };
+		E666C40B1EC33750005DFF17 /* Orphe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E666C4071EC33748005DFF17 /* Orphe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +39,27 @@
 			remoteGlobalIDString = E6117CFF1E0A5A8200A2C89F;
 			remoteInfo = OrpheExample_macOS;
 		};
+		E666C4061EC33748005DFF17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E666C4011EC33748005DFF17 /* Orphe.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E6117AE51E0A4AA300A2C89F;
+			remoteInfo = Orphe;
+		};
+		E666C4081EC33748005DFF17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E666C4011EC33748005DFF17 /* Orphe.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E6117AEE1E0A4AA300A2C89F;
+			remoteInfo = OrpheTests;
+		};
+		E666C40C1EC33750005DFF17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E666C4011EC33748005DFF17 /* Orphe.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E6117AE41E0A4AA300A2C89F;
+			remoteInfo = Orphe;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,7 +69,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				E673F7291EA5F6360022CFD3 /* Orphe.framework in Embed Frameworks */,
+				E666C40B1EC33750005DFF17 /* Orphe.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,7 +99,7 @@
 		E6401E851EA6317300DEBC32 /* ObjC_Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjC_Exception.h; sourceTree = "<group>"; };
 		E6401E861EA6317300DEBC32 /* ObjC_Exception.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjC_Exception.m; sourceTree = "<group>"; };
 		E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Orphe-Hub-Swift-Bridging-Header.h"; path = "Orphe-Hub-Swift/Orphe-Hub-Swift-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		E673F7271EA5F6360022CFD3 /* Orphe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Orphe.framework; sourceTree = "<group>"; };
+		E666C4011EC33748005DFF17 /* Orphe.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Orphe.xcodeproj; path = OrpheSDK_Swift/OrpheSDK_macOS/Orphe.xcodeproj; sourceTree = "<group>"; };
 		F20B72AB02DB0372E61B20AA /* Pods-Orphe-Hub-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		F96CE5BD2DD3FB50B8CDD740 /* Pods-Orphe-Hub-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,7 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E61393721E926EF9002DD502 /* CoreMIDI.framework in Frameworks */,
-				E673F7281EA5F6360022CFD3 /* Orphe.framework in Frameworks */,
+				E666C40A1EC33750005DFF17 /* Orphe.framework in Frameworks */,
 				6ADCBB8F73F10784C8C69865 /* Pods_Orphe_Hub_Swift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -127,7 +148,7 @@
 		E6117CF71E0A5A8200A2C89F = {
 			isa = PBXGroup;
 			children = (
-				E673F7271EA5F6360022CFD3 /* Orphe.framework */,
+				E666C4011EC33748005DFF17 /* Orphe.xcodeproj */,
 				E6117D021E0A5A8200A2C89F /* Orphe-Hub-Swift */,
 				E6117D011E0A5A8200A2C89F /* Products */,
 				F8CE49B909FF879396EA5470 /* Pods */,
@@ -172,6 +193,15 @@
 			path = "Orphe-Hub-Swift/OSCManager";
 			sourceTree = SOURCE_ROOT;
 		};
+		E666C4021EC33748005DFF17 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E666C4071EC33748005DFF17 /* Orphe.framework */,
+				E666C4091EC33748005DFF17 /* OrpheTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E67488131E992A8D00DA7D9C /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +242,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				E666C40D1EC33750005DFF17 /* PBXTargetDependency */,
 			);
 			name = "Orphe-Hub-Swift";
 			productName = OrpheExample_macOS;
@@ -301,6 +332,12 @@
 			mainGroup = E6117CF71E0A5A8200A2C89F;
 			productRefGroup = E6117D011E0A5A8200A2C89F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E666C4021EC33748005DFF17 /* Products */;
+					ProjectRef = E666C4011EC33748005DFF17 /* Orphe.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E6117CFF1E0A5A8200A2C89F /* Orphe-Hub-Swift */,
@@ -309,6 +346,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E666C4071EC33748005DFF17 /* Orphe.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Orphe.framework;
+			remoteRef = E666C4061EC33748005DFF17 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E666C4091EC33748005DFF17 /* OrpheTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OrpheTests.xctest;
+			remoteRef = E666C4081EC33748005DFF17 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E6117CFE1E0A5A8200A2C89F /* Resources */ = {
@@ -516,6 +570,11 @@
 			target = E6117CFF1E0A5A8200A2C89F /* Orphe-Hub-Swift */;
 			targetProxy = E6117D1D1E0A5A8200A2C89F /* PBXContainerItemProxy */;
 		};
+		E666C40D1EC33750005DFF17 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Orphe;
+			targetProxy = E666C40C1EC33750005DFF17 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -613,6 +672,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F20B72AB02DB0372E61B20AA /* Pods-Orphe-Hub-Swift.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -638,6 +698,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F96CE5BD2DD3FB50B8CDD740 /* Pods-Orphe-Hub-Swift.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
