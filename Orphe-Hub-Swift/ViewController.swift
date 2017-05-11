@@ -9,6 +9,8 @@
 import Cocoa
 import Orphe
 import OSCKit
+import RxSwift
+import RxCocoa
 
 class ViewController: NSViewController {
     
@@ -25,6 +27,12 @@ class ViewController: NSViewController {
     @IBOutlet weak var rightSensorLabel: NSTextField!
     @IBOutlet weak var leftGestureLabel: NSTextField!
     @IBOutlet weak var rightGestureLabel: NSTextField!
+    
+    @IBOutlet weak var sendingTypePopUpButton: NSPopUpButton!
+    @IBOutlet weak var sensorKindPopUpButton: NSPopUpButton!
+    @IBOutlet weak var axisPopUpButton: NSPopUpButton!
+    
+    var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         
@@ -50,6 +58,33 @@ class ViewController: NSViewController {
         oscSenderTextField.stringValue = String(OSCManager.sharedInstance.clientPort)
         oscReceiverTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
         oscLogTextView.font = NSFont(name: oscLogTextView.font!.fontName, size: 10)
+        
+        //sensor setting views
+        let sendingTypeArray = ["Standard",
+                                "2B_100H",
+                                "2B_150H",
+                                "1B_300H",
+                                "1B_400H_2A",
+                                "2B_400H_1A"]
+        sendingTypePopUpButton.addItems(withTitles: sendingTypeArray)
+        sendingTypePopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            self?.updateSendingSensorSetting()
+        })
+        .disposed(by: disposeBag)
+        
+        let sensorKindArray = ["Acc","Gyro"]
+        sensorKindPopUpButton.addItems(withTitles: sensorKindArray)
+        sensorKindPopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            self?.updateSendingSensorSetting()
+        })
+        .disposed(by: disposeBag)
+        
+        let axisTypeArray = ["x or xy", "y or yz","z or zx"]
+        axisPopUpButton.addItems(withTitles: axisTypeArray)
+        axisPopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            self?.updateSendingSensorSetting()
+        })
+        .disposed(by: disposeBag)
         
         //Notification
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorDataCustomised(notification:)), name: .OrpheDidUpdateSensorDataCustomised, object: nil)
@@ -115,21 +150,12 @@ class ViewController: NSViewController {
         }
     }
     
-    override func keyUp(with event: NSEvent) {
-        if event.characters == "0" {
-            for orp in ORPManager.sharedInstance.connectedORPDataArray {
-                orp.changeSendingSensorState(sendingType: .standard)
-            }
-        }
-        else if event.characters == "1" {
-            for orp in ORPManager.sharedInstance.connectedORPDataArray {
-                orp.changeSendingSensorState(sendingType: .t_2b_100h, sensorKind: .gyro, axisType: 0)
-            }
-        }
-        else if event.characters == "2" {
-            for orp in ORPManager.sharedInstance.connectedORPDataArray {
-                orp.changeSendingSensorState(sendingType: .t_2b_150h, sensorKind: .acc, axisType: 0)
-            }
+    func updateSendingSensorSetting(){
+        let sendingType = SendingType(rawValue: UInt8(self.sendingTypePopUpButton.indexOfSelectedItem + 40))!
+        let sensorKind = SensorKind(rawValue: UInt8(self.sensorKindPopUpButton.indexOfSelectedItem))!
+        let axisType = UInt8(self.axisPopUpButton.indexOfSelectedItem)
+        for orp in ORPManager.sharedInstance.connectedORPDataArray {
+            orp.changeSendingSensorState(sendingType: sendingType, sensorKind: sensorKind, axisType: axisType)
         }
     }
     
