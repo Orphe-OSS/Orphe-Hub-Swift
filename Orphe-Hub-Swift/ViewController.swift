@@ -137,7 +137,7 @@ extension  ViewController: NSTableViewDelegate{
     func tableViewSelectionDidChange(_ notification: Notification) {
         if tableView.selectedRow != -1 {
             let orp = ORPManager.sharedInstance.availableORPDataArray[tableView.selectedRow]
-            if orp.state() == .disconnected{
+            if orp.state() != .connected{
                 ORPManager.sharedInstance.connect(orphe: orp)
             }
             else{
