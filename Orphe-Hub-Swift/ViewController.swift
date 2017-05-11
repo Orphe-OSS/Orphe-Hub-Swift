@@ -51,6 +51,9 @@ class ViewController: NSViewController {
         oscReceiverTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
         oscLogTextView.font = NSFont(name: oscLogTextView.font!.fontName, size: 10)
         
+        //Notification
+        NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorDataCustomised(notification:)), name: .OrpheDidUpdateSensorDataCustomised, object: nil)
+        
     }
     
     override var representedObject: Any? {
@@ -109,6 +112,24 @@ class ViewController: NSViewController {
             orphe.calibrateAngle(axis: .X)
 //            orphe.calibrateAngle(axis: .Y) //なんかおかしい
             orphe.calibrateAngle(axis: .Z)
+        }
+    }
+    
+    override func keyUp(with event: NSEvent) {
+        if event.characters == "0" {
+            for orp in ORPManager.sharedInstance.connectedORPDataArray {
+                orp.changeSendingSensorState(sendingType: .standard)
+            }
+        }
+        else if event.characters == "1" {
+            for orp in ORPManager.sharedInstance.connectedORPDataArray {
+                orp.changeSendingSensorState(sendingType: .t_2b_100h, sensorKind: .gyro, axisType: 0)
+            }
+        }
+        else if event.characters == "2" {
+            for orp in ORPManager.sharedInstance.connectedORPDataArray {
+                orp.changeSendingSensorState(sendingType: .t_2b_150h, sensorKind: .acc, axisType: 0)
+            }
         }
     }
     
@@ -261,6 +282,63 @@ extension  ViewController: ORPManagerDelegate{
         }
     }
     
+    func drawSensorValuesOnLabel(orphe:ORPData, sensorKind:SensorKind){
+        let sideInfo:Int32 = Int32(orphe.side.rawValue)
+        var text = ""
+        var sensorStr = ""
+        var arrayArray = [[Float]]()
+        if sensorKind == .acc{
+            sensorStr = "Acc"
+            arrayArray = orphe.getAccArray()
+        }
+        else if sensorKind == .gyro{
+            sensorStr = "Gyro"
+            arrayArray = orphe.getGyroArray()
+        }
+        for (j, array) in arrayArray.enumerated() {
+            for (i, a) in array.enumerated() {
+                text += sensorStr + "\(j)\(i): "+String(a) + "\n"
+            }
+        }
+        
+        if sideInfo == 0 {
+            leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
+        }
+        else{
+            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
+        }
+    }
+    
+    func OrpheDidUpdateSensorDataCustomised(notification: Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
+        let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as! SensorKind
+        let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
+        
+        drawSensorValuesOnLabel(orphe: orphe, sensorKind: sensorKind)
+        
+//        switch sendingType {
+//        
+//        case .t_2b_100h:
+//            var arrayarray = [[Float]]()
+//            if sensorKind == .acc{
+//                arrayarray = orphe.getAccArray()
+//            }
+////            var str = ""
+////            for array in arrayarray{
+////                for val in array{
+////                    str += ", "+String(val)
+////                }
+////            }
+////            PRINT(str)
+//            
+//            
+//        default:
+//            break
+//        }
+        
+    }
+    
     func orpheDidCatchGestureEvent(gestureEvent:ORPGestureEventArgs, orphe:ORPData) {
         let side = orphe.side
         let kind = gestureEvent.getGestureKindString() as String
@@ -276,6 +354,7 @@ extension  ViewController: ORPManagerDelegate{
     }
 }
 
+//MARK: - OSCDelegate
 var lines = [String]()
 extension ViewController: OSCManagerDelegate{
     func oscDidReceiveMessage(message:String) {
