@@ -5,6 +5,8 @@ target 'Orphe-Hub-Swift' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   pod 'OSCKit'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 
   # Pods for Orphe-Hub-Swift
 
