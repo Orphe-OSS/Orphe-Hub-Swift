@@ -44,6 +44,7 @@ class OSCManager:NSObject, OSCServerDelegate{
         
         NotificationCenter.default.addObserver(self, selector:  #selector(OSCManager.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
         NotificationCenter.default.addObserver(self, selector:  #selector(OSCManager.OrpheDidCatchGestureEvent(notification:)), name: .OrpheDidCatchGestureEvent, object: nil)
+        NotificationCenter.default.addObserver(self, selector:  #selector(OSCManager.OrpheDidUpdateSensorDataCustomised(notification:)), name: .OrpheDidUpdateSensorDataCustomised, object: nil)
         
     }
     
@@ -230,4 +231,58 @@ class OSCManager:NSObject, OSCServerDelegate{
         sendGesture(orphe: orphe, gesture: gestureEvent)
     }
     
+    func OrpheDidUpdateSensorDataCustomised(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
+        let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as! SensorKind
+        let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
+        
+        switch sendingType {
+        case .t_2b_100h:
+            for i in 0..<2{
+                sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
+            }
+            break
+            
+        case .t_2b_150h:
+            for i in 0..<3{
+                sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
+            }
+            break
+            
+        default:
+            break
+        }
+        
+        
+    }
+    
+    func sendCustomSensor(orphe:ORPData, sensorKind:SensorKind, index:Int){
+        var address = ""
+        if orphe.side == .left{
+            address = "/LEFT"
+        }
+        else{
+            address = "/RIGHT"
+        }
+        address += "/sensorValues"
+        var args = [Any]()
+        args += orphe.getQuat() as [Any]
+        args += orphe.getEuler() as [Any]
+        
+        if sensorKind == .acc{
+            args += orphe.getAccArray()[index] as [Any]
+            args += orphe.getGyro() as [Any]
+        }
+        else if sensorKind == .gyro{
+            args += orphe.getAcc() as [Any]
+            args += orphe.getGyroArray()[index] as [Any]
+        }
+        
+        
+        args.append(orphe.getMag() as Any)
+        args.append(orphe.getShock() as Any)
+        let message = OSCMessage(address: address, arguments: args)
+        client.send(message, to: clientPath)
+    }
 }
