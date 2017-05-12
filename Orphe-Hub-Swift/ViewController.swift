@@ -32,6 +32,10 @@ class ViewController: NSViewController {
     @IBOutlet weak var sensorKindPopUpButton: NSPopUpButton!
     @IBOutlet weak var axisPopUpButton: NSPopUpButton!
     
+    @IBOutlet weak var accRangePopuUpButton: NSPopUpButton!
+    @IBOutlet weak var gyroRangePopuUpButton: NSPopUpButton!
+    
+    
     var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -83,6 +87,25 @@ class ViewController: NSViewController {
         axisPopUpButton.addItems(withTitles: axisTypeArray)
         axisPopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.updateSendingSensorSetting()
+        })
+        .disposed(by: disposeBag)
+        
+        let accRange = ["2g","4g","8g","16g"]
+        accRangePopuUpButton.addItems(withTitles: accRange)
+        accRangePopuUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            for orp in ORPManager.sharedInstance.connectedORPDataArray{
+                orp.changeSensorRange(sensorKind: .acc, range: UInt8(self!.accRangePopuUpButton.indexOfSelectedItem))
+            }
+        })
+        .disposed(by: disposeBag)
+        
+        let gyroRange = ["250°/sec","500°/sec","1000°/sec","2000°/sec"]
+        gyroRangePopuUpButton.addItems(withTitles: gyroRange)
+        gyroRangePopuUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            PRINT("gyro:",self!.gyroRangePopuUpButton.indexOfSelectedItem)
+            for orp in ORPManager.sharedInstance.connectedORPDataArray{
+                orp.changeSensorRange(sensorKind: .gyro, range: UInt8(self!.gyroRangePopuUpButton.indexOfSelectedItem))
+            }
         })
         .disposed(by: disposeBag)
         
