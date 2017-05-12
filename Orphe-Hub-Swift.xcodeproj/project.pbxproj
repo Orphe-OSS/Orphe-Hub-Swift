@@ -22,6 +22,7 @@
 		E6401E881EA6317300DEBC32 /* ObjC_Exception.m in Sources */ = {isa = PBXBuildFile; fileRef = E6401E861EA6317300DEBC32 /* ObjC_Exception.m */; };
 		E666C40A1EC33750005DFF17 /* Orphe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E666C4071EC33748005DFF17 /* Orphe.framework */; };
 		E666C40B1EC33750005DFF17 /* Orphe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E666C4071EC33748005DFF17 /* Orphe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E666C4151EC5EFA3005DFF17 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		E6401E861EA6317300DEBC32 /* ObjC_Exception.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjC_Exception.m; sourceTree = "<group>"; };
 		E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Orphe-Hub-Swift-Bridging-Header.h"; path = "Orphe-Hub-Swift/Orphe-Hub-Swift-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		E666C4011EC33748005DFF17 /* Orphe.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Orphe.xcodeproj; path = OrpheSDK_Swift/OrpheSDK_macOS/Orphe.xcodeproj; sourceTree = "<group>"; };
+		E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineGraphView.swift; path = "Orphe-Hub-Swift/LineGraphView.swift"; sourceTree = SOURCE_ROOT; };
 		F20B72AB02DB0372E61B20AA /* Pods-Orphe-Hub-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		F96CE5BD2DD3FB50B8CDD740 /* Pods-Orphe-Hub-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -207,6 +209,7 @@
 			children = (
 				1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */,
 				1B3E39031E950921008DA5D1 /* DrawShape.swift */,
+				E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */,
 			);
 			name = CommonUI;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				1B3E39041E950921008DA5D1 /* DrawShape.swift in Sources */,
 				E6401E881EA6317300DEBC32 /* ObjC_Exception.m in Sources */,
 				E613930A1E8E6A31002DD502 /* AppDelegate.swift in Sources */,
+				E666C4151EC5EFA3005DFF17 /* LineGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,6 +36,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var gyroRangePopuUpButton: NSPopUpButton!
     
     
+    @IBOutlet weak var leftLineGraph: NSView!
+    var leftGraphArray = [LineGraphView]()
+    
     var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -112,6 +115,18 @@ class ViewController: NSViewController {
         //Notification
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorDataCustomised(notification:)), name: .OrpheDidUpdateSensorDataCustomised, object: nil)
         
+    }
+    
+    override func viewDidLayout() {
+        //graph
+        leftLineGraph.layer?.backgroundColor = .black
+        let colors:[NSColor] = [.red, .green, .lightGray, .magenta, .yellow, .cyan]
+        for i in 0..<6{
+            let view = LineGraphView(frame: self.leftLineGraph.bounds)
+            leftLineGraph.addSubview(view)
+            view.lineColor = colors[i]
+            leftGraphArray.append(view)
+        }
     }
     
     override var representedObject: Any? {
@@ -352,10 +367,22 @@ extension  ViewController: ORPManagerDelegate{
         
         if sideInfo == 0 {
             leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
+            
+            for acc in orphe.getAccArray(){
+                for (index, val) in acc.enumerated(){
+                    leftGraphArray[index].addValue(CGFloat(val))
+                }
+            }
+            for gyro in orphe.getGyroArray(){
+                for (index, val) in gyro.enumerated(){
+                    leftGraphArray[index+3].addValue(CGFloat(val))
+                }
+            }
         }
         else{
             rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
         }
+        
     }
     
     func OrpheDidUpdateSensorDataCustomised(notification: Notification){
