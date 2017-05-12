@@ -250,6 +250,24 @@ class OSCManager:NSObject, OSCServerDelegate{
             }
             break
             
+        case .t_1b_300h:
+            for i in 0..<6{
+                sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
+            }
+            break
+            
+        case .t_2b_400h_1a:
+            for i in 0..<8{
+                sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
+            }
+            break
+            
+        case .t_1b_400h_2a:
+            for i in 0..<8{
+                sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
+            }
+            break
+            
         default:
             break
         }
