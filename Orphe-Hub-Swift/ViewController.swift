@@ -79,7 +79,7 @@ class ViewController: NSViewController {
         })
         .disposed(by: disposeBag)
         
-        let sensorKindArray = ["Acc","Gyro"]
+        let sensorKindArray = ["Acc","Gyro","Euler"]
         sensorKindPopUpButton.addItems(withTitles: sensorKindArray)
         sensorKindPopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.updateSendingSensorSetting()
@@ -359,6 +359,10 @@ extension  ViewController: ORPManagerDelegate{
             sensorStr = "Gyro"
             arrayArray = orphe.getGyroArray()
         }
+        else if sensorKind == .euler{
+            sensorStr = "Euler"
+            arrayArray = orphe.getEulerArray()
+        }
         for (j, array) in arrayArray.enumerated() {
             for (i, a) in array.enumerated() {
                 text += sensorStr + "\(j)\(i): "+String(a) + "\n"
@@ -368,14 +372,9 @@ extension  ViewController: ORPManagerDelegate{
         if sideInfo == 0 {
             leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
             
-            for acc in orphe.getAccArray(){
-                for (index, val) in acc.enumerated(){
+            for array in arrayArray{
+                for (index, val) in array.enumerated(){
                     leftGraphArray[index].addValue(CGFloat(val))
-                }
-            }
-            for gyro in orphe.getGyroArray(){
-                for (index, val) in gyro.enumerated(){
-                    leftGraphArray[index+3].addValue(CGFloat(val))
                 }
             }
         }
