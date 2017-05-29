@@ -72,14 +72,17 @@ class ViewController: NSViewController {
                                 "2B_150H",
                                 "1B_300H",
                                 "1B_400H_2A",
-                                "2B_400H_1A"]
+                                "2B_400H_1A",
+                                "2B_200H_2A",
+                                "4B_200H_1A",
+                                "4B_50H"]
         sendingTypePopUpButton.addItems(withTitles: sendingTypeArray)
         sendingTypePopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.updateSendingSensorSetting()
         })
         .disposed(by: disposeBag)
         
-        let sensorKindArray = ["Acc","Gyro","Euler"]
+        let sensorKindArray = ["Acc","Gyro","Euler","Quat"]
         sensorKindPopUpButton.addItems(withTitles: sensorKindArray)
         sensorKindPopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.updateSendingSensorSetting()
@@ -190,6 +193,7 @@ class ViewController: NSViewController {
     
     func updateSendingSensorSetting(){
         let sendingType = SendingType(rawValue: UInt8(self.sendingTypePopUpButton.indexOfSelectedItem + 40))!
+        print("sendingType:", sendingType.rawValue)
         let sensorKind = SensorKind(rawValue: UInt8(self.sensorKindPopUpButton.indexOfSelectedItem))!
         let axisType = UInt8(self.axisPopUpButton.indexOfSelectedItem)
         for orp in ORPManager.sharedInstance.connectedORPDataArray {
@@ -362,6 +366,10 @@ extension  ViewController: ORPManagerDelegate{
         else if sensorKind == .euler{
             sensorStr = "Euler"
             arrayArray = orphe.getEulerArray()
+        }
+        else if sensorKind == .quat{
+            sensorStr = "Quat"
+            arrayArray = orphe.getQuatArray()
         }
         for (j, array) in arrayArray.enumerated() {
             for (i, a) in array.enumerated() {
