@@ -928,7 +928,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3t-Ne-CSC">
-                                <rect key="frame" x="276" y="368" width="104" height="240"/>
+                                <rect key="frame" x="276" y="368" width="124" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="LEFT Sensor" id="ioU-tp-D9r">
                                     <font key="font" metaFont="smallSystem"/>
@@ -937,7 +937,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOv-Cn-A8K">
-                                <rect key="frame" x="276" y="277" width="104" height="83"/>
+                                <rect key="frame" x="276" y="261" width="124" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="LEFT Gesture" id="WGR-U6-Cv2">
                                     <font key="font" metaFont="smallSystem"/>
@@ -946,7 +946,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNF-CI-4QR">
-                                <rect key="frame" x="650" y="368" width="104" height="240"/>
+                                <rect key="frame" x="650" y="368" width="124" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="RIGHT Sensor" id="qzh-Q3-xeU">
                                     <font key="font" metaFont="smallSystem"/>
@@ -955,7 +955,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxP-aL-el8">
-                                <rect key="frame" x="650" y="277" width="104" height="83"/>
+                                <rect key="frame" x="650" y="261" width="124" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="RIGHT Gesture" id="Yop-Og-8wQ">
                                     <font key="font" metaFont="smallSystem"/>
@@ -1037,14 +1037,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atU-RL-mJR">
-                                <rect key="frame" x="378" y="458" width="250" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </customView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Csu-ua-tJN">
-                                <rect key="frame" x="750" y="458" width="250" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </customView>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sz2-xx-vtN">
                                 <rect key="frame" x="201" y="584" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1053,6 +1045,14 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atU-RL-mJR">
+                                <rect key="frame" x="398" y="458" width="250" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Csu-ua-tJN">
+                                <rect key="frame" x="770" y="458" width="250" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="iLd-Hr-cnL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hwO-lF-wrf"/>

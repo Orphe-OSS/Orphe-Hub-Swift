@@ -46,9 +46,16 @@ class ViewController: NSViewController {
     
     var leftSensorRecorder = RecordSensorValuesCSV(side: .left)
     
+    var qFreq = SensorFreqencyCalculator()
+    var aFreq = SensorFreqencyCalculator()
+    var gFreq = SensorFreqencyCalculator()
+    var eFreq = SensorFreqencyCalculator()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        eFreq.activeOutLog = true
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -76,8 +83,8 @@ class ViewController: NSViewController {
                                 "2B_100H",
                                 "2B_150H",
                                 "1B_300H",
-                                "1B_400H_2A",
                                 "2B_400H_1A",
+                                "1B_400H_2A",
                                 "2B_200H_2A",
                                 "4B_200H_1A",
                                 "4B_50H"]
@@ -432,6 +439,33 @@ extension  ViewController: ORPManagerDelegate{
         
     }
     
+    func updateFreqencyCalculator(orphe:ORPData, sensorKind:SensorKind){
+        for array in orphe.getQuatArray() {
+            qFreq.updateValue2(value: array[0])
+        }
+        for array in orphe.getAccArray() {
+            aFreq.updateValue2(value: array[0])
+        }
+        for array in orphe.getGyroArray() {
+            gFreq.updateValue2(value: array[0])
+        }
+        for array in orphe.getEulerArray() {
+            eFreq.updateValue2(value: array[0])
+        }
+        
+        var text = ""
+        text += "quat freq: " + String(qFreq.freq) + "Hz\n\n"
+        text += "euler freq: " + String(eFreq.freq) + "Hz\n\n"
+        text += "acc freq: " + String(aFreq.freq) + "Hz\n\n"
+        text += "gyro freq: " + String(gFreq.freq) + "Hz\n\n"
+        if orphe.side == .left {
+            leftGestureLabel.stringValue = text
+        }
+        else{
+            rightGestureLabel.stringValue = text
+        }
+    }
+    
     func OrpheDidUpdateSensorDataCustomised(notification: Notification){
         guard let userInfo = notification.userInfo else {return}
         let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
@@ -439,7 +473,7 @@ extension  ViewController: ORPManagerDelegate{
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
         
         drawSensorValuesOnLabel(orphe: orphe, sensorKind: sensorKind)
-        
+        updateFreqencyCalculator(orphe: orphe, sensorKind: sensorKind)
     }
     
     func orpheDidCatchGestureEvent(gestureEvent:ORPGestureEventArgs, orphe:ORPData) {
