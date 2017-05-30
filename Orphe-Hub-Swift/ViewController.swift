@@ -37,7 +37,9 @@ class ViewController: NSViewController {
     
     
     @IBOutlet weak var leftLineGraph: NSView!
+    @IBOutlet weak var rightLineGraph: NSView!
     var leftGraphArray = [LineGraphView]()
+    var rightGraphArray = [LineGraphView]()
     
     var disposeBag = DisposeBag()
     
@@ -122,19 +124,24 @@ class ViewController: NSViewController {
     
     override func viewDidLayout() {
         //graph
-        leftLineGraph.layer?.backgroundColor = .black
-        let colors:[NSColor] = [.red, .green, .lightGray, .magenta, .yellow, .cyan]
-        for i in 0..<6{
-            let view = LineGraphView(frame: self.leftLineGraph.bounds)
-            leftLineGraph.addSubview(view)
-            view.lineColor = colors[i]
-            leftGraphArray.append(view)
-        }
+        setLineGraph(viewHolder: leftLineGraph, array: &leftGraphArray)
+        setLineGraph(viewHolder: rightLineGraph, array: &rightGraphArray)
     }
     
     override var representedObject: Any? {
         didSet {
             
+        }
+    }
+    
+    func setLineGraph(viewHolder:NSView, array:inout Array<LineGraphView>){
+        viewHolder.layer?.backgroundColor = .black
+        let colors:[NSColor] = [.red, .green, .lightGray, .magenta, .yellow, .cyan]
+        for i in 0..<colors.count{
+            let view = LineGraphView(frame: viewHolder.bounds)
+            viewHolder.addSubview(view)
+            view.lineColor = colors[i]
+            array.append(view)
         }
     }
     
@@ -388,6 +395,12 @@ extension  ViewController: ORPManagerDelegate{
         }
         else{
             rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
+            
+            for array in arrayArray{
+                for (index, val) in array.enumerated(){
+                    rightGraphArray[index].addValue(CGFloat(val))
+                }
+            }
         }
         
     }
