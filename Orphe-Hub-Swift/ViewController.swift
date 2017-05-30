@@ -35,6 +35,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var accRangePopuUpButton: NSPopUpButton!
     @IBOutlet weak var gyroRangePopuUpButton: NSPopUpButton!
     
+    @IBOutlet weak var startRecordButton: NSButton!
     
     @IBOutlet weak var leftLineGraph: NSView!
     @IBOutlet weak var rightLineGraph: NSView!
@@ -42,6 +43,8 @@ class ViewController: NSViewController {
     var rightGraphArray = [LineGraphView]()
     
     var disposeBag = DisposeBag()
+    
+    var leftSensorRecorder = RecordSensorValuesCSV(side: .left)
     
     override func viewDidLoad() {
         
@@ -113,6 +116,30 @@ class ViewController: NSViewController {
             PRINT("gyro:",self!.gyroRangePopuUpButton.indexOfSelectedItem)
             for orp in ORPManager.sharedInstance.connectedORPDataArray{
                 orp.changeSensorRange(sensorKind: .gyro, range: UInt8(self!.gyroRangePopuUpButton.indexOfSelectedItem))
+            }
+        })
+        .disposed(by: disposeBag)
+        
+        startRecordButton.rx.tap.subscribe(onNext: { [unowned self] _ in
+            if self.leftSensorRecorder.isRecording {
+                self.leftSensorRecorder.stopRecording()
+                let savePanel = NSSavePanel()
+                savePanel.canCreateDirectories = true
+                savePanel.showsTagField = false
+                savePanel.nameFieldStringValue = "test.csv"
+                savePanel.begin { (result) in
+                    if result == NSFileHandlingPanelOKButton {
+                        guard let url = savePanel.url else { return }
+                        
+                        // write to it
+                        try! self.leftSensorRecorder.recordText.write(to: url, atomically: true, encoding: String.Encoding.utf8)
+                    }
+                }
+                self.startRecordButton.image = #imageLiteral(resourceName: "record-start")
+            }
+            else{
+                self.leftSensorRecorder.startRecording()
+                self.startRecordButton.image = #imageLiteral(resourceName: "record-stop")
             }
         })
         .disposed(by: disposeBag)
@@ -412,26 +439,6 @@ extension  ViewController: ORPManagerDelegate{
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
         
         drawSensorValuesOnLabel(orphe: orphe, sensorKind: sensorKind)
-        
-//        switch sendingType {
-//        
-//        case .t_2b_100h:
-//            var arrayarray = [[Float]]()
-//            if sensorKind == .acc{
-//                arrayarray = orphe.getAccArray()
-//            }
-////            var str = ""
-////            for array in arrayarray{
-////                for val in array{
-////                    str += ", "+String(val)
-////                }
-////            }
-////            PRINT(str)
-//            
-//            
-//        default:
-//            break
-//        }
         
     }
     

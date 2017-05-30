@@ -20,6 +20,7 @@
 		E61393721E926EF9002DD502 /* CoreMIDI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E61393711E926EF9002DD502 /* CoreMIDI.framework */; };
 		E6401E871EA6317300DEBC32 /* OSCManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6401E841EA6317300DEBC32 /* OSCManager.swift */; };
 		E6401E881EA6317300DEBC32 /* ObjC_Exception.m in Sources */ = {isa = PBXBuildFile; fileRef = E6401E861EA6317300DEBC32 /* ObjC_Exception.m */; };
+		E66053C41EDD737B00EC8678 /* RecordSensorValuesCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */; };
 		E666C40A1EC33750005DFF17 /* Orphe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E666C4071EC33748005DFF17 /* Orphe.framework */; };
 		E666C40B1EC33750005DFF17 /* Orphe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E666C4071EC33748005DFF17 /* Orphe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E666C4151EC5EFA3005DFF17 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */; };
@@ -100,6 +101,7 @@
 		E6401E851EA6317300DEBC32 /* ObjC_Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjC_Exception.h; sourceTree = "<group>"; };
 		E6401E861EA6317300DEBC32 /* ObjC_Exception.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjC_Exception.m; sourceTree = "<group>"; };
 		E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Orphe-Hub-Swift-Bridging-Header.h"; path = "Orphe-Hub-Swift/Orphe-Hub-Swift-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordSensorValuesCSV.swift; path = "Orphe-Hub-Swift/RecordSensorValuesCSV.swift"; sourceTree = SOURCE_ROOT; };
 		E666C4011EC33748005DFF17 /* Orphe.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Orphe.xcodeproj; path = OrpheSDK_Swift/OrpheSDK_macOS/Orphe.xcodeproj; sourceTree = "<group>"; };
 		E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineGraphView.swift; path = "Orphe-Hub-Swift/LineGraphView.swift"; sourceTree = SOURCE_ROOT; };
 		F20B72AB02DB0372E61B20AA /* Pods-Orphe-Hub-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				E61393111E8E6A6D002DD502 /* Main.storyboard */,
 				E61393091E8E6A31002DD502 /* ViewController.swift */,
 				E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */,
+				E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */,
 				E67488131E992A8D00DA7D9C /* CommonUI */,
 				E6401E831EA6317300DEBC32 /* OSCManager */,
 				E61393061E8E6A31002DD502 /* Assets.xcassets */,
@@ -538,6 +541,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BF25CB71E9797FB00C1D576 /* LabelGraphView.swift in Sources */,
+				E66053C41EDD737B00EC8678 /* RecordSensorValuesCSV.swift in Sources */,
 				E613930E1E8E6A31002DD502 /* ViewController.swift in Sources */,
 				E6401E871EA6317300DEBC32 /* OSCManager.swift in Sources */,
 				1B3E39041E950921008DA5D1 /* DrawShape.swift in Sources */,
