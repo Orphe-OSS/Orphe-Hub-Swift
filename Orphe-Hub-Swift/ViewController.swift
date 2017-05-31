@@ -52,11 +52,14 @@ class ViewController: NSViewController {
     var gFreq = SensorFreqencyCalculator()
     var eFreq = SensorFreqencyCalculator()
     
+    var enableUpdateSensorValues = true
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        eFreq.activeOutLog = true
+//        aFreq.activeOutLog = true
+//        gFreq.activeOutLog = true
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -243,6 +246,12 @@ class ViewController: NSViewController {
         }
     }
     
+    override func keyDown(with event: NSEvent) {
+        if event.characters == " " {
+            enableUpdateSensorValues = !enableUpdateSensorValues
+        }
+    }
+    
 }
 
 //MARK: - NSTableViewDelegate
@@ -416,7 +425,7 @@ extension  ViewController: ORPManagerDelegate{
             sensorStr = "Mag"
             arrayArray = orphe.getMagArray()
         }
-        
+        updateSensorGraph(orphe: orphe, arrayArray: arrayArray)
         for (j, array) in arrayArray.enumerated() {
             for (i, a) in array.enumerated() {
                 text += sensorStr + "\(j)\(i): "+String(a) + "\n"
@@ -499,6 +508,11 @@ extension  ViewController: ORPManagerDelegate{
     }
     
     func OrpheDidUpdateSensorDataCustomised(notification: Notification){
+        
+        if !enableUpdateSensorValues {
+            return
+        }
+        
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
         let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
