@@ -32,6 +32,43 @@ class RecordSensorValuesCSV {
         isRecording = false
     }
     
+    func valuesToCSV(orphe:ORPData, sensorKind:SensorKind, receiveTime:Date)->String{
+        //数値の追加
+        var text = ""
+        var arrayArray = [[Float]]()
+        switch sensorKind {
+        case .quat:
+            arrayArray = orphe.getQuatArray()
+        case .euler:
+            arrayArray = orphe.getEulerArray()
+        case .acc:
+            arrayArray = orphe.getAccArray()
+        case .gyro:
+            arrayArray = orphe.getGyroArray()
+        case .mag:
+            arrayArray = orphe.getMagArray()
+        }
+        
+        
+        let bleInterval = 0.050 //50ms
+        let timeInterval = bleInterval/Double(arrayArray.count)
+        var index:Double = 0
+        for array in arrayArray {
+//            let time = receiveTime.addingTimeInterval(timeInterval*index-bleInterval)
+            index += 1
+            text += format.string(from: receiveTime)
+            for value in array {
+                text += "," + String(value)
+            }
+            
+            if arrayArray.count > 1 { //TODO: 暫定処理。複数のセンサを高サンプリングレートで送る場合には対応できない。
+                text += "\n"
+            }
+        }
+        
+        return text
+    }
+    
     @objc func OrpheDidUpdateSensorDataCustomised(notification: Notification){
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
@@ -41,107 +78,51 @@ class RecordSensorValuesCSV {
         
         if isRecording {
             let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
-            let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as! SensorKind
-            let axisNumber = Int(userInfo[OrpheUpdatedAxisInfoKey] as! UInt8)
             
             let receiveTime = Date()
             
-            //最初のやつ
-            if recordText == "" {
-                recordText = "time"
+            if sendingType == .standard{
+                //最初のやつ
+                if recordText == "" {
+                    recordText = "time, quat w, quat x, quat y, quat z,euler x, euler y, euler z,acc x, acc y, acc z,gyro x, gyro y, gyro z,mag x, mag y, mag z"
+                    recordText += "\n"
+                }
                 
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .quat, receiveTime: receiveTime)
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .euler, receiveTime: receiveTime)
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .acc, receiveTime: receiveTime)
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .gyro, receiveTime: receiveTime)
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .mag, receiveTime: receiveTime)
+                recordText += "\n"
+            }
+            else{
+                let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as! SensorKind
+                let axisNumber = Int(userInfo[OrpheUpdatedAxisInfoKey] as! UInt8)
                 
-                //---受け取ってるやつだけ表示する場合の処理未完成---
-//                var sensorName = ""
-//                switch sensorKind {
-//                case .quat:
-//                    sensorName = "quat"
-//                case .euler:
-//                    sensorName = "euler"
-//                case .acc:
-//                    sensorName = "acc"
-//                case .gyro:
-//                    sensorName = "gyro"
-//                }
-//                
-//                let axes = ["x","y","z"]
-//                switch sendingType {
-//                case .t_4b_50h,
-//                     .t_2b_100h,
-//                     .t_2b_150h,
-//                     .t_1b_300h,
-//                     .standard:
-//                    for a in axes{
-//                        recordText += ","+sensorName+" "+a
-//                    }
-//                    
-//                case .t_2b_400h_1a,
-//                     .t_4b_200h_1a:
-//                    recordText += ","+sensorName+" "+axes[axisNumber]
-//                    break
-//                    
-//                case .t_2b_200h_2a,
-//                     .t_1b_400h_2a:
-//                    switch axisNumber {
-//                    case 0:
-//                        recordText += ","+sensorName+" "+axes[0]
-//                        recordText += ","+sensorName+" "+axes[1]
-//                    case 1:
-//                        recordText += ","+sensorName+" "+axes[1]
-//                        recordText += ","+sensorName+" "+axes[2]
-//                    case 2:
-//                        recordText += ","+sensorName+" "+axes[2]
-//                        recordText += ","+sensorName+" "+axes[0]
-//                    default:
-//                        break
-//                    }
-//                    break
-//                }
-                
-                switch sensorKind {
-                case .quat:
-                    recordText += ",quat w, quat x, quat y, quat z"
+                //最初のやつ
+                if recordText == "" {
+                    recordText = "time"
                     
-                case .euler:
-                    recordText += ",euler x, euler y, euler z"
-                case .acc:
-                    recordText += ",acc x, acc y, acc z"
-                case .gyro:
-                    recordText += ",gyro x, gyro y, gyro z"
-                case .mag:
-                    recordText += ",mag x, mag y, mag z"
+                    switch sensorKind {
+                    case .quat:
+                        recordText += ",quat w, quat x, quat y, quat z"
+                        
+                    case .euler:
+                        recordText += ",euler x, euler y, euler z"
+                    case .acc:
+                        recordText += ",acc x, acc y, acc z"
+                    case .gyro:
+                        recordText += ",gyro x, gyro y, gyro z"
+                    case .mag:
+                        recordText += ",mag x, mag y, mag z"
+                    }
+                    recordText += "\n"
                 }
+                
+                recordText += valuesToCSV(orphe: orphe, sensorKind: sensorKind, receiveTime: receiveTime)
                 recordText += "\n"
             }
             
-            //数値の追加
-            var array = [[Float]]()
-            switch sensorKind {
-            case .quat:
-                array = orphe.getQuatArray()
-            case .euler:
-                array = orphe.getEulerArray()
-            case .acc:
-                array = orphe.getAccArray()
-            case .gyro:
-                array = orphe.getGyroArray()
-            case .mag:
-                array = orphe.getMagArray()
-            }
-            
-            
-            let bleInterval = 0.050 //50ms
-            let timeInterval = bleInterval/Double(array.count)
-            var index:Double = 0
-            for value in array {
-                let time = receiveTime.addingTimeInterval(timeInterval*index-bleInterval)
-                index += 1
-                recordText += format.string(from: time)
-                for q in value {
-                    recordText += "," + String(q)
-                }
-                recordText += "\n"
-            }
         }
     }
     
