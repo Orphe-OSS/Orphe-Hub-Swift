@@ -95,6 +95,7 @@ class ViewController: NSViewController {
         sendingTypePopUpButton.addItems(withTitles: sendingTypeArray)
         sendingTypePopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.updateSendingSensorSetting()
+            self?.initFreqCalculators()
         })
         .disposed(by: disposeBag)
         
@@ -102,6 +103,7 @@ class ViewController: NSViewController {
         sensorKindPopUpButton.addItems(withTitles: sensorKindArray)
         sensorKindPopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.updateSendingSensorSetting()
+            self?.initFreqCalculators()
         })
         .disposed(by: disposeBag)
         
@@ -274,6 +276,13 @@ class ViewController: NSViewController {
         if event.characters == " " {
             enableUpdateSensorValues = !enableUpdateSensorValues
         }
+    }
+    
+    func initFreqCalculators(){
+        qFreq.initValues()
+        eFreq.initValues()
+        aFreq.initValues()
+        gFreq.initValues()
     }
     
 }
@@ -501,11 +510,11 @@ extension  ViewController: ORPManagerDelegate{
         }
         
         var text = ""
-        text += "ble freq: " + String(bleFreq.freq) + "Hz\n\n"
-        text += "quat freq: " + String(qFreq.freq) + "Hz\n\n"
-        text += "euler freq: " + String(eFreq.freq) + "Hz\n\n"
-        text += "acc freq: " + String(aFreq.freq) + "Hz\n\n"
-        text += "gyro freq: " + String(gFreq.freq) + "Hz\n\n"
+        text += "BLE freq: " + String(bleFreq.freq) + "Hz\n\n"
+        text += "Quat freq: " + String(qFreq.freq) + "Hz\n\n"
+        text += "Euler freq: " + String(eFreq.freq) + "Hz\n\n"
+        text += "Acc freq: " + String(aFreq.freq) + "Hz\n\n"
+        text += "Gyro freq: " + String(gFreq.freq) + "Hz\n\n"
         if orphe.side == .left {
             leftGestureLabel.stringValue = text
         }

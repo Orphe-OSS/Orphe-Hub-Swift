@@ -21,6 +21,17 @@ class SensorFreqencyCalculator: NSObject {
     var changeFrames = [Int]()
     var activeOutLog = false
     
+    func initValues(){
+        freq = 0
+        preValue = 0
+        preValue2 = 0
+        timestamp = Date()
+        counter = 0
+        preCounter = 0
+        difNumCounter = 0
+        changeFrames.removeAll()
+    }
+    
     func update(){
         counter += 1
         if counter == countNum {
