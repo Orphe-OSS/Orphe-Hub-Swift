@@ -531,6 +531,9 @@ extension  ViewController: ORPManagerDelegate{
         else if sensorKind == .gyro {
             maxValue = Float(ORPGyroRange._2000.rawValue)
         }
+        else if sensorKind == .euler{
+            maxValue = Float(ORPAngleRange)
+        }
         
         if orphe.side == .left {
             for array in arrayArray{
