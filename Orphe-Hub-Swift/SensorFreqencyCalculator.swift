@@ -93,7 +93,7 @@ class SensorFreqencyCalculator: NSObject {
                     maxNum = d.value
                     mostFreqNum = d.key
                 }
-                print("key = ", d.key, ", val = ", d.value, "\n")
+                print("key = ", d.key, ", count = ", d.value, "\n")
             }
             print("most freq num:", mostFreqNum)
             print("=======end=====")

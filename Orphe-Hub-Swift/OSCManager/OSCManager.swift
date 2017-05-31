@@ -233,9 +233,13 @@ class OSCManager:NSObject, OSCServerDelegate{
     
     func OrpheDidUpdateSensorDataCustomised(notification:Notification){
         guard let userInfo = notification.userInfo else {return}
-        let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
-        let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as! SensorKind
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
+        let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
+        if sendingType == .standard{
+            sendSensorValues(orphe: orphe)
+            return
+        }
+        let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as! SensorKind
         
         switch sendingType {
         case .t_2b_100h:

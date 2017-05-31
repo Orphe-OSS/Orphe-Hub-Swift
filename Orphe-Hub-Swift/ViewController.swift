@@ -46,6 +46,7 @@ class ViewController: NSViewController {
     
     var leftSensorRecorder = RecordSensorValuesCSV(side: .left)
     
+    var bleFreq = SensorFreqencyCalculator()
     var qFreq = SensorFreqencyCalculator()
     var aFreq = SensorFreqencyCalculator()
     var gFreq = SensorFreqencyCalculator()
@@ -218,7 +219,7 @@ class ViewController: NSViewController {
     }
     
     @IBAction func switchToOppositeSide(_ sender: Any) {
-        for (index, _) in ORPManager.sharedInstance.availableORPDataArray.enumerated(){
+        for (index, _) in ORPManager.sharedInstance.connectedORPDataArray.enumerated(){
             let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
             orphe.switchToOppositeSide()
         }
@@ -391,8 +392,7 @@ extension  ViewController: ORPManagerDelegate{
         }
     }
     
-    func drawSensorValuesOnLabel(orphe:ORPData, sensorKind:SensorKind){
-        let sideInfo:Int32 = Int32(orphe.side.rawValue)
+    func sensorValueTextForLabel(orphe:ORPData, sensorKind:SensorKind)->String{
         var text = ""
         var sensorStr = ""
         var arrayArray = [[Float]]()
@@ -412,34 +412,48 @@ extension  ViewController: ORPManagerDelegate{
             sensorStr = "Quat"
             arrayArray = orphe.getQuatArray()
         }
+        else if sensorKind == .mag{
+            sensorStr = "Mag"
+            arrayArray = orphe.getMagArray()
+        }
+        
         for (j, array) in arrayArray.enumerated() {
             for (i, a) in array.enumerated() {
                 text += sensorStr + "\(j)\(i): "+String(a) + "\n"
             }
         }
-        
-        if sideInfo == 0 {
+        return text
+    }
+    
+    func drawAllSensorValueOnLabel(orphe:ORPData){
+        var text = ""
+        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.quat)
+        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.euler)
+        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.acc)
+        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.gyro)
+        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.mag)
+        if orphe.side == .left {
             leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
-            
-            for array in arrayArray{
-                for (index, val) in array.enumerated(){
-                    leftGraphArray[index].addValue(CGFloat(val))
-                }
-            }
         }
         else{
             rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
-            
-            for array in arrayArray{
-                for (index, val) in array.enumerated(){
-                    rightGraphArray[index].addValue(CGFloat(val))
-                }
-            }
+        }
+    }
+    
+    func drawSensorValuesOnLabel(orphe:ORPData, sensorKind:SensorKind){
+        let text = sensorValueTextForLabel(orphe: orphe, sensorKind: sensorKind)
+        
+        if orphe.side == .left {
+            leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
+        }
+        else{
+            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
         }
         
     }
     
-    func updateFreqencyCalculator(orphe:ORPData, sensorKind:SensorKind){
+    func updateFreqencyCalculator(orphe:ORPData){
+        bleFreq.update()
         for array in orphe.getQuatArray() {
             qFreq.updateValue2(value: array[0])
         }
@@ -454,6 +468,7 @@ extension  ViewController: ORPManagerDelegate{
         }
         
         var text = ""
+        text += "ble freq: " + String(bleFreq.freq) + "Hz\n\n"
         text += "quat freq: " + String(qFreq.freq) + "Hz\n\n"
         text += "euler freq: " + String(eFreq.freq) + "Hz\n\n"
         text += "acc freq: " + String(aFreq.freq) + "Hz\n\n"
@@ -466,14 +481,35 @@ extension  ViewController: ORPManagerDelegate{
         }
     }
     
+    func updateSensorGraph(orphe:ORPData, arrayArray:[[Float]]){
+        if orphe.side == .left {
+            for array in arrayArray{
+                for (index, val) in array.enumerated(){
+                    leftGraphArray[index].addValue(CGFloat(val))
+                }
+            }
+        }
+        else{
+            for array in arrayArray{
+                for (index, val) in array.enumerated(){
+                    rightGraphArray[index].addValue(CGFloat(val))
+                }
+            }
+        }
+    }
+    
     func OrpheDidUpdateSensorDataCustomised(notification: Notification){
         guard let userInfo = notification.userInfo else {return}
-        let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
-        let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as! SensorKind
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
-        
-        drawSensorValuesOnLabel(orphe: orphe, sensorKind: sensorKind)
-        updateFreqencyCalculator(orphe: orphe, sensorKind: sensorKind)
+        let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
+        if sendingType == .standard {
+            drawAllSensorValueOnLabel(orphe: orphe)
+        }
+        else{
+            let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as! SensorKind
+            drawSensorValuesOnLabel(orphe: orphe, sensorKind: sensorKind)
+        }
+        updateFreqencyCalculator(orphe: orphe)
     }
     
     func orpheDidCatchGestureEvent(gestureEvent:ORPGestureEventArgs, orphe:ORPData) {

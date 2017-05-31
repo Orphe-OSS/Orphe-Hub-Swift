@@ -108,6 +108,8 @@ class RecordSensorValuesCSV {
                     recordText += ",acc x, acc y, acc z"
                 case .gyro:
                     recordText += ",gyro x, gyro y, gyro z"
+                case .mag:
+                    recordText += ",mag x, mag y, mag z"
                 }
                 recordText += "\n"
             }
@@ -123,6 +125,8 @@ class RecordSensorValuesCSV {
                 array = orphe.getAccArray()
             case .gyro:
                 array = orphe.getGyroArray()
+            case .mag:
+                array = orphe.getMagArray()
             }
             
             
