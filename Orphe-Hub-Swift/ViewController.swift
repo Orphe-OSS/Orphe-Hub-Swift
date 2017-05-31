@@ -116,7 +116,19 @@ class ViewController: NSViewController {
         accRangePopuUpButton.addItems(withTitles: accRange)
         accRangePopuUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             for orp in ORPManager.sharedInstance.connectedORPDataArray{
-                orp.changeSensorRange(sensorKind: .acc, range: UInt8(self!.accRangePopuUpButton.indexOfSelectedItem))
+                switch self!.accRangePopuUpButton.indexOfSelectedItem {
+                case 0:
+                    orp.setAccRange(range: ._2)
+                case 1:
+                    orp.setAccRange(range: ._4)
+                case 2:
+                    orp.setAccRange(range: ._8)
+                case 3:
+                    orp.setAccRange(range: ._16)
+
+                default:
+                    break
+                }
             }
         })
         .disposed(by: disposeBag)
@@ -126,7 +138,19 @@ class ViewController: NSViewController {
         gyroRangePopuUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             PRINT("gyro:",self!.gyroRangePopuUpButton.indexOfSelectedItem)
             for orp in ORPManager.sharedInstance.connectedORPDataArray{
-                orp.changeSensorRange(sensorKind: .gyro, range: UInt8(self!.gyroRangePopuUpButton.indexOfSelectedItem))
+                switch self!.gyroRangePopuUpButton.indexOfSelectedItem {
+                case 0:
+                    orp.setGyroRange(range: ._250)
+                case 1:
+                    orp.setGyroRange(range: ._500)
+                case 2:
+                    orp.setGyroRange(range: ._1000)
+                case 3:
+                    orp.setGyroRange(range: ._2000)
+                    
+                default:
+                    break
+                }
             }
         })
         .disposed(by: disposeBag)
@@ -425,7 +449,7 @@ extension  ViewController: ORPManagerDelegate{
             sensorStr = "Mag"
             arrayArray = orphe.getMagArray()
         }
-        updateSensorGraph(orphe: orphe, arrayArray: arrayArray)
+        updateSensorGraph(orphe: orphe, arrayArray: arrayArray, sensorKind: sensorKind)
         for (j, array) in arrayArray.enumerated() {
             for (i, a) in array.enumerated() {
                 text += sensorStr + "\(j)\(i): "+String(a) + "\n"
@@ -490,18 +514,26 @@ extension  ViewController: ORPManagerDelegate{
         }
     }
     
-    func updateSensorGraph(orphe:ORPData, arrayArray:[[Float]]){
+    func updateSensorGraph(orphe:ORPData, arrayArray:[[Float]], sensorKind:SensorKind){
+        var maxValue = 1.0 as Float
+        if sensorKind == .acc {
+            maxValue = Float(ORPAccRange._16.rawValue)
+        }
+        else if sensorKind == .gyro {
+            maxValue = Float(ORPGyroRange._2000.rawValue)
+        }
+        
         if orphe.side == .left {
             for array in arrayArray{
                 for (index, val) in array.enumerated(){
-                    leftGraphArray[index].addValue(CGFloat(val))
+                    leftGraphArray[index].addValue(CGFloat(val/maxValue))
                 }
             }
         }
         else{
             for array in arrayArray{
                 for (index, val) in array.enumerated(){
-                    rightGraphArray[index].addValue(CGFloat(val))
+                    rightGraphArray[index].addValue(CGFloat(val/maxValue))
                 }
             }
         }
