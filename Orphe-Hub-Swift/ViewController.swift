@@ -23,9 +23,6 @@ class ViewController: NSViewController {
     
     var rssiTimer: Timer?
     
-    @IBOutlet weak var leftSensorLabel: NSTextField!
-    @IBOutlet weak var leftGestureLabel: NSTextField!
-    
     @IBOutlet weak var sendingTypePopUpButton: NSPopUpButton!
     @IBOutlet weak var sensorKindPopUpButton: NSPopUpButton!
     @IBOutlet weak var axisPopUpButton: NSPopUpButton!
@@ -35,32 +32,19 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var startRecordButton: NSButton!
     
-    @IBOutlet weak var quatGraph: MultiLineGraphView!
-    @IBOutlet weak var eulerGraph: MultiLineGraphView!
-    @IBOutlet weak var accGraph: MultiLineGraphView!
-    @IBOutlet weak var gyroGraph: MultiLineGraphView!
-    
     @IBOutlet weak var rightSensorView: SensorVisualizerView!
-    
-    
-    var disposeBag = DisposeBag()
+    @IBOutlet weak var leftSensorView: SensorVisualizerView!
     
     var leftSensorRecorder = RecordSensorValuesCSV(side: .left)
     
-    var bleFreq = SensorFreqencyCalculator()
-    var qFreq = SensorFreqencyCalculator()
-    var aFreq = SensorFreqencyCalculator()
-    var gFreq = SensorFreqencyCalculator()
-    var eFreq = SensorFreqencyCalculator()
+    var disposeBag = DisposeBag()
+    
     
     var enableUpdateSensorValues = true
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-//        aFreq.activeOutLog = true
-//        gFreq.activeOutLog = true
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -96,7 +80,8 @@ class ViewController: NSViewController {
         sendingTypePopUpButton.addItems(withTitles: sendingTypeArray)
         sendingTypePopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.updateSendingSensorSetting()
-            self?.initFreqCalculators()
+            self?.leftSensorView.initFreqCalculators()
+            self?.rightSensorView.initFreqCalculators()
         })
         .disposed(by: disposeBag)
         
@@ -104,7 +89,8 @@ class ViewController: NSViewController {
         sensorKindPopUpButton.addItems(withTitles: sensorKindArray)
         sensorKindPopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.updateSendingSensorSetting()
-            self?.initFreqCalculators()
+            self?.leftSensorView.initFreqCalculators()
+            self?.rightSensorView.initFreqCalculators()
         })
         .disposed(by: disposeBag)
         
@@ -189,12 +175,8 @@ class ViewController: NSViewController {
     
     override func viewDidLayout() {
         //graph
-        quatGraph.setLineNum(4)
-        accGraph.setLineNum(3)
-        gyroGraph.setLineNum(3)
-        eulerGraph.setLineNum(3)
-        
         rightSensorView.initSettings()
+        leftSensorView.initSettings()
     }
     
     override var representedObject: Any? {
@@ -283,12 +265,7 @@ class ViewController: NSViewController {
         }
     }
     
-    func initFreqCalculators(){
-        qFreq.initValues()
-        eFreq.initValues()
-        aFreq.initValues()
-        gFreq.initValues()
-    }
+    
     
 }
 
@@ -431,12 +408,12 @@ extension  ViewController: ORPManagerDelegate{
         let shock = orphe.getShock()
         text += "Shock: "+String(shock) + "\n"
         
-        if sideInfo == 0 {
-            leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
-        }
-        else{
-//            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
-        }
+//        if sideInfo == 0 {
+//            leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
+//        }
+//        else{
+////            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
+//        }
     }
     
     func sensorValueTextForLabel(orphe:ORPData, sensorKind:SensorKind)->String{
@@ -471,87 +448,6 @@ extension  ViewController: ORPManagerDelegate{
         return text
     }
     
-    func drawAllSensorValueOnLabel(orphe:ORPData){
-        var text = ""
-        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.quat)
-        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.euler)
-        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.acc)
-        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.gyro)
-        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.mag)
-        
-        if orphe.side == .left {
-            leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
-        }
-        else{
-//            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
-        }
-    }
-    
-    func drawSensorValuesOnLabel(orphe:ORPData, sensorKind:SensorKind){
-        let text = sensorValueTextForLabel(orphe: orphe, sensorKind: sensorKind)
-        
-        if orphe.side == .left {
-            leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
-        }
-        else{
-//            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
-        }
-        
-    }
-    
-    func updateFreqencyCalculator(orphe:ORPData){
-        bleFreq.update()
-        for array in orphe.getQuatArray() {
-            qFreq.updateValue2(value: array[0])
-        }
-        for array in orphe.getAccArray() {
-            aFreq.updateValue2(value: array[0])
-        }
-        for array in orphe.getGyroArray() {
-            gFreq.updateValue2(value: array[0])
-        }
-        for array in orphe.getEulerArray() {
-            eFreq.updateValue2(value: array[0])
-        }
-        
-        var text = ""
-        text += "BLE freq: " + String(bleFreq.freq) + "Hz\n\n"
-        text += "Quat freq: " + String(qFreq.freq) + "Hz\n\n"
-        text += "Euler freq: " + String(eFreq.freq) + "Hz\n\n"
-        text += "Acc freq: " + String(aFreq.freq) + "Hz\n\n"
-        text += "Gyro freq: " + String(gFreq.freq) + "Hz\n\n"
-        if orphe.side == .left {
-            leftGestureLabel.stringValue = text
-        }
-        else{
-//            rightGestureLabel.stringValue = text
-        }
-    }
-    
-    func updateSensorGraph(orphe:ORPData){
-        
-        for array in orphe.getQuatArray() {
-            for (i ,val) in array.enumerated(){
-                quatGraph.lineGraphArray[i].addValue(CGFloat(val))
-            }
-        }
-        for array in orphe.getAccArray() {
-            for (i ,val) in array.enumerated(){
-                accGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPAccRange._16.rawValue)))
-            }
-        }
-        for array in orphe.getGyroArray() {
-            for (i ,val) in array.enumerated(){
-                gyroGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPGyroRange._2000.rawValue)))
-            }
-        }
-        for array in orphe.getEulerArray() {
-            for (i ,val) in array.enumerated(){
-                eulerGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPAngleRange)))
-            }
-        }
-    }
-    
     func OrpheDidUpdateSensorDataCustomised(notification: Notification){
         
         if !enableUpdateSensorValues {
@@ -561,21 +457,13 @@ extension  ViewController: ORPManagerDelegate{
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
         let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
-        if sendingType == .standard {
-            drawAllSensorValueOnLabel(orphe: orphe)
-        }
-        else{
-            let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as! SensorKind
-            drawSensorValuesOnLabel(orphe: orphe, sensorKind: sensorKind)
-        }
         
         if orphe.side == .left {
-            updateSensorGraph(orphe: orphe)
+            leftSensorView.updateSensorValues(orphe: orphe)
         }
         else{
             rightSensorView.updateSensorValues(orphe: orphe)
         }
-        updateFreqencyCalculator(orphe: orphe)
     }
     
     func orpheDidCatchGestureEvent(gestureEvent:ORPGestureEventArgs, orphe:ORPData) {
@@ -584,12 +472,12 @@ extension  ViewController: ORPManagerDelegate{
         let power = gestureEvent.getPower()
         let text = "Gesture: " + kind + "\n" + "power: " + String(power)
         
-        if side == .left {
-            leftGestureLabel.stringValue = "LEFT Gesture\n\n" + text
-        }
-        else{
-//            rightGestureLabel.stringValue = "RIGHT Gesture\n\n" + text
-        }
+//        if side == .left {
+//            leftGestureLabel.stringValue = "LEFT Gesture\n\n" + text
+//        }
+//        else{
+////            rightGestureLabel.stringValue = "RIGHT Gesture\n\n" + text
+//        }
     }
 }
 

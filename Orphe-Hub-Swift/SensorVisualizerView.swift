@@ -169,4 +169,11 @@ class SensorVisualizerView:NSView{
         }
         return text
     }
+    
+    func initFreqCalculators(){
+        qFreq.initValues()
+        eFreq.initValues()
+        aFreq.initValues()
+        gFreq.initValues()
+    }
 }
