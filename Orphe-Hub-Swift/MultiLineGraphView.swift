@@ -12,13 +12,6 @@ class MultiLineGraphView: NSView{
     
     var lineGraphArray = [LineGraphView]()
     
-    init(frame frameRect: NSRect, lineNum:Int) {
-        super.init(frame:frameRect);
-        
-        
-        
-    }
-    
     override init(frame frameRect: NSRect){
         super.init(frame: frameRect)
         

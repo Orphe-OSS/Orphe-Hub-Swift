@@ -918,24 +918,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNF-CI-4QR">
-                                <rect key="frame" x="650" y="352" width="124" height="280"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="RIGHT Sensor" id="qzh-Q3-xeU">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JxP-aL-el8">
-                                <rect key="frame" x="648" y="164" width="124" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="label" id="Yop-Og-8wQ">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="atU-RL-mJR" customClass="MultiLineGraphView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
                                 <rect key="frame" x="394" y="508" width="250" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -952,10 +934,6 @@
                                 <rect key="frame" x="394" y="132" width="250" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Csu-ua-tJN">
-                                <rect key="frame" x="770" y="458" width="250" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </customView>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sz2-xx-vtN">
                                 <rect key="frame" x="201" y="584" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -968,7 +946,7 @@
                                 <rect key="frame" x="392" y="612" width="104" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Quaternion" id="Uhd-Lg-JWt">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -977,7 +955,7 @@
                                 <rect key="frame" x="392" y="482" width="104" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Euler" id="FI2-FW-iCq">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -986,7 +964,7 @@
                                 <rect key="frame" x="394" y="356" width="104" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Acc" id="6qe-FT-rzc">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -995,7 +973,7 @@
                                 <rect key="frame" x="392" y="236" width="104" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gyro" id="lao-aA-7Yd">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1101,6 +1079,10 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gym-ln-tU4" customClass="SensorVisualizerView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
+                                <rect key="frame" x="646" y="100" width="378" height="540"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="iLd-Hr-cnL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hwO-lF-wrf"/>
@@ -1121,9 +1103,7 @@
                         <outlet property="oscReceiverTextField" destination="f60-z6-bkU" id="yPL-rF-DNZ"/>
                         <outlet property="oscSenderTextField" destination="whu-rb-lWs" id="wY0-y4-IIu"/>
                         <outlet property="quatGraph" destination="atU-RL-mJR" id="b5j-YU-gHa"/>
-                        <outlet property="rightGestureLabel" destination="JxP-aL-el8" id="ErU-7k-7do"/>
-                        <outlet property="rightLineGraph" destination="Csu-ua-tJN" id="64u-Uo-0rC"/>
-                        <outlet property="rightSensorLabel" destination="sNF-CI-4QR" id="c4Z-cx-Lzl"/>
+                        <outlet property="rightSensorView" destination="gym-ln-tU4" id="a0u-fF-gvf"/>
                         <outlet property="sendingTypePopUpButton" destination="Kfz-WI-HPD" id="jMO-Mz-5vy"/>
                         <outlet property="sensorKindPopUpButton" destination="EWT-Oj-cBE" id="abY-Qb-4Cs"/>
                         <outlet property="startRecordButton" destination="Sz2-xx-vtN" id="m9k-SW-0jg"/>

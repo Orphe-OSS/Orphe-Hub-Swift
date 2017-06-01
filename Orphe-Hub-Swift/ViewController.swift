@@ -24,9 +24,7 @@ class ViewController: NSViewController {
     var rssiTimer: Timer?
     
     @IBOutlet weak var leftSensorLabel: NSTextField!
-    @IBOutlet weak var rightSensorLabel: NSTextField!
     @IBOutlet weak var leftGestureLabel: NSTextField!
-    @IBOutlet weak var rightGestureLabel: NSTextField!
     
     @IBOutlet weak var sendingTypePopUpButton: NSPopUpButton!
     @IBOutlet weak var sensorKindPopUpButton: NSPopUpButton!
@@ -42,8 +40,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var accGraph: MultiLineGraphView!
     @IBOutlet weak var gyroGraph: MultiLineGraphView!
     
-    @IBOutlet weak var rightLineGraph: NSView!
-    var rightGraphArray = [LineGraphView]()
+    @IBOutlet weak var rightSensorView: SensorVisualizerView!
+    
     
     var disposeBag = DisposeBag()
     
@@ -195,7 +193,8 @@ class ViewController: NSViewController {
         accGraph.setLineNum(3)
         gyroGraph.setLineNum(3)
         eulerGraph.setLineNum(3)
-        setLineGraph(viewHolder: rightLineGraph, array: &rightGraphArray)
+        
+        rightSensorView.initSettings()
     }
     
     override var representedObject: Any? {
@@ -436,7 +435,7 @@ extension  ViewController: ORPManagerDelegate{
             leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
         }
         else{
-            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
+//            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
         }
     }
     
@@ -484,7 +483,7 @@ extension  ViewController: ORPManagerDelegate{
             leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
         }
         else{
-            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
+//            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
         }
     }
     
@@ -495,7 +494,7 @@ extension  ViewController: ORPManagerDelegate{
             leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
         }
         else{
-            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
+//            rightSensorLabel.stringValue = "RIGHT Sensor\n\n" + text
         }
         
     }
@@ -525,7 +524,7 @@ extension  ViewController: ORPManagerDelegate{
             leftGestureLabel.stringValue = text
         }
         else{
-            rightGestureLabel.stringValue = text
+//            rightGestureLabel.stringValue = text
         }
     }
     
@@ -551,20 +550,6 @@ extension  ViewController: ORPManagerDelegate{
                 eulerGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPAngleRange)))
             }
         }
-//        if orphe.side == .left {
-//            for array in arrayArray{
-//                for (index, val) in array.enumerated(){
-//                    quatGraph.lineGraphArray[0].addValue(CGFloat(val/maxValue))
-//                }
-//            }
-//        }
-//        else{
-//            for array in arrayArray{
-//                for (index, val) in array.enumerated(){
-//                    rightGraphArray[index].addValue(CGFloat(val))
-//                }
-//            }
-//        }
     }
     
     func OrpheDidUpdateSensorDataCustomised(notification: Notification){
@@ -584,7 +569,12 @@ extension  ViewController: ORPManagerDelegate{
             drawSensorValuesOnLabel(orphe: orphe, sensorKind: sensorKind)
         }
         
-        updateSensorGraph(orphe: orphe)
+        if orphe.side == .left {
+            updateSensorGraph(orphe: orphe)
+        }
+        else{
+            rightSensorView.updateSensorValues(orphe: orphe)
+        }
         updateFreqencyCalculator(orphe: orphe)
     }
     
@@ -598,7 +588,7 @@ extension  ViewController: ORPManagerDelegate{
             leftGestureLabel.stringValue = "LEFT Gesture\n\n" + text
         }
         else{
-            rightGestureLabel.stringValue = "RIGHT Gesture\n\n" + text
+//            rightGestureLabel.stringValue = "RIGHT Gesture\n\n" + text
         }
     }
 }
