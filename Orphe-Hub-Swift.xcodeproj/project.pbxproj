@@ -22,6 +22,9 @@
 		E6401E881EA6317300DEBC32 /* ObjC_Exception.m in Sources */ = {isa = PBXBuildFile; fileRef = E6401E861EA6317300DEBC32 /* ObjC_Exception.m */; };
 		E66053C41EDD737B00EC8678 /* RecordSensorValuesCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */; };
 		E66053C61EDDCA1000EC8678 /* SensorFreqencyCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66053C51EDDCA1000EC8678 /* SensorFreqencyCalculator.swift */; };
+		E66053CC1EDF09A400EC8678 /* MultiLineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66053CB1EDF09A400EC8678 /* MultiLineGraphView.swift */; };
+		E66053D11EDFCFCC00EC8678 /* SensorVisualizerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66053D01EDFCFCC00EC8678 /* SensorVisualizerView.swift */; };
+		E66053D31EDFCFDB00EC8678 /* SensorVisualizerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E66053D21EDFCFDB00EC8678 /* SensorVisualizerView.xib */; };
 		E666C40A1EC33750005DFF17 /* Orphe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E666C4071EC33748005DFF17 /* Orphe.framework */; };
 		E666C40B1EC33750005DFF17 /* Orphe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E666C4071EC33748005DFF17 /* Orphe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E666C4151EC5EFA3005DFF17 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */; };
@@ -104,6 +107,9 @@
 		E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Orphe-Hub-Swift-Bridging-Header.h"; path = "Orphe-Hub-Swift/Orphe-Hub-Swift-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordSensorValuesCSV.swift; path = "Orphe-Hub-Swift/RecordSensorValuesCSV.swift"; sourceTree = SOURCE_ROOT; };
 		E66053C51EDDCA1000EC8678 /* SensorFreqencyCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorFreqencyCalculator.swift; path = "Orphe-Hub-Swift/SensorFreqencyCalculator.swift"; sourceTree = SOURCE_ROOT; };
+		E66053CB1EDF09A400EC8678 /* MultiLineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiLineGraphView.swift; path = "Orphe-Hub-Swift/MultiLineGraphView.swift"; sourceTree = SOURCE_ROOT; };
+		E66053D01EDFCFCC00EC8678 /* SensorVisualizerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorVisualizerView.swift; path = "Orphe-Hub-Swift/SensorVisualizerView.swift"; sourceTree = SOURCE_ROOT; };
+		E66053D21EDFCFDB00EC8678 /* SensorVisualizerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SensorVisualizerView.xib; path = "Orphe-Hub-Swift/SensorVisualizerView.xib"; sourceTree = SOURCE_ROOT; };
 		E666C4011EC33748005DFF17 /* Orphe.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Orphe.xcodeproj; path = OrpheSDK_Swift/OrpheSDK_macOS/Orphe.xcodeproj; sourceTree = "<group>"; };
 		E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineGraphView.swift; path = "Orphe-Hub-Swift/LineGraphView.swift"; sourceTree = SOURCE_ROOT; };
 		F20B72AB02DB0372E61B20AA /* Pods-Orphe-Hub-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.debug.xcconfig"; sourceTree = "<group>"; };
@@ -201,6 +207,17 @@
 			path = "Orphe-Hub-Swift/OSCManager";
 			sourceTree = SOURCE_ROOT;
 		};
+		E66053CD1EDFCF1900EC8678 /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */,
+				E66053CB1EDF09A400EC8678 /* MultiLineGraphView.swift */,
+				E66053D21EDFCFDB00EC8678 /* SensorVisualizerView.xib */,
+				E66053D01EDFCFCC00EC8678 /* SensorVisualizerView.swift */,
+			);
+			name = Graph;
+			sourceTree = "<group>";
+		};
 		E666C4021EC33748005DFF17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,7 +232,7 @@
 			children = (
 				1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */,
 				1B3E39031E950921008DA5D1 /* DrawShape.swift */,
-				E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */,
+				E66053CD1EDFCF1900EC8678 /* Graph */,
 			);
 			name = CommonUI;
 			sourceTree = "<group>";
@@ -380,6 +397,7 @@
 			files = (
 				E613930B1E8E6A31002DD502 /* Assets.xcassets in Resources */,
 				E613930D1E8E6A31002DD502 /* Info.plist in Resources */,
+				E66053D31EDFCFDB00EC8678 /* SensorVisualizerView.xib in Resources */,
 				E61393121E8E6A6D002DD502 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,10 +566,12 @@
 				E613930E1E8E6A31002DD502 /* ViewController.swift in Sources */,
 				E6401E871EA6317300DEBC32 /* OSCManager.swift in Sources */,
 				1B3E39041E950921008DA5D1 /* DrawShape.swift in Sources */,
+				E66053D11EDFCFCC00EC8678 /* SensorVisualizerView.swift in Sources */,
 				E6401E881EA6317300DEBC32 /* ObjC_Exception.m in Sources */,
 				E66053C61EDDCA1000EC8678 /* SensorFreqencyCalculator.swift in Sources */,
 				E613930A1E8E6A31002DD502 /* AppDelegate.swift in Sources */,
 				E666C4151EC5EFA3005DFF17 /* LineGraphView.swift in Sources */,
+				E66053CC1EDF09A400EC8678 /* MultiLineGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

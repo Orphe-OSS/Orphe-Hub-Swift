@@ -37,9 +37,12 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var startRecordButton: NSButton!
     
-    @IBOutlet weak var leftLineGraph: NSView!
+    @IBOutlet weak var quatGraph: MultiLineGraphView!
+    @IBOutlet weak var eulerGraph: MultiLineGraphView!
+    @IBOutlet weak var accGraph: MultiLineGraphView!
+    @IBOutlet weak var gyroGraph: MultiLineGraphView!
+    
     @IBOutlet weak var rightLineGraph: NSView!
-    var leftGraphArray = [LineGraphView]()
     var rightGraphArray = [LineGraphView]()
     
     var disposeBag = DisposeBag()
@@ -188,7 +191,10 @@ class ViewController: NSViewController {
     
     override func viewDidLayout() {
         //graph
-        setLineGraph(viewHolder: leftLineGraph, array: &leftGraphArray)
+        quatGraph.setLineNum(4)
+        accGraph.setLineNum(3)
+        gyroGraph.setLineNum(3)
+        eulerGraph.setLineNum(3)
         setLineGraph(viewHolder: rightLineGraph, array: &rightGraphArray)
     }
     
@@ -458,7 +464,6 @@ extension  ViewController: ORPManagerDelegate{
             sensorStr = "Mag"
             arrayArray = orphe.getMagArray()
         }
-        updateSensorGraph(orphe: orphe, arrayArray: arrayArray, sensorKind: sensorKind)
         for (j, array) in arrayArray.enumerated() {
             for (i, a) in array.enumerated() {
                 text += sensorStr + "\(j)\(i): "+String(a) + "\n"
@@ -474,6 +479,7 @@ extension  ViewController: ORPManagerDelegate{
         text += sensorValueTextForLabel(orphe:orphe, sensorKind:.acc)
         text += sensorValueTextForLabel(orphe:orphe, sensorKind:.gyro)
         text += sensorValueTextForLabel(orphe:orphe, sensorKind:.mag)
+        
         if orphe.side == .left {
             leftSensorLabel.stringValue = "LEFT Sensor\n\n" + text
         }
@@ -523,32 +529,42 @@ extension  ViewController: ORPManagerDelegate{
         }
     }
     
-    func updateSensorGraph(orphe:ORPData, arrayArray:[[Float]], sensorKind:SensorKind){
-        var maxValue = 1.0 as Float
-        if sensorKind == .acc {
-            maxValue = Float(ORPAccRange._16.rawValue)
-        }
-        else if sensorKind == .gyro {
-            maxValue = Float(ORPGyroRange._2000.rawValue)
-        }
-        else if sensorKind == .euler{
-            maxValue = Float(ORPAngleRange)
-        }
+    func updateSensorGraph(orphe:ORPData){
         
-        if orphe.side == .left {
-            for array in arrayArray{
-                for (index, val) in array.enumerated(){
-                    leftGraphArray[index].addValue(CGFloat(val/maxValue))
-                }
+        for array in orphe.getQuatArray() {
+            for (i ,val) in array.enumerated(){
+                quatGraph.lineGraphArray[i].addValue(CGFloat(val))
             }
         }
-        else{
-            for array in arrayArray{
-                for (index, val) in array.enumerated(){
-                    rightGraphArray[index].addValue(CGFloat(val/maxValue))
-                }
+        for array in orphe.getAccArray() {
+            for (i ,val) in array.enumerated(){
+                accGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPAccRange._16.rawValue)))
             }
         }
+        for array in orphe.getGyroArray() {
+            for (i ,val) in array.enumerated(){
+                gyroGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPGyroRange._2000.rawValue)))
+            }
+        }
+        for array in orphe.getEulerArray() {
+            for (i ,val) in array.enumerated(){
+                eulerGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPAngleRange)))
+            }
+        }
+//        if orphe.side == .left {
+//            for array in arrayArray{
+//                for (index, val) in array.enumerated(){
+//                    quatGraph.lineGraphArray[0].addValue(CGFloat(val/maxValue))
+//                }
+//            }
+//        }
+//        else{
+//            for array in arrayArray{
+//                for (index, val) in array.enumerated(){
+//                    rightGraphArray[index].addValue(CGFloat(val))
+//                }
+//            }
+//        }
     }
     
     func OrpheDidUpdateSensorDataCustomised(notification: Notification){
@@ -567,6 +583,8 @@ extension  ViewController: ORPManagerDelegate{
             let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as! SensorKind
             drawSensorValuesOnLabel(orphe: orphe, sensorKind: sensorKind)
         }
+        
+        updateSensorGraph(orphe: orphe)
         updateFreqencyCalculator(orphe: orphe)
     }
     
