@@ -124,6 +124,7 @@ class ViewController: NSViewController {
         
         let gyroRange = ["250°/sec","500°/sec","1000°/sec","2000°/sec"]
         gyroRangePopuUpButton.addItems(withTitles: gyroRange)
+        gyroRangePopuUpButton.selectItem(at: 3)
         gyroRangePopuUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
             PRINT("gyro:",self!.gyroRangePopuUpButton.indexOfSelectedItem)
             for orp in ORPManager.sharedInstance.connectedORPDataArray{

@@ -129,12 +129,12 @@ class SensorVisualizerView:NSView{
             eFreq.updateValue2(value: array[0])
         }
         
-        var text = ""
-        text += "BLE freq: " + String(bleFreq.freq) + "Hz\n\n"
-        text += "Quat freq: " + String(qFreq.freq) + "Hz\n\n"
-        text += "Euler freq: " + String(eFreq.freq) + "Hz\n\n"
-        text += "Acc freq: " + String(aFreq.freq) + "Hz\n\n"
-        text += "Gyro freq: " + String(gFreq.freq) + "Hz\n\n"
+        var text = "Freqency\n\n"
+        text += "BLE freq: " + String(bleFreq.freq) + "Hz\n"
+        text += "Quat freq: " + String(qFreq.freq) + "Hz\n"
+        text += "Euler freq: " + String(eFreq.freq) + "Hz\n"
+        text += "Acc freq: " + String(aFreq.freq) + "Hz\n"
+        text += "Gyro freq: " + String(gFreq.freq) + "Hz\n"
         frequencyLabel.stringValue = text
     }
     
