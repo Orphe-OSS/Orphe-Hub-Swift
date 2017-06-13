@@ -21,6 +21,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var oscReceiverTextField: NSTextField!
     @IBOutlet var oscLogTextView: NSTextView!
     
+    @IBOutlet weak var activeLEDButton: NSButton!
+    @IBOutlet weak var deactiveLEDButton: NSButton!
+    
     var rssiTimer: Timer?
     
     @IBOutlet weak var sendingTypePopUpButton: NSPopUpButton!
@@ -168,6 +171,19 @@ class ViewController: NSViewController {
             }
         })
         .disposed(by: disposeBag)
+        
+        activeLEDButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            for orphe in ORPManager.sharedInstance.connectedORPDataArray{
+                orphe.setLightState(isActive: true)
+            }
+        })
+            .disposed(by: disposeBag)
+        deactiveLEDButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            for orphe in ORPManager.sharedInstance.connectedORPDataArray{
+                orphe.setLightState(isActive: false)
+            }
+        })
+            .disposed(by: disposeBag)
         
         //Notification
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorDataCustomised(notification:)), name: .OrpheDidUpdateSensorDataCustomised, object: nil)
@@ -365,7 +381,7 @@ extension  ViewController: ORPManagerDelegate{
         tableView.reloadData()
         updateCellsState()
         
-        orphe.setScene(.sceneSDK)
+//        orphe.setScene(.sceneSDK)
         orphe.setGestureSensitivity(.high)
         
     }

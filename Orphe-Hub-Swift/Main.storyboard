@@ -1017,6 +1017,22 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tk8-ld-2WE">
+                                <rect key="frame" x="11" y="403" width="72" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Active LED" bezelStyle="rounded" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="78h-1i-FWm">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U25-Q6-xNS">
+                                <rect key="frame" x="11" y="380" width="83" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Deactive LED" bezelStyle="rounded" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8G1-VU-Cp7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="miniSystem"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="iLd-Hr-cnL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="hwO-lF-wrf"/>
@@ -1025,7 +1041,9 @@
                     </view>
                     <connections>
                         <outlet property="accRangePopuUpButton" destination="PdA-rV-Bue" id="2zx-EY-chP"/>
+                        <outlet property="activeLEDButton" destination="tk8-ld-2WE" id="7mo-9A-c5K"/>
                         <outlet property="axisPopUpButton" destination="V2X-jJ-qXP" id="jmH-i0-GfI"/>
+                        <outlet property="deactiveLEDButton" destination="U25-Q6-xNS" id="EIs-Uy-c5h"/>
                         <outlet property="gyroRangePopuUpButton" destination="nnZ-bU-24c" id="GoC-b9-NCD"/>
                         <outlet property="leftSensorView" destination="FzG-M5-qlP" id="zXy-gd-Hg8"/>
                         <outlet property="oscHostTextField" destination="JcH-oy-LY3" id="Jhs-CO-9g2"/>

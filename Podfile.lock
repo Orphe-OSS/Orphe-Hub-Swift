@@ -2,9 +2,9 @@ PODS:
   - CocoaAsyncSocket (7.6.1)
   - OSCKit (0.3.5):
     - CocoaAsyncSocket (~> 7.3)
-  - RxCocoa (3.4.1):
+  - RxCocoa (3.5.0):
     - RxSwift (~> 3.4)
-  - RxSwift (3.4.1)
+  - RxSwift (3.5.0)
 
 DEPENDENCIES:
   - OSCKit
@@ -14,8 +14,8 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   CocoaAsyncSocket: 7eadd3f59e1a6c84e2aefc93e9ff7b55156fe174
   OSCKit: 4470dbd30bc792dcf66dc4e7b5d1ec7174add33c
-  RxCocoa: a8a5f1d061d0043e28f56976829f31ce63e8eb09
-  RxSwift: 656f8fbeca5bc372121a72d9ebdd3cd3bc0ffade
+  RxCocoa: a0a09f45d0e5b48ecb6a4a7b4b4c89c88d3f633f
+  RxSwift: 18ee9d78b45edb3b0b7e79916b47a116e6dbc842
 
 PODFILE CHECKSUM: 7c38c6359dd82a590aa4d97ea0ec53bf76192e35
 
