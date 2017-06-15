@@ -145,11 +145,11 @@ class SensorVisualizerView:NSView{
         var arrayArray = [[Float]]()
         if sensorKind == .acc{
             sensorStr = "Acc"
-            arrayArray = orphe.accArray
+            arrayArray = orphe.accArray.map{$0.map{$0*Float(orphe.getAccRange().rawValue)}}
         }
         else if sensorKind == .gyro{
             sensorStr = "Gyro"
-            arrayArray = orphe.gyroArray
+            arrayArray = orphe.gyroArray.map{$0.map{$0*Float(orphe.getGyroRange().rawValue)}}
         }
         else if sensorKind == .euler{
             sensorStr = "Euler"

@@ -433,38 +433,6 @@ extension  ViewController: ORPManagerDelegate{
 //        }
     }
     
-    func sensorValueTextForLabel(orphe:ORPData, sensorKind:SensorKind)->String{
-        var text = ""
-        var sensorStr = ""
-        var arrayArray = [[Float]]()
-        if sensorKind == .acc{
-            sensorStr = "Acc"
-            arrayArray = orphe.accArray
-        }
-        else if sensorKind == .gyro{
-            sensorStr = "Gyro"
-            arrayArray = orphe.gyroArray
-        }
-        else if sensorKind == .euler{
-            sensorStr = "Euler"
-            arrayArray = orphe.eulerArray
-        }
-        else if sensorKind == .quat{
-            sensorStr = "Quat"
-            arrayArray = orphe.quatArray
-        }
-        else if sensorKind == .mag{
-            sensorStr = "Mag"
-            arrayArray = orphe.magArray
-        }
-        for (j, array) in arrayArray.enumerated() {
-            for (i, a) in array.enumerated() {
-                text += sensorStr + "\(j)\(i): "+String(a) + "\n"
-            }
-        }
-        return text
-    }
-    
     func OrpheDidUpdateSensorDataCustomised(notification: Notification){
         
         if !enableUpdateSensorValues {
