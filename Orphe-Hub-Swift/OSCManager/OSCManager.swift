@@ -44,7 +44,6 @@ class OSCManager:NSObject, OSCServerDelegate{
         
         NotificationCenter.default.addObserver(self, selector:  #selector(OSCManager.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
         NotificationCenter.default.addObserver(self, selector:  #selector(OSCManager.OrpheDidCatchGestureEvent(notification:)), name: .OrpheDidCatchGestureEvent, object: nil)
-        NotificationCenter.default.addObserver(self, selector:  #selector(OSCManager.OrpheDidUpdateSensorDataCustomised(notification:)), name: .OrpheDidUpdateSensorDataCustomised, object: nil)
         
     }
     
@@ -218,11 +217,6 @@ class OSCManager:NSObject, OSCServerDelegate{
     }
     
     //MARK: - Notifications
-    func OrpheDidUpdateSensorData(notification:Notification){
-        guard let userInfo = notification.userInfo else {return}
-        let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
-        sendSensorValues(orphe: orphe)
-    }
     
     func OrpheDidCatchGestureEvent(notification:Notification){
         guard let userInfo = notification.userInfo else {return}
@@ -231,7 +225,7 @@ class OSCManager:NSObject, OSCServerDelegate{
         sendGesture(orphe: orphe, gesture: gestureEvent)
     }
     
-    func OrpheDidUpdateSensorDataCustomised(notification:Notification){
+    func OrpheDidUpdateSensorData(notification:Notification){
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
         let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType

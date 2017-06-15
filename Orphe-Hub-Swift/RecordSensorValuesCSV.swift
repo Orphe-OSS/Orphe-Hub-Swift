@@ -18,7 +18,7 @@ class RecordSensorValuesCSV {
     
     init(side:ORPSide) {
         self.side = side
-        NotificationCenter.default.addObserver(self, selector:  #selector(RecordSensorValuesCSV.OrpheDidUpdateSensorDataCustomised(notification:)), name: .OrpheDidUpdateSensorDataCustomised, object: nil)
+        NotificationCenter.default.addObserver(self, selector:  #selector(RecordSensorValuesCSV.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
         
         format.dateFormat = "yyyy/MM/dd HH:mm:ss.SSS"
     }
@@ -69,7 +69,7 @@ class RecordSensorValuesCSV {
         return text
     }
     
-    @objc func OrpheDidUpdateSensorDataCustomised(notification: Notification){
+    @objc func OrpheDidUpdateSensorData(notification: Notification){
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
         if orphe.side != side {

@@ -186,7 +186,7 @@ class ViewController: NSViewController {
             .disposed(by: disposeBag)
         
         //Notification
-        NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorDataCustomised(notification:)), name: .OrpheDidUpdateSensorDataCustomised, object: nil)
+        NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
         
     }
     
@@ -433,7 +433,7 @@ extension  ViewController: ORPManagerDelegate{
 //        }
     }
     
-    func OrpheDidUpdateSensorDataCustomised(notification: Notification){
+    func OrpheDidUpdateSensorData(notification: Notification){
         
         if !enableUpdateSensorValues {
             return
