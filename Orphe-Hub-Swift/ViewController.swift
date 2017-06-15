@@ -439,23 +439,23 @@ extension  ViewController: ORPManagerDelegate{
         var arrayArray = [[Float]]()
         if sensorKind == .acc{
             sensorStr = "Acc"
-            arrayArray = orphe.getAccArray()
+            arrayArray = orphe.accArray
         }
         else if sensorKind == .gyro{
             sensorStr = "Gyro"
-            arrayArray = orphe.getGyroArray()
+            arrayArray = orphe.gyroArray
         }
         else if sensorKind == .euler{
             sensorStr = "Euler"
-            arrayArray = orphe.getEulerArray()
+            arrayArray = orphe.eulerArray
         }
         else if sensorKind == .quat{
             sensorStr = "Quat"
-            arrayArray = orphe.getQuatArray()
+            arrayArray = orphe.quatArray
         }
         else if sensorKind == .mag{
             sensorStr = "Mag"
-            arrayArray = orphe.getMagArray()
+            arrayArray = orphe.magArray
         }
         for (j, array) in arrayArray.enumerated() {
             for (i, a) in array.enumerated() {
@@ -489,12 +489,12 @@ extension  ViewController: ORPManagerDelegate{
         let power = gestureEvent.getPower()
         let text = "Gesture: " + kind + "\n" + "power: " + String(power)
         
-//        if side == .left {
-//            leftGestureLabel.stringValue = "LEFT Gesture\n\n" + text
-//        }
-//        else{
-////            rightGestureLabel.stringValue = "RIGHT Gesture\n\n" + text
-//        }
+        if side == .left {
+            leftSensorView.gestureLabel.stringValue = "LEFT Gesture\n\n" + text
+        }
+        else{
+            rightSensorView.gestureLabel.stringValue = "RIGHT Gesture\n\n" + text
+        }
     }
 }
 

@@ -184,6 +184,7 @@
 				E61393051E8E6A31002DD502 /* AppDelegate.swift */,
 				E61393111E8E6A6D002DD502 /* Main.storyboard */,
 				E61393091E8E6A31002DD502 /* ViewController.swift */,
+				E66053CD1EDFCF1900EC8678 /* GraphUI */,
 				E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */,
 				E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */,
 				E66053C51EDDCA1000EC8678 /* SensorFreqencyCalculator.swift */,
@@ -207,7 +208,7 @@
 			path = "Orphe-Hub-Swift/OSCManager";
 			sourceTree = SOURCE_ROOT;
 		};
-		E66053CD1EDFCF1900EC8678 /* Graph */ = {
+		E66053CD1EDFCF1900EC8678 /* GraphUI */ = {
 			isa = PBXGroup;
 			children = (
 				E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */,
@@ -215,7 +216,7 @@
 				E66053D21EDFCFDB00EC8678 /* SensorVisualizerView.xib */,
 				E66053D01EDFCFCC00EC8678 /* SensorVisualizerView.swift */,
 			);
-			name = Graph;
+			name = GraphUI;
 			sourceTree = "<group>";
 		};
 		E666C4021EC33748005DFF17 /* Products */ = {
@@ -230,9 +231,8 @@
 		E67488131E992A8D00DA7D9C /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
-				1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */,
 				1B3E39031E950921008DA5D1 /* DrawShape.swift */,
-				E66053CD1EDFCF1900EC8678 /* Graph */,
+				1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */,
 			);
 			name = CommonUI;
 			sourceTree = "<group>";

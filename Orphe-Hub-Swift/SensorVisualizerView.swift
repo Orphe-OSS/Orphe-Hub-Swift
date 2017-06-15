@@ -17,6 +17,7 @@ class SensorVisualizerView:NSView{
     @IBOutlet weak var gyroGraph: MultiLineGraphView!
     
     @IBOutlet weak var sensorValueLabel: NSTextField!
+    @IBOutlet weak var gestureLabel: NSTextField!
     @IBOutlet weak var frequencyLabel: NSTextField!
     
     var bleFreq = SensorFreqencyCalculator()
@@ -82,24 +83,24 @@ class SensorVisualizerView:NSView{
     
     func updateSensorGraph(orphe:ORPData){
         
-        for array in orphe.getQuatArray() {
+        for array in orphe.quatArray {
             for (i ,val) in array.enumerated(){
                 quatGraph.lineGraphArray[i].addValue(CGFloat(val))
             }
         }
-        for array in orphe.getAccArray() {
+        for array in orphe.accArray {
             for (i ,val) in array.enumerated(){
-                accGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPAccRange._16.rawValue)))
+                accGraph.lineGraphArray[i].addValue(CGFloat(val))
             }
         }
-        for array in orphe.getGyroArray() {
+        for array in orphe.gyroArray {
             for (i ,val) in array.enumerated(){
-                gyroGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPGyroRange._2000.rawValue)))
+                gyroGraph.lineGraphArray[i].addValue(CGFloat(val))
             }
         }
-        for array in orphe.getEulerArray() {
+        for array in orphe.eulerArray {
             for (i ,val) in array.enumerated(){
-                eulerGraph.lineGraphArray[i].addValue(CGFloat(val/Float(180)))
+                eulerGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPAngleRange)))
             }
         }
     }
@@ -116,16 +117,16 @@ class SensorVisualizerView:NSView{
     
     func updateFreqCalculator(orphe:ORPData){
         bleFreq.update()
-        for array in orphe.getQuatArray() {
+        for array in orphe.quatArray {
             qFreq.updateValue2(value: array[0])
         }
-        for array in orphe.getAccArray() {
+        for array in orphe.accArray {
             aFreq.updateValue2(value: array[0])
         }
-        for array in orphe.getGyroArray() {
+        for array in orphe.gyroArray {
             gFreq.updateValue2(value: array[0])
         }
-        for array in orphe.getEulerArray() {
+        for array in orphe.eulerArray {
             eFreq.updateValue2(value: array[0])
         }
         
@@ -144,23 +145,23 @@ class SensorVisualizerView:NSView{
         var arrayArray = [[Float]]()
         if sensorKind == .acc{
             sensorStr = "Acc"
-            arrayArray = orphe.getAccArray()
+            arrayArray = orphe.accArray
         }
         else if sensorKind == .gyro{
             sensorStr = "Gyro"
-            arrayArray = orphe.getGyroArray()
+            arrayArray = orphe.gyroArray
         }
         else if sensorKind == .euler{
             sensorStr = "Euler"
-            arrayArray = orphe.getEulerArray()
+            arrayArray = orphe.eulerArray
         }
         else if sensorKind == .quat{
             sensorStr = "Quat"
-            arrayArray = orphe.getQuatArray()
+            arrayArray = orphe.quatArray
         }
         else if sensorKind == .mag{
             sensorStr = "Mag"
-            arrayArray = orphe.getMagArray()
+            arrayArray = orphe.magArray
         }
         for (j, array) in arrayArray.enumerated() {
             for (i, a) in array.enumerated() {

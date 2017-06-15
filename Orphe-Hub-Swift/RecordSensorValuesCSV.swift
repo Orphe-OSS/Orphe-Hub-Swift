@@ -38,15 +38,15 @@ class RecordSensorValuesCSV {
         var arrayArray = [[Float]]()
         switch sensorKind {
         case .quat:
-            arrayArray = orphe.getQuatArray()
+            arrayArray = orphe.quatArray
         case .euler:
-            arrayArray = orphe.getEulerArray()
+            arrayArray = orphe.eulerArray
         case .acc:
-            arrayArray = orphe.getAccArray()
+            arrayArray = orphe.accArray
         case .gyro:
-            arrayArray = orphe.getGyroArray()
+            arrayArray = orphe.gyroArray
         case .mag:
-            arrayArray = orphe.getMagArray()
+            arrayArray = orphe.magArray
         }
         
         

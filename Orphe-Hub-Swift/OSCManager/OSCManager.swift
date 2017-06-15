@@ -293,12 +293,12 @@ class OSCManager:NSObject, OSCServerDelegate{
         args += orphe.getEuler() as [Any]
         
         if sensorKind == .acc{
-            args += orphe.getAccArray()[index] as [Any]
+            args += orphe.accArray[index] as [Any]
             args += orphe.getGyro() as [Any]
         }
         else if sensorKind == .gyro{
             args += orphe.getAcc() as [Any]
-            args += orphe.getGyroArray()[index] as [Any]
+            args += orphe.gyroArray[index] as [Any]
         }
         
         

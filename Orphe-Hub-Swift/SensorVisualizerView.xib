@@ -11,6 +11,7 @@
                 <outlet property="accGraph" destination="KdH-dw-Ki6" id="dPv-AF-sJq"/>
                 <outlet property="eulerGraph" destination="FDj-xo-Kx0" id="EyD-M1-3yg"/>
                 <outlet property="frequencyLabel" destination="xJb-Jj-b3a" id="mJa-GJ-8Yv"/>
+                <outlet property="gestureLabel" destination="Pkc-mo-Wyk" id="ftR-UR-ttn"/>
                 <outlet property="gyroGraph" destination="tqr-8F-623" id="Uu6-1M-XaW"/>
                 <outlet property="quatGraph" destination="gWm-Ua-OGd" id="fuU-47-5me"/>
                 <outlet property="sensorValueLabel" destination="O7e-Ib-EmY" id="P9d-7i-qzB"/>
@@ -32,7 +33,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJb-Jj-b3a">
-                    <rect key="frame" x="-2" y="277" width="124" height="150"/>
+                    <rect key="frame" x="-2" y="113" width="124" height="150"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Freqency" id="I3m-Ue-HM0">
                         <font key="font" metaFont="smallSystem"/>
@@ -87,6 +88,15 @@
                     <rect key="frame" x="126" y="170" width="104" height="13"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gyro" id="KJW-lM-fjn">
+                        <font key="font" metaFont="smallSystem"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pkc-mo-Wyk">
+                    <rect key="frame" x="-2" y="277" width="124" height="150"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gesture" id="2yT-9n-M0R">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
