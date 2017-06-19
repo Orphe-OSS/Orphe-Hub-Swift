@@ -55,7 +55,7 @@ class ViewController: NSViewController {
         tableView.allowsTypeSelect = false
         
         ORPManager.sharedInstance.delegate = self
-        ORPManager.sharedInstance.isEnableAutoReconnection = false
+        ORPManager.sharedInstance.isEnableAutoReconnection = true
         ORPManager.sharedInstance.startScan()
         
         rssiTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.readRSSI), userInfo: nil, repeats: true)
