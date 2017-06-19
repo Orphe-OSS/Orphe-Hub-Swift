@@ -88,19 +88,19 @@ class SensorVisualizerView:NSView{
                 quatGraph.lineGraphArray[i].addValue(CGFloat(val))
             }
         }
-        for array in orphe.accArray {
+        for array in orphe.normalizedAccArray {
             for (i ,val) in array.enumerated(){
                 accGraph.lineGraphArray[i].addValue(CGFloat(val))
             }
         }
-        for array in orphe.gyroArray {
+        for array in orphe.normalizedGyroArray {
             for (i ,val) in array.enumerated(){
                 gyroGraph.lineGraphArray[i].addValue(CGFloat(val))
             }
         }
-        for array in orphe.eulerArray {
+        for array in orphe.normalizedEulerArray {
             for (i ,val) in array.enumerated(){
-                eulerGraph.lineGraphArray[i].addValue(CGFloat(val/Float(ORPAngleRange)))
+                eulerGraph.lineGraphArray[i].addValue(CGFloat(val))
             }
         }
     }
@@ -145,11 +145,11 @@ class SensorVisualizerView:NSView{
         var arrayArray = [[Float]]()
         if sensorKind == .acc{
             sensorStr = "Acc"
-            arrayArray = orphe.accArray.map{$0.map{$0*Float(orphe.getAccRange().rawValue)}}
+            arrayArray = orphe.accArray
         }
         else if sensorKind == .gyro{
             sensorStr = "Gyro"
-            arrayArray = orphe.gyroArray.map{$0.map{$0*Float(orphe.getGyroRange().rawValue)}}
+            arrayArray = orphe.gyroArray
         }
         else if sensorKind == .euler{
             sensorStr = "Euler"
