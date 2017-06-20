@@ -240,33 +240,41 @@ class OSCManager:NSObject, OSCServerDelegate{
             for i in 0..<2{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
-            break
             
         case .t_2b_150h:
             for i in 0..<3{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
-            break
             
         case .t_1b_300h:
             for i in 0..<6{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
-            break
             
         case .t_2b_400h_1a:
             for i in 0..<8{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
-            break
             
         case .t_1b_400h_2a:
             for i in 0..<8{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
-            break
             
-        default:
+        case .t_2b_200h_2a:
+            for i in 0..<4{
+                sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
+            }
+            
+        case .t_4b_200h_1a:
+            for i in 0..<4{
+                sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
+            }
+            
+        case .t_4b_50h:
+            sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: 0)
+            
+        case .standard: //処理は通らないけどdefaultにするとcaseし忘れが出るので置いてる
             break
         }
         
@@ -283,18 +291,38 @@ class OSCManager:NSObject, OSCServerDelegate{
         }
         address += "/sensorValues"
         var args = [Any]()
-        args += orphe.getQuat() as [Any]
-        args += orphe.getEuler() as [Any]
         
-        if sensorKind == .acc{
-            args += orphe.accArray[index] as [Any]
-            args += orphe.getGyro() as [Any]
+        //quat
+        if sensorKind == .quat {
+            args += orphe.quatArray[index] as [Any]
         }
-        else if sensorKind == .gyro{
+        else{
+            args += orphe.getQuat() as [Any]
+        }
+        
+        //euler
+        if sensorKind == .euler || sensorKind == .quat {
+            args += orphe.eulerArray[index] as [Any]
+        }
+        else{
+            args += orphe.getEuler() as [Any]
+        }
+        
+        //acc
+        if sensorKind == .acc {
+            args += orphe.accArray[index] as [Any]
+        }
+        else{
             args += orphe.getAcc() as [Any]
+        }
+        
+        //gyro
+        if sensorKind == .gyro {
             args += orphe.gyroArray[index] as [Any]
         }
-        
+        else{
+            args += orphe.getGyro() as [Any]
+        }
         
         args.append(orphe.getMag() as Any)
         args.append(orphe.getShock() as Any)
