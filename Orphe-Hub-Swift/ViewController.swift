@@ -155,7 +155,7 @@ class ViewController: NSViewController {
                 self.leftSensorRecorder.stopRecording()
                 self.rightSensorRecorder.stopRecording()
                 var format = DateFormatter()
-                format.dateFormat = "yyyy-MM-dd-HH-mm"
+                format.dateFormat = "yyyy-MMdd-HHmmss"
                 let filename = format.string(from: Date())
                 let savePanel = NSSavePanel()
                 savePanel.canCreateDirectories = true
@@ -184,7 +184,6 @@ class ViewController: NSViewController {
                     }
                 }
                 self.startRecordButton.image = #imageLiteral(resourceName: "record-start")
-                self.startRecordButton.state = NSOnState
             }
             else{
                 self.leftSensorRecorder.startRecording()
