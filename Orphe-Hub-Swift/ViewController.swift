@@ -149,12 +149,19 @@ class ViewController: NSViewController {
         })
         .disposed(by: disposeBag)
         
-        startRecordButton.isEnabled = false
         startRecordButton.rx.tap.subscribe(onNext: { [unowned self] _ in
             if self.startRecordButton.image == #imageLiteral(resourceName: "record-stop") {
                 self.leftSensorRecorder.stopRecording()
                 self.rightSensorRecorder.stopRecording()
-                var format = DateFormatter()
+                self.startRecordButton.image = #imageLiteral(resourceName: "record-start")
+                
+                //記録したデータの保存処理
+                if self.leftSensorRecorder.recordText == ""
+                    && self.rightSensorRecorder.recordText == ""{
+                    return
+                }
+                
+                let format = DateFormatter()
                 format.dateFormat = "yyyy-MMdd-HHmmss"
                 let filename = format.string(from: Date())
                 let savePanel = NSSavePanel()
@@ -172,18 +179,17 @@ class ViewController: NSViewController {
                         let endIndex = urlString.index(urlString.startIndex, offsetBy: 7)
                         urlString.removeSubrange(startIndex..<endIndex)
                         
-                        if ORPManager.sharedInstance.isLeftConnected(){
+                        if self.leftSensorRecorder.recordText != ""{
                             let leftUrlString = urlString+"-left.csv"
                             try! self.leftSensorRecorder.recordText.write(toFile: leftUrlString, atomically: true, encoding: String.Encoding.utf8)
                         }
                         
-                        if ORPManager.sharedInstance.isRightConnected(){
+                        if self.rightSensorRecorder.recordText != ""{
                             let rightUrlString = urlString+"-right.csv"
                             try! self.rightSensorRecorder.recordText.write(toFile: rightUrlString, atomically: true, encoding: String.Encoding.utf8)
                         }
                     }
                 }
-                self.startRecordButton.image = #imageLiteral(resourceName: "record-start")
             }
             else{
                 self.leftSensorRecorder.startRecording()
@@ -391,9 +397,6 @@ extension  ViewController: ORPManagerDelegate{
     }
     
     func orpheDidDisconnect(orphe:ORPData){
-        if ORPManager.sharedInstance.connectedORPDataArray.count == 0{
-            startRecordButton.isEnabled = false
-        }
         PRINT("didDisconnect")
         tableView.reloadData()
         updateCellsState()
@@ -401,7 +404,6 @@ extension  ViewController: ORPManagerDelegate{
     }
     
     func orpheDidConnect(orphe:ORPData){
-        startRecordButton.isEnabled = true
         
         PRINT("didConnect")
         tableView.reloadData()
