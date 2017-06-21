@@ -39,6 +39,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var leftSensorView: SensorVisualizerView!
     
     var leftSensorRecorder = RecordSensorValuesCSV(side: .left)
+    var rightSensorRecorder = RecordSensorValuesCSV(side: .right)
     
     var disposeBag = DisposeBag()
     
@@ -149,24 +150,39 @@ class ViewController: NSViewController {
         .disposed(by: disposeBag)
         
         startRecordButton.rx.tap.subscribe(onNext: { [unowned self] _ in
-            if self.leftSensorRecorder.isRecording {
+            if self.startRecordButton.image == #imageLiteral(resourceName: "record-stop") {
                 self.leftSensorRecorder.stopRecording()
+                self.rightSensorRecorder.stopRecording()
+                var format = DateFormatter()
+                format.dateFormat = "yyyy-MM-dd-HH-mm"
+                let filename = format.string(from: Date())
                 let savePanel = NSSavePanel()
                 savePanel.canCreateDirectories = true
                 savePanel.showsTagField = false
-                savePanel.nameFieldStringValue = "test.csv"
+                savePanel.nameFieldStringValue = filename
                 savePanel.begin { (result) in
                     if result == NSFileHandlingPanelOKButton {
                         guard let url = savePanel.url else { return }
                         
-                        // write to it
-                        try! self.leftSensorRecorder.recordText.write(to: url, atomically: true, encoding: String.Encoding.utf8)
+                        var urlString = url.absoluteString
+                        
+                        //urlからfile://を削除する
+                        let startIndex = urlString.startIndex
+                        let endIndex = urlString.index(urlString.startIndex, offsetBy: 7)
+                        urlString.removeSubrange(startIndex..<endIndex)
+                        
+                        let leftUrlString = urlString+"-left.csv"
+                        try! self.leftSensorRecorder.recordText.write(toFile: leftUrlString, atomically: true, encoding: String.Encoding.utf8)
+                        let rightUrlString = urlString+"-right.csv"
+                        try! self.rightSensorRecorder.recordText.write(toFile: rightUrlString, atomically: true, encoding: String.Encoding.utf8)
                     }
                 }
                 self.startRecordButton.image = #imageLiteral(resourceName: "record-start")
+                self.startRecordButton.state = NSOnState
             }
             else{
                 self.leftSensorRecorder.startRecording()
+                self.rightSensorRecorder.startRecording()
                 self.startRecordButton.image = #imageLiteral(resourceName: "record-stop")
             }
         })
