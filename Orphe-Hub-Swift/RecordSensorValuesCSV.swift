@@ -32,7 +32,7 @@ class RecordSensorValuesCSV {
         isRecording = false
     }
     
-    func valuesToCSV(orphe:ORPData, sensorKind:SensorKind, receiveTime:Date)->String{
+    func valuesToCSV(orphe:ORPData, sensorKind:SensorKind, receiveTime:Date, sendingType:SendingType)->String{
         //数値の追加
         var text = ""
         var arrayArray = [[Float]]()
@@ -56,7 +56,9 @@ class RecordSensorValuesCSV {
         for array in arrayArray {
 //            let time = receiveTime.addingTimeInterval(timeInterval*index-bleInterval)
             index += 1
-            text += format.string(from: receiveTime)
+            if sendingType != .standard {
+                text += format.string(from: receiveTime)
+            }
             for value in array {
                 text += "," + String(value)
             }
@@ -88,11 +90,12 @@ class RecordSensorValuesCSV {
                     recordText += "\n"
                 }
                 
-                recordText += valuesToCSV(orphe: orphe, sensorKind: .quat, receiveTime: receiveTime)
-                recordText += valuesToCSV(orphe: orphe, sensorKind: .euler, receiveTime: receiveTime)
-                recordText += valuesToCSV(orphe: orphe, sensorKind: .acc, receiveTime: receiveTime)
-                recordText += valuesToCSV(orphe: orphe, sensorKind: .gyro, receiveTime: receiveTime)
-                recordText += valuesToCSV(orphe: orphe, sensorKind: .mag, receiveTime: receiveTime)
+                recordText += format.string(from: receiveTime)
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .quat, receiveTime: receiveTime, sendingType: .standard)
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .euler, receiveTime: receiveTime, sendingType: .standard)
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .acc, receiveTime: receiveTime, sendingType: .standard)
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .gyro, receiveTime: receiveTime, sendingType: .standard)
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .mag, receiveTime: receiveTime, sendingType: .standard)
                 recordText += "\n"
             }
             else{
@@ -119,7 +122,7 @@ class RecordSensorValuesCSV {
                     recordText += "\n"
                 }
                 
-                recordText += valuesToCSV(orphe: orphe, sensorKind: sensorKind, receiveTime: receiveTime)
+                recordText += valuesToCSV(orphe: orphe, sensorKind: sensorKind, receiveTime: receiveTime, sendingType: sendingType)
                 recordText += "\n"
             }
             
