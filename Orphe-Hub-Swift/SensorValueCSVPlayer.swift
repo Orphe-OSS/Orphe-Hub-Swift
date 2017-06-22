@@ -16,7 +16,6 @@ class SensorValueCSVPlayer{
     var csv:CSwiftV?
     var currentRow = 0
     var isPlaying = false
-    var previousTime:Double = 0
     
     //"time,quatw,quatx,quaty,quatz,eulerx,eulery,eulerz,accx,accy,accz,gyrox,gyro y,gyroz,magx,magy,magz"
     enum csvKeys:String{
@@ -73,16 +72,9 @@ class SensorValueCSVPlayer{
         guard let _csv = self.csv else {return}
     }
     
-    func updateSensorValues(){
+    @objc func updateSensorValues(){
         if !isPlaying {return}
         guard let _csv = self.csv else {return}
-        if currentRow == csv?.rows.count {
-            isPlaying = false
-            currentRow = 0
-            return
-        }
-        
-//        PRINT("values:", _csv.rows[currentRow].description)
         
         let quatw = Float(_csv.keyedRows![currentRow][csvKeys.quatw.rawValue]!)!
         let quatx = Float(_csv.keyedRows![currentRow][csvKeys.quatx.rawValue]!)!
@@ -115,17 +107,23 @@ class SensorValueCSVPlayer{
         
         let shock = UInt8(0)//UInt8(_csv.keyedRows![currentRow][csvKeys.shock.rawValue]!)!
         
-        let time = Double(_csv.keyedRows![currentRow][csvKeys.time.rawValue]!)!
-        if currentRow == 0 {
-            previousTime = time
+        self.dummyOrphe.sensorValue(quat: quat, euler: euler, acc: acc, gyro: gyro, mag: UInt16(magz), shock: shock)
+        NotificationCenter.default.post(name: .OrpheDidUpdateSensorData, object: nil, userInfo: [OrpheDataUserInfoKey:self.dummyOrphe, OrpheUpdatedSendingTypeInfoKey:SendingType.standard])
+        
+        //row count
+        self.currentRow += 1
+        if currentRow == csv?.rows.count {
+            isPlaying = false
+            currentRow = 0
+            return
         }
-        let delayTime = time - previousTime
-        previousTime = time
-        let popTime = DispatchTime.now() + Double(Int64(delayTime * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC) //0.1秒後swift3.0
+        
+        //loop
+        let time = Double(_csv.keyedRows![currentRow-1][csvKeys.time.rawValue]!)!
+        let nextTime = Double(_csv.keyedRows![currentRow][csvKeys.time.rawValue]!)!
+        let delayTime = nextTime - time
+        let popTime = DispatchTime.now() + delayTime  - 0.0023 //0.0023引いているのはちょっと短くしないと５hzくらい遅くなる
         DispatchQueue.main.asyncAfter(deadline: popTime,  execute: {
-            self.dummyOrphe.sensorValue(quat: quat, euler: euler, acc: acc, gyro: gyro, mag: UInt16(magz), shock: shock)
-            NotificationCenter.default.post(name: .OrpheDidUpdateSensorData, object: nil, userInfo: [OrpheDataUserInfoKey:self.dummyOrphe, OrpheUpdatedSendingTypeInfoKey:SendingType.standard])
-            self.currentRow += 1
             self.updateSensorValues()
         })
         
