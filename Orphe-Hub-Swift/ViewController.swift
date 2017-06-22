@@ -55,6 +55,9 @@ class ViewController: NSViewController {
         tableView.target = self
         tableView.allowsTypeSelect = false
         
+        leftSensorView.side = .left
+        rightSensorView.side = .right
+        
         ORPManager.sharedInstance.delegate = self
         ORPManager.sharedInstance.isEnableAutoReconnection = true
         ORPManager.sharedInstance.startScan()

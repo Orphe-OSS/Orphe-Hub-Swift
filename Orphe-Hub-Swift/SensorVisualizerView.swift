@@ -22,6 +22,8 @@ class SensorVisualizerView:NSView{
     @IBOutlet weak var gestureLabel: NSTextField!
     @IBOutlet weak var frequencyLabel: NSTextField!
     
+    @IBOutlet weak var playCSVButton: NSButton!
+    @IBOutlet weak var stopCSVButton: NSButton!
     @IBOutlet weak var loadCSVButton: NSButton!
     var disposeBag = DisposeBag()
     
@@ -30,6 +32,14 @@ class SensorVisualizerView:NSView{
     var aFreq = SensorFreqencyCalculator()
     var gFreq = SensorFreqencyCalculator()
     var eFreq = SensorFreqencyCalculator()
+    
+    var sensorPlayer = SensorValueCSVPlayer(side:.left)
+    
+    var side:ORPSide = .left{
+        didSet{
+            sensorPlayer.dummyOrphe.side = side
+        }
+    }
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -77,10 +87,28 @@ class SensorVisualizerView:NSView{
                 openPanel.begin { (result) -> Void in
                     if result == NSFileHandlingPanelOKButton { // ファイルを選択したか(OKを押したか)
                         guard let url = openPanel.url else { return }
-                        PRINT(url.absoluteString)
+                        self?.sensorPlayer.loadCSVFile(url: url)
                         // ここでファイルを読み込む
                     }
                 }
+            })
+            .disposed(by: disposeBag)
+        
+        playCSVButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                guard let _self = self else {return}
+                if !_self.sensorPlayer.isPlaying{
+                    _self.sensorPlayer.play()
+                }
+                else{
+                    _self.sensorPlayer.pause()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        stopCSVButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.sensorPlayer.stop()
             })
             .disposed(by: disposeBag)
     }
@@ -104,7 +132,6 @@ class SensorVisualizerView:NSView{
     }
     
     func updateSensorGraph(orphe:ORPData){
-        
         for array in orphe.quatArray {
             for (i ,val) in array.enumerated(){
                 quatGraph.lineGraphArray[i].addValue(CGFloat(val))

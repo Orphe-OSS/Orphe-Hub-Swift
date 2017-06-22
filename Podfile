@@ -7,6 +7,7 @@ target 'Orphe-Hub-Swift' do
   pod 'OSCKit'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'CSwiftV'
 
   # Pods for Orphe-Hub-Swift
 

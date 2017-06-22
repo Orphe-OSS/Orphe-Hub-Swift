@@ -14,8 +14,10 @@
                 <outlet property="gestureLabel" destination="Pkc-mo-Wyk" id="ftR-UR-ttn"/>
                 <outlet property="gyroGraph" destination="tqr-8F-623" id="Uu6-1M-XaW"/>
                 <outlet property="loadCSVButton" destination="oje-Tk-Guw" id="qB5-yz-EtI"/>
+                <outlet property="playCSVButton" destination="8Fz-n6-WyB" id="dLM-9d-1oT"/>
                 <outlet property="quatGraph" destination="gWm-Ua-OGd" id="fuU-47-5me"/>
                 <outlet property="sensorValueLabel" destination="O7e-Ib-EmY" id="P9d-7i-qzB"/>
+                <outlet property="stopCSVButton" destination="SgF-so-Sko" id="L6i-fg-YxT"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
