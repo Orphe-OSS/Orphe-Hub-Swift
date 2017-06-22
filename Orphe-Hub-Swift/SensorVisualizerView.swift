@@ -8,6 +8,8 @@
 
 import Cocoa
 import Orphe
+import RxSwift
+import RxCocoa
 
 class SensorVisualizerView:NSView{
     
@@ -19,6 +21,9 @@ class SensorVisualizerView:NSView{
     @IBOutlet weak var sensorValueLabel: NSTextField!
     @IBOutlet weak var gestureLabel: NSTextField!
     @IBOutlet weak var frequencyLabel: NSTextField!
+    
+    @IBOutlet weak var loadCSVButton: NSButton!
+    var disposeBag = DisposeBag()
     
     var bleFreq = SensorFreqencyCalculator()
     var qFreq = SensorFreqencyCalculator()
@@ -61,6 +66,23 @@ class SensorVisualizerView:NSView{
                                                       metrics:nil,
                                                       views: bindings))
         
+        loadCSVButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                let openPanel = NSOpenPanel()
+                openPanel.allowsMultipleSelection = false // 複数ファイルの選択を許すか
+                openPanel.canChooseDirectories = false // ディレクトリを選択できるか
+                openPanel.canCreateDirectories = false // ディレクトリを作成できるか
+                openPanel.canChooseFiles = true // ファイルを選択できるか
+                openPanel.allowedFileTypes = ["csv"] // 選択できるファイル種別
+                openPanel.begin { (result) -> Void in
+                    if result == NSFileHandlingPanelOKButton { // ファイルを選択したか(OKを押したか)
+                        guard let url = openPanel.url else { return }
+                        PRINT(url.absoluteString)
+                        // ここでファイルを読み込む
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     func initSettings(){
