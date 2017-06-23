@@ -25,6 +25,7 @@ class SensorVisualizerView:NSView{
     @IBOutlet weak var playCSVButton: NSButton!
     @IBOutlet weak var stopCSVButton: NSButton!
     @IBOutlet weak var loadCSVButton: NSButton!
+    @IBOutlet weak var fileNameLabel: NSTextField!
     var disposeBag = DisposeBag()
     
     var bleFreq = SensorFreqencyCalculator()
@@ -87,6 +88,7 @@ class SensorVisualizerView:NSView{
                 openPanel.begin { (result) -> Void in
                     if result == NSFileHandlingPanelOKButton { // ファイルを選択したか(OKを押したか)
                         guard let url = openPanel.url else { return }
+                        self?.fileNameLabel.stringValue = url.lastPathComponent
                         self?.sensorPlayer.loadCSVFile(url: url)
                         // ここでファイルを読み込む
                     }

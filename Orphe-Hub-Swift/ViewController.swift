@@ -323,13 +323,12 @@ extension  ViewController: NSTableViewDelegate{
         let cellIdentifier: String = "NameCell"
         
         if let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
+            cell.textField?.drawsBackground = true
             if tableColumn == tableView.tableColumns[0] {
                 cell.textField?.stringValue = ORPManager.sharedInstance.availableORPDataArray[row].name
-                cell.textField?.drawsBackground = true
             }
             else if tableColumn == tableView.tableColumns[1] {
                 cell.textField?.stringValue = "0"
-                cell.textField?.drawsBackground = true
             }
             return cell
         }
@@ -410,6 +409,22 @@ extension  ViewController: ORPManagerDelegate{
         
         PRINT("didConnect")
         tableView.reloadData()
+        
+        for (index, orp) in ORPManager.sharedInstance.availableORPDataArray.enumerated(){
+            if orp == orphe{
+                if let cell = tableView.view(atColumn: 2, row: index, makeIfNecessary: true) as? NSTableCellView{
+                    var sideStr = "LEFT"
+                    if orp.side == .right {
+                        sideStr = "RIGHT"
+                    }
+                    cell.textField?.stringValue = sideStr
+                }
+                if let cell = tableView.view(atColumn: 3, row: index, makeIfNecessary: true) as? NSTableCellView{
+                    cell.textField?.stringValue = String(orp.fwVersion)
+                }
+            }
+        }
+        
         updateCellsState()
         
 //        orphe.setScene(.sceneSDK)
