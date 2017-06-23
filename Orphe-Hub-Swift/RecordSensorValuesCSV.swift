@@ -86,16 +86,29 @@ class RecordSensorValuesCSV {
             if sendingType == .standard{
                 //最初のやつ
                 if recordText == "" {
-                    recordText = "time,quatw,quatx,quaty,quatz,eulerx,eulery,eulerz,accx,accy,accz,gyrox,gyroy,gyroz,magx,magy,magz,shock"
+                    recordText = "timestamp,quatW,quatX,quatY,quatZ,eulerX,eulerY,eulerZ,gyroX,gyroY,gyroZ,magX,magY,magZ,accX,accY,accZ,shock"
                     recordText += "\n"
                 }
                 
+                //timestamp
                 recordText += String(receiveTime.timeIntervalSince1970)//format.string(from: receiveTime)
+                
+                //quat
                 recordText += valuesToCSV(orphe: orphe, sensorKind: .quat, receiveTime: receiveTime, sendingType: .standard)
+                
+                //euler
                 recordText += valuesToCSV(orphe: orphe, sensorKind: .euler, receiveTime: receiveTime, sendingType: .standard)
-                recordText += valuesToCSV(orphe: orphe, sensorKind: .acc, receiveTime: receiveTime, sendingType: .standard)
+                
+                //gyro
                 recordText += valuesToCSV(orphe: orphe, sensorKind: .gyro, receiveTime: receiveTime, sendingType: .standard)
+                
+                //mag
                 recordText += valuesToCSV(orphe: orphe, sensorKind: .mag, receiveTime: receiveTime, sendingType: .standard)
+                
+                //acc
+                recordText += valuesToCSV(orphe: orphe, sensorKind: .acc, receiveTime: receiveTime, sendingType: .standard)
+                
+                //shock
                 recordText += String(orphe.getShock())
                 recordText += "\n"
             }
