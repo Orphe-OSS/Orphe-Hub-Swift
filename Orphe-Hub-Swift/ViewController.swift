@@ -217,6 +217,7 @@ class ViewController: NSViewController {
         
         //Notification
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
+        NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidReceiveFWVersion(notification:)), name: .OrpheDidReceiveFWVersion, object: nil)
         
     }
     
@@ -255,6 +256,17 @@ class ViewController: NSViewController {
                         cell.textField?.textColor = NSColor.black
                         cell.textField?.backgroundColor = NSColor.white
                     }
+                    
+                    if let cell = tableView.view(atColumn: 2, row: index, makeIfNecessary: true) as? NSTableCellView{
+                        var sideStr = "LEFT"
+                        if orp.side == .right {
+                            sideStr = "RIGHT"
+                        }
+                        cell.textField?.stringValue = sideStr
+                    }
+                    if let cell = tableView.view(atColumn: 3, row: index, makeIfNecessary: true) as? NSTableCellView{
+                        cell.textField?.stringValue = String(orp.fwVersion)
+                    }
                 }
             }
             
@@ -286,6 +298,7 @@ class ViewController: NSViewController {
             let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
             orphe.switchToOppositeSide()
         }
+        updateCellsState()
     }
     
     @IBAction func calibrationButtonAction(_ sender: Any) {
@@ -410,30 +423,23 @@ extension  ViewController: ORPManagerDelegate{
         PRINT("didConnect")
         tableView.reloadData()
         
-        for (index, orp) in ORPManager.sharedInstance.availableORPDataArray.enumerated(){
-            if orp == orphe{
-                if let cell = tableView.view(atColumn: 2, row: index, makeIfNecessary: true) as? NSTableCellView{
-                    var sideStr = "LEFT"
-                    if orp.side == .right {
-                        sideStr = "RIGHT"
-                    }
-                    cell.textField?.stringValue = sideStr
-                }
-                if let cell = tableView.view(atColumn: 3, row: index, makeIfNecessary: true) as? NSTableCellView{
-                    cell.textField?.stringValue = String(orp.fwVersion)
-                }
-            }
-        }
-        
         updateCellsState()
         
 //        orphe.setScene(.sceneSDK)
         orphe.setGestureSensitivity(.high)
         
     }
+
+    func OrpheDidReceiveFWVersion(notification: Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
+        
+        updateCellsState()
+    }
     
     func orpheDidUpdateOrpheInfo(orphe:ORPData){
         PRINT("didUpdateOrpheInfo")
+        updateCellsState()
     }
     
     func readRSSI(){
