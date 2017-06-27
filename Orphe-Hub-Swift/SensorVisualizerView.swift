@@ -22,10 +22,6 @@ class SensorVisualizerView:NSView{
     @IBOutlet weak var gestureLabel: NSTextField!
     @IBOutlet weak var frequencyLabel: NSTextField!
     
-    @IBOutlet weak var playCSVButton: NSButton!
-    @IBOutlet weak var stopCSVButton: NSButton!
-    @IBOutlet weak var loadCSVButton: NSButton!
-    @IBOutlet weak var fileNameLabel: NSTextField!
     var disposeBag = DisposeBag()
     
     var bleFreq = SensorFreqencyCalculator()
@@ -77,42 +73,6 @@ class SensorVisualizerView:NSView{
                                                       metrics:nil,
                                                       views: bindings))
         
-        loadCSVButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                let openPanel = NSOpenPanel()
-                openPanel.allowsMultipleSelection = false // 複数ファイルの選択を許すか
-                openPanel.canChooseDirectories = false // ディレクトリを選択できるか
-                openPanel.canCreateDirectories = false // ディレクトリを作成できるか
-                openPanel.canChooseFiles = true // ファイルを選択できるか
-                openPanel.allowedFileTypes = ["csv"] // 選択できるファイル種別
-                openPanel.begin { (result) -> Void in
-                    if result == NSFileHandlingPanelOKButton { // ファイルを選択したか(OKを押したか)
-                        guard let url = openPanel.url else { return }
-                        self?.fileNameLabel.stringValue = url.lastPathComponent
-                        self?.sensorPlayer.loadCSVFile(url: url)
-                        // ここでファイルを読み込む
-                    }
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        playCSVButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                guard let _self = self else {return}
-                if !_self.sensorPlayer.isPlaying{
-                    _self.sensorPlayer.play()
-                }
-                else{
-                    _self.sensorPlayer.pause()
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        stopCSVButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                self?.sensorPlayer.stop()
-            })
-            .disposed(by: disposeBag)
     }
     
     func initSettings(){

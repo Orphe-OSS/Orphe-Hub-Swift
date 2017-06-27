@@ -1,0 +1,159 @@
+//
+//  RecordPlaybackViewController.swift
+//  Orphe-Hub-Swift
+//
+//  Created by kyosuke on 2017/06/27.
+//  Copyright © 2017 no new folk studio Inc. All rights reserved.
+//
+
+import Cocoa
+import Orphe
+import RxSwift
+import RxCocoa
+
+class RecordPlaybackViewController: NSViewController {
+    
+    @IBOutlet weak var startRecordButton: NSButton!
+    
+    @IBOutlet weak var playCSVButton: NSButton!
+    @IBOutlet weak var stopCSVButton: NSButton!
+    @IBOutlet weak var leftLoadCSVButton: NSButton!
+    @IBOutlet weak var rightLoadCSVButton: NSButton!
+    @IBOutlet weak var leftFileNameLabel: NSTextField!
+    @IBOutlet weak var rightFileNameLabel: NSTextField!
+    
+    var disposeBag = DisposeBag()
+    
+    //recorder
+    var leftSensorRecorder = RecordSensorValuesCSV(side: .left)
+    var rightSensorRecorder = RecordSensorValuesCSV(side: .right)
+    
+    //player
+    var leftSensorPlayer = SensorValueCSVPlayer(side:.left)
+    var rightSensorPlayer = SensorValueCSVPlayer(side:.right)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        startRecordButton.rx.tap.subscribe(onNext: { [unowned self] _ in
+            if self.startRecordButton.image == #imageLiteral(resourceName: "record-stop") {
+                self.leftSensorRecorder.stopRecording()
+                self.rightSensorRecorder.stopRecording()
+                self.startRecordButton.image = #imageLiteral(resourceName: "record-start")
+                
+                //記録したデータの保存処理
+                if self.leftSensorRecorder.recordText == ""
+                    && self.rightSensorRecorder.recordText == ""{
+                    return
+                }
+                
+                let format = DateFormatter()
+                format.dateFormat = "yyyy-MMdd-HHmmss"
+                let filename = format.string(from: Date())
+                let savePanel = NSSavePanel()
+                savePanel.canCreateDirectories = true
+                savePanel.showsTagField = false
+                savePanel.nameFieldStringValue = filename
+                savePanel.begin { (result) in
+                    if result == NSFileHandlingPanelOKButton {
+                        guard let url = savePanel.url else { return }
+                        
+                        var urlString = url.absoluteString
+                        
+                        //urlからfile://を削除する
+                        let startIndex = urlString.startIndex
+                        let endIndex = urlString.index(urlString.startIndex, offsetBy: 7)
+                        urlString.removeSubrange(startIndex..<endIndex)
+                        
+                        if self.leftSensorRecorder.recordText != ""{
+                            let leftUrlString = urlString+"-left.csv"
+                            try! self.leftSensorRecorder.recordText.write(toFile: leftUrlString, atomically: true, encoding: String.Encoding.utf8)
+                        }
+                        
+                        if self.rightSensorRecorder.recordText != ""{
+                            let rightUrlString = urlString+"-right.csv"
+                            try! self.rightSensorRecorder.recordText.write(toFile: rightUrlString, atomically: true, encoding: String.Encoding.utf8)
+                        }
+                    }
+                }
+            }
+            else{
+                self.leftSensorRecorder.startRecording()
+                self.rightSensorRecorder.startRecording()
+                self.startRecordButton.image = #imageLiteral(resourceName: "record-stop")
+            }
+        })
+            .disposed(by: disposeBag)
+        
+        
+        leftLoadCSVButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.loadCSV(side:.left)
+            })
+            .disposed(by: disposeBag)
+        
+        rightLoadCSVButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.loadCSV(side:.right)
+            })
+            .disposed(by: disposeBag)
+        
+        playCSVButton.rx.tap
+            .subscribe(onNext: { [unowned self] _ in
+                if !self.leftSensorPlayer.isPlaying{
+                    self.leftSensorPlayer.play()
+                }
+                else{
+                    self.leftSensorPlayer.pause()
+                }
+                
+                if !self.rightSensorPlayer.isPlaying{
+                    self.rightSensorPlayer.play()
+                }
+                else{
+                    self.rightSensorPlayer.pause()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        stopCSVButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.leftSensorPlayer.stop()
+                self?.rightSensorPlayer.stop()
+            })
+            .disposed(by: disposeBag)
+        
+        
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        leftSensorPlayer.stop()
+        rightSensorPlayer.stop()
+        leftSensorRecorder.stopRecording()
+        rightSensorRecorder.stopRecording()
+    }
+    
+    func loadCSV(side:ORPSide){
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = false // 複数ファイルの選択を許すか
+        openPanel.canChooseDirectories = false // ディレクトリを選択できるか
+        openPanel.canCreateDirectories = false // ディレクトリを作成できるか
+        openPanel.canChooseFiles = true // ファイルを選択できるか
+        openPanel.allowedFileTypes = ["csv"] // 選択できるファイル種別
+        openPanel.begin { (result) -> Void in
+            if result == NSFileHandlingPanelOKButton { // ファイルを選択したか(OKを押したか)
+                guard let url = openPanel.url else { return }
+                if side == .left{
+                    self.leftFileNameLabel.stringValue = url.lastPathComponent
+                    self.leftSensorPlayer.loadCSVFile(url: url)
+                }
+                else{
+                    self.rightFileNameLabel.stringValue = url.lastPathComponent
+                    self.rightSensorPlayer.loadCSVFile(url: url)
+                }
+            }
+        }
+    }
+    
+}

@@ -57,8 +57,10 @@ class SensorValueCSVPlayer{
     
     func play(){
         guard let _csv = self.csv else {return}
-        isPlaying = true
-        updateSensorValues()
+        if !isPlaying{
+            isPlaying = true
+            updateSensorValues()
+        }
     }
     
     func pause(){

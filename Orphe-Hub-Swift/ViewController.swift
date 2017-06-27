@@ -21,13 +21,8 @@ class ViewController: NSViewController {
     
     var rssiTimer: Timer?
     
-    @IBOutlet weak var startRecordButton: NSButton!
-    
     @IBOutlet weak var rightSensorView: SensorVisualizerView!
     @IBOutlet weak var leftSensorView: SensorVisualizerView!
-    
-    var leftSensorRecorder = RecordSensorValuesCSV(side: .left)
-    var rightSensorRecorder = RecordSensorValuesCSV(side: .right)
     
     var disposeBag = DisposeBag()
     
@@ -51,56 +46,6 @@ class ViewController: NSViewController {
         ORPManager.sharedInstance.startScan()
         
         rssiTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.readRSSI), userInfo: nil, repeats: true)
-        
-        startRecordButton.rx.tap.subscribe(onNext: { [unowned self] _ in
-            if self.startRecordButton.image == #imageLiteral(resourceName: "record-stop") {
-                self.leftSensorRecorder.stopRecording()
-                self.rightSensorRecorder.stopRecording()
-                self.startRecordButton.image = #imageLiteral(resourceName: "record-start")
-                
-                //記録したデータの保存処理
-                if self.leftSensorRecorder.recordText == ""
-                    && self.rightSensorRecorder.recordText == ""{
-                    return
-                }
-                
-                let format = DateFormatter()
-                format.dateFormat = "yyyy-MMdd-HHmmss"
-                let filename = format.string(from: Date())
-                let savePanel = NSSavePanel()
-                savePanel.canCreateDirectories = true
-                savePanel.showsTagField = false
-                savePanel.nameFieldStringValue = filename
-                savePanel.begin { (result) in
-                    if result == NSFileHandlingPanelOKButton {
-                        guard let url = savePanel.url else { return }
-                        
-                        var urlString = url.absoluteString
-                        
-                        //urlからfile://を削除する
-                        let startIndex = urlString.startIndex
-                        let endIndex = urlString.index(urlString.startIndex, offsetBy: 7)
-                        urlString.removeSubrange(startIndex..<endIndex)
-                        
-                        if self.leftSensorRecorder.recordText != ""{
-                            let leftUrlString = urlString+"-left.csv"
-                            try! self.leftSensorRecorder.recordText.write(toFile: leftUrlString, atomically: true, encoding: String.Encoding.utf8)
-                        }
-                        
-                        if self.rightSensorRecorder.recordText != ""{
-                            let rightUrlString = urlString+"-right.csv"
-                            try! self.rightSensorRecorder.recordText.write(toFile: rightUrlString, atomically: true, encoding: String.Encoding.utf8)
-                        }
-                    }
-                }
-            }
-            else{
-                self.leftSensorRecorder.startRecording()
-                self.rightSensorRecorder.startRecording()
-                self.startRecordButton.image = #imageLiteral(resourceName: "record-stop")
-            }
-        })
-        .disposed(by: disposeBag)
         
         activeLEDButton.rx.tap.subscribe(onNext: { [weak self] _ in
             for orphe in ORPManager.sharedInstance.connectedORPDataArray{
