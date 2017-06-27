@@ -67,6 +67,7 @@ class ViewController: NSViewController {
     }
     
     override func viewDidLayout() {
+        super.viewDidLayout()
         //graph
         rightSensorView.initSettings()
         leftSensorView.initSettings()
