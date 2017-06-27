@@ -11,11 +11,11 @@
             <objects>
                 <viewController title="OSC Settings" id="TzW-eX-f7c" customClass="OSCSettingViewController" customModule="Orphe_Hub_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ctN-nO-RJF">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="403"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7B-Q9-uO6">
-                                <rect key="frame" x="18" y="266" width="37" height="11"/>
+                                <rect key="frame" x="18" y="369" width="37" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="HOST" id="hXY-Ky-M2P">
                                     <font key="font" metaFont="miniSystem"/>
@@ -24,7 +24,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="El2-IM-UIM">
-                                <rect key="frame" x="18" y="244" width="73" height="11"/>
+                                <rect key="frame" x="18" y="347" width="73" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="PORT[SENDER]" id="5P2-iz-DRf">
                                     <font key="font" metaFont="miniSystem"/>
@@ -33,7 +33,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wn6-xl-xRB">
-                                <rect key="frame" x="18" y="206" width="80" height="11"/>
+                                <rect key="frame" x="18" y="309" width="80" height="11"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="PORT[RECEIVER]" id="Sgg-sd-VUg">
                                     <font key="font" metaFont="miniSystem"/>
@@ -41,8 +41,17 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbA-Q8-Zhb">
+                                <rect key="frame" x="3" y="273" width="164" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Received OSC Messages" id="vJv-VT-8QD">
+                                    <font key="font" metaFont="systemBold"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56S-2D-jpF">
-                                <rect key="frame" x="105" y="264" width="96" height="16"/>
+                                <rect key="frame" x="105" y="367" width="96" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="jXl-6r-oNW">
                                     <font key="font" metaFont="miniSystem"/>
@@ -54,7 +63,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7Z-wo-Gfh">
-                                <rect key="frame" x="105" y="242" width="96" height="16"/>
+                                <rect key="frame" x="105" y="345" width="96" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="3hb-Q1-lIe">
                                     <font key="font" metaFont="miniSystem"/>
@@ -66,7 +75,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V2a-FW-qCN">
-                                <rect key="frame" x="105" y="204" width="96" height="16"/>
+                                <rect key="frame" x="105" y="307" width="96" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="k0d-TZ-knk">
                                     <font key="font" metaFont="miniSystem"/>
@@ -78,17 +87,17 @@
                                 </connections>
                             </textField>
                             <scrollView fixedFrame="YES" borderType="groove" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvL-1d-nh3">
-                                <rect key="frame" x="0.0" y="0.0" width="208" height="168"/>
+                                <rect key="frame" x="0.0" y="0.0" width="208" height="265"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <clipView key="contentView" ambiguous="YES" id="l1y-fc-t82">
-                                    <rect key="frame" x="2" y="2" width="204" height="164"/>
+                                    <rect key="frame" x="2" y="2" width="204" height="261"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="pSH-hB-p72">
-                                            <rect key="frame" x="0.0" y="0.0" width="204" height="164"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="204" height="261"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="204" height="164"/>
+                                            <size key="minSize" width="204" height="261"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -100,31 +109,61 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="xQW-xr-Crm">
-                                    <rect key="frame" x="190" y="2" width="16" height="164"/>
+                                    <rect key="frame" x="190" y="2" width="16" height="261"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbA-Q8-Zhb">
-                                <rect key="frame" x="3" y="170" width="164" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8m-OJ-IiC">
+                                <rect key="frame" x="228" y="377" width="164" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Received OSC Messages" id="vJv-VT-8QD">
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Send value mapping" id="AGk-S2-nwf">
                                     <font key="font" metaFont="systemBold"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJX-dD-8OA" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
+                                <rect key="frame" x="227" y="306" width="203" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ht6-G6-nUw" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
+                                <rect key="frame" x="227" y="246" width="203" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QsK-ld-jLB" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
+                                <rect key="frame" x="227" y="186" width="203" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tdC-rM-wrZ" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
+                                <rect key="frame" x="227" y="126" width="203" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PvL-pK-mrB" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
+                                <rect key="frame" x="227" y="64" width="203" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76p-xI-jRJ" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
+                                <rect key="frame" x="227" y="4" width="203" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="accMapSettingView" destination="QsK-ld-jLB" id="Z48-Tr-Mil"/>
+                        <outlet property="eulerMapSettingView" destination="Ht6-G6-nUw" id="8uq-9h-FxH"/>
+                        <outlet property="gyroMapSettingView" destination="tdC-rM-wrZ" id="EZe-mq-2ql"/>
+                        <outlet property="magMapSettingView" destination="PvL-pK-mrB" id="RMa-Qg-kcG"/>
                         <outlet property="oscHostTextField" destination="56S-2D-jpF" id="Ppc-YD-qdK"/>
                         <outlet property="oscLogTextView" destination="pSH-hB-p72" id="4Fs-bg-xiX"/>
                         <outlet property="oscReceiverPortTextField" destination="V2a-FW-qCN" id="jRC-YD-RDf"/>
                         <outlet property="oscSenderPortTextField" destination="A7Z-wo-Gfh" id="vM9-n8-6BK"/>
+                        <outlet property="quatMapSettingView" destination="hJX-dD-8OA" id="UlH-BC-ZZv"/>
+                        <outlet property="shockMapSettingView" destination="76p-xI-jRJ" id="j7C-Rc-4lx"/>
                     </connections>
                 </viewController>
                 <customObject id="cbG-dd-Mtx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="181"/>
+            <point key="canvasLocation" x="137" y="232.5"/>
         </scene>
     </scenes>
 </document>

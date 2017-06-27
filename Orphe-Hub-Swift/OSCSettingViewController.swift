@@ -18,6 +18,14 @@ class OSCSettingViewController: NSViewController {
     @IBOutlet weak var oscReceiverPortTextField: NSTextField!
     @IBOutlet var oscLogTextView: NSTextView!
     
+    @IBOutlet weak var quatMapSettingView: MapValueSettingView!
+    @IBOutlet weak var eulerMapSettingView: MapValueSettingView!
+    @IBOutlet weak var accMapSettingView: MapValueSettingView!
+    @IBOutlet weak var gyroMapSettingView: MapValueSettingView!
+    @IBOutlet weak var magMapSettingView: MapValueSettingView!
+    @IBOutlet weak var shockMapSettingView: MapValueSettingView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +39,24 @@ class OSCSettingViewController: NSViewController {
         oscSenderPortTextField.stringValue = String(OSCManager.sharedInstance.clientPort)
         oscReceiverPortTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
         oscLogTextView.font = NSFont(name: oscLogTextView.font!.fontName, size: 10)
+        
+        quatMapSettingView.mapValue = OSCManager.sharedInstance.quatMapValue
+        
+        eulerMapSettingView.mapValue = OSCManager.sharedInstance.eulerMapValue
+        eulerMapSettingView.nameText.stringValue = "Angle"
+        
+        accMapSettingView.mapValue = OSCManager.sharedInstance.accMapValue
+        accMapSettingView.nameText.stringValue = "Accelerometer"
+        
+        gyroMapSettingView.mapValue = OSCManager.sharedInstance.gyroMapValue
+        gyroMapSettingView.nameText.stringValue = "Gyroscope"
+        
+        magMapSettingView.mapValue = OSCManager.sharedInstance.magMapValue
+        magMapSettingView.nameText.stringValue = "Magnetometer"
+        
+        shockMapSettingView.mapValue = OSCManager.sharedInstance.shockMapValue
+        shockMapSettingView.nameText.stringValue = "Shock"
+        
         updateOSCLogTextView()
     }
     
