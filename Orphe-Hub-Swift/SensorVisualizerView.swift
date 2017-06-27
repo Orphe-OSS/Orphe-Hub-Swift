@@ -22,6 +22,8 @@ class SensorVisualizerView:NSView{
     @IBOutlet weak var gestureLabel: NSTextField!
     @IBOutlet weak var frequencyLabel: NSTextField!
     
+    @IBOutlet weak var sideLabel: NSTextField!
+    
     var disposeBag = DisposeBag()
     
     var bleFreq = SensorFreqencyCalculator()
@@ -35,6 +37,9 @@ class SensorVisualizerView:NSView{
     var side:ORPSide = .left{
         didSet{
             sensorPlayer.dummyOrphe.side = side
+            if side == .right {
+                sideLabel.stringValue = "RIGHT"
+            }
         }
     }
     
