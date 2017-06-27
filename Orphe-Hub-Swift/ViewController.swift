@@ -16,11 +16,6 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
     
-    @IBOutlet weak var oscHostTextField: NSTextField!
-    @IBOutlet weak var oscSenderTextField: NSTextField!
-    @IBOutlet weak var oscReceiverTextField: NSTextField!
-    @IBOutlet var oscLogTextView: NSTextView!
-    
     @IBOutlet weak var activeLEDButton: NSButton!
     @IBOutlet weak var deactiveLEDButton: NSButton!
     
@@ -63,16 +58,6 @@ class ViewController: NSViewController {
         ORPManager.sharedInstance.startScan()
         
         rssiTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.readRSSI), userInfo: nil, repeats: true)
-        
-        //OSC view
-        OSCManager.sharedInstance.delegate = self
-        if !OSCManager.sharedInstance.startReceive(){
-            oscReceiverTextField.textColor = .red
-        }
-        oscHostTextField.stringValue = OSCManager.sharedInstance.clientHost
-        oscSenderTextField.stringValue = String(OSCManager.sharedInstance.clientPort)
-        oscReceiverTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
-        oscLogTextView.font = NSFont(name: oscLogTextView.font!.fontName, size: 10)
         
         //sensor setting views
         let sendingTypeArray = ["Standard",
@@ -273,26 +258,6 @@ class ViewController: NSViewController {
         }
     }
     
-    @IBAction func oscHostTextFieldInput(_ sender: NSTextField) {
-        OSCManager.sharedInstance.clientHost = sender.stringValue
-        print(sender.stringValue)
-    }
-    
-    @IBAction func oscSenderPortTextFieldInput(_ sender: NSTextField) {
-        OSCManager.sharedInstance.clientPort = sender.integerValue
-    }
-    
-    @IBAction func oscReceiverPortTextFieldInput(_ sender: NSTextField) {
-        OSCManager.sharedInstance.stopReceive()
-        OSCManager.sharedInstance.serverPort = sender.integerValue
-        if !OSCManager.sharedInstance.startReceive(){
-            oscReceiverTextField.textColor = .red
-        }
-        else{
-            oscReceiverTextField.textColor = .black
-        }
-    }
-    
     @IBAction func switchToOppositeSide(_ sender: Any) {
         for (index, _) in ORPManager.sharedInstance.connectedORPDataArray.enumerated(){
             let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
@@ -480,22 +445,4 @@ extension  ViewController: ORPManagerDelegate{
             rightSensorView.gestureLabel.stringValue = "RIGHT Gesture\n\n" + text
         }
     }
-}
-
-//MARK: - OSCDelegate
-var lines = [String]()
-extension ViewController: OSCManagerDelegate{
-    func oscDidReceiveMessage(message:String) {
-        lines.append(message)
-        if lines.count > 30{
-            lines.remove(at: 0)
-        }
-        
-        var drawLines = ""
-        for line in lines{
-            drawLines = line + "\n" + drawLines
-        }
-        oscLogTextView.string = drawLines
-    }
-    
 }
