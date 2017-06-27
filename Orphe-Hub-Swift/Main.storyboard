@@ -916,7 +916,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="Exf-nF-iQG" kind="show" id="wQU-eB-QkE"/>
+                                    <segue destination="Exf-nF-iQG" kind="show" identifier="toOSCSettingVC" id="wQU-eB-QkE"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k0e-LI-dnV">
@@ -927,7 +927,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="Vzu-6X-nro" kind="show" id="JUz-N3-2Ke"/>
+                                    <segue destination="Vzu-6X-nro" kind="modal" id="JUz-N3-2Ke"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkr-gp-0qk">
@@ -938,7 +938,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="Wzx-ji-HyX" kind="show" id="7e0-kv-s4s"/>
+                                    <segue destination="Wzx-ji-HyX" kind="show" identifier="toRecordPlaybackVC" id="7e0-kv-s4s"/>
                                 </connections>
                             </button>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="AD0-2p-LBs">
@@ -987,7 +987,7 @@
                 <controllerPlaceholder storyboardName="RecordPlaybackViewController" id="Wzx-ji-HyX" sceneMemberID="viewController"/>
                 <customObject id="XcS-XP-68q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-37" y="1485"/>
+            <point key="canvasLocation" x="1064" y="929"/>
         </scene>
         <!--OSCSettingViewController-->
         <scene sceneID="0OT-eH-baT">
@@ -995,7 +995,7 @@
                 <controllerPlaceholder storyboardName="OSCSettingViewController" id="Exf-nF-iQG" sceneMemberID="viewController"/>
                 <customObject id="6Xh-j7-Yen" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1040" y="1366"/>
+            <point key="canvasLocation" x="1051" y="851"/>
         </scene>
         <!--SensorSettingViewController-->
         <scene sceneID="5yT-14-i8Y">
@@ -1003,7 +1003,7 @@
                 <controllerPlaceholder storyboardName="SensorSettingViewController" id="Vzu-6X-nro" sceneMemberID="viewController"/>
                 <customObject id="ccE-dB-4Yg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="689" y="1482"/>
+            <point key="canvasLocation" x="1059" y="1006"/>
         </scene>
     </scenes>
 </document>

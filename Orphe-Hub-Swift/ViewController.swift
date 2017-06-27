@@ -141,7 +141,28 @@ class ViewController: NSViewController {
         }
     }
     
-    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        switch identifier {
+        case "toOSCSettingVC":
+            for window in NSApplication.shared().windows{
+                if window.contentViewController is OSCSettingViewController{
+                    window.orderFrontRegardless()
+                    return false
+                }
+            }
+        case "toRecordPlaybackVC":
+            for window in NSApplication.shared().windows{
+                if window.contentViewController is RecordPlaybackViewController{
+                    window.orderFrontRegardless()
+                    return false
+                }
+            }
+        default:
+            break
+        }
+        
+        return true
+    }
     
 }
 
