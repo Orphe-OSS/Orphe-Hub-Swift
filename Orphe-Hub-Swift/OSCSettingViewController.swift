@@ -18,20 +18,20 @@ class OSCSettingViewController: NSViewController {
     @IBOutlet weak var oscReceiverPortTextField: NSTextField!
     @IBOutlet var oscLogTextView: NSTextView!
     
-    var oscLogLines = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         OSCManager.sharedInstance.delegate = self
-        if !OSCManager.sharedInstance.startReceive(){
-            oscReceiverPortTextField.textColor = .red
+        if !OSCManager.sharedInstance.isReceiving{
+            if !OSCManager.sharedInstance.startReceive(){
+                oscReceiverPortTextField.textColor = .red
+            }
         }
         oscHostTextField.stringValue = OSCManager.sharedInstance.clientHost
         oscSenderPortTextField.stringValue = String(OSCManager.sharedInstance.clientPort)
         oscReceiverPortTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
         oscLogTextView.font = NSFont(name: oscLogTextView.font!.fontName, size: 10)
-        
+        updateOSCLogTextView()
     }
     
     @IBAction func oscHostTextFieldInput(_ sender: NSTextField) {
@@ -59,16 +59,15 @@ class OSCSettingViewController: NSViewController {
 //MARK: - OSCDelegate
 extension OSCSettingViewController: OSCManagerDelegate{
     func oscDidReceiveMessage(message:String) {
-        oscLogLines.append(message)
-        if oscLogLines.count > 30{
-            oscLogLines.remove(at: 0)
-        }
-        
-        var drawLines = ""
-        for line in oscLogLines{
-            drawLines = line + "\n" + drawLines
-        }
-        oscLogTextView.string = drawLines
+        updateOSCLogTextView()
     }
     
+    func updateOSCLogTextView(){
+        var drawLines = ""
+        for line in OSCManager.sharedInstance.oscReceivedMessages{
+            drawLines = drawLines + "\n" + line
+        }
+        oscLogTextView.string = drawLines
+        oscLogTextView.scrollToEndOfDocument(oscLogTextView)
+    }
 }

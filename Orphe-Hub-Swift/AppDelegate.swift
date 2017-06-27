@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         print("applicationDidFinishLaunching")
         // Insert code here to initialize your application
+        OSCManager.sharedInstance.startReceive()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

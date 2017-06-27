@@ -34,6 +34,8 @@ class OSCManager:NSObject, OSCServerDelegate{
     }
     
     var serverPort = 4321
+    var isReceiving = false
+    var oscReceivedMessages = [String]()
     
     private override init() {
         super.init()
@@ -49,6 +51,7 @@ class OSCManager:NSObject, OSCServerDelegate{
     
     func stopReceive(){
         server.stop()
+        isReceiving = false
     }
     
     func startReceive()->Bool{
@@ -60,6 +63,7 @@ class OSCManager:NSObject, OSCServerDelegate{
         } catch let e {
             return false
         }
+        isReceiving = true
         return true
         
     }
@@ -120,6 +124,13 @@ class OSCManager:NSObject, OSCServerDelegate{
         client.send(message, to: clientPath)
     }
     
+    func addReceivedOSCMessage(message:String){
+        oscReceivedMessages.append(message)
+        if oscReceivedMessages.count > 30{
+            oscReceivedMessages.remove(at: 0)
+        }
+    }
+    
     func handle(_ message: OSCMessage!) {
         let oscAddress = message.address.components(separatedBy: "/")
         
@@ -139,6 +150,7 @@ class OSCManager:NSObject, OSCServerDelegate{
         }
         else{
             mString = "You have to add '/BOTH' or '/LEFT' or '/RIGHT' to beginning of address. "
+            addReceivedOSCMessage(message: mString)
             delegate?.oscDidReceiveMessage?(message: mString)
             return
         }
@@ -213,6 +225,7 @@ class OSCManager:NSObject, OSCServerDelegate{
             }
             mString = message.address + args
         }
+        addReceivedOSCMessage(message: mString)
         delegate?.oscDidReceiveMessage?(message: mString)
     }
     
