@@ -23,6 +23,8 @@
 		E64E85A11EFAA95E00C9AD04 /* SensorValueCSVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64E85A01EFAA95E00C9AD04 /* SensorValueCSVPlayer.swift */; };
 		E64E85C01F02185300C9AD04 /* OSCSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64E85BF1F02185300C9AD04 /* OSCSettingViewController.storyboard */; };
 		E64E85C31F021DB800C9AD04 /* OSCSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64E85C21F021DB800C9AD04 /* OSCSettingViewController.swift */; };
+		E64E85C51F02305700C9AD04 /* SensorSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E64E85C41F02305700C9AD04 /* SensorSettingViewController.storyboard */; };
+		E64E85C71F0230E000C9AD04 /* SensorSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E64E85C61F0230E000C9AD04 /* SensorSettingViewController.swift */; };
 		E66053C41EDD737B00EC8678 /* RecordSensorValuesCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */; };
 		E66053C61EDDCA1000EC8678 /* SensorFreqencyCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66053C51EDDCA1000EC8678 /* SensorFreqencyCalculator.swift */; };
 		E66053CC1EDF09A400EC8678 /* MultiLineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E66053CB1EDF09A400EC8678 /* MultiLineGraphView.swift */; };
@@ -111,6 +113,8 @@
 		E64E85A01EFAA95E00C9AD04 /* SensorValueCSVPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorValueCSVPlayer.swift; path = "Orphe-Hub-Swift/SensorValueCSVPlayer.swift"; sourceTree = SOURCE_ROOT; };
 		E64E85BF1F02185300C9AD04 /* OSCSettingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = OSCSettingViewController.storyboard; path = "Orphe-Hub-Swift/OSCSettingViewController.storyboard"; sourceTree = SOURCE_ROOT; };
 		E64E85C21F021DB800C9AD04 /* OSCSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSCSettingViewController.swift; path = "Orphe-Hub-Swift/OSCSettingViewController.swift"; sourceTree = SOURCE_ROOT; };
+		E64E85C41F02305700C9AD04 /* SensorSettingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SensorSettingViewController.storyboard; path = "Orphe-Hub-Swift/SensorSettingViewController.storyboard"; sourceTree = SOURCE_ROOT; };
+		E64E85C61F0230E000C9AD04 /* SensorSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorSettingViewController.swift; path = "Orphe-Hub-Swift/SensorSettingViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordSensorValuesCSV.swift; path = "Orphe-Hub-Swift/RecordSensorValuesCSV.swift"; sourceTree = SOURCE_ROOT; };
 		E66053C51EDDCA1000EC8678 /* SensorFreqencyCalculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorFreqencyCalculator.swift; path = "Orphe-Hub-Swift/SensorFreqencyCalculator.swift"; sourceTree = SOURCE_ROOT; };
 		E66053CB1EDF09A400EC8678 /* MultiLineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiLineGraphView.swift; path = "Orphe-Hub-Swift/MultiLineGraphView.swift"; sourceTree = SOURCE_ROOT; };
@@ -190,9 +194,11 @@
 				E61393051E8E6A31002DD502 /* AppDelegate.swift */,
 				E61393111E8E6A6D002DD502 /* Main.storyboard */,
 				E61393091E8E6A31002DD502 /* ViewController.swift */,
+				E66053CD1EDFCF1900EC8678 /* GraphUI */,
 				E64E85BF1F02185300C9AD04 /* OSCSettingViewController.storyboard */,
 				E64E85C21F021DB800C9AD04 /* OSCSettingViewController.swift */,
-				E66053CD1EDFCF1900EC8678 /* GraphUI */,
+				E64E85C41F02305700C9AD04 /* SensorSettingViewController.storyboard */,
+				E64E85C61F0230E000C9AD04 /* SensorSettingViewController.swift */,
 				E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */,
 				E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */,
 				E64E85A01EFAA95E00C9AD04 /* SensorValueCSVPlayer.swift */,
@@ -404,6 +410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E64E85C51F02305700C9AD04 /* SensorSettingViewController.storyboard in Resources */,
 				E64E85C01F02185300C9AD04 /* OSCSettingViewController.storyboard in Resources */,
 				E613930B1E8E6A31002DD502 /* Assets.xcassets in Resources */,
 				E613930D1E8E6A31002DD502 /* Info.plist in Resources */,
@@ -580,6 +587,7 @@
 				E6401E881EA6317300DEBC32 /* ObjC_Exception.m in Sources */,
 				E64E85A11EFAA95E00C9AD04 /* SensorValueCSVPlayer.swift in Sources */,
 				E64E85C31F021DB800C9AD04 /* OSCSettingViewController.swift in Sources */,
+				E64E85C71F0230E000C9AD04 /* SensorSettingViewController.swift in Sources */,
 				E66053C61EDDCA1000EC8678 /* SensorFreqencyCalculator.swift in Sources */,
 				E613930A1E8E6A31002DD502 /* AppDelegate.swift in Sources */,
 				E666C4151EC5EFA3005DFF17 /* LineGraphView.swift in Sources */,
