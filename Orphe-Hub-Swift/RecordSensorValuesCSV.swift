@@ -109,7 +109,7 @@ class RecordSensorValuesCSV {
                 recordText += valuesToCSV(orphe: orphe, sensorKind: .acc, receiveTime: receiveTime, sendingType: .standard)
                 
                 //shock
-                recordText += String(orphe.getShock())
+                recordText += ","+String(Int(orphe.getShock()))
                 recordText += "\n"
             }
             else{
