@@ -15,7 +15,14 @@ class MapValueSettingView:NSView{
     @IBOutlet weak var nameText: NSTextField!
     @IBOutlet weak var minValueTextField: NSTextField!
     @IBOutlet weak var maxValueTextField: NSTextField!
-    weak var mapValue:MapValue?
+    weak var mapValue:MapValue?{
+        didSet{
+            if mapValue != nil{
+                minValueTextField.stringValue = String(describing: mapValue!.min)
+                maxValueTextField.stringValue = String(describing: mapValue!.max)
+            }
+        }
+    }
     
     var disposeBag = DisposeBag()
     

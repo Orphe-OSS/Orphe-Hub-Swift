@@ -62,6 +62,13 @@ class OSCManager:NSObject, OSCServerDelegate{
         
         client = OSCClient()
         
+        eulerMapValue.max = 180
+        eulerMapValue.min = -180
+        shockMapValue.max = 255
+        shockMapValue.min = 0
+        magMapValue.max = 359
+        magMapValue.min = 0
+        
         NotificationCenter.default.addObserver(self, selector:  #selector(OSCManager.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
         NotificationCenter.default.addObserver(self, selector:  #selector(OSCManager.OrpheDidCatchGestureEvent(notification:)), name: .OrpheDidCatchGestureEvent, object: nil)
         
