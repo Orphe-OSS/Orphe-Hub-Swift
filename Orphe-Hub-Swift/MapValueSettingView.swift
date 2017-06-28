@@ -64,13 +64,25 @@ class MapValueSettingView:NSView{
         
         minValueTextField.rx.controlEvent
             .subscribe(onNext: { [unowned self] _ in
-                self.mapValue?.min = Float(self.minValueTextField.stringValue)!
+                guard let _mapValue = self.mapValue else {return}
+                if let input = Float(self.minValueTextField.stringValue){
+                    _mapValue.min = input
+                }
+                else{
+                    self.minValueTextField.stringValue = String(_mapValue.min)
+                }
             })
             .addDisposableTo(disposeBag)
         
         maxValueTextField.rx.controlEvent
             .subscribe(onNext: { [unowned self] _ in
-                self.mapValue?.max = Float(self.maxValueTextField.stringValue)!
+                guard let _mapValue = self.mapValue else {return}
+                if let input = Float(self.maxValueTextField.stringValue){
+                    _mapValue.max = input
+                }
+                else{
+                    self.maxValueTextField.stringValue = String(_mapValue.max)
+                }
             })
             .addDisposableTo(disposeBag)
         
