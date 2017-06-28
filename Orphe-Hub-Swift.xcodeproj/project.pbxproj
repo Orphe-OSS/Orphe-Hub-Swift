@@ -207,13 +207,9 @@
 				E64E85D71F02731F00C9AD04 /* WindowController.swift */,
 				E66053CD1EDFCF1900EC8678 /* GraphUI */,
 				E64E85D91F02BE8100C9AD04 /* OSCSettingVC */,
-				E64E85C41F02305700C9AD04 /* SensorSettingViewController.storyboard */,
-				E64E85C61F0230E000C9AD04 /* SensorSettingViewController.swift */,
-				E64E85D11F02567400C9AD04 /* RecordPlaybackViewController.storyboard */,
-				E64E85D41F02579D00C9AD04 /* RecordPlaybackViewController.swift */,
+				E6D62D591F037EEC00E71294 /* SensorSettingVC */,
+				E6D62D571F037EDC00E71294 /* RecordPlaybackVC */,
 				E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */,
-				E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */,
-				E64E85A01EFAA95E00C9AD04 /* SensorValueCSVPlayer.swift */,
 				E66053C51EDDCA1000EC8678 /* SensorFreqencyCalculator.swift */,
 				E67488131E992A8D00DA7D9C /* CommonUI */,
 				E6401E831EA6317300DEBC32 /* OSCManager */,
@@ -273,6 +269,26 @@
 				1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */,
 			);
 			name = CommonUI;
+			sourceTree = "<group>";
+		};
+		E6D62D571F037EDC00E71294 /* RecordPlaybackVC */ = {
+			isa = PBXGroup;
+			children = (
+				E64E85D11F02567400C9AD04 /* RecordPlaybackViewController.storyboard */,
+				E64E85D41F02579D00C9AD04 /* RecordPlaybackViewController.swift */,
+				E66053C31EDD737B00EC8678 /* RecordSensorValuesCSV.swift */,
+				E64E85A01EFAA95E00C9AD04 /* SensorValueCSVPlayer.swift */,
+			);
+			name = RecordPlaybackVC;
+			sourceTree = "<group>";
+		};
+		E6D62D591F037EEC00E71294 /* SensorSettingVC */ = {
+			isa = PBXGroup;
+			children = (
+				E64E85C41F02305700C9AD04 /* SensorSettingViewController.storyboard */,
+				E64E85C61F0230E000C9AD04 /* SensorSettingViewController.swift */,
+			);
+			name = SensorSettingVC;
 			sourceTree = "<group>";
 		};
 		F8CE49B909FF879396EA5470 /* Pods */ = {

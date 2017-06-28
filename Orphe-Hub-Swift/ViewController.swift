@@ -157,11 +157,32 @@ class ViewController: NSViewController {
                     return false
                 }
             }
+        case "toSensorSettingVC":
+            for window in NSApplication.shared().windows{
+                if window.contentViewController is SensorSettingViewController{
+                    window.orderFrontRegardless()
+                    return false
+                }
+            }
         default:
             break
         }
         
         return true
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        guard let wc = segue.destinationController as? NSWindowController else {return}
+        //常に子windowを親windowの上に表示するための処理
+        if let childWindow = wc.window{
+            let parentWindow : NSWindow = self.view.window!
+            parentWindow.orderFront(self)
+            parentWindow.makeKeyAndOrderFront(self)
+            
+            childWindow.orderFront(self)
+            childWindow.makeKeyAndOrderFront(self)
+            parentWindow.addChildWindow(childWindow, ordered: NSWindowOrderingMode.above)
+        }
     }
     
 }
