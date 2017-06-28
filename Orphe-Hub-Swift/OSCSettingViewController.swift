@@ -43,19 +43,19 @@ class OSCSettingViewController: NSViewController {
         quatMapSettingView.mapValue = OSCManager.sharedInstance.quatMapValue
         
         eulerMapSettingView.mapValue = OSCManager.sharedInstance.eulerMapValue
-        eulerMapSettingView.nameText.stringValue = "Angle"
+        eulerMapSettingView.nameText.stringValue = mapSttingViewName.Angle.rawValue
         
         accMapSettingView.mapValue = OSCManager.sharedInstance.accMapValue
-        accMapSettingView.nameText.stringValue = "Accelerometer"
+        accMapSettingView.nameText.stringValue = mapSttingViewName.Accelerometer.rawValue
         
         gyroMapSettingView.mapValue = OSCManager.sharedInstance.gyroMapValue
-        gyroMapSettingView.nameText.stringValue = "Gyroscope"
+        gyroMapSettingView.nameText.stringValue = mapSttingViewName.Gyroscope.rawValue
         
         magMapSettingView.mapValue = OSCManager.sharedInstance.magMapValue
-        magMapSettingView.nameText.stringValue = "Magnetometer"
+        magMapSettingView.nameText.stringValue = mapSttingViewName.Magnetometer.rawValue
         
         shockMapSettingView.mapValue = OSCManager.sharedInstance.shockMapValue
-        shockMapSettingView.nameText.stringValue = "Shock"
+        shockMapSettingView.nameText.stringValue = mapSttingViewName.Shock.rawValue
         
         updateOSCLogTextView()
     }

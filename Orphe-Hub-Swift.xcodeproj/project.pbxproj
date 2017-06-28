@@ -37,6 +37,7 @@
 		E666C40B1EC33750005DFF17 /* Orphe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E666C4071EC33748005DFF17 /* Orphe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E666C4151EC5EFA3005DFF17 /* LineGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */; };
 		E6D62D5E1F03A77500E71294 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D62D5D1F03A77500E71294 /* AppSettings.swift */; };
+		E6D62D631F03B4A800E71294 /* OSCMappingValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D62D621F03B4A800E71294 /* OSCMappingValues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,7 @@
 		E666C4011EC33748005DFF17 /* Orphe.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Orphe.xcodeproj; path = OrpheSDK_Swift/OrpheSDK_macOS/Orphe.xcodeproj; sourceTree = "<group>"; };
 		E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LineGraphView.swift; path = "Orphe-Hub-Swift/LineGraphView.swift"; sourceTree = SOURCE_ROOT; };
 		E6D62D5D1F03A77500E71294 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppSettings.swift; path = "Orphe-Hub-Swift/AppSettings.swift"; sourceTree = SOURCE_ROOT; };
+		E6D62D621F03B4A800E71294 /* OSCMappingValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSCMappingValues.swift; sourceTree = SOURCE_ROOT; };
 		F20B72AB02DB0372E61B20AA /* Pods-Orphe-Hub-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-Swift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		F96CE5BD2DD3FB50B8CDD740 /* Pods-Orphe-Hub-Swift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-Swift.release.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,6 +203,7 @@
 			children = (
 				E61393051E8E6A31002DD502 /* AppDelegate.swift */,
 				E6D62D5D1F03A77500E71294 /* AppSettings.swift */,
+				E6D62D601F03B47000E71294 /* Realm */,
 				E6D62D5C1F03A73900E71294 /* MainCV */,
 				E66053CD1EDFCF1900EC8678 /* GraphUI */,
 				E64E85D91F02BE8100C9AD04 /* OSCSettingVC */,
@@ -286,6 +289,14 @@
 				E64E85D71F02731F00C9AD04 /* WindowController.swift */,
 			);
 			name = MainCV;
+			sourceTree = "<group>";
+		};
+		E6D62D601F03B47000E71294 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				E6D62D621F03B4A800E71294 /* OSCMappingValues.swift */,
+			);
+			name = Realm;
 			sourceTree = "<group>";
 		};
 		F8CE49B909FF879396EA5470 /* Pods */ = {
@@ -625,6 +636,7 @@
 				E64E85DD1F02C02000C9AD04 /* MapValueSettingView.swift in Sources */,
 				E64E85D51F02579D00C9AD04 /* RecordPlaybackViewController.swift in Sources */,
 				E64E85C31F021DB800C9AD04 /* OSCSettingViewController.swift in Sources */,
+				E6D62D631F03B4A800E71294 /* OSCMappingValues.swift in Sources */,
 				E64E85C71F0230E000C9AD04 /* SensorSettingViewController.swift in Sources */,
 				E66053C61EDDCA1000EC8678 /* SensorFreqencyCalculator.swift in Sources */,
 				E613930A1E8E6A31002DD502 /* AppDelegate.swift in Sources */,

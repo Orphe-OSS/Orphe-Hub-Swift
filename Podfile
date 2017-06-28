@@ -8,6 +8,7 @@ target 'Orphe-Hub-Swift' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'CSwiftV'
+  pod 'RealmSwift'
 
   # Pods for Orphe-Hub-Swift
 

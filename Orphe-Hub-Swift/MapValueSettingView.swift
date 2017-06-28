@@ -9,6 +9,7 @@
 import Cocoa
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 class MapValueSettingView:NSView{
     
@@ -67,6 +68,7 @@ class MapValueSettingView:NSView{
                 guard let _mapValue = self.mapValue else {return}
                 if let input = Float(self.minValueTextField.stringValue){
                     _mapValue.min = input
+                    OSCMappingValues.setMin(name: self.nameText.stringValue, minValue: input)
                 }
                 else{
                     self.minValueTextField.stringValue = String(_mapValue.min)
@@ -79,6 +81,7 @@ class MapValueSettingView:NSView{
                 guard let _mapValue = self.mapValue else {return}
                 if let input = Float(self.maxValueTextField.stringValue){
                     _mapValue.max = input
+                    OSCMappingValues.setMax(name: self.nameText.stringValue, maxValue: input)
                 }
                 else{
                     self.maxValueTextField.stringValue = String(_mapValue.max)
