@@ -21,6 +21,7 @@ class RecordPlaybackViewController: NSViewController {
     @IBOutlet weak var rightLoadCSVButton: NSButton!
     @IBOutlet weak var leftFileNameLabel: NSTextField!
     @IBOutlet weak var rightFileNameLabel: NSTextField!
+    @IBOutlet weak var loopCheckButton: NSButton!
     
     var disposeBag = DisposeBag()
     
@@ -123,7 +124,18 @@ class RecordPlaybackViewController: NSViewController {
             })
             .disposed(by: disposeBag)
         
-        
+        loopCheckButton.rx.tap
+            .subscribe(onNext: { [unowned self] _ in
+                if self.loopCheckButton.state == NSOnState{
+                    self.leftSensorPlayer.isLoop = true
+                    self.rightSensorPlayer.isLoop = true
+                }
+                else{
+                    self.leftSensorPlayer.isLoop = false
+                    self.rightSensorPlayer.isLoop = false
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     override func viewDidDisappear() {

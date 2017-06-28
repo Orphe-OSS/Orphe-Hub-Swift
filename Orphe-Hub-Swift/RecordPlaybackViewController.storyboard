@@ -108,11 +108,20 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fVe-VR-od9">
+                                <rect key="frame" x="310" y="52" width="53" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Loop" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="kMa-dv-rSa">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="leftFileNameLabel" destination="pDT-rh-Lsi" id="kj6-U3-yTP"/>
                         <outlet property="leftLoadCSVButton" destination="jDO-fe-zIu" id="nC9-dv-ccx"/>
+                        <outlet property="loopCheckButton" destination="fVe-VR-od9" id="ciY-iz-kKP"/>
                         <outlet property="playCSVButton" destination="47e-76-tDi" id="g59-lp-M33"/>
                         <outlet property="rightFileNameLabel" destination="w9j-Qo-XdS" id="o0t-8t-aRR"/>
                         <outlet property="rightLoadCSVButton" destination="vaM-2J-GP0" id="t3w-Av-YcB"/>

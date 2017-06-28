@@ -16,6 +16,7 @@ class SensorValueCSVPlayer{
     var csv:CSwiftV?
     var currentRow = 0
     var isPlaying = false
+    var isLoop = true
     
     //“timestamp,quatW,quatX,quatY,quatZ,eulerX,eulerY,eulerZ,gyroX,gyroY,gyroZ,magX,magY,magZ,accX,accY,accZ,shock
     enum csvKeys:String{
@@ -116,8 +117,18 @@ class SensorValueCSVPlayer{
         //row count
         self.currentRow += 1
         if currentRow == csv?.rows.count {
-            isPlaying = false
             currentRow = 0
+            if isLoop {
+                //最初から再生
+                let popTime = DispatchTime.now() + 0.020
+                DispatchQueue.main.asyncAfter(deadline: popTime,  execute: {
+                    self.updateSensorValues()
+                })
+            }
+            else{
+                //終了
+                isPlaying = false
+            }
             return
         }
         
