@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B3E39041E950921008DA5D1 /* DrawShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E39031E950921008DA5D1 /* DrawShape.swift */; };
-		1BF25CB71E9797FB00C1D576 /* LabelGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */; };
 		6ADCBB8F73F10784C8C69865 /* Pods_Orphe_Hub_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59FAF910D4516659E01E5E99 /* Pods_Orphe_Hub_Swift.framework */; };
 		970CE3B296A0649233F785DF /* Pods_Orphe_Hub_SwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA01EC53DA1308C04022ABE5 /* Pods_Orphe_Hub_SwiftUITests.framework */; };
 		C678207C50C1356C48F18B88 /* Pods_Orphe_Hub_SwiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508B9A273B967592056C8820 /* Pods_Orphe_Hub_SwiftTests.framework */; };
@@ -94,8 +92,6 @@
 
 /* Begin PBXFileReference section */
 		101FC98D10FB2EBC7A8AD8BA /* Pods-Orphe-Hub-SwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-SwiftUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-SwiftUITests/Pods-Orphe-Hub-SwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
-		1B3E39031E950921008DA5D1 /* DrawShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawShape.swift; path = "Orphe-Hub-Swift/DrawShape.swift"; sourceTree = SOURCE_ROOT; };
-		1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelGraphView.swift; path = "Orphe-Hub-Swift/LabelGraphView.swift"; sourceTree = SOURCE_ROOT; };
 		508B9A273B967592056C8820 /* Pods_Orphe_Hub_SwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphe_Hub_SwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55734E61B5F03A1141ECE3ED /* Pods-Orphe-Hub-SwiftTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-SwiftTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-SwiftTests/Pods-Orphe-Hub-SwiftTests.release.xcconfig"; sourceTree = "<group>"; };
 		59FAF910D4516659E01E5E99 /* Pods_Orphe_Hub_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphe_Hub_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,7 +208,6 @@
 				E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */,
 				E66053C51EDDCA1000EC8678 /* SensorFreqencyCalculator.swift */,
 				E6401E831EA6317300DEBC32 /* OSCManager */,
-				E67488131E992A8D00DA7D9C /* CommonUI */,
 				E61393061E8E6A31002DD502 /* Assets.xcassets */,
 				E61393081E8E6A31002DD502 /* Info.plist */,
 			);
@@ -260,15 +255,6 @@
 				E666C4091EC33748005DFF17 /* OrpheTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		E67488131E992A8D00DA7D9C /* CommonUI */ = {
-			isa = PBXGroup;
-			children = (
-				1B3E39031E950921008DA5D1 /* DrawShape.swift */,
-				1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */,
-			);
-			name = CommonUI;
 			sourceTree = "<group>";
 		};
 		E6D62D571F037EDC00E71294 /* RecordPlaybackVC */ = {
@@ -619,11 +605,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1BF25CB71E9797FB00C1D576 /* LabelGraphView.swift in Sources */,
 				E66053C41EDD737B00EC8678 /* RecordSensorValuesCSV.swift in Sources */,
 				E613930E1E8E6A31002DD502 /* ViewController.swift in Sources */,
 				E6401E871EA6317300DEBC32 /* OSCManager.swift in Sources */,
-				1B3E39041E950921008DA5D1 /* DrawShape.swift in Sources */,
 				E66053D11EDFCFCC00EC8678 /* SensorVisualizerView.swift in Sources */,
 				E6401E881EA6317300DEBC32 /* ObjC_Exception.m in Sources */,
 				E64E85A11EFAA95E00C9AD04 /* SensorValueCSVPlayer.swift in Sources */,
