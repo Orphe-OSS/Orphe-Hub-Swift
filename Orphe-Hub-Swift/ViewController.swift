@@ -92,15 +92,25 @@ class ViewController: NSViewController {
     
     func updateCellsState(){
         for (index, orp) in ORPManager.sharedInstance.availableORPDataArray.enumerated(){
+            
+            //接続状態で行の背景色を変える
+            if let row = tableView.rowView(atRow: index, makeIfNecessary: true){
+                if orp.state() == .connected{
+                    row.backgroundColor = NSColor.darkGray
+                }
+                else{
+                    row.backgroundColor = NSColor.white
+                }
+            }
+            
+            //接続状態で文字の色を変える
             for (columnNum, _) in tableView.tableColumns.enumerated(){
                 if let cell = tableView.view(atColumn: columnNum, row: index, makeIfNecessary: true) as? NSTableCellView{
                     if orp.state() == .connected{
                         cell.textField?.textColor = NSColor.yellow
-                        cell.textField?.backgroundColor = NSColor.darkGray
                     }
                     else{
                         cell.textField?.textColor = NSColor.black
-                        cell.textField?.backgroundColor = NSColor.white
                     }
                     
                     if let cell = tableView.view(atColumn: 2, row: index, makeIfNecessary: true) as? NSTableCellView{
