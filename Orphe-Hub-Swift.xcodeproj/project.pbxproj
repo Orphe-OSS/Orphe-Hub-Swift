@@ -211,8 +211,8 @@
 				E6D62D571F037EDC00E71294 /* RecordPlaybackVC */,
 				E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */,
 				E66053C51EDDCA1000EC8678 /* SensorFreqencyCalculator.swift */,
-				E67488131E992A8D00DA7D9C /* CommonUI */,
 				E6401E831EA6317300DEBC32 /* OSCManager */,
+				E67488131E992A8D00DA7D9C /* CommonUI */,
 				E61393061E8E6A31002DD502 /* Assets.xcassets */,
 				E61393081E8E6A31002DD502 /* Info.plist */,
 			);

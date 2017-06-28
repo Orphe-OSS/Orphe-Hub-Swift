@@ -101,7 +101,7 @@ extension OSCSettingViewController: OSCManagerDelegate{
     func updateOSCLogTextView(){
         var drawLines = ""
         for line in OSCManager.sharedInstance.oscReceivedMessages{
-            drawLines = drawLines + "\n" + line
+            drawLines += line+"\n"
         }
         oscLogTextView.string = drawLines
         oscLogTextView.scrollToEndOfDocument(oscLogTextView)

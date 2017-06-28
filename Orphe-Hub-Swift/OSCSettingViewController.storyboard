@@ -29,7 +29,7 @@
             <objects>
                 <viewController title="OSC Settings" id="TzW-eX-f7c" customClass="OSCSettingViewController" customModule="Orphe_Hub_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ctN-nO-RJF">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="403"/>
+                        <rect key="frame" x="0.0" y="0.0" width="511" height="403"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M7B-Q9-uO6">
@@ -105,17 +105,17 @@
                                 </connections>
                             </textField>
                             <scrollView fixedFrame="YES" borderType="groove" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lvL-1d-nh3">
-                                <rect key="frame" x="0.0" y="0.0" width="208" height="265"/>
+                                <rect key="frame" x="0.0" y="0.0" width="292" height="265"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <clipView key="contentView" ambiguous="YES" id="l1y-fc-t82">
-                                    <rect key="frame" x="2" y="2" width="204" height="261"/>
+                                    <rect key="frame" x="2" y="2" width="288" height="261"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView ambiguous="YES" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="pSH-hB-p72">
-                                            <rect key="frame" x="0.0" y="0.0" width="204" height="261"/>
+                                        <textView ambiguous="YES" editable="NO" importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="pSH-hB-p72">
+                                            <rect key="frame" x="0.0" y="0.0" width="288" height="261"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="204" height="261"/>
+                                            <size key="minSize" width="288" height="261"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -127,12 +127,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="xQW-xr-Crm">
-                                    <rect key="frame" x="190" y="2" width="16" height="261"/>
+                                    <rect key="frame" x="274" y="2" width="16" height="261"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8m-OJ-IiC">
-                                <rect key="frame" x="228" y="377" width="164" height="17"/>
+                                <rect key="frame" x="301" y="380" width="164" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Send value mapping" id="AGk-S2-nwf">
                                     <font key="font" metaFont="systemBold"/>
@@ -141,27 +141,27 @@
                                 </textFieldCell>
                             </textField>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJX-dD-8OA" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                <rect key="frame" x="227" y="306" width="203" height="52"/>
+                                <rect key="frame" x="300" y="309" width="203" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ht6-G6-nUw" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                <rect key="frame" x="227" y="246" width="203" height="52"/>
+                                <rect key="frame" x="300" y="249" width="203" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QsK-ld-jLB" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                <rect key="frame" x="227" y="186" width="203" height="52"/>
+                                <rect key="frame" x="300" y="189" width="203" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tdC-rM-wrZ" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                <rect key="frame" x="227" y="126" width="203" height="52"/>
+                                <rect key="frame" x="300" y="129" width="203" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PvL-pK-mrB" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                <rect key="frame" x="227" y="64" width="203" height="52"/>
+                                <rect key="frame" x="300" y="67" width="203" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76p-xI-jRJ" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                <rect key="frame" x="227" y="4" width="203" height="52"/>
+                                <rect key="frame" x="300" y="7" width="203" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                         </subviews>
@@ -181,7 +181,7 @@
                 </viewController>
                 <customObject id="cbG-dd-Mtx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137" y="232.5"/>
+            <point key="canvasLocation" x="167.5" y="232.5"/>
         </scene>
     </scenes>
 </document>
