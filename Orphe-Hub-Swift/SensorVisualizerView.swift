@@ -17,6 +17,7 @@ class SensorVisualizerView:NSView{
     @IBOutlet weak var eulerGraph: MultiLineGraphView!
     @IBOutlet weak var accGraph: MultiLineGraphView!
     @IBOutlet weak var gyroGraph: MultiLineGraphView!
+    @IBOutlet weak var magGraph: MultiLineGraphView!
     
     @IBOutlet weak var sensorValueLabel: NSTextField!
     @IBOutlet weak var gestureLabel: NSTextField!
@@ -85,11 +86,13 @@ class SensorVisualizerView:NSView{
         accGraph.setLineNum(3)
         gyroGraph.setLineNum(3)
         eulerGraph.setLineNum(3)
+        magGraph.setLineNum(3)
         
         quatGraph.layer?.backgroundColor = .black
         accGraph.layer?.backgroundColor = .black
         gyroGraph.layer?.backgroundColor = .black
         eulerGraph.layer?.backgroundColor = .black
+        magGraph.layer?.backgroundColor = .black
     }
     
     func updateSensorValues(orphe:ORPData){
@@ -117,6 +120,11 @@ class SensorVisualizerView:NSView{
         for array in orphe.normalizedEulerArray {
             for (i ,val) in array.enumerated(){
                 eulerGraph.lineGraphArray[i].addValue(CGFloat(val))
+            }
+        }
+        for array in orphe.normalizedMagArray {
+            for (i ,val) in array.enumerated(){
+                magGraph.lineGraphArray[i].addValue(CGFloat(val))
             }
         }
     }
