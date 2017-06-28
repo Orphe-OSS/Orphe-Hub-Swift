@@ -17,6 +17,9 @@ class LineGraphView: NSView{
     var bufSize:Int = 256
     var lineColor:NSColor = .red
     
+    
+    var updateTimer:Timer!
+    
     override init(frame frameRect: NSRect){
         super.init(frame: frameRect)
         
@@ -45,9 +48,20 @@ class LineGraphView: NSView{
         dataArray.append(value)
     }
     
+    func updateView(tm: Timer){
+        self.needsDisplay = true
+    }
+    
+    func startUpdateView(){
+        updateTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(self.updateView), userInfo: nil, repeats: true)
+    }
+    
+    func stopUpdateView(){
+        updateTimer.invalidate()
+    }
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        Swift.print("draw ")
         let centerLine = NSBezierPath()
         centerLine.move(to: CGPoint(x: 0, y: CGFloat(self.frame.height) / 2))
         centerLine.line(to: NSPoint(x: self.frame.width, y:CGFloat(self.frame.height) / 2))

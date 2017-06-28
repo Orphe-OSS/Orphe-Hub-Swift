@@ -48,4 +48,15 @@ class MultiLineGraphView: NSView{
         }
     }
     
+    func startUpdateView(){
+        for graph in lineGraphArray{
+            graph.startUpdateView()
+        }
+    }
+    
+    func stopUpdateView(){
+        for graph in lineGraphArray{
+            graph.stopUpdateView()
+        }
+    }
 }

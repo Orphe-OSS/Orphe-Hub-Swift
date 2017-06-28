@@ -283,7 +283,12 @@ extension  ViewController: ORPManagerDelegate{
         PRINT("didDisconnect")
         tableView.reloadData()
         updateCellsState()
-        
+        if orphe.side == .left{
+            leftSensorView.stopUpdateGraphView()
+        }
+        else{
+            rightSensorView.stopUpdateGraphView()
+        }
     }
     
     func orpheDidConnect(orphe:ORPData){
@@ -295,6 +300,13 @@ extension  ViewController: ORPManagerDelegate{
         
 //        orphe.setScene(.sceneSDK)
         orphe.setGestureSensitivity(.high)
+        
+        if orphe.side == .left{
+            leftSensorView.startUpdateGraphView()
+        }
+        else{
+            rightSensorView.startUpdateGraphView()
+        }
         
     }
 

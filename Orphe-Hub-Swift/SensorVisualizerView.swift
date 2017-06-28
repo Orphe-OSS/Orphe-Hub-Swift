@@ -105,31 +105,26 @@ class SensorVisualizerView:NSView{
         for array in orphe.quatArray {
             for (i ,val) in array.enumerated(){
                 quatGraph.lineGraphArray[i].addValue(CGFloat(val))
-                quatGraph.lineGraphArray[i].needsDisplay = true
             }
         }
         for array in orphe.normalizedAccArray {
             for (i ,val) in array.enumerated(){
                 accGraph.lineGraphArray[i].addValue(CGFloat(val))
-                accGraph.lineGraphArray[i].needsDisplay = true
             }
         }
         for array in orphe.normalizedGyroArray {
             for (i ,val) in array.enumerated(){
                 gyroGraph.lineGraphArray[i].addValue(CGFloat(val))
-                gyroGraph.lineGraphArray[i].needsDisplay = true
             }
         }
         for array in orphe.normalizedEulerArray {
             for (i ,val) in array.enumerated(){
                 eulerGraph.lineGraphArray[i].addValue(CGFloat(val))
-                eulerGraph.lineGraphArray[i].needsDisplay = true
             }
         }
         for array in orphe.normalizedMagArray {
             for (i ,val) in array.enumerated(){
                 magGraph.lineGraphArray[i].addValue(CGFloat(val))
-                magGraph.lineGraphArray[i].needsDisplay = true
             }
         }
     }
@@ -199,6 +194,22 @@ class SensorVisualizerView:NSView{
             }
         }
         return text
+    }
+    
+    func startUpdateGraphView(){
+        quatGraph.startUpdateView()
+        eulerGraph.startUpdateView()
+        accGraph.startUpdateView()
+        gyroGraph.startUpdateView()
+        magGraph.startUpdateView()
+    }
+    
+    func stopUpdateGraphView(){
+        quatGraph.stopUpdateView()
+        eulerGraph.stopUpdateView()
+        accGraph.stopUpdateView()
+        gyroGraph.stopUpdateView()
+        magGraph.stopUpdateView()
     }
     
     func initFreqCalculators(){
