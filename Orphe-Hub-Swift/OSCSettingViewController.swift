@@ -62,11 +62,13 @@ class OSCSettingViewController: NSViewController {
     
     @IBAction func oscHostTextFieldInput(_ sender: NSTextField) {
         OSCManager.sharedInstance.clientHost = sender.stringValue
+        AppSettings.oscHost = sender.stringValue
     }
     
     @IBAction func oscSenderPortTextFieldInput(_ sender: NSTextField) {
         if let input = Int(sender.stringValue){
             OSCManager.sharedInstance.clientPort = input
+            AppSettings.oscSenderPort = input
         }
         else{
             oscSenderPortTextField.stringValue = String(OSCManager.sharedInstance.clientPort)
@@ -77,6 +79,7 @@ class OSCSettingViewController: NSViewController {
         if let input = Int(sender.stringValue){
             OSCManager.sharedInstance.stopReceive()
             OSCManager.sharedInstance.serverPort = input
+            AppSettings.oscReceiverPort = input
             
             if !OSCManager.sharedInstance.startReceive(){
                 oscReceiverPortTextField.textColor = .red
