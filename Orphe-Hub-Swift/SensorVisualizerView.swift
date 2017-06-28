@@ -136,6 +136,7 @@ class SensorVisualizerView:NSView{
         text += sensorValueTextForLabel(orphe:orphe, sensorKind:.acc)
         text += sensorValueTextForLabel(orphe:orphe, sensorKind:.gyro)
         text += sensorValueTextForLabel(orphe:orphe, sensorKind:.mag)
+        text += "Shock:"+String(orphe.getShock())
         sensorValueLabel.stringValue = "Sensor values\n\n" + text
     }
     
