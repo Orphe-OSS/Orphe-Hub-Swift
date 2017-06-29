@@ -129,7 +129,11 @@ class SensorValueCSVPlayer{
         let shock = UInt8(_csv.keyedRows![currentRow][csvKeys.shock.rawValue]!)!
         
         self.dummyOrphe.sensorValue(quat: quat, euler: euler, acc: acc, gyro: gyro, mag: UInt16(magz), shock: shock)
-        NotificationCenter.default.post(name: .OrpheDidUpdateSensorData, object: nil, userInfo: [OrpheDataUserInfoKey:self.dummyOrphe, OrpheUpdatedSendingTypeInfoKey:SendingType.standard])
+        
+        DispatchQueue.main.async {
+            // Main Threadで実行する
+            NotificationCenter.default.post(name: .OrpheDidUpdateSensorData, object: nil, userInfo: [OrpheDataUserInfoKey:self.dummyOrphe, OrpheUpdatedSendingTypeInfoKey:SendingType.standard])
+        }
         
         //row count
         self.currentRow += 1
@@ -138,7 +142,7 @@ class SensorValueCSVPlayer{
             if isLoop {
                 //最初から再生
                 let popTime = DispatchTime.now() + 0.020
-                DispatchQueue.main.asyncAfter(deadline: popTime,  execute: {
+                DispatchQueue.global().asyncAfter(deadline: popTime,  execute: {
                     self.updateSensorValues()
                 })
             }
@@ -154,7 +158,7 @@ class SensorValueCSVPlayer{
         let nextTime = Double(_csv.keyedRows![currentRow][csvKeys.timestamp.rawValue]!)!
         let delayTime = nextTime - time
         let popTime = DispatchTime.now() + delayTime  - 0.0023 //0.0023引いているのはちょっと短くしないと５hzくらい遅くなる
-        DispatchQueue.main.asyncAfter(deadline: popTime,  execute: {
+        DispatchQueue.global().asyncAfter(deadline: popTime,  execute: {
             self.updateSensorValues()
         })
         
