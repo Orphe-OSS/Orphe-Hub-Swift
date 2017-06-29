@@ -136,13 +136,15 @@ class SensorVisualizerView:NSView{
             eFreq.updateValue2(value: array[0])
         }
         
-        var text = ""
-        text += ": " + String(format: "%.2f",bleFreq.freq) + "Hz\n"
-        text += ": " + String(format: "%.2f",qFreq.freq) + "Hz\n"
-        text += ": " + String(format: "%.2f",eFreq.freq) + "Hz\n"
-        text += ": " + String(format: "%.2f",aFreq.freq) + "Hz\n"
-        text += ": " + String(format: "%.2f",gFreq.freq) + "Hz\n"
-        frequencyLabel.stringValue = text
+        if qFreq.isFreqValueUpdated{
+            var text = ""
+            text += ": " + String(format: "%.2f",bleFreq.freq) + "Hz\n"
+            text += ": " + String(format: "%.2f",qFreq.freq) + "Hz\n"
+            text += ": " + String(format: "%.2f",eFreq.freq) + "Hz\n"
+            text += ": " + String(format: "%.2f",aFreq.freq) + "Hz\n"
+            text += ": " + String(format: "%.2f",gFreq.freq) + "Hz\n"
+            frequencyLabel.stringValue = text
+        }
     }
     
     func sensorValueTextForLabel(orphe:ORPData, sensorKind:SensorKind)->String{

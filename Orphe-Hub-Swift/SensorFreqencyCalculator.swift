@@ -20,6 +20,7 @@ class SensorFreqencyCalculator: NSObject {
     var countNum = 200
     var changeFrames = [Int]()
     var activeOutLog = false
+    var isFreqValueUpdated = false
     
     func initValues(){
         freq = 0
@@ -61,6 +62,7 @@ class SensorFreqencyCalculator: NSObject {
     }
     
     func updateValue2(value:Float){
+        isFreqValueUpdated = false
         counter += 1
         if preValue != value {
             changeFrames.append(counter-preCounter)
@@ -79,6 +81,7 @@ class SensorFreqencyCalculator: NSObject {
             preCounter = 0
             difNumCounter = 0
             changeFrames.removeAll()
+            isFreqValueUpdated = true
         }
     }
     
