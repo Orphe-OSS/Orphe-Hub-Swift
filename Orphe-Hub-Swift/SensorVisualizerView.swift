@@ -24,7 +24,7 @@ class SensorVisualizerView:NSView{
     
     @IBOutlet weak var sideLabel: NSTextField!
     
-    var updateTimer:Timer!
+    var updateTimer:Timer?
     
     var disposeBag = DisposeBag()
     
@@ -182,7 +182,7 @@ class SensorVisualizerView:NSView{
     }
     
     func stopUpdateGraphView(){
-        updateTimer.invalidate()
+        updateTimer?.invalidate()
     }
     
     func updateDisplay(tm: Timer){
