@@ -205,7 +205,6 @@
 				E6D62D5D1F03A77500E71294 /* AppSettings.swift */,
 				E6D62D601F03B47000E71294 /* Realm */,
 				E6D62D5C1F03A73900E71294 /* MainCV */,
-				E66053CD1EDFCF1900EC8678 /* GraphUI */,
 				E64E85D91F02BE8100C9AD04 /* OSCSettingVC */,
 				E6D62D591F037EEC00E71294 /* SensorSettingVC */,
 				E6D62D571F037EDC00E71294 /* RecordPlaybackVC */,
@@ -287,6 +286,7 @@
 				E61393111E8E6A6D002DD502 /* Main.storyboard */,
 				E61393091E8E6A31002DD502 /* ViewController.swift */,
 				E64E85D71F02731F00C9AD04 /* WindowController.swift */,
+				E66053CD1EDFCF1900EC8678 /* GraphUI */,
 			);
 			name = MainCV;
 			sourceTree = "<group>";

@@ -79,17 +79,6 @@ class ViewController: NSViewController {
         }
     }
     
-    func setLineGraph(viewHolder:NSView, array:inout Array<LineGraphView>){
-        viewHolder.layer?.backgroundColor = .black
-        let colors:[NSColor] = [.red, .green, .lightGray, .magenta, .yellow, .cyan]
-        for i in 0..<colors.count{
-            let view = LineGraphView(frame: viewHolder.bounds)
-            viewHolder.addSubview(view)
-            view.lineColor = colors[i]
-            array.append(view)
-        }
-    }
-    
     func updateCellsState(){
         for (index, orp) in ORPManager.sharedInstance.availableORPDataArray.enumerated(){
             
@@ -351,13 +340,14 @@ extension  ViewController: ORPManagerDelegate{
         let side = orphe.side
         let kind = gestureEvent.getGestureKindString() as String
         let power = gestureEvent.getPower()
-        let text = "Gesture: " + kind + "\n" + "power: " + String(power)
+//        let text = "Gesture: " + kind + "\n" + "power: " + String(power)
+        let text = ": "+kind + "\n" + ": "+String(power)
         
         if side == .left {
-            leftSensorView.gestureLabel.stringValue = "LEFT Gesture\n\n" + text
+            leftSensorView.gestureLabel.stringValue = text
         }
         else{
-            rightSensorView.gestureLabel.stringValue = "RIGHT Gesture\n\n" + text
+            rightSensorView.gestureLabel.stringValue = text
         }
     }
 }

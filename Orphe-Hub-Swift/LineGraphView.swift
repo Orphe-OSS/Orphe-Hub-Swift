@@ -17,9 +17,6 @@ class LineGraphView: NSView{
     var bufSize:Int = 256
     var lineColor:NSColor = .red
     
-    
-    var updateTimer:Timer!
-    
     override init(frame frameRect: NSRect){
         super.init(frame: frameRect)
         
@@ -46,18 +43,6 @@ class LineGraphView: NSView{
     func addValue(_ value:CGFloat){
         dataArray.removeFirst()
         dataArray.append(value)
-    }
-    
-    func updateView(tm: Timer){
-        self.needsDisplay = true
-    }
-    
-    func startUpdateView(){
-        updateTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(self.updateView), userInfo: nil, repeats: true)
-    }
-    
-    func stopUpdateView(){
-        updateTimer.invalidate()
     }
     
     override func draw(_ dirtyRect: NSRect) {
