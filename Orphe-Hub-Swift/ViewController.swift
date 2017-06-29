@@ -26,9 +26,6 @@ class ViewController: NSViewController {
     
     var disposeBag = DisposeBag()
     
-    
-    var enableUpdateSensorValues = true
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -164,7 +161,14 @@ class ViewController: NSViewController {
     
     override func keyDown(with event: NSEvent) {
         if event.characters == " " {
-            enableUpdateSensorValues = !enableUpdateSensorValues
+            if leftSensorView.isActive() || rightSensorView.isActive(){
+                leftSensorView.stopUpdateGraphView()
+                rightSensorView.stopUpdateGraphView()
+            }
+            else{
+                leftSensorView.startUpdateGraphView()
+                rightSensorView.startUpdateGraphView()
+            }
         }
     }
     
@@ -350,9 +354,6 @@ extension  ViewController: ORPManagerDelegate{
     
     func OrpheDidUpdateSensorData(notification: Notification){
         
-        if !enableUpdateSensorValues {
-            return
-        }
         
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData

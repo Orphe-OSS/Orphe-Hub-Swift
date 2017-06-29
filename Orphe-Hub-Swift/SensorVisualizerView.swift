@@ -180,6 +180,11 @@ class SensorVisualizerView:NSView{
     }
     
     func startUpdateGraphView(){
+        if updateTimer != nil{
+            if updateTimer!.isValid{
+                return
+            }
+        }
         updateTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(self.updateDisplay), userInfo: nil, repeats: true)
     }
     
@@ -187,20 +192,25 @@ class SensorVisualizerView:NSView{
         updateTimer?.invalidate()
     }
     
+    func isActive()->Bool{
+        return updateTimer?.isValid ?? false
+    }
+    
     func updateDisplay(tm: Timer){
         
         if let orphe = orphe{
             quatGraph.updateDisplay()
+            eulerGraph.updateDisplay()
+            accGraph.updateDisplay()
+            gyroGraph.updateDisplay()
+            magGraph.updateDisplay()
+            
             //x,y,z,wの順。他のグラフと色を合わせるため入れ替え
             let quat = [orphe.getQuat()[3],orphe.getQuat()[0],orphe.getQuat()[1],orphe.getQuat()[2]]
             quatGraph.updateLabel(values: quat)
-            eulerGraph.updateDisplay()
             eulerGraph.updateLabel(values: orphe.getEuler())
-            accGraph.updateDisplay()
             accGraph.updateLabel(values: orphe.getAcc())
-            gyroGraph.updateDisplay()
             gyroGraph.updateLabel(values: orphe.getGyro())
-            magGraph.updateDisplay()
             magGraph.updateLabel(values: [0,0,orphe.getMag()])
         }
         
