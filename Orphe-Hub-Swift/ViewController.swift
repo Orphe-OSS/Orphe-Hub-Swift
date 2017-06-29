@@ -24,6 +24,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var rightSensorView: SensorVisualizerView!
     @IBOutlet weak var leftSensorView: SensorVisualizerView!
     
+    @IBOutlet weak var animationSpeedSegmentControl: NSSegmentedControl!
+    
     var disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -57,6 +59,12 @@ class ViewController: NSViewController {
         })
             .disposed(by: disposeBag)
         
+        animationSpeedSegmentControl.rx.controlEvent.subscribe(onNext: { [unowned self] _ in
+            self.setAnimationInterval(segment: self.animationSpeedSegmentControl.selectedSegment)
+        })
+            .disposed(by: disposeBag)
+        setAnimationInterval(segment: self.animationSpeedSegmentControl.selectedSegment)
+        
         //Notification ble
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidReceiveFWVersion(notification:)), name: .OrpheDidReceiveFWVersion, object: nil)
@@ -65,6 +73,25 @@ class ViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.SensorValueCSVPlayerStartPlaying(notification:)), name: .SensorValueCSVPlayerStartPlaying, object: nil)
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.SensorValueCSVPlayerStopPlaying(notification:)), name: .SensorValueCSVPlayerStopPlaying, object: nil)
         
+    }
+    
+    func setAnimationInterval(segment:Int){
+        var interval = 1.0
+        switch segment{
+        case 0:
+            interval = 2
+        case 1:
+            interval = 1
+        case 2:
+            interval = 0.5
+        case 3:
+            interval = 0.1
+        default:
+            break
+            
+        }
+        self.leftSensorView.updateTimeInterval = interval
+        self.rightSensorView.updateTimeInterval = interval
     }
     
     func SensorValueCSVPlayerStartPlaying(notification:Notification){

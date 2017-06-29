@@ -25,6 +25,14 @@ class SensorVisualizerView:NSView{
     @IBOutlet weak var sideLabel: NSTextField!
     
     var updateTimer:Timer?
+    var updateTimeInterval:TimeInterval = 0.05{
+        didSet{
+            if isActive(){
+                stopUpdateGraphView()
+                startUpdateGraphView()
+            }
+        }
+    }
     
     var disposeBag = DisposeBag()
     
@@ -185,7 +193,7 @@ class SensorVisualizerView:NSView{
                 return
             }
         }
-        updateTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateDisplay), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: updateTimeInterval, target: self, selector: #selector(self.updateDisplay), userInfo: nil, repeats: true)
     }
     
     func stopUpdateGraphView(){
@@ -222,4 +230,5 @@ class SensorVisualizerView:NSView{
         aFreq.initValues()
         gFreq.initValues()
     }
+    
 }

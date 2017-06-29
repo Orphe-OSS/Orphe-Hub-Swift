@@ -691,7 +691,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <customView fixedFrame="YES" id="3lJ-mw-b04">
-                                        <rect key="frame" x="0.0" y="0.0" width="247.5" height="722"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="248" height="722"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qV0-9f-78T">
@@ -959,10 +959,32 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndw-hw-ebp">
+                                                <rect key="frame" x="14" y="172" width="114" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Animation Speed" id="78J-Lg-9sk">
+                                                    <font key="font" metaFont="systemBold"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T4g-BN-wbe">
+                                                <rect key="frame" x="14" y="141" width="213" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="dDH-2p-l7r">
+                                                    <font key="font" metaFont="system"/>
+                                                    <segments>
+                                                        <segment label="Low"/>
+                                                        <segment label="Mid" selected="YES" tag="1"/>
+                                                        <segment label="High"/>
+                                                        <segment label="Highest"/>
+                                                    </segments>
+                                                </segmentedCell>
+                                            </segmentedControl>
                                         </subviews>
                                     </customView>
                                     <customView fixedFrame="YES" id="TWV-QZ-XGs">
-                                        <rect key="frame" x="248.5" y="0.0" width="775.5" height="722"/>
+                                        <rect key="frame" x="249" y="0.0" width="775" height="722"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gym-ln-tU4" customClass="SensorVisualizerView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
@@ -985,6 +1007,7 @@
                     </view>
                     <connections>
                         <outlet property="activeLEDButton" destination="tk8-ld-2WE" id="7mo-9A-c5K"/>
+                        <outlet property="animationSpeedSegmentControl" destination="T4g-BN-wbe" id="9hs-GE-djG"/>
                         <outlet property="deactiveLEDButton" destination="U25-Q6-xNS" id="EIs-Uy-c5h"/>
                         <outlet property="leftSensorView" destination="FzG-M5-qlP" id="zXy-gd-Hg8"/>
                         <outlet property="rightSensorView" destination="gym-ln-tU4" id="a0u-fF-gvf"/>
