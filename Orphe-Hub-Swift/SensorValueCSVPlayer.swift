@@ -10,12 +10,29 @@ import Foundation
 import Orphe
 import CSwiftV
 
+extension Notification.Name {
+    public static let SensorValueCSVPlayerStartPlaying = Notification.Name("SensorValueCSVPlayerStartPlaying")
+    public static let SensorValueCSVPlayerStopPlaying = Notification.Name("SensorValueCSVPlayerStopPlaying")
+}
+
+//user info keys
+public let SensorValueCSVPlayerInfoKey = "SensorValueCSVPlayerInfoKey"
+
 class SensorValueCSVPlayer{
     
     var dummyOrphe:ORPData!
     var csv:CSwiftV?
     var currentRow = 0
-    var isPlaying = false
+    var isPlaying = false {
+        didSet{
+            if isPlaying{
+                NotificationCenter.default.post(name: .SensorValueCSVPlayerStartPlaying, object: nil, userInfo: [SensorValueCSVPlayerInfoKey:self])
+            }
+            else{
+                NotificationCenter.default.post(name: .SensorValueCSVPlayerStopPlaying, object: nil, userInfo: [SensorValueCSVPlayerInfoKey:self])
+            }
+        }
+    }
     var isLoop = true
     
     //“timestamp,quatW,quatX,quatY,quatZ,eulerX,eulerY,eulerZ,gyroX,gyroY,gyroZ,magX,magY,magZ,accX,accY,accZ,shock

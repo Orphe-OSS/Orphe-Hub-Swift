@@ -60,10 +60,38 @@ class ViewController: NSViewController {
         })
             .disposed(by: disposeBag)
         
-        //Notification
+        //Notification ble
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidReceiveFWVersion(notification:)), name: .OrpheDidReceiveFWVersion, object: nil)
         
+        //Notificaion sensorCSVPlayer
+        NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.SensorValueCSVPlayerStartPlaying(notification:)), name: .SensorValueCSVPlayerStartPlaying, object: nil)
+        NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.SensorValueCSVPlayerStopPlaying(notification:)), name: .SensorValueCSVPlayerStopPlaying, object: nil)
+        
+    }
+    
+    func SensorValueCSVPlayerStartPlaying(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let player = userInfo[SensorValueCSVPlayerInfoKey] as! SensorValueCSVPlayer
+        if player.dummyOrphe.side == .left{
+            leftSensorView.orphe = player.dummyOrphe
+            leftSensorView.startUpdateGraphView()
+        }
+        else if player.dummyOrphe.side == .right{
+            rightSensorView.orphe = player.dummyOrphe
+            rightSensorView.startUpdateGraphView()
+        }
+    }
+    
+    func SensorValueCSVPlayerStopPlaying(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let player = userInfo[SensorValueCSVPlayerInfoKey] as! SensorValueCSVPlayer
+        if player.dummyOrphe.side == .left{
+            leftSensorView.stopUpdateGraphView()
+        }
+        else if player.dummyOrphe.side == .right{
+            rightSensorView.stopUpdateGraphView()
+        }
     }
     
     override func viewDidLayout() {
@@ -291,9 +319,11 @@ extension  ViewController: ORPManagerDelegate{
         orphe.setGestureSensitivity(.high)
         
         if orphe.side == .left{
+            leftSensorView.orphe = orphe
             leftSensorView.startUpdateGraphView()
         }
         else{
+            rightSensorView.orphe = orphe
             rightSensorView.startUpdateGraphView()
         }
         

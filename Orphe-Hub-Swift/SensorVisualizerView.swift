@@ -41,6 +41,7 @@ class SensorVisualizerView:NSView{
             }
         }
     }
+    var orphe:ORPData?
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -120,17 +121,6 @@ class SensorVisualizerView:NSView{
         }
     }
     
-    //TODO:削除
-    func updateSensorValueLabel(orphe:ORPData){
-        var text = ""
-        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.quat)
-        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.euler)
-        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.acc)
-        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.gyro)
-        text += sensorValueTextForLabel(orphe:orphe, sensorKind:.mag)
-        text += "Shock:"+String(orphe.getShock())
-    }
-    
     func updateFreqCalculator(orphe:ORPData){
         bleFreq.update()
         for array in orphe.quatArray {
@@ -197,7 +187,7 @@ class SensorVisualizerView:NSView{
     
     func updateDisplay(tm: Timer){
         
-        if let orphe = ORPManager.sharedInstance.getOrpheArray(side: side).first{
+        if let orphe = orphe{
             quatGraph.updateDisplay()
             //x,y,z,wの順。他のグラフと色を合わせるため入れ替え
             let quat = [orphe.getQuat()[3],orphe.getQuat()[0],orphe.getQuat()[1],orphe.getQuat()[2]]
