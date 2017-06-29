@@ -177,21 +177,21 @@ class ViewController: NSViewController {
         case "toOSCSettingVC":
             for window in NSApplication.shared().windows{
                 if window.contentViewController is OSCSettingViewController{
-                    window.orderFrontRegardless()
+                    window.makeKeyAndOrderFront(self)
                     return false
                 }
             }
         case "toRecordPlaybackVC":
             for window in NSApplication.shared().windows{
                 if window.contentViewController is RecordPlaybackViewController{
-                    window.orderFrontRegardless()
+                    window.makeKeyAndOrderFront(self)
                     return false
                 }
             }
         case "toSensorSettingVC":
             for window in NSApplication.shared().windows{
                 if window.contentViewController is SensorSettingViewController{
-                    window.orderFrontRegardless()
+                    window.makeKeyAndOrderFront(self)
                     return false
                 }
             }
@@ -204,15 +204,10 @@ class ViewController: NSViewController {
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         guard let wc = segue.destinationController as? NSWindowController else {return}
-        //常に子windowを親windowの上に表示するための処理
-        if let childWindow = wc.window{
-            let parentWindow : NSWindow = self.view.window!
-            parentWindow.orderFront(self)
-            parentWindow.makeKeyAndOrderFront(self)
-            
-            childWindow.orderFront(self)
-            childWindow.makeKeyAndOrderFront(self)
-            parentWindow.addChildWindow(childWindow, ordered: NSWindowOrderingMode.above)
+        
+        //前面にwindowを持ってくる処理
+        if let window = wc.window{
+            window.level = Int(CGWindowLevelKey.floatingWindow.rawValue)
         }
     }
     

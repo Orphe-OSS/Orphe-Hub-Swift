@@ -185,7 +185,7 @@ class SensorVisualizerView:NSView{
                 return
             }
         }
-        updateTimer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(self.updateDisplay), userInfo: nil, repeats: true)
+        updateTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateDisplay), userInfo: nil, repeats: true)
     }
     
     func stopUpdateGraphView(){

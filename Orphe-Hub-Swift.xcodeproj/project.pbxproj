@@ -246,10 +246,10 @@
 		E66053CD1EDFCF1900EC8678 /* GraphUI */ = {
 			isa = PBXGroup;
 			children = (
-				E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */,
-				E66053CB1EDF09A400EC8678 /* MultiLineGraphView.swift */,
 				E66053D21EDFCFDB00EC8678 /* SensorVisualizerView.xib */,
 				E66053D01EDFCFCC00EC8678 /* SensorVisualizerView.swift */,
+				E666C4141EC5EFA3005DFF17 /* LineGraphView.swift */,
+				E66053CB1EDF09A400EC8678 /* MultiLineGraphView.swift */,
 			);
 			name = GraphUI;
 			sourceTree = "<group>";

@@ -38,7 +38,10 @@ extension ChildWindowViewController: NSWindowDelegate {
     }
     
     func windowDidResignMain(_ notification: Notification) {
-        NSEvent.removeMonitor(eventMonitor!)
+        guard let eventMonitor = eventMonitor else {
+            return
+        }
+        NSEvent.removeMonitor(eventMonitor)
     }
     
 }
