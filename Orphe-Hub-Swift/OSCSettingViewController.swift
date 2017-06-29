@@ -12,7 +12,7 @@ import OSCKit
 import RxSwift
 import RxCocoa
 
-class OSCSettingViewController: NSViewController {
+class OSCSettingViewController: ChildWindowViewController {
     @IBOutlet weak var oscHostTextField: NSTextField!
     @IBOutlet weak var oscSenderPortTextField: NSTextField!
     @IBOutlet weak var oscReceiverPortTextField: NSTextField!

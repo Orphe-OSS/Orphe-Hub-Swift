@@ -11,7 +11,7 @@ import Orphe
 import RxSwift
 import RxCocoa
 
-class RecordPlaybackViewController: NSViewController {
+class RecordPlaybackViewController: ChildWindowViewController {
     
     @IBOutlet weak var startRecordButton: NSButton!
     

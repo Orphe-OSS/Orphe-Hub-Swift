@@ -11,7 +11,7 @@ import Orphe
 import RxSwift
 import RxCocoa
 
-class SensorSettingViewController: NSViewController {
+class SensorSettingViewController: ChildWindowViewController {
     
     @IBOutlet weak var sendingTypePopUpButton: NSPopUpButton!
     @IBOutlet weak var sensorKindPopUpButton: NSPopUpButton!
