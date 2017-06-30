@@ -112,7 +112,7 @@ class RecordPlaybackViewController: ChildWindowViewController {
                 }
                 else{
                     self.leftSensorPlayer.pause()
-                    self.leftSensorPlayer.pause()
+                    self.rightSensorPlayer.pause()
                     self.playCSVButton.image = #imageLiteral(resourceName: "startPlayButton")
                 }
             })
