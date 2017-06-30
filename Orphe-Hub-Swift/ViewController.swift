@@ -68,6 +68,7 @@ class ViewController: NSViewController {
         //Notification ble
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidReceiveFWVersion(notification:)), name: .OrpheDidReceiveFWVersion, object: nil)
+        NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidCatchGestureEvent(notification:)), name: .OrpheDidCatchGestureEvent, object: nil)
         
         //Notificaion sensorCSVPlayer
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.SensorValueCSVPlayerStartPlaying(notification:)), name: .SensorValueCSVPlayerStartPlaying, object: nil)
@@ -390,11 +391,13 @@ extension  ViewController: ORPManagerDelegate{
         }
     }
     
-    func orpheDidCatchGestureEvent(gestureEvent:ORPGestureEventArgs, orphe:ORPData) {
+    func OrpheDidCatchGestureEvent(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
+        let gestureEvent = userInfo[OrpheGestureUserInfoKey] as! ORPGestureEventArgs
         let side = orphe.side
         let kind = gestureEvent.getGestureKindString() as String
         let power = gestureEvent.getPower()
-//        let text = "Gesture: " + kind + "\n" + "power: " + String(power)
         let text = ": "+kind + "\n" + ": "+String(power)
         
         if side == .left {
@@ -404,4 +407,5 @@ extension  ViewController: ORPManagerDelegate{
             rightSensorView.gestureLabel.stringValue = text
         }
     }
+    
 }
