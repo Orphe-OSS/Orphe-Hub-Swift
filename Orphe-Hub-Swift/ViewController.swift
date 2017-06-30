@@ -232,9 +232,10 @@ class ViewController: NSViewController {
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         guard let wc = segue.destinationController as? NSWindowController else {return}
         
-        //前面にwindowを持ってくる処理
+        //生成したwindowを前面に持ってくる処理
         if let window = wc.window{
-            window.level = Int(CGWindowLevelKey.floatingWindow.rawValue)
+            window.orderFront(self)
+            window.makeKeyAndOrderFront(self)
         }
     }
     
