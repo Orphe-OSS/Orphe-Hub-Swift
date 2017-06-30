@@ -83,9 +83,9 @@ class ViewController: NSViewController {
         case 1:
             interval = 1
         case 2:
-            interval = 0.5
-        case 3:
             interval = 0.1
+        case 3:
+            interval = 0.05
         default:
             break
             
