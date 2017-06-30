@@ -144,7 +144,11 @@ class SensorVisualizerView:NSView{
             eFreq.updateValue2(value: array[0])
         }
         
-        if qFreq.isFreqValueUpdated{
+        if qFreq.isFreqValueUpdated
+        || aFreq.isFreqValueUpdated
+        || gFreq.isFreqValueUpdated
+        || eFreq.isFreqValueUpdated
+        || bleFreq.isFreqValueUpdated{
             var text = ""
             text += ": " + String(format: "%.2f",bleFreq.freq) + "Hz\n"
             text += ": " + String(format: "%.2f",qFreq.freq) + "Hz\n"

@@ -34,6 +34,7 @@ class SensorFreqencyCalculator: NSObject {
     }
     
     func update(){
+        isFreqValueUpdated = false
         counter += 1
         if counter == countNum {
             let elapsedTime = NSDate().timeIntervalSince(timestamp)
@@ -41,6 +42,7 @@ class SensorFreqencyCalculator: NSObject {
             freq = Float(counter)/Float(elapsedTime)
             counter = 0
             difNumCounter = 0
+            isFreqValueUpdated = true
         }
     }
     
