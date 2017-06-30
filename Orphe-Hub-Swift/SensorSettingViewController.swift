@@ -16,9 +16,11 @@ class SensorSettingViewController: ChildWindowViewController {
     @IBOutlet weak var sendingTypePopUpButton: NSPopUpButton!
     @IBOutlet weak var sensorKindPopUpButton: NSPopUpButton!
     @IBOutlet weak var axisPopUpButton: NSPopUpButton!
+    @IBOutlet weak var setSensorSettingsButton: NSButton!
     
-    @IBOutlet weak var accRangePopuUpButton: NSPopUpButton!
-    @IBOutlet weak var gyroRangePopuUpButton: NSPopUpButton!
+    @IBOutlet weak var accRangeSegmentedControl: NSSegmentedControl!
+    @IBOutlet weak var gyroRangeSegmentedControl: NSSegmentedControl!
+    
     
     var disposeBag = DisposeBag()
     
@@ -35,30 +37,23 @@ class SensorSettingViewController: ChildWindowViewController {
                                 "4B_200H_1A",
                                 "4B_50H"]
         sendingTypePopUpButton.addItems(withTitles: sendingTypeArray)
-        sendingTypePopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            self?.updateSendingSensorSetting()
-        })
-            .disposed(by: disposeBag)
         
         let sensorKindArray = ["Acc","Gyro","Euler","Quat"]
         sensorKindPopUpButton.addItems(withTitles: sensorKindArray)
-        sensorKindPopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            self?.updateSendingSensorSetting()
-        })
-            .disposed(by: disposeBag)
         
         let axisTypeArray = ["x or xy", "y or yz","z or zx"]
         axisPopUpButton.addItems(withTitles: axisTypeArray)
-        axisPopUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
+        
+        setSensorSettingsButton.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.updateSendingSensorSetting()
         })
             .disposed(by: disposeBag)
         
-        let accRange = ["2g","4g","8g","16g"]
-        accRangePopuUpButton.addItems(withTitles: accRange)
-        accRangePopuUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
+        
+        
+        accRangeSegmentedControl.rx.controlEvent.subscribe(onNext: { [unowned self] _ in
             for orp in ORPManager.sharedInstance.connectedORPDataArray{
-                switch self!.accRangePopuUpButton.indexOfSelectedItem {
+                switch self.accRangeSegmentedControl.selectedSegment {
                 case 0:
                     orp.setAccRange(range: ._2)
                 case 1:
@@ -75,13 +70,10 @@ class SensorSettingViewController: ChildWindowViewController {
         })
             .disposed(by: disposeBag)
         
-        let gyroRange = ["250°/sec","500°/sec","1000°/sec","2000°/sec"]
-        gyroRangePopuUpButton.addItems(withTitles: gyroRange)
-        gyroRangePopuUpButton.selectItem(at: 3)
-        gyroRangePopuUpButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            PRINT("gyro:",self!.gyroRangePopuUpButton.indexOfSelectedItem)
+        
+        gyroRangeSegmentedControl.rx.controlEvent.subscribe(onNext: { [unowned self] _ in
             for orp in ORPManager.sharedInstance.connectedORPDataArray{
-                switch self!.gyroRangePopuUpButton.indexOfSelectedItem {
+                switch self.gyroRangeSegmentedControl.selectedSegment {
                 case 0:
                     orp.setGyroRange(range: ._250)
                 case 1:
