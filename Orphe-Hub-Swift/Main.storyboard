@@ -705,15 +705,6 @@
                                                     <action selector="switchToOppositeSide:" target="XfG-lQ-9wD" id="94A-18-TgU"/>
                                                 </connections>
                                             </button>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PV4-XP-J5H">
-                                                <rect key="frame" x="9" y="330" width="107" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Windows" id="daV-yp-6nO">
-                                                    <font key="font" metaFont="systemBold"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tk8-ld-2WE">
                                                 <rect key="frame" x="43" y="367" width="72" height="16"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -908,39 +899,6 @@
                                                     <action selector="calibrationButtonAction:" target="XfG-lQ-9wD" id="biA-l7-ZHa"/>
                                                 </connections>
                                             </button>
-                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UqJ-NA-iWS">
-                                                <rect key="frame" x="5" y="287" width="122" height="32"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="push" title="OSC Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="a4i-bh-MtD">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <segue destination="Exf-nF-iQG" kind="show" identifier="toOSCSettingVC" id="wQU-eB-QkE"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k0e-LI-dnV">
-                                                <rect key="frame" x="5" y="254" width="136" height="32"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="push" title="Sensor Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8fb-6r-fxX">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <segue destination="Vzu-6X-nro" kind="show" identifier="toSensorSettingVC" id="JUz-N3-2Ke"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkr-gp-0qk">
-                                                <rect key="frame" x="5" y="221" width="149" height="32"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="push" title="Record / Playback" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bkd-pr-McQ">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <segue destination="Wzx-ji-HyX" kind="show" identifier="toRecordPlaybackVC" id="7e0-kv-s4s"/>
-                                                </connections>
-                                            </button>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWM-qg-8q3">
                                                 <rect key="frame" x="9" y="464" width="107" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -960,7 +918,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndw-hw-ebp">
-                                                <rect key="frame" x="14" y="172" width="157" height="17"/>
+                                                <rect key="frame" x="9" y="330" width="157" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Graph Animation Speed" id="78J-Lg-9sk">
                                                     <font key="font" metaFont="systemBold"/>
@@ -969,7 +927,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T4g-BN-wbe">
-                                                <rect key="frame" x="14" y="141" width="213" height="24"/>
+                                                <rect key="frame" x="9" y="299" width="213" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="dDH-2p-l7r">
                                                     <font key="font" metaFont="system"/>
@@ -981,6 +939,56 @@
                                                     </segments>
                                                 </segmentedCell>
                                             </segmentedControl>
+                                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="apQ-MZ-wP9">
+                                                <rect key="frame" x="6" y="353" width="241" height="5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </box>
+                                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="PqF-RA-PMm">
+                                                <rect key="frame" x="6" y="279" width="241" height="5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </box>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PV4-XP-J5H">
+                                                <rect key="frame" x="9" y="256" width="107" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Windows" id="daV-yp-6nO">
+                                                    <font key="font" metaFont="systemBold"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UqJ-NA-iWS">
+                                                <rect key="frame" x="5" y="213" width="122" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="push" title="OSC Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="a4i-bh-MtD">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <segue destination="Exf-nF-iQG" kind="show" identifier="toOSCSettingVC" id="wQU-eB-QkE"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k0e-LI-dnV">
+                                                <rect key="frame" x="5" y="180" width="136" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="push" title="Sensor Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8fb-6r-fxX">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <segue destination="Vzu-6X-nro" kind="show" identifier="toSensorSettingVC" id="JUz-N3-2Ke"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qkr-gp-0qk">
+                                                <rect key="frame" x="5" y="147" width="149" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="push" title="Record / Playback" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bkd-pr-McQ">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <segue destination="Wzx-ji-HyX" kind="show" identifier="toRecordPlaybackVC" id="7e0-kv-s4s"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </customView>
                                     <customView fixedFrame="YES" id="TWV-QZ-XGs">
