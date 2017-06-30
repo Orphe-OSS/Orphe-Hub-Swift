@@ -152,18 +152,18 @@ class RecordPlaybackViewController: ChildWindowViewController {
         openPanel.canChooseDirectories = false // ディレクトリを選択できるか
         openPanel.canCreateDirectories = false // ディレクトリを作成できるか
         openPanel.canChooseFiles = true // ファイルを選択できるか
+        openPanel.resolvesAliases = true
         openPanel.allowedFileTypes = ["csv"] // 選択できるファイル種別
-        openPanel.begin { (result) -> Void in
-            if result == NSFileHandlingPanelOKButton { // ファイルを選択したか(OKを押したか)
-                guard let url = openPanel.url else { return }
-                if side == .left{
-                    self.leftFileNameLabel.stringValue = url.lastPathComponent
-                    self.leftSensorPlayer.loadCSVFile(url: url)
-                }
-                else{
-                    self.rightFileNameLabel.stringValue = url.lastPathComponent
-                    self.rightSensorPlayer.loadCSVFile(url: url)
-                }
+        let result = openPanel.runModal() //Modalで開く。ファイル選ぶまで他の操作を出来ないように
+        if result == NSFileHandlingPanelOKButton { // ファイルを選択したか(OKを押したか)
+            guard let url = openPanel.url else { return }
+            if side == .left{
+                self.leftFileNameLabel.stringValue = url.lastPathComponent
+                self.leftSensorPlayer.loadCSVFile(url: url)
+            }
+            else{
+                self.rightFileNameLabel.stringValue = url.lastPathComponent
+                self.rightSensorPlayer.loadCSVFile(url: url)
             }
         }
     }
