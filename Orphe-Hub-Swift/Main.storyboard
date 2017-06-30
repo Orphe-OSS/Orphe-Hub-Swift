@@ -960,9 +960,9 @@
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndw-hw-ebp">
-                                                <rect key="frame" x="14" y="172" width="114" height="17"/>
+                                                <rect key="frame" x="14" y="172" width="157" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Animation Speed" id="78J-Lg-9sk">
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Graph Animation Speed" id="78J-Lg-9sk">
                                                     <font key="font" metaFont="systemBold"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -988,11 +988,11 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gym-ln-tU4" customClass="SensorVisualizerView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                                <rect key="frame" x="397" y="0.0" width="378" height="715"/>
+                                                <rect key="frame" x="388" y="3" width="378" height="715"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             </customView>
                                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FzG-M5-qlP" customClass="SensorVisualizerView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                                <rect key="frame" x="11" y="0.0" width="378" height="715"/>
+                                                <rect key="frame" x="2" y="3" width="378" height="715"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             </customView>
                                         </subviews>

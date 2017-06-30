@@ -36,11 +36,13 @@ class RecordPlaybackViewController: ChildWindowViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.SensorValueCSVPlayerStopPlaying(notification:)), name: .SensorValueCSVPlayerStopPlaying, object: nil)
+        
         startRecordButton.rx.tap.subscribe(onNext: { [unowned self] _ in
-            if self.startRecordButton.image == #imageLiteral(resourceName: "record-stop") {
+            if self.startRecordButton.image == #imageLiteral(resourceName: "stopRecButton") {
                 self.leftSensorRecorder.stopRecording()
                 self.rightSensorRecorder.stopRecording()
-                self.startRecordButton.image = #imageLiteral(resourceName: "record-start")
+                self.startRecordButton.image = #imageLiteral(resourceName: "startRecButton")
                 
                 //記録したデータの保存処理
                 if self.leftSensorRecorder.recordText == ""
@@ -81,7 +83,7 @@ class RecordPlaybackViewController: ChildWindowViewController {
             else{
                 self.leftSensorRecorder.startRecording()
                 self.rightSensorRecorder.startRecording()
-                self.startRecordButton.image = #imageLiteral(resourceName: "record-stop")
+                self.startRecordButton.image = #imageLiteral(resourceName: "stopRecButton")
             }
         })
             .disposed(by: disposeBag)
@@ -101,26 +103,26 @@ class RecordPlaybackViewController: ChildWindowViewController {
         
         playCSVButton.rx.tap
             .subscribe(onNext: { [unowned self] _ in
-                if !self.leftSensorPlayer.isPlaying{
-                    self.leftSensorPlayer.play()
+                if self.playCSVButton.image == #imageLiteral(resourceName: "startPlayButton"){
+                    let isLeftSuccessPlay = self.leftSensorPlayer.play()
+                    let isRightSuccessPlay = self.rightSensorPlayer.play()
+                    if isLeftSuccessPlay || isRightSuccessPlay{
+                        self.playCSVButton.image = #imageLiteral(resourceName: "pausePlayButton")
+                    }
                 }
                 else{
                     self.leftSensorPlayer.pause()
-                }
-                
-                if !self.rightSensorPlayer.isPlaying{
-                    self.rightSensorPlayer.play()
-                }
-                else{
-                    self.rightSensorPlayer.pause()
+                    self.leftSensorPlayer.pause()
+                    self.playCSVButton.image = #imageLiteral(resourceName: "startPlayButton")
                 }
             })
             .disposed(by: disposeBag)
         
         stopCSVButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                self?.leftSensorPlayer.stop()
-                self?.rightSensorPlayer.stop()
+            .subscribe(onNext: { [unowned self] _ in
+                self.leftSensorPlayer.stop()
+                self.rightSensorPlayer.stop()
+                self.playCSVButton.image = #imageLiteral(resourceName: "startPlayButton")
             })
             .disposed(by: disposeBag)
         
@@ -165,6 +167,13 @@ class RecordPlaybackViewController: ChildWindowViewController {
                 self.rightFileNameLabel.stringValue = url.lastPathComponent
                 self.rightSensorPlayer.loadCSVFile(url: url)
             }
+        }
+    }
+    
+    func SensorValueCSVPlayerStopPlaying(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        if !leftSensorPlayer.isPlaying && !rightSensorPlayer.isPlaying{
+            self.playCSVButton.image = #imageLiteral(resourceName: "startPlayButton")
         }
     }
     

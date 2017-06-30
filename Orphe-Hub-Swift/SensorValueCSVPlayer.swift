@@ -73,11 +73,15 @@ class SensorValueCSVPlayer{
         
     }
     
-    func play(){
-        guard let _csv = self.csv else {return}
+    func play()->Bool{
+        guard let _csv = self.csv else {return false}
         if !isPlaying{
             isPlaying = true
             updateSensorValues()
+            return true
+        }
+        else{
+            return false
         }
     }
     
