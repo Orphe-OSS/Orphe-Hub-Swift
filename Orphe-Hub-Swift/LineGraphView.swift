@@ -38,7 +38,7 @@ class LineGraphView: NSView{
     }
     
     func commonInit(){
-        dataArray = Array(repeating: 0, count: bufSize)
+        dataArray = Array(repeating: CGFloat(self.frame.height) / 2, count: bufSize)
         xInterval = CGFloat(self.frame.width) / CGFloat(dataArray.count)
         yInterval = CGFloat(self.frame.height) / (valueMax-valueMin)
         

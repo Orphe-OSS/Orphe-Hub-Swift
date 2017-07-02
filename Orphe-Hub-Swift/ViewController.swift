@@ -80,9 +80,9 @@ class ViewController: NSViewController {
         var interval = 1.0
         switch segment{
         case 0:
-            interval = 2
-        case 1:
             interval = 1
+        case 1:
+            interval = 0.5
         case 2:
             interval = 0.1
         case 3:
