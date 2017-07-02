@@ -14,7 +14,7 @@ class LineGraphView: NSView{
     var yInterval:CGFloat = 1.0
     var valueMax:CGFloat = 1.1
     var valueMin:CGFloat = -1.1
-    var bufSize:Int = 256
+    var bufSize:Int = 128
     var lineColor:NSColor = .red
     
     let centerLine = NSBezierPath()
