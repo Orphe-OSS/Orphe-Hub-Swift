@@ -106,6 +106,7 @@ class ViewController: NSViewController {
             rightSensorView.orphe = player.dummyOrphe
             rightSensorView.startUpdateGraphView()
         }
+        tableView.isEnabled = false
     }
     
     func SensorValueCSVPlayerStopPlaying(notification:Notification){
@@ -117,6 +118,7 @@ class ViewController: NSViewController {
         else if player.dummyOrphe.side == .right{
             rightSensorView.stopUpdateGraphView()
         }
+        tableView.isEnabled = true
     }
     
     override func viewDidLayout() {

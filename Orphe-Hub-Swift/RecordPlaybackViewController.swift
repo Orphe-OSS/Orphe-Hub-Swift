@@ -104,8 +104,14 @@ class RecordPlaybackViewController: ChildWindowViewController {
         playCSVButton.rx.tap
             .subscribe(onNext: { [unowned self] _ in
                 if self.playCSVButton.image == #imageLiteral(resourceName: "startPlayButton"){
-                    let isLeftSuccessPlay = self.leftSensorPlayer.play()
-                    let isRightSuccessPlay = self.rightSensorPlayer.play()
+                    var isLeftSuccessPlay = false
+                    var isRightSuccessPlay = false
+                    if !ORPManager.sharedInstance.isLeftConnected(){
+                        isLeftSuccessPlay = self.leftSensorPlayer.play()
+                    }
+                    if !ORPManager.sharedInstance.isRightConnected(){
+                        isRightSuccessPlay = self.rightSensorPlayer.play()
+                    }
                     if isLeftSuccessPlay || isRightSuccessPlay{
                         self.playCSVButton.image = #imageLiteral(resourceName: "pausePlayButton")
                     }
@@ -120,9 +126,11 @@ class RecordPlaybackViewController: ChildWindowViewController {
         
         stopCSVButton.rx.tap
             .subscribe(onNext: { [unowned self] _ in
-                self.leftSensorPlayer.stop()
-                self.rightSensorPlayer.stop()
-                self.playCSVButton.image = #imageLiteral(resourceName: "startPlayButton")
+                if self.playCSVButton.image == #imageLiteral(resourceName: "pausePlayButton"){
+                    self.leftSensorPlayer.stop()
+                    self.rightSensorPlayer.stop()
+                    self.playCSVButton.image = #imageLiteral(resourceName: "startPlayButton")
+                }
             })
             .disposed(by: disposeBag)
         
