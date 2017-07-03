@@ -60,5 +60,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             mapValue.max = max
         }
     }
+    
+    @IBAction func helpMenItemAction(_ sender: NSMenuItem) {
+        if let url = URL(string: "https://sites.google.com/view/orphe-developers/hub-app"), NSWorkspace.shared().open(url) {
+            print("default browser was successfully opened")
+        }
+    }
+    
 }
 
