@@ -124,6 +124,11 @@ class SensorSettingViewController: ChildWindowViewController {
         })
             .disposed(by: disposeBag)
         
+        axisPopUpButton.rx.tap.subscribe(onNext: { [unowned self] _ in
+            self.updateSendingSensorSetting()
+            
+        })
+            .disposed(by: disposeBag)
         
         setSensorSettingsButton.rx.tap.subscribe(onNext: { [unowned self] _ in
             self.updateSendingSensorSetting()
