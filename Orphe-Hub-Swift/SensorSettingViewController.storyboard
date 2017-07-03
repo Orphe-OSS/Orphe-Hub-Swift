@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="60Q-jv-sJ0">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +26,7 @@
         <!--Sensor Settings-->
         <scene sceneID="37X-PC-TU9">
             <objects>
-                <viewController title="Sensor Settings" id="nJe-bu-qAk" customClass="SensorSettingViewController" customModule="Orphe_Hub_Swift" sceneMemberID="viewController">
+                <viewController title="Sensor Settings" id="nJe-bu-qAk" customClass="SensorSettingViewController" customModule="Orphe_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="z4f-Nh-koV">
                         <rect key="frame" x="0.0" y="0.0" width="332" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -165,12 +164,12 @@
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="accRangeSegmentedControl" destination="ruH-bm-awB" id="pUh-Bt-v8J"/>
-                        <outlet property="axisPopUpButton" destination="m48-vN-Xow" id="ES9-JP-NBg"/>
-                        <outlet property="gyroRangeSegmentedControl" destination="xtX-ig-hi0" id="qPB-Xd-H9c"/>
-                        <outlet property="resolutionFrequencyPopUpButton" destination="oha-jr-mvJ" id="dgo-Pc-01T"/>
-                        <outlet property="sensorKindPopUpButton" destination="BsT-3i-SFa" id="RnF-9R-kOc"/>
-                        <outlet property="setSensorSettingsButton" destination="MWu-m8-W3K" id="0k8-bu-WIe"/>
+                        <outlet property="accRangeSegmentedControl" destination="ruH-bm-awB" id="qfX-Us-olq"/>
+                        <outlet property="axisPopUpButton" destination="m48-vN-Xow" id="kSo-W3-lKx"/>
+                        <outlet property="gyroRangeSegmentedControl" destination="xtX-ig-hi0" id="cRU-wh-UKP"/>
+                        <outlet property="resolutionFrequencyPopUpButton" destination="oha-jr-mvJ" id="3bJ-NZ-TDj"/>
+                        <outlet property="sensorKindPopUpButton" destination="BsT-3i-SFa" id="dZm-iP-zFZ"/>
+                        <outlet property="setSensorSettingsButton" destination="MWu-m8-W3K" id="P1t-4J-U9j"/>
                     </connections>
                 </viewController>
                 <customObject id="O99-RZ-wcP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
