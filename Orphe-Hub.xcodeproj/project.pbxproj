@@ -101,7 +101,7 @@
 		86A16C2C08FFA8C1762DC546 /* Pods-Orphe-Hub-SwiftTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-SwiftTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-SwiftTests/Pods-Orphe-Hub-SwiftTests.debug.xcconfig"; sourceTree = "<group>"; };
 		98E9168548B33620B4C286EC /* Pods-Orphe-Hub-SwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-SwiftUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-SwiftUITests/Pods-Orphe-Hub-SwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA01EC53DA1308C04022ABE5 /* Pods_Orphe_Hub_SwiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphe_Hub_SwiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6117D001E0A5A8200A2C89F /* Orphe-Hub-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Orphe-Hub-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6117D001E0A5A8200A2C89F /* Orphe-Hub-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "Orphe-Hub-Swift.app"; path = "Orphe Hub.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6117D111E0A5A8200A2C89F /* Orphe-HubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orphe-HubTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6117D1C1E0A5A8200A2C89F /* Orphe-HubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orphe-HubUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61393051E8E6A31002DD502 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Orphe-Hub-Swift/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
@@ -794,7 +794,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.no-new-folk.Orphe-Hub-Swift";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Orphe Hub";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Orphe-Hub-Swift/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -820,7 +820,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.no-new-folk.Orphe-Hub-Swift";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Orphe Hub";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Orphe-Hub-Swift/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
