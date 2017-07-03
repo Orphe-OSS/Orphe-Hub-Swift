@@ -30,11 +30,14 @@ func iterateEnum<T: Hashable>(_: T.Type) -> AnyIterator<T> {
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
+    var activity: NSObjectProtocol?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         print("applicationDidFinishLaunching")
         // Insert code here to initialize your application
+        
+        activity = ProcessInfo().beginActivity(options: ProcessInfo.ActivityOptions.userInitiated, reason: "Good Reason")
+        
         OSCManager.sharedInstance.clientHost = AppSettings.oscHost
         OSCManager.sharedInstance.clientPort = AppSettings.oscSenderPort
         OSCManager.sharedInstance.serverPort = AppSettings.oscReceiverPort
