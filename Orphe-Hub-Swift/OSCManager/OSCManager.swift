@@ -427,7 +427,7 @@ class OSCManager:NSObject, OSCServerDelegate{
         let outputMag = magMapValue.map(orphe.getMag(), inputMin: 0, inputMax: 359)
         args.append(outputMag as Any)
         
-        let outputShock = magMapValue.map(Float(orphe.getShock()), inputMin: 0, inputMax: 255)
+        let outputShock = shockMapValue.map(Float(orphe.getShock()), inputMin: 0, inputMax: 255)
         args.append(outputShock as Any)
         
         let message = OSCMessage(address: address, arguments: args)
