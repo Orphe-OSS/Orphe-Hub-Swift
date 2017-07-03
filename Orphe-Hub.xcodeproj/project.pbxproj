@@ -793,7 +793,7 @@
 				INFOPLIST_FILE = "Orphe-Hub-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.no-new-folk.Orphe-Hub-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.no-new-folk.Orphe-Hub";
 				PRODUCT_NAME = "Orphe Hub";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Orphe-Hub-Swift/$(PROJECT_NAME)-Bridging-Header.h";
@@ -819,7 +819,7 @@
 				INFOPLIST_FILE = "Orphe-Hub-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.no-new-folk.Orphe-Hub-Swift";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.no-new-folk.Orphe-Hub";
 				PRODUCT_NAME = "Orphe Hub";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Orphe-Hub-Swift/$(PROJECT_NAME)-Bridging-Header.h";
