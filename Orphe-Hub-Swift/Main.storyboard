@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,11 +11,11 @@
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Orphe-Hub-Swift" id="1Xt-HY-uBw">
+                            <menuItem title="Orphe-Hub" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Orphe-Hub-Swift" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Orphe-Hub" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Orphe-Hub-Swift" id="5kV-Vb-QxS">
+                                        <menuItem title="About Orphe-Hub" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -30,7 +29,7 @@
                                             <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Orphe-Hub-Swift" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide Orphe-Hub" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -48,7 +47,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Orphe-Hub-Swift" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Orphe-Hub" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -85,7 +84,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="Orphe-Hub-Swift Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="Orphe-Hub Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -163,7 +162,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <clipView key="contentView" ambiguous="YES" id="fjx-ZI-vKz">
                                                     <rect key="frame" x="1" y="0.0" width="245" height="199"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="gly-dM-AG7" viewBased="YES" id="h75-vc-pKQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="245" height="176"/>
@@ -223,11 +222,11 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="BPR-k0-k8u">
-                                                                            <rect key="frame" x="100" y="1" width="42" height="17"/>
+                                                                            <rect key="frame" x="100" y="1" width="43" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L6e-AL-HQS">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="17"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="43" height="17"/>
                                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="lYZ-d3-xN6">
                                                                                         <font key="font" metaFont="system"/>
@@ -256,7 +255,7 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="KOh-U6-8Qh">
-                                                                            <rect key="frame" x="145.5" y="1" width="48" height="17"/>
+                                                                            <rect key="frame" x="146" y="1" width="48" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guN-HJ-U7a">
@@ -275,7 +274,7 @@
                                                                         </tableCellView>
                                                                     </prototypeCellViews>
                                                                 </tableColumn>
-                                                                <tableColumn identifier="" width="46.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="Pop-Sc-RCb">
+                                                                <tableColumn identifier="" width="45.5" minWidth="10" maxWidth="3.4028234663852886e+38" id="Pop-Sc-RCb">
                                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Version">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -289,7 +288,7 @@
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
                                                                         <tableCellView id="hEO-9R-gKv">
-                                                                            <rect key="frame" x="196.5" y="1" width="46" height="17"/>
+                                                                            <rect key="frame" x="197" y="1" width="46" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jVT-up-eih">
@@ -410,11 +409,11 @@
                                                 </segmentedCell>
                                             </segmentedControl>
                                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="apQ-MZ-wP9">
-                                                <rect key="frame" x="6" y="353" width="241" height="87"/>
+                                                <rect key="frame" x="6" y="353" width="241" height="61"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             </box>
                                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="PqF-RA-PMm">
-                                                <rect key="frame" x="6" y="279" width="241" height="35"/>
+                                                <rect key="frame" x="6" y="279" width="241" height="141"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             </box>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tk8-ld-2WE">
@@ -436,7 +435,7 @@
                                         </subviews>
                                     </customView>
                                     <customView fixedFrame="YES" id="TWV-QZ-XGs">
-                                        <rect key="frame" x="249" y="0.0" width="775" height="722"/>
+                                        <rect key="frame" x="1" y="0.0" width="775" height="722"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gym-ln-tU4" customClass="SensorVisualizerView" customModule="Orphe_Hub_Swift" customModuleProvider="target">

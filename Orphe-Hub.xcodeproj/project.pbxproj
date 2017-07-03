@@ -102,8 +102,8 @@
 		98E9168548B33620B4C286EC /* Pods-Orphe-Hub-SwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-SwiftUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-SwiftUITests/Pods-Orphe-Hub-SwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BA01EC53DA1308C04022ABE5 /* Pods_Orphe_Hub_SwiftUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Orphe_Hub_SwiftUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6117D001E0A5A8200A2C89F /* Orphe-Hub-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Orphe-Hub-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6117D111E0A5A8200A2C89F /* Orphe-Hub-SwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orphe-Hub-SwiftTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E6117D1C1E0A5A8200A2C89F /* Orphe-Hub-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orphe-Hub-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6117D111E0A5A8200A2C89F /* Orphe-HubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orphe-HubTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6117D1C1E0A5A8200A2C89F /* Orphe-HubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Orphe-HubUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E61393051E8E6A31002DD502 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Orphe-Hub-Swift/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		E61393061E8E6A31002DD502 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Orphe-Hub-Swift/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
 		E61393081E8E6A31002DD502 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Orphe-Hub-Swift/Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -113,7 +113,7 @@
 		E6401E841EA6317300DEBC32 /* OSCManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSCManager.swift; sourceTree = "<group>"; };
 		E6401E851EA6317300DEBC32 /* ObjC_Exception.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjC_Exception.h; sourceTree = "<group>"; };
 		E6401E861EA6317300DEBC32 /* ObjC_Exception.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjC_Exception.m; sourceTree = "<group>"; };
-		E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Orphe-Hub-Swift-Bridging-Header.h"; path = "Orphe-Hub-Swift/Orphe-Hub-Swift-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Orphe-Hub-Bridging-Header.h"; path = "Orphe-Hub-Swift/Orphe-Hub-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		E64E85A01EFAA95E00C9AD04 /* SensorValueCSVPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SensorValueCSVPlayer.swift; path = "Orphe-Hub-Swift/SensorValueCSVPlayer.swift"; sourceTree = SOURCE_ROOT; };
 		E64E85BF1F02185300C9AD04 /* OSCSettingViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = OSCSettingViewController.storyboard; path = "Orphe-Hub-Swift/OSCSettingViewController.storyboard"; sourceTree = SOURCE_ROOT; };
 		E64E85C21F021DB800C9AD04 /* OSCSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OSCSettingViewController.swift; path = "Orphe-Hub-Swift/OSCSettingViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -194,8 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				E6117D001E0A5A8200A2C89F /* Orphe-Hub-Swift.app */,
-				E6117D111E0A5A8200A2C89F /* Orphe-Hub-SwiftTests.xctest */,
-				E6117D1C1E0A5A8200A2C89F /* Orphe-Hub-SwiftUITests.xctest */,
+				E6117D111E0A5A8200A2C89F /* Orphe-HubTests.xctest */,
+				E6117D1C1E0A5A8200A2C89F /* Orphe-HubUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 				E6D62D591F037EEC00E71294 /* SensorSettingVC */,
 				E6D62D571F037EDC00E71294 /* RecordPlaybackVC */,
 				E6401E831EA6317300DEBC32 /* OSCManager */,
-				E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Swift-Bridging-Header.h */,
+				E6401E8B1EA6381200DEBC32 /* Orphe-Hub-Bridging-Header.h */,
 				E66053C51EDDCA1000EC8678 /* SensorFreqencyCalculator.swift */,
 				E68084D21F0538CE00178185 /* ChildWindowViewController.swift */,
 				E61393061E8E6A31002DD502 /* Assets.xcassets */,
@@ -318,9 +318,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E6117CFF1E0A5A8200A2C89F /* Orphe-Hub-Swift */ = {
+		E6117CFF1E0A5A8200A2C89F /* Orphe-Hub */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E6117D251E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-Hub-Swift" */;
+			buildConfigurationList = E6117D251E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-Hub" */;
 			buildPhases = (
 				57239120FBD1228198E4B4DE /* [CP] Check Pods Manifest.lock */,
 				E6117CFC1E0A5A8200A2C89F /* Sources */,
@@ -335,14 +335,14 @@
 			dependencies = (
 				E666C40D1EC33750005DFF17 /* PBXTargetDependency */,
 			);
-			name = "Orphe-Hub-Swift";
+			name = "Orphe-Hub";
 			productName = OrpheExample_macOS;
 			productReference = E6117D001E0A5A8200A2C89F /* Orphe-Hub-Swift.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E6117D101E0A5A8200A2C89F /* Orphe-Hub-SwiftTests */ = {
+		E6117D101E0A5A8200A2C89F /* Orphe-HubTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E6117D281E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-Hub-SwiftTests" */;
+			buildConfigurationList = E6117D281E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-HubTests" */;
 			buildPhases = (
 				58E3EF964903FCC24D6024C0 /* [CP] Check Pods Manifest.lock */,
 				E6117D0D1E0A5A8200A2C89F /* Sources */,
@@ -356,14 +356,14 @@
 			dependencies = (
 				E6117D131E0A5A8200A2C89F /* PBXTargetDependency */,
 			);
-			name = "Orphe-Hub-SwiftTests";
+			name = "Orphe-HubTests";
 			productName = OrpheExample_macOSTests;
-			productReference = E6117D111E0A5A8200A2C89F /* Orphe-Hub-SwiftTests.xctest */;
+			productReference = E6117D111E0A5A8200A2C89F /* Orphe-HubTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E6117D1B1E0A5A8200A2C89F /* Orphe-Hub-SwiftUITests */ = {
+		E6117D1B1E0A5A8200A2C89F /* Orphe-HubUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E6117D2B1E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-Hub-SwiftUITests" */;
+			buildConfigurationList = E6117D2B1E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-HubUITests" */;
 			buildPhases = (
 				DEC8971B34659B9C7833EC02 /* [CP] Check Pods Manifest.lock */,
 				E6117D181E0A5A8200A2C89F /* Sources */,
@@ -377,9 +377,9 @@
 			dependencies = (
 				E6117D1E1E0A5A8200A2C89F /* PBXTargetDependency */,
 			);
-			name = "Orphe-Hub-SwiftUITests";
+			name = "Orphe-HubUITests";
 			productName = OrpheExample_macOSUITests;
-			productReference = E6117D1C1E0A5A8200A2C89F /* Orphe-Hub-SwiftUITests.xctest */;
+			productReference = E6117D1C1E0A5A8200A2C89F /* Orphe-HubUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -412,7 +412,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E6117CFB1E0A5A8200A2C89F /* Build configuration list for PBXProject "Orphe-Hub-Swift" */;
+			buildConfigurationList = E6117CFB1E0A5A8200A2C89F /* Build configuration list for PBXProject "Orphe-Hub" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -431,9 +431,9 @@
 			);
 			projectRoot = "";
 			targets = (
-				E6117CFF1E0A5A8200A2C89F /* Orphe-Hub-Swift */,
-				E6117D101E0A5A8200A2C89F /* Orphe-Hub-SwiftTests */,
-				E6117D1B1E0A5A8200A2C89F /* Orphe-Hub-SwiftUITests */,
+				E6117CFF1E0A5A8200A2C89F /* Orphe-Hub */,
+				E6117D101E0A5A8200A2C89F /* Orphe-HubTests */,
+				E6117D1B1E0A5A8200A2C89F /* Orphe-HubUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -670,12 +670,12 @@
 /* Begin PBXTargetDependency section */
 		E6117D131E0A5A8200A2C89F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E6117CFF1E0A5A8200A2C89F /* Orphe-Hub-Swift */;
+			target = E6117CFF1E0A5A8200A2C89F /* Orphe-Hub */;
 			targetProxy = E6117D121E0A5A8200A2C89F /* PBXContainerItemProxy */;
 		};
 		E6117D1E1E0A5A8200A2C89F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E6117CFF1E0A5A8200A2C89F /* Orphe-Hub-Swift */;
+			target = E6117CFF1E0A5A8200A2C89F /* Orphe-Hub */;
 			targetProxy = E6117D1D1E0A5A8200A2C89F /* PBXContainerItemProxy */;
 		};
 		E666C40D1EC33750005DFF17 /* PBXTargetDependency */ = {
@@ -796,7 +796,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.no-new-folk.Orphe-Hub-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Orphe-Hub-Swift/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -822,7 +822,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.no-new-folk.Orphe-Hub-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Orphe-Hub-Swift/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -840,7 +840,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nakanisynth.OrpheExample-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphe-Hub-Swift.app/Contents/MacOS/Orphe-Hub-Swift";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphe-Hub.app/Contents/MacOS/Orphe-Hub";
 			};
 			name = Debug;
 		};
@@ -857,7 +857,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nakanisynth.OrpheExample-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphe-Hub-Swift.app/Contents/MacOS/Orphe-Hub-Swift";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphe-Hub.app/Contents/MacOS/Orphe-Hub";
 			};
 			name = Release;
 		};
@@ -896,7 +896,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E6117CFB1E0A5A8200A2C89F /* Build configuration list for PBXProject "Orphe-Hub-Swift" */ = {
+		E6117CFB1E0A5A8200A2C89F /* Build configuration list for PBXProject "Orphe-Hub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E6117D231E0A5A8200A2C89F /* Debug */,
@@ -905,7 +905,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E6117D251E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-Hub-Swift" */ = {
+		E6117D251E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-Hub" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E6117D261E0A5A8200A2C89F /* Debug */,
@@ -914,7 +914,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E6117D281E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-Hub-SwiftTests" */ = {
+		E6117D281E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-HubTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E6117D291E0A5A8200A2C89F /* Debug */,
@@ -923,7 +923,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E6117D2B1E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-Hub-SwiftUITests" */ = {
+		E6117D2B1E0A5A8200A2C89F /* Build configuration list for PBXNativeTarget "Orphe-HubUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E6117D2C1E0A5A8200A2C89F /* Debug */,

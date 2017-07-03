@@ -6,9 +6,9 @@
 //  Copyright © 2017 no new folk studio Inc. All rights reserved.
 //
 
-#ifndef Orphe_Hub_Swift_Bridging_Header_h
-#define Orphe_Hub_Swift_Bridging_Header_h
+#ifndef Orphe_Hub_Bridging_Header_h
+#define Orphe_Hub_Bridging_Header_h
 
 #import "ObjC_Exception.h"
 
-#endif /* Orphe_Hub_Swift_Bridging_Header_h */
+#endif /* Orphe_Hub_Bridging_Header_h */
