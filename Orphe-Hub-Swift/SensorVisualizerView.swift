@@ -131,19 +131,20 @@ class SensorVisualizerView:NSView{
     
     func updateFreqCalculator(orphe:ORPData){
         bleFreq.update()
-        for array in orphe.quatArray {
-            qFreq.updateValue2(value: array[0])
+        for _ in orphe.quatArray {
+            qFreq.update()
         }
-        for array in orphe.accArray {
-            aFreq.updateValue2(value: array[0])
+        for _ in orphe.accArray {
+            aFreq.update()
         }
-        for array in orphe.gyroArray {
-            gFreq.updateValue2(value: array[0])
+        for _ in orphe.gyroArray {
+            gFreq.update()
         }
-        for array in orphe.eulerArray {
-            eFreq.updateValue2(value: array[0])
+        for _ in orphe.eulerArray {
+            eFreq.update()
         }
         
+        //周波数が更新されたらラベルに反映
         if qFreq.isFreqValueUpdated
         || aFreq.isFreqValueUpdated
         || gFreq.isFreqValueUpdated

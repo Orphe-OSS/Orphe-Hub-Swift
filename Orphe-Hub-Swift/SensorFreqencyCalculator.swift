@@ -46,27 +46,12 @@ class SensorFreqencyCalculator: NSObject {
         }
     }
     
-    func updateValue(value:Float){
-        counter += 1
-        if preValue != value {
-            difNumCounter += 1
-            preValue = value
-        }
-        
-        if counter == countNum {
-            let elapsedTime = NSDate().timeIntervalSince(timestamp)
-            timestamp = Date()
-            freq = Float(counter)/Float(elapsedTime)
-            counter = 0
-            difNumCounter = 0
-            changeFrames.removeAll()
-        }
-    }
-    
-    func updateValue2(value:Float){
+    //連続して同じ値が来てないか考慮して計算する方法
+    func updateValueConsideringValueChange(value:Float){
         isFreqValueUpdated = false
         counter += 1
         if preValue != value {
+            //値が変化するまでに経過したフレーム数を毎回保持。周波数を計算する時に一番多かったフレーム数で割る。
             changeFrames.append(counter-preCounter)
             preValue2 = preValue
             preValue = value
