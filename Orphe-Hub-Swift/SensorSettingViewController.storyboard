@@ -35,24 +35,6 @@
                                 <rect key="frame" x="20" y="159" width="284" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYo-x3-oon">
-                                <rect key="frame" x="35" y="228" width="80" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Acc range (g)" id="20h-Rj-uG5">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v66-HS-RYs">
-                                <rect key="frame" x="35" y="193" width="97" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gyro range (°/s)" id="z7c-Ng-hqQ">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXY-y3-rSF">
                                 <rect key="frame" x="86" y="263" width="161" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -98,32 +80,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtX-ig-hi0">
-                                <rect key="frame" x="128" y="188" width="170" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Ykd-CK-80i">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <segments>
-                                        <segment label="250"/>
-                                        <segment label="500" tag="1"/>
-                                        <segment label="1000"/>
-                                        <segment label="2000" selected="YES"/>
-                                    </segments>
-                                </segmentedCell>
-                            </segmentedControl>
-                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ruH-bm-awB">
-                                <rect key="frame" x="128" y="225" width="129" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="gtt-ZP-SOD">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <segments>
-                                        <segment label="2" width="30" selected="YES"/>
-                                        <segment label="4" width="30" tag="1"/>
-                                        <segment label="8" width="30"/>
-                                        <segment label="16" width="30"/>
-                                    </segments>
-                                </segmentedCell>
-                            </segmentedControl>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oha-jr-mvJ">
                                 <rect key="frame" x="135" y="73" width="146" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -161,6 +117,50 @@
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AYo-x3-oon">
+                                <rect key="frame" x="31" y="227" width="99" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Accelerometer (g)" id="20h-Rj-uG5">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v66-HS-RYs">
+                                <rect key="frame" x="31" y="192" width="97" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gyroscope (°/s)" id="z7c-Ng-hqQ">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtX-ig-hi0">
+                                <rect key="frame" x="132" y="187" width="170" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Ykd-CK-80i">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <segments>
+                                        <segment label="250"/>
+                                        <segment label="500" tag="1"/>
+                                        <segment label="1000"/>
+                                        <segment label="2000" selected="YES"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ruH-bm-awB">
+                                <rect key="frame" x="132" y="224" width="129" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <segmentedCell key="cell" controlSize="small" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="gtt-ZP-SOD">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <segments>
+                                        <segment label="2" width="30" selected="YES"/>
+                                        <segment label="4" width="30" tag="1"/>
+                                        <segment label="8" width="30"/>
+                                        <segment label="16" width="30"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
                         </subviews>
                     </view>
                     <connections>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="55U-Qm-FjU">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +26,7 @@
         <!--OSC Settings-->
         <scene sceneID="2f6-CC-plN">
             <objects>
-                <viewController title="OSC Settings" id="TzW-eX-f7c" customClass="OSCSettingViewController" customModule="Orphe_Hub_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="OSC Settings" id="TzW-eX-f7c" customClass="OSCSettingViewController" customModule="Orphe_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ctN-nO-RJF">
                         <rect key="frame" x="0.0" y="0.0" width="511" height="403"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -70,7 +69,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HbA-Q8-Zhb">
                                                 <rect key="frame" x="5" y="273" width="164" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Received OSC Messages" id="vJv-VT-8QD">
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Receive Log" id="vJv-VT-8QD">
                                                     <font key="font" metaFont="systemBold"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -145,39 +144,39 @@
                                         <rect key="frame" x="297" y="0.0" width="214" height="403"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8m-OJ-IiC">
-                                                <rect key="frame" x="7" y="380" width="164" height="17"/>
+                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJX-dD-8OA" customClass="MapValueSettingView" customModule="Orphe_Hub" customModuleProvider="target">
+                                                <rect key="frame" x="6" y="309" width="203" height="52"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Send value mapping" id="AGk-S2-nwf">
+                                            </customView>
+                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ht6-G6-nUw" customClass="MapValueSettingView" customModule="Orphe_Hub" customModuleProvider="target">
+                                                <rect key="frame" x="6" y="249" width="203" height="52"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </customView>
+                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QsK-ld-jLB" customClass="MapValueSettingView" customModule="Orphe_Hub" customModuleProvider="target">
+                                                <rect key="frame" x="6" y="189" width="203" height="52"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </customView>
+                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tdC-rM-wrZ" customClass="MapValueSettingView" customModule="Orphe_Hub" customModuleProvider="target">
+                                                <rect key="frame" x="6" y="129" width="203" height="52"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </customView>
+                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PvL-pK-mrB" customClass="MapValueSettingView" customModule="Orphe_Hub" customModuleProvider="target">
+                                                <rect key="frame" x="6" y="67" width="203" height="52"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </customView>
+                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76p-xI-jRJ" customClass="MapValueSettingView" customModule="Orphe_Hub" customModuleProvider="target">
+                                                <rect key="frame" x="6" y="7" width="203" height="52"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            </customView>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8m-OJ-IiC">
+                                                <rect key="frame" x="4" y="369" width="164" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Value Mapping" id="AGk-S2-nwf">
                                                     <font key="font" metaFont="systemBold"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hJX-dD-8OA" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                                <rect key="frame" x="6" y="309" width="203" height="52"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            </customView>
-                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ht6-G6-nUw" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                                <rect key="frame" x="6" y="249" width="203" height="52"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            </customView>
-                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QsK-ld-jLB" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                                <rect key="frame" x="6" y="189" width="203" height="52"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            </customView>
-                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tdC-rM-wrZ" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                                <rect key="frame" x="6" y="129" width="203" height="52"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            </customView>
-                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PvL-pK-mrB" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                                <rect key="frame" x="6" y="67" width="203" height="52"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            </customView>
-                                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="76p-xI-jRJ" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
-                                                <rect key="frame" x="6" y="7" width="203" height="52"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            </customView>
                                         </subviews>
                                     </customView>
                                 </subviews>
