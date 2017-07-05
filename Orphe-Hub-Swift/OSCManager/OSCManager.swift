@@ -214,6 +214,14 @@ class OSCManager:NSObject, OSCServerDelegate{
                 orphe.setColorRGB(lightNum: lightNum, red: red, green: green, blue: blue)
             }
             
+        case "changeScene":
+            let sceneNum = message.arguments[0] as! Int
+            if let scene = ORPScene(rawValue: sceneNum){
+                for orphe in orphes{
+                    orphe.setScene(scene)
+                }
+            }
+            
         default:
             isNoCommand = true
             PRINT("Wrong command")
