@@ -129,9 +129,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="722"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <splitView fixedFrame="YES" arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aj1-eP-Xs4">
+                            <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aj1-eP-Xs4">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="722"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <customView fixedFrame="YES" id="3lJ-mw-b04">
                                         <rect key="frame" x="0.0" y="0.0" width="248" height="722"/>
@@ -327,12 +326,12 @@
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6OC-VM-UoX">
                                                 <rect key="frame" x="67" y="393" width="110" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                <buttonCell key="cell" type="push" title="Calibrate Angle" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b0Y-0N-mlE">
+                                                <buttonCell key="cell" type="push" title="Reset Attitude" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b0Y-0N-mlE">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="smallSystem"/>
                                                 </buttonCell>
                                                 <connections>
-                                                    <action selector="calibrationButtonAction:" target="XfG-lQ-9wD" id="biA-l7-ZHa"/>
+                                                    <action selector="resetAttitudeButtonAction:" target="XfG-lQ-9wD" id="Zjr-Xy-D57"/>
                                                 </connections>
                                             </button>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UqJ-NA-iWS">
@@ -408,14 +407,6 @@
                                                     </segments>
                                                 </segmentedCell>
                                             </segmentedControl>
-                                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="PqF-RA-PMm">
-                                                <rect key="frame" x="7" y="254" width="241" height="41"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            </box>
-                                            <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="zw3-qR-Bpk">
-                                                <rect key="frame" x="7" y="330" width="241" height="41"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            </box>
                                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tk8-ld-2WE">
                                                 <rect key="frame" x="13" y="365" width="110" height="28"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -455,6 +446,12 @@
                                 </holdingPriorities>
                             </splitView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Aj1-eP-Xs4" secondAttribute="bottom" id="2iW-zf-oKG"/>
+                            <constraint firstItem="Aj1-eP-Xs4" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="D8t-cf-5xR"/>
+                            <constraint firstAttribute="trailing" secondItem="Aj1-eP-Xs4" secondAttribute="trailing" id="RSL-9k-t1g"/>
+                            <constraint firstItem="Aj1-eP-Xs4" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="VPV-c1-usP"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="activeLEDButton" destination="tk8-ld-2WE" id="7mo-9A-c5K"/>

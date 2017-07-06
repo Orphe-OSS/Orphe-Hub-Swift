@@ -181,11 +181,9 @@ class ViewController: NSViewController {
         updateCellsState()
     }
     
-    @IBAction func calibrationButtonAction(_ sender: Any) {
+    @IBAction func resetAttitudeButtonAction(_ sender: Any) {
         for orphe in ORPManager.sharedInstance.connectedORPDataArray{
-            orphe.calibrateAngle(axis: .X)
-            orphe.calibrateAngle(axis: .Y) //なんかおかしい
-            orphe.calibrateAngle(axis: .Z)
+            orphe.resetAttitude()
         }
     }
     
