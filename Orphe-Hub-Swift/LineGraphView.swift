@@ -44,7 +44,6 @@ class LineGraphView: NSView{
         
         centerLine.move(to: CGPoint(x: 0, y: CGFloat(self.frame.height) / 2))
         centerLine.line(to: NSPoint(x: self.frame.width, y:CGFloat(self.frame.height) / 2))
-        NSColor.white.setStroke()
         centerLine.lineWidth = 1
         
         line.lineWidth = 2
@@ -57,6 +56,7 @@ class LineGraphView: NSView{
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
+        NSColor.white.setStroke()
         centerLine.stroke()
         
         line.removeAllPoints()
