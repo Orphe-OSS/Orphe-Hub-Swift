@@ -49,7 +49,16 @@ class SensorVisualizerView:NSView{
             }
         }
     }
-    var orphe:ORPData?
+    var orphe:ORPData?{
+        didSet{
+            if orphe != nil{
+                startUpdateGraphView()
+            }
+            else{
+                stopUpdateGraphView()
+            }
+        }
+    }
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -86,6 +95,14 @@ class SensorVisualizerView:NSView{
                                                       metrics:nil,
                                                       views: bindings))
         
+        //Notification Orphe
+        NotificationCenter.default.addObserver(self, selector:  #selector(SensorVisualizerView.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
+        NotificationCenter.default.addObserver(self, selector:  #selector(SensorVisualizerView.OrpheDidConnect(notification:)), name: .OrpheDidConnect, object: nil)
+        NotificationCenter.default.addObserver(self, selector:  #selector(SensorVisualizerView.OrpheDidDisconnect(notification:)), name: .OrpheDidDisconnect, object: nil)
+        
+        //Notificaion sensorCSVPlayer
+        NotificationCenter.default.addObserver(self, selector:  #selector(SensorVisualizerView.SensorValueCSVPlayerStartPlaying(notification:)), name: .SensorValueCSVPlayerStartPlaying, object: nil)
+        NotificationCenter.default.addObserver(self, selector:  #selector(SensorVisualizerView.SensorValueCSVPlayerStopPlaying(notification:)), name: .SensorValueCSVPlayerStopPlaying, object: nil)
     }
     
     func initSettings(){
@@ -236,4 +253,48 @@ class SensorVisualizerView:NSView{
         gFreq.initValues()
     }
     
+    //MARK: - Notification
+    func OrpheDidUpdateSensorData(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
+        
+        if self.orphe == orphe{
+            updateSensorValues(orphe:orphe)
+        }
+    }
+    
+    func OrpheDidConnect(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
+        
+        if orphe.side == self.side{
+            self.orphe = orphe
+        }
+    }
+    
+    func OrpheDidDisconnect(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
+        
+        if self.orphe == orphe{
+            self.orphe = nil
+        }
+    }
+    
+    //MARK: - Notification CSVPlayer
+    func SensorValueCSVPlayerStartPlaying(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let player = userInfo[SensorValueCSVPlayerInfoKey] as! SensorValueCSVPlayer
+        if player.dummyOrphe.side == self.side{
+            orphe = player.dummyOrphe
+        }
+    }
+    
+    func SensorValueCSVPlayerStopPlaying(notification:Notification){
+        guard let userInfo = notification.userInfo else {return}
+        let player = userInfo[SensorValueCSVPlayerInfoKey] as! SensorValueCSVPlayer
+        if player.dummyOrphe == self.orphe{
+            self.orphe = nil
+        }
+    }
 }

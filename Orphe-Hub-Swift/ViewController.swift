@@ -66,7 +66,6 @@ class ViewController: NSViewController {
         setAnimationInterval(segment: self.animationSpeedSegmentControl.selectedSegment)
         
         //Notification ble
-        NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidUpdateSensorData(notification:)), name: .OrpheDidUpdateSensorData, object: nil)
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidReceiveFWVersion(notification:)), name: .OrpheDidReceiveFWVersion, object: nil)
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidCatchGestureEvent(notification:)), name: .OrpheDidCatchGestureEvent, object: nil)
         
@@ -96,28 +95,10 @@ class ViewController: NSViewController {
     }
     
     func SensorValueCSVPlayerStartPlaying(notification:Notification){
-        guard let userInfo = notification.userInfo else {return}
-        let player = userInfo[SensorValueCSVPlayerInfoKey] as! SensorValueCSVPlayer
-        if player.dummyOrphe.side == .left{
-            leftSensorView.orphe = player.dummyOrphe
-            leftSensorView.startUpdateGraphView()
-        }
-        else if player.dummyOrphe.side == .right{
-            rightSensorView.orphe = player.dummyOrphe
-            rightSensorView.startUpdateGraphView()
-        }
         tableView.isEnabled = false
     }
     
     func SensorValueCSVPlayerStopPlaying(notification:Notification){
-        guard let userInfo = notification.userInfo else {return}
-        let player = userInfo[SensorValueCSVPlayerInfoKey] as! SensorValueCSVPlayer
-        if player.dummyOrphe.side == .left{
-            leftSensorView.stopUpdateGraphView()
-        }
-        else if player.dummyOrphe.side == .right{
-            rightSensorView.stopUpdateGraphView()
-        }
         tableView.isEnabled = true
     }
     
@@ -178,6 +159,10 @@ class ViewController: NSViewController {
             let orphe = ORPManager.sharedInstance.connectedORPDataArray[index]
             orphe.switchToOppositeSide()
         }
+        let tempOrphe = leftSensorView.orphe
+        leftSensorView.orphe = rightSensorView.orphe
+        rightSensorView.orphe = tempOrphe
+        
         updateCellsState()
     }
     
@@ -328,12 +313,6 @@ extension  ViewController: ORPManagerDelegate{
         PRINT("didDisconnect")
         tableView.reloadData()
         updateCellsState()
-        if orphe.side == .left{
-            leftSensorView.stopUpdateGraphView()
-        }
-        else{
-            rightSensorView.stopUpdateGraphView()
-        }
     }
     
     func orpheDidConnect(orphe:ORPData){
@@ -345,15 +324,6 @@ extension  ViewController: ORPManagerDelegate{
         
 //        orphe.setScene(.sceneSDK)
         orphe.setGestureSensitivity(.high)
-        
-        if orphe.side == .left{
-            leftSensorView.orphe = orphe
-            leftSensorView.startUpdateGraphView()
-        }
-        else{
-            rightSensorView.orphe = orphe
-            rightSensorView.startUpdateGraphView()
-        }
         
     }
 
@@ -372,22 +342,6 @@ extension  ViewController: ORPManagerDelegate{
     func readRSSI(){
         for orp in ORPManager.sharedInstance.connectedORPDataArray {
             orp.readRSSI()
-        }
-    }
-    
-    
-    func OrpheDidUpdateSensorData(notification: Notification){
-        
-        
-        guard let userInfo = notification.userInfo else {return}
-        let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
-        let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
-        
-        if orphe.side == .left {
-            leftSensorView.updateSensorValues(orphe: orphe)
-        }
-        else{
-            rightSensorView.updateSensorValues(orphe: orphe)
         }
     }
     
