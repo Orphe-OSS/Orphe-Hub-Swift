@@ -438,6 +438,17 @@
                                                     <menu key="menu" id="lNy-VK-Qi4"/>
                                                 </popUpButtonCell>
                                             </popUpButton>
+                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S0w-Fk-jSI">
+                                                <rect key="frame" x="5" y="82" width="103" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="push" title="3D Viewer" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zsJ-Kc-bMc">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="open3DViewerButtonAction:" target="XfG-lQ-9wD" id="11n-07-jLc"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </customView>
                                     <customView fixedFrame="YES" id="TWV-QZ-XGs">

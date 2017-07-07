@@ -199,6 +199,12 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBAction func open3DViewerButtonAction(_ sender: Any) {
+        if let url = Bundle.main.url(forResource: "orphe3DViewer", withExtension: "app"){
+            NSWorkspace.shared().open(url)
+        }
+    }
+    
     override func keyDown(with event: NSEvent) {
         if event.characters == " " {
             if leftSensorView.isActive() || rightSensorView.isActive(){
