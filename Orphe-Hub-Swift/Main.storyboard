@@ -86,7 +86,13 @@
                                     <items>
                                         <menuItem title="Orphe-Hub Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
-                                                <action selector="helpMenItemAction:" target="Voe-Tx-rLC" id="oXR-jN-87f"/>
+                                                <action selector="helpMenuItemAction:" target="Voe-Tx-rLC" id="a2N-xh-fqZ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="OSC Commands" id="yAQ-wi-tHA">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="oscCommandsItemAction:" target="Voe-Tx-rLC" id="TGl-iq-eSv"/>
                                             </connections>
                                         </menuItem>
                                     </items>

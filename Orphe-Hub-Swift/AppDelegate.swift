@@ -64,8 +64,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    @IBAction func helpMenItemAction(_ sender: NSMenuItem) {
-        if let url = URL(string: "https://sites.google.com/view/orphe-developers/hub-app"), NSWorkspace.shared().open(url) {
+    @IBAction func helpMenuItemAction(_ sender: NSMenuItem) {
+        if let url = URL(string: "https://sites.google.com/view/orphe-developers/hub-app/how-to-use"), NSWorkspace.shared().open(url) {
+            print("default browser was successfully opened")
+        }
+    }
+    
+    @IBAction func oscCommandsItemAction(_ sender: NSMenuItem) {
+        if let url = URL(string: "https://sites.google.com/view/orphe-developers/hub-app/api"), NSWorkspace.shared().open(url) {
             print("default browser was successfully opened")
         }
     }
