@@ -15,7 +15,7 @@ This project is currently under development.
 - Orphe-SDK-Swift-1.1.0 
 - and your Orphe!
 
-You can get Orphe-SDK-Swift-1.1.0 by joining Facebook group: [Orphe Developers Community](https://www.facebook.com/groups/367926056935407/).
+You can get Orphe-SDK-Swift-1.1.0 by joining Facebook group: [Orphe Developers Community](https://www.facebook.com/groups/1757831034527899/).
 
 
 ## Used libraries
