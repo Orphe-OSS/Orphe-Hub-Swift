@@ -18,6 +18,7 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var activeLEDButton: NSButton!
     @IBOutlet weak var deactiveLEDButton: NSButton!
+    @IBOutlet weak var selectSCENEPopuUpButton: NSPopUpButton!
     
     var rssiTimer: Timer?
     
@@ -64,6 +65,32 @@ class ViewController: NSViewController {
         })
             .disposed(by: disposeBag)
         setAnimationInterval(segment: self.animationSpeedSegmentControl.selectedSegment)
+        
+        var sceneArray = [String]()
+        for i in 1..<9{
+            if i == 8{
+                sceneArray.append("SceneSDK")
+            }
+            else{
+                sceneArray.append("Scene\(i)")
+            }
+        }
+        selectSCENEPopuUpButton.addItems(withTitles: sceneArray)
+        selectSCENEPopuUpButton.rx.tap.subscribe(onNext: { [unowned self] _ in
+            let index = self.selectSCENEPopuUpButton.indexOfSelectedItem
+            var scene:ORPScene
+            if index < ORPScene.scene7.rawValue{
+                scene = ORPScene(rawValue: index+1)!
+            }
+            else{
+                scene = ORPScene.sceneSDK
+            }
+            
+            for orphe in ORPManager.sharedInstance.connectedORPDataArray{
+                orphe.setScene(scene)
+            }
+            
+        }).disposed(by: disposeBag)
         
         //Notification ble
         NotificationCenter.default.addObserver(self, selector:  #selector(ViewController.OrpheDidReceiveFWVersion(notification:)), name: .OrpheDidReceiveFWVersion, object: nil)
