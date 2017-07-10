@@ -228,7 +228,7 @@ class SensorSettingViewController: ChildWindowViewController {
             sendingType = SendingType.standard
             
         case resolutionFrequencyItem._4Byte50Hz.rawValue:
-            sendingType = SendingType.standard
+            sendingType = SendingType.t_4b_50h
             
         case resolutionFrequencyItem._2Byte100Hz.rawValue:
             sendingType = SendingType.t_2b_100h
