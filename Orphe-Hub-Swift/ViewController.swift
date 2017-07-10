@@ -69,10 +69,10 @@ class ViewController: NSViewController {
         var sceneArray = [String]()
         for i in 1..<9{
             if i == 8{
-                sceneArray.append("SceneSDK")
+                sceneArray.append("SCENE SDK")
             }
             else{
-                sceneArray.append("Scene\(i)")
+                sceneArray.append("SCENE $\(i)")
             }
         }
         selectSCENEPopuUpButton.addItems(withTitles: sceneArray)
