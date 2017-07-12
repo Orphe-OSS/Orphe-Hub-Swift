@@ -72,7 +72,7 @@ class ViewController: NSViewController {
                 sceneArray.append("SCENE SDK")
             }
             else{
-                sceneArray.append("SCENE $\(i)")
+                sceneArray.append("SCENE \(i)")
             }
         }
         selectSCENEPopuUpButton.addItems(withTitles: sceneArray)
