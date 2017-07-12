@@ -111,19 +111,16 @@ class SensorValueCSVPlayer{
         let eulery = Float(_csv.keyedRows![currentRow][csvKeys.eulerY.rawValue]!)!
         let eulerz = Float(_csv.keyedRows![currentRow][csvKeys.eulerZ.rawValue]!)!
         var euler = [eulerx,eulery,eulerz]
-        euler = euler.map{$0/180}
         
         let gyrox = Float(_csv.keyedRows![currentRow][csvKeys.gyroX.rawValue]!)!
         let gyroy = Float(_csv.keyedRows![currentRow][csvKeys.gyroY.rawValue]!)!
         let gyroz = Float(_csv.keyedRows![currentRow][csvKeys.gyroZ.rawValue]!)!
         var gyro = [gyrox,gyroy,gyroz]
-        gyro = gyro.map{$0/Float(dummyOrphe.getGyroRange().rawValue)}
         
         let accx = Float(_csv.keyedRows![currentRow][csvKeys.accX.rawValue]!)!
         let accy = Float(_csv.keyedRows![currentRow][csvKeys.accY.rawValue]!)!
         let accz = Float(_csv.keyedRows![currentRow][csvKeys.accZ.rawValue]!)!
         var acc = [accx,accy,accz]
-        acc = acc.map{$0/Float(dummyOrphe.getAccRange().rawValue)}
         
 //        let magx = Float(_csv.keyedRows![currentRow][csvKeys.magx.rawValue]!)!
 //        let magy = Float(_csv.keyedRows![currentRow][csvKeys.magy.rawValue]!)!
