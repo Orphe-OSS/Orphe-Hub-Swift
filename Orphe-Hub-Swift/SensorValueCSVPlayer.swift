@@ -98,36 +98,41 @@ class SensorValueCSVPlayer{
     
     @objc func updateSensorValues(){
         if !isPlaying {return}
-        guard let _csv = self.csv else {return}
+        guard let csv = self.csv else {return}
         
-        let quatw = Float(_csv.keyedRows![currentRow][csvKeys.quatW
-            .rawValue]!)!
-        let quatx = Float(_csv.keyedRows![currentRow][csvKeys.quatX.rawValue]!)!
-        let quaty = Float(_csv.keyedRows![currentRow][csvKeys.quatY.rawValue]!)!
-        let quatz = Float(_csv.keyedRows![currentRow][csvKeys.quatZ.rawValue]!)!
+        //文字列からスペースを削除
+        var keyRows = csv.keyedRows![currentRow]
+        for val in keyRows{
+            keyRows[val.key] = keyRows[val.key]?.replacingOccurrences(of: " ", with: "")
+        }
+        
+        let quatw = Float(keyRows[csvKeys.quatW.rawValue] ?? "0")!
+        let quatx = Float(keyRows[csvKeys.quatX.rawValue] ?? "0")!
+        let quaty = Float(keyRows[csvKeys.quatY.rawValue] ?? "0")!
+        let quatz = Float(keyRows[csvKeys.quatZ.rawValue] ?? "0")!
         let quat = [quatw,quatx,quaty,quatz]
         
-        let eulerx = Float(_csv.keyedRows![currentRow][csvKeys.eulerX.rawValue]!)!
-        let eulery = Float(_csv.keyedRows![currentRow][csvKeys.eulerY.rawValue]!)!
-        let eulerz = Float(_csv.keyedRows![currentRow][csvKeys.eulerZ.rawValue]!)!
-        var euler = [eulerx,eulery,eulerz]
+        let eulerx = Float(keyRows[csvKeys.eulerX.rawValue] ?? "0")!
+        let eulery = Float(keyRows[csvKeys.eulerY.rawValue] ?? "0")!
+        let eulerz = Float(keyRows[csvKeys.eulerZ.rawValue] ?? "0")!
+        let euler = [eulerx,eulery,eulerz]
         
-        let gyrox = Float(_csv.keyedRows![currentRow][csvKeys.gyroX.rawValue]!)!
-        let gyroy = Float(_csv.keyedRows![currentRow][csvKeys.gyroY.rawValue]!)!
-        let gyroz = Float(_csv.keyedRows![currentRow][csvKeys.gyroZ.rawValue]!)!
-        var gyro = [gyrox,gyroy,gyroz]
+        let gyrox = Float(keyRows[csvKeys.gyroX.rawValue] ?? "0")!
+        let gyroy = Float(keyRows[csvKeys.gyroY.rawValue] ?? "0")!
+        let gyroz = Float(keyRows[csvKeys.gyroZ.rawValue] ?? "0")!
+        let gyro = [gyrox,gyroy,gyroz]
         
-        let accx = Float(_csv.keyedRows![currentRow][csvKeys.accX.rawValue]!)!
-        let accy = Float(_csv.keyedRows![currentRow][csvKeys.accY.rawValue]!)!
-        let accz = Float(_csv.keyedRows![currentRow][csvKeys.accZ.rawValue]!)!
-        var acc = [accx,accy,accz]
+        let accx = Float((keyRows[csvKeys.accX.rawValue]) ?? "0")!
+        let accy = Float(keyRows[csvKeys.accY.rawValue] ?? "0")!
+        let accz = Float(keyRows[csvKeys.accZ.rawValue] ?? "0")!
+        let acc = [accx,accy,accz]
         
-//        let magx = Float(_csv.keyedRows![currentRow][csvKeys.magx.rawValue]!)!
-//        let magy = Float(_csv.keyedRows![currentRow][csvKeys.magy.rawValue]!)!
-        let magz = Float(_csv.keyedRows![currentRow][csvKeys.magZ.rawValue]!)!
+//        let magx = Float(_keyRows[csvKeys.magx.rawValue]!)!
+//        let magy = Float(_keyRows[csvKeys.magy.rawValue]!)!
+        let magz = Float(keyRows[csvKeys.magZ.rawValue] ?? "0")!
 //        let mag = [magx,magy,magz]
         
-        let shock = UInt8(_csv.keyedRows![currentRow][csvKeys.shock.rawValue]!)!
+        let shock = UInt8(keyRows[csvKeys.shock.rawValue] ?? "0")!
         
         DispatchQueue.main.async {
             // Main Threadで実行する
@@ -137,7 +142,7 @@ class SensorValueCSVPlayer{
         
         //row count
         self.currentRow += 1
-        if currentRow == csv?.rows.count {
+        if currentRow == csv.rows.count {
             currentRow = 0
             if isLoop {
                 //最初から再生
@@ -154,8 +159,8 @@ class SensorValueCSVPlayer{
         }
         
         //loop
-        let time = Double(_csv.keyedRows![currentRow-1][csvKeys.timestamp.rawValue]!)!
-        let nextTime = Double(_csv.keyedRows![currentRow][csvKeys.timestamp.rawValue]!)!
+        let time = Double(csv.keyedRows![currentRow-1][csvKeys.timestamp.rawValue]!)!
+        let nextTime = Double(csv.keyedRows![currentRow][csvKeys.timestamp.rawValue]!)!
         let delayTime = nextTime - time
         let popTime = DispatchTime.now() + delayTime  - 0.0023 //0.0023引いているのはちょっと短くしないと５hzくらい遅くなる
         DispatchQueue.global().asyncAfter(deadline: popTime,  execute: {
