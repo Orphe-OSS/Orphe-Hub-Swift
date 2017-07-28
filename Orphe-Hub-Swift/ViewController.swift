@@ -166,10 +166,17 @@ class ViewController: NSViewController {
                     }
                     
                     if let cell = tableView.view(atColumn: 2, row: index, makeIfNecessary: true) as? NSTableCellView{
-                        var sideStr = "LEFT"
-                        if orp.side == .right {
-                            sideStr = "RIGHT"
+                        var sideStr = ""
+                        
+                        if orp.state() == .connected{
+                            if orp.side == .left {
+                                sideStr = "LEFT"
+                            }
+                            else if orp.side == .right {
+                                sideStr = "RIGHT"
+                            }
                         }
+                        
                         cell.textField?.stringValue = sideStr
                     }
                     if let cell = tableView.view(atColumn: 3, row: index, makeIfNecessary: true) as? NSTableCellView{
