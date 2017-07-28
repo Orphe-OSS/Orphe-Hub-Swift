@@ -162,7 +162,7 @@ class SensorValueCSVPlayer{
         let time = Double(csv.keyedRows![currentRow-1][csvKeys.timestamp.rawValue]!)!
         let nextTime = Double(csv.keyedRows![currentRow][csvKeys.timestamp.rawValue]!)!
         let delayTime = nextTime - time
-        let popTime = DispatchTime.now() + delayTime  - 0.0023 //0.0023引いているのはちょっと短くしないと５hzくらい遅くなる
+        let popTime = DispatchTime.now() + delayTime //0.0023引いているのはちょっと短くしないと５hzくらい遅くなる
         DispatchQueue.global().asyncAfter(deadline: popTime,  execute: {
             self.updateSensorValues()
         })
