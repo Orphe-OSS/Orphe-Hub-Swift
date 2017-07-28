@@ -59,23 +59,21 @@ class RecordPlaybackViewController: ChildWindowViewController {
                 savePanel.nameFieldStringValue = filename
                 savePanel.begin { (result) in
                     if result == NSFileHandlingPanelOKButton {
-                        guard let url = savePanel.url else { return }
-                        
-                        var urlString = url.absoluteString
-                        
-                        //urlからfile://を削除する
-                        let startIndex = urlString.startIndex
-                        let endIndex = urlString.index(urlString.startIndex, offsetBy: 7)
-                        urlString.removeSubrange(startIndex..<endIndex)
+                        guard var url = savePanel.url else { return }
+                        let lastUrlString = url.lastPathComponent
+                        url.deleteLastPathComponent()
                         
                         if self.leftSensorRecorder.recordText != ""{
-                            let leftUrlString = urlString+"-left.csv"
-                            try! self.leftSensorRecorder.recordText.write(toFile: leftUrlString, atomically: true, encoding: String.Encoding.utf8)
+                            let leftUrlString = lastUrlString+"-left.csv"
+                            url.appendPathComponent(leftUrlString)
+                            try! self.leftSensorRecorder.recordText.write(to: url, atomically: true, encoding: String.Encoding.utf8)
                         }
                         
+                        url.deleteLastPathComponent()
                         if self.rightSensorRecorder.recordText != ""{
-                            let rightUrlString = urlString+"-right.csv"
-                            try! self.rightSensorRecorder.recordText.write(toFile: rightUrlString, atomically: true, encoding: String.Encoding.utf8)
+                            let rightUrlString = lastUrlString+"-right.csv"
+                            url.appendPathComponent(rightUrlString)
+                            try! self.rightSensorRecorder.recordText.write(to: url, atomically: true, encoding: String.Encoding.utf8)
                         }
                     }
                 }
