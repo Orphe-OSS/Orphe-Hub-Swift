@@ -38,30 +38,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         activity = ProcessInfo().beginActivity(options: ProcessInfo.ActivityOptions.userInitiated, reason: "Good Reason")
         
-        OSCManager.sharedInstance.clientHost = AppSettings.oscHost
-        OSCManager.sharedInstance.clientPort = AppSettings.oscSenderPort
-        OSCManager.sharedInstance.serverPort = AppSettings.oscReceiverPort
         OSCManager.sharedInstance.startReceive()
         
-        setOSCMappingValues(name: .Quaternion, mapValue: OSCManager.sharedInstance.quatMapValue)
-        setOSCMappingValues(name: .Angle, mapValue: OSCManager.sharedInstance.eulerMapValue)
-        setOSCMappingValues(name: .Accelerometer, mapValue: OSCManager.sharedInstance.accMapValue)
-        setOSCMappingValues(name: .Gyroscope, mapValue: OSCManager.sharedInstance.gyroMapValue)
-        setOSCMappingValues(name: .Magnetometer, mapValue: OSCManager.sharedInstance.magMapValue)
-        setOSCMappingValues(name: .Shock, mapValue: OSCManager.sharedInstance.shockMapValue)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
-    }
-    
-    func setOSCMappingValues(name:mapSttingViewName, mapValue:MapValue){
-        if let min = OSCMappingValues.getMin(name: name.rawValue){
-            mapValue.min = min
-        }
-        if let max = OSCMappingValues.getMax(name: name.rawValue){
-            mapValue.max = max
-        }
     }
     
     @IBAction func helpMenuItemAction(_ sender: NSMenuItem) {
