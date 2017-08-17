@@ -49,13 +49,13 @@ class ViewController: NSViewController {
         
         activeLEDButton.rx.tap.subscribe(onNext: { [weak self] _ in
             for orphe in ORPManager.sharedInstance.connectedORPDataArray{
-                orphe.setLightState(isActive: true)
+                orphe.setBLECommunicationSpeedPriorityMode(isActive: true)
             }
         })
             .disposed(by: disposeBag)
         deactiveLEDButton.rx.tap.subscribe(onNext: { [weak self] _ in
             for orphe in ORPManager.sharedInstance.connectedORPDataArray{
-                orphe.setLightState(isActive: false)
+                orphe.setBLECommunicationSpeedPriorityMode(isActive: false)
             }
         })
             .disposed(by: disposeBag)
