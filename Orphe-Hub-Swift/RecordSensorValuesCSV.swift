@@ -32,7 +32,7 @@ class RecordSensorValuesCSV {
         isRecording = false
     }
     
-    func valuesToCSV(orphe:ORPData, sensorKind:SensorKind, receiveTime:Date, sendingType:SendingType)->String{
+    func valuesToCSV(orphe:ORPData, sensorKind:SensorKind, receiveTime:Date, sendingType:TransmissionOption)->String{
         //数値の追加
         var text = ""
         var arrayArray = [[Float]]()
@@ -79,7 +79,7 @@ class RecordSensorValuesCSV {
         }
         
         if isRecording {
-            let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
+            let sendingType = userInfo[OrpheUpdatedTransmissionOptionInfoKey] as! TransmissionOption
             
             let receiveTime = Date()
             

@@ -254,7 +254,7 @@ class OSCManager:NSObject, OSCServerDelegate{
     func OrpheDidUpdateSensorData(notification:Notification){
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
-        let sendingType = userInfo[OrpheUpdatedSendingTypeInfoKey] as! SendingType
+        let sendingType = userInfo[OrpheUpdatedTransmissionOptionInfoKey] as! TransmissionOption
         
         let sensorKind = userInfo[OrpheUpdatedSenorKindInfoKey] as? SensorKind
         
@@ -262,42 +262,42 @@ class OSCManager:NSObject, OSCServerDelegate{
         case .standard:
             sendCustomSensor(orphe: orphe, sensorKind: nil, index: 0)
             
-        case .t_2b_100h:
+        case ._100hz_2byte:
             for i in 0..<2{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
             
-        case .t_2b_150h:
+        case ._150hz_2byte:
             for i in 0..<3{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
             
-        case .t_1b_300h:
+        case ._300hz_1byte:
             for i in 0..<6{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
             
-        case .t_2b_400h_1a:
+        case ._400hz_2byte_1axis:
             for i in 0..<8{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
             
-        case .t_1b_400h_2a:
+        case ._400hz_1byte_2axes:
             for i in 0..<8{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
             
-        case .t_2b_200h_2a:
+        case ._200hz_2byte_2axes:
             for i in 0..<4{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
             
-        case .t_4b_200h_1a:
+        case ._200hz_4byte_1axis:
             for i in 0..<4{
                 sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: i)
             }
             
-        case .t_4b_50h:
+        case ._50hz_4byte:
             sendCustomSensor(orphe: orphe, sensorKind: sensorKind, index: 0)
         }
         
@@ -358,7 +358,7 @@ class OSCManager:NSObject, OSCServerDelegate{
             }
             var outputArray = [Float]()
             for input in inputArray{
-                let output = accMapValue.map(input, inputMin: -Float(orphe.getAccRange().rawValue), inputMax: Float(orphe.getAccRange().rawValue))
+                let output = accMapValue.map(input, inputMin: -Float(orphe.getCurrentAccRange().rawValue), inputMax: Float(orphe.getCurrentAccRange().rawValue))
                 outputArray.append(output)
             }
             args += outputArray as [Any]
@@ -374,7 +374,7 @@ class OSCManager:NSObject, OSCServerDelegate{
             }
             var outputArray = [Float]()
             for input in inputArray{
-                let output = gyroMapValue.map(input, inputMin: -Float(orphe.getGyroRange().rawValue), inputMax: Float(orphe.getGyroRange().rawValue))
+                let output = gyroMapValue.map(input, inputMin: -Float(orphe.getCurrentGyroRange().rawValue), inputMax: Float(orphe.getCurrentGyroRange().rawValue))
                 outputArray.append(output)
             }
             args += outputArray as [Any]

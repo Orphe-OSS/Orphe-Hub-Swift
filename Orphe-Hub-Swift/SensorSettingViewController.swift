@@ -44,17 +44,25 @@ class SensorSettingViewController: ChildWindowViewController {
         case _4Byte50Hz = "4Byte/50Hz"
     }
     
-    enum axisItem:String{
-        case x
-        case y
-        case z
-    }
+    let axisItems = ["x","y","z"]
     
-    enum axesItem:String{
-        case xy = "x & y"
-        case yz = "y & z"
-        case zx = "z & x"
-    }
+    let axesItems = [
+                    "x & y",
+                    "y & z",
+                    "z & x"
+                    ]
+    
+    let resolutionFrequencyItems = [
+                                "standard",
+                                "2Byte/100Hz",
+                                "2Byte/150Hz",
+                                "1Byte/300Hz",
+                                "2Byte/400Hz/1Axis",
+                                "1Byte/400Hz/2Axes",
+                                "2Byte/200Hz/2Axes",
+                                "4Byte/200Hz/1Axis",
+                                "4Byte/50Hz"
+                                ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,30 +119,25 @@ class SensorSettingViewController: ChildWindowViewController {
             //update other popups
             self.updateResolutionFrequencyPopupItems()
             self.updateAxisPopupItems()
-            self.updateSendingSensorSetting()
+            self.sendSetting()
             
-        })
-         .disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         resolutionFrequencyPopUpButton.rx.tap.subscribe(onNext: { [unowned self] _ in
             //update other popups
             self.updateAxisPopupItems()
-            self.updateSendingSensorSetting()
+            self.sendSetting()
             
-        })
-            .disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         axisPopUpButton.rx.tap.subscribe(onNext: { [unowned self] _ in
-            self.updateSendingSensorSetting()
+            self.sendSetting()
             
-        })
-            .disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         setSensorSettingsButton.rx.tap.subscribe(onNext: { [unowned self] _ in
-            self.updateSendingSensorSetting()
-            self.updateSendingSensorSetting()
-        })
-            .disposed(by: disposeBag)
+            self.sendSetting()
+        }).disposed(by: disposeBag)
         
         updateResolutionFrequencyPopupItems()
         updateAxisPopupItems()
@@ -148,39 +151,24 @@ class SensorSettingViewController: ChildWindowViewController {
             resolutionFrequencyArray = [resolutionFrequencyItem.standard.rawValue]
             
         case SensorKindItem.acc.rawValue:
-            resolutionFrequencyArray = [
-                resolutionFrequencyItem._2Byte100Hz.rawValue,
-                resolutionFrequencyItem._2Byte150Hz.rawValue,
-                resolutionFrequencyItem._1Byte300Hz.rawValue,
-                resolutionFrequencyItem._2Byte400Hz1Axis.rawValue,
-                resolutionFrequencyItem._1Byte400Hz2Axes.rawValue,
-                resolutionFrequencyItem._2Byte200Hz2Axes.rawValue,
-            ]
+            for option in TransmissionOption.accOptions{
+                resolutionFrequencyArray.append(resolutionFrequencyItems[option.hashValue])
+            }
             
         case SensorKindItem.gyro.rawValue:
-            resolutionFrequencyArray = [
-                resolutionFrequencyItem._2Byte100Hz.rawValue,
-                resolutionFrequencyItem._2Byte150Hz.rawValue,
-                resolutionFrequencyItem._1Byte300Hz.rawValue,
-                resolutionFrequencyItem._2Byte400Hz1Axis.rawValue,
-                resolutionFrequencyItem._1Byte400Hz2Axes.rawValue,
-                resolutionFrequencyItem._2Byte200Hz2Axes.rawValue,
-            ]
+            for option in TransmissionOption.gyroOptions{
+                resolutionFrequencyArray.append(resolutionFrequencyItems[option.hashValue])
+            }
             
         case SensorKindItem.euler.rawValue:
-            resolutionFrequencyArray = [
-                resolutionFrequencyItem._2Byte100Hz.rawValue,
-                resolutionFrequencyItem._2Byte150Hz.rawValue,
-                resolutionFrequencyItem._2Byte200Hz2Axes.rawValue,
-                resolutionFrequencyItem._4Byte200Hz1Axis.rawValue,
-                resolutionFrequencyItem._4Byte50Hz.rawValue,
-            ]
+            for option in TransmissionOption.eulerOptions{
+                resolutionFrequencyArray.append(resolutionFrequencyItems[option.hashValue])
+            }
             
         case SensorKindItem.quat.rawValue:
-            resolutionFrequencyArray = [
-                resolutionFrequencyItem._2Byte100Hz.rawValue,
-                resolutionFrequencyItem._4Byte50Hz.rawValue,
-            ]
+            for option in TransmissionOption.quatOptions{
+                resolutionFrequencyArray.append(resolutionFrequencyItems[option.hashValue])
+            }
             
         default:
             break
@@ -203,14 +191,14 @@ class SensorSettingViewController: ChildWindowViewController {
             
         case resolutionFrequencyItem._2Byte400Hz1Axis.rawValue,
              resolutionFrequencyItem._4Byte200Hz1Axis.rawValue:
-            for item in iterateEnum(axisItem.self){
-                axisArray.append(item.rawValue)
+            for axis in axisItems{
+                axisArray.append(axis)
             }
             
         case resolutionFrequencyItem._2Byte200Hz2Axes.rawValue,
              resolutionFrequencyItem._1Byte400Hz2Axes.rawValue:
-            for item in iterateEnum(axesItem.self){
-                axisArray.append(item.rawValue)
+            for axes in axesItems{
+                axisArray.append(axes)
             }
             
         default:
@@ -221,38 +209,46 @@ class SensorSettingViewController: ChildWindowViewController {
         self.axisPopUpButton.addItems(withTitles: axisArray)
     }
     
-    func updateSendingSensorSetting(){
-        var sendingType = SendingType(rawValue: UInt8(self.resolutionFrequencyPopUpButton.indexOfSelectedItem + 40))!
+    func sendSetting(){
+        var sendingType = TransmissionOption.standard
         switch resolutionFrequencyPopUpButton.titleOfSelectedItem! {
         case resolutionFrequencyItem.standard.rawValue:
-            sendingType = SendingType.standard
+            for orp in ORPManager.sharedInstance.connectedORPDataArray {
+                orp.setSensorTransmissionStandard()
+            }
+            return
             
         case resolutionFrequencyItem._4Byte50Hz.rawValue:
-            sendingType = SendingType.t_4b_50h
+            sendingType = TransmissionOption._50hz_4byte
             
         case resolutionFrequencyItem._2Byte100Hz.rawValue:
-            sendingType = SendingType.t_2b_100h
+            sendingType = TransmissionOption._100hz_2byte
             
         case resolutionFrequencyItem._2Byte150Hz.rawValue:
-            sendingType = SendingType.t_2b_150h
+            sendingType = TransmissionOption._150hz_2byte
             
         case resolutionFrequencyItem._2Byte200Hz2Axes.rawValue:
-            sendingType = SendingType.t_2b_200h_2a
+            sendingType = TransmissionOption._200hz_2byte_2axes
             
         case resolutionFrequencyItem._4Byte200Hz1Axis.rawValue:
-            sendingType = SendingType.t_4b_200h_1a
+            sendingType = TransmissionOption._200hz_4byte_1axis
             
         case resolutionFrequencyItem._1Byte300Hz.rawValue:
-            sendingType = SendingType.t_1b_300h
+            sendingType = TransmissionOption._300hz_1byte
             
         case resolutionFrequencyItem._2Byte400Hz1Axis.rawValue:
-            sendingType = SendingType.t_2b_400h_1a
+            sendingType = TransmissionOption._400hz_2byte_1axis
             
         case resolutionFrequencyItem._1Byte400Hz2Axes.rawValue:
-            sendingType = SendingType.t_1b_400h_2a
+            sendingType = TransmissionOption._400hz_1byte_2axes
             
         default:
             break
+        }
+        
+        var axisType = AxisOption.x_or_xy
+        if self.axisPopUpButton.indexOfSelectedItem >= 0{
+            axisType = AxisOption(rawValue:UInt8(self.axisPopUpButton.indexOfSelectedItem))!
         }
         
         var sensorKind = SensorKind(rawValue: UInt8(self.sensorKindPopUpButton.indexOfSelectedItem))!
@@ -276,13 +272,9 @@ class SensorSettingViewController: ChildWindowViewController {
             break
         }
         
-        var axisType = UInt8(0)
-        if self.axisPopUpButton.indexOfSelectedItem >= 0{
-            axisType = UInt8(self.axisPopUpButton.indexOfSelectedItem)
-        }
         print( self.axisPopUpButton.indexOfSelectedItem )
         for orp in ORPManager.sharedInstance.connectedORPDataArray {
-            orp.changeSendingSensorState(sendingType: sendingType, sensorKind: sensorKind, axisType: axisType)
+            orp.setSensorTransmissionOnly(measuredValue:sensorKind, transmissionOption:sendingType, axis:axisType)
         }
     }
     
