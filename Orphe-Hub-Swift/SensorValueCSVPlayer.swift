@@ -136,7 +136,7 @@ class SensorValueCSVPlayer{
         
         DispatchQueue.main.async {
             // Main Threadで実行する
-            self.dummyOrphe.sensorValue(quat: quat, euler: euler, acc: acc, gyro: gyro, mag: UInt16(magz), shock: shock)
+            self.dummyOrphe.setSensorValues(quat: quat, euler: euler, acc: acc, gyro: gyro, mag: UInt16(magz), shock: shock)
             NotificationCenter.default.post(name: .OrpheDidUpdateSensorData, object: nil, userInfo: [OrpheDataUserInfoKey:self.dummyOrphe, OrpheUpdatedTransmissionOptionInfoKey:TransmissionOption.standard])
         }
         
