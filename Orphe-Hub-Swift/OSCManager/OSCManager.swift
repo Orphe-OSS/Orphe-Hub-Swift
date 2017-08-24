@@ -55,6 +55,19 @@ class OSCManager:NSObject, OSCServerDelegate{
     var magMapValue:MapValue = MapValue()
     var shockMapValue:MapValue = MapValue()
     
+    var accRange:Float = 2.0{
+        didSet{
+            accMapValue.max = accRange
+            accMapValue.min = -accRange
+        }
+    }
+    var gyroRange:Float = 2000.0{
+        didSet{
+            gyroMapValue.max = gyroRange
+            gyroMapValue.min = -gyroRange
+        }
+    }
+    
     private override init() {
         super.init()
         server = OSCServer()
@@ -62,6 +75,10 @@ class OSCManager:NSObject, OSCServerDelegate{
         
         client = OSCClient()
         
+        accMapValue.max = accRange
+        accMapValue.min = -accRange
+        gyroMapValue.max = gyroRange
+        gyroMapValue.min = -gyroRange
         eulerMapValue.max = 180
         eulerMapValue.min = -180
         shockMapValue.max = 255
@@ -352,11 +369,11 @@ class OSCManager:NSObject, OSCServerDelegate{
         //acc
         do{
             var inputArray = [Float]()
-            if orphe.accWithoutGravityArray.count > index{
-                inputArray = orphe.accWithoutGravityArray[index]
+            if orphe.accArray.count > index{
+                inputArray = orphe.accArray[index]
             }
             else{
-                inputArray = orphe.getAccWithoutGravity()
+                inputArray = orphe.getAcc()
             }
             var outputArray = [Float]()
             for input in inputArray{
@@ -400,12 +417,7 @@ class OSCManager:NSObject, OSCServerDelegate{
             else{
                 inputArray = orphe.getAccOfGravity()
             }
-            var outputArray = [Float]()
-            for input in inputArray{
-                let output = gyroMapValue.map(input, inputMin: -1, inputMax: 1)
-                outputArray.append(output)
-            }
-            args += outputArray as [Any]
+            args += inputArray as [Any]
         }
         
         

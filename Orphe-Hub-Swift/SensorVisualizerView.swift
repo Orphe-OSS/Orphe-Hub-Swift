@@ -124,7 +124,7 @@ class SensorVisualizerView:NSView{
                 quatGraph.lineGraphLabelArray[i].lineGraphView.addValue(CGFloat(val))
             }
         }
-        for array in orphe.normalizedAccWithoutGravityArray {
+        for array in orphe.normalizedAccArray {
             for (i ,val) in array.enumerated(){
                 accGraph.lineGraphLabelArray[i].lineGraphView.addValue(CGFloat(val))
             }
@@ -239,7 +239,7 @@ class SensorVisualizerView:NSView{
             let quat = [orphe.getQuat()[3],orphe.getQuat()[0],orphe.getQuat()[1],orphe.getQuat()[2]]
             quatGraph.updateLabel(values: quat)
             eulerGraph.updateLabel(values: orphe.getEuler())
-            accGraph.updateLabel(values: orphe.getAccWithoutGravity())
+            accGraph.updateLabel(values: orphe.getAcc())
             gyroGraph.updateLabel(values: orphe.getGyro())
             magGraph.updateLabel(values: [0,0,orphe.getMag()])
         }

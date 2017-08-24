@@ -84,6 +84,8 @@ class SensorSettingViewController: ChildWindowViewController {
                 default:
                     break
                 }
+                
+                OSCManager.sharedInstance.accRange = Float(orp.getCurrentAccRange().rawValue)
             }
         })
             .disposed(by: disposeBag)
@@ -104,6 +106,8 @@ class SensorSettingViewController: ChildWindowViewController {
                 default:
                     break
                 }
+                
+                OSCManager.sharedInstance.gyroRange = Float(orp.getCurrentGyroRange().rawValue)
             }
         })
             .disposed(by: disposeBag)
