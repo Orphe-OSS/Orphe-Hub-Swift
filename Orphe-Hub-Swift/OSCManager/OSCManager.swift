@@ -332,6 +332,7 @@ class OSCManager:NSObject, OSCServerDelegate{
             args += outputArray as [Any]
         }
         
+        //euler
         do{
             var inputArray = [Float]()
             if orphe.eulerArray.count > index{
@@ -348,13 +349,14 @@ class OSCManager:NSObject, OSCServerDelegate{
             args += outputArray as [Any]
         }
         
+        //acc
         do{
             var inputArray = [Float]()
-            if orphe.accArray.count > index{
-                inputArray = orphe.accArray[index]
+            if orphe.accWithoutGravityArray.count > index{
+                inputArray = orphe.accWithoutGravityArray[index]
             }
             else{
-                inputArray = orphe.getAcc()
+                inputArray = orphe.getAccWithoutGravity()
             }
             var outputArray = [Float]()
             for input in inputArray{
@@ -364,6 +366,7 @@ class OSCManager:NSObject, OSCServerDelegate{
             args += outputArray as [Any]
         }
         
+        //gyro
         do{
             var inputArray = [Float]()
             if orphe.gyroArray.count > index{
@@ -380,63 +383,31 @@ class OSCManager:NSObject, OSCServerDelegate{
             args += outputArray as [Any]
         }
         
-        //--------
-//        if sensorKind == .quat {
-//            var mappedArray = [Float]()
-//            for q in orphe.quatArray[index]{
-//                let val = quatMapValue.map(q, inputMin: -1, inputMax: 1)
-//                mappedArray.append(val)
-//            }
-//            args += mappedArray as [Any]
-//        }
-//        else{
-//            var mappedArray = [Float]()
-//            for input in orphe.getQuat(){
-//                let output = quatMapValue.map(input, inputMin: -1, inputMax: 1)
-//                mappedArray.append(output)
-//            }
-//            args += orphe.getQuat() as [Any]
-//        }
-//        
-//        //euler
-//        if sensorKind == .euler || sensorKind == .quat {
-//            var mappedArray = [Float]()
-//            for input in orphe.eulerArray[index]{
-//                let output = eulerMapValue.map(input, inputMin: -180, inputMax: 180)
-//                mappedArray.append(output)
-//            }
-//            args += mappedArray as [Any]
-//        }
-//        else{
-//            var mappedArray = [Float]()
-//            for input in orphe.getEuler(){
-//                let output = eulerMapValue.map(input, inputMin: -180, inputMax: 180)
-//                mappedArray.append(output)
-//            }
-//            args += mappedArray as [Any]
-//        }
-//        
-//        //acc
-//        if sensorKind == .acc {
-//            args += orphe.accArray[index] as [Any]
-//        }
-//        else{
-//            args += orphe.getAcc() as [Any]
-//        }
-//        
-//        //gyro
-//        if sensorKind == .gyro {
-//            args += orphe.gyroArray[index] as [Any]
-//        }
-//        else{
-//            args += orphe.getGyro() as [Any]
-//        }
-        
+        //mag
         let outputMag = magMapValue.map(orphe.getMag(), inputMin: 0, inputMax: 359)
         args.append(outputMag as Any)
         
+        //shock
         let outputShock = shockMapValue.map(Float(orphe.getShock()), inputMin: 0, inputMax: 255)
         args.append(outputShock as Any)
+        
+        //gravity
+        do{
+            var inputArray = [Float]()
+            if orphe.accOfGravityArray.count > index{
+                inputArray = orphe.accOfGravityArray[index]
+            }
+            else{
+                inputArray = orphe.getAccOfGravity()
+            }
+            var outputArray = [Float]()
+            for input in inputArray{
+                let output = gyroMapValue.map(input, inputMin: -1, inputMax: 1)
+                outputArray.append(output)
+            }
+            args += outputArray as [Any]
+        }
+        
         
         let message = OSCMessage(address: address, arguments: args)
         client.send(message, to: clientPath)
