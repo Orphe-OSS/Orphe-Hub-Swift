@@ -70,45 +70,50 @@ class SensorSettingViewController: ChildWindowViewController {
         
         //レンジ設定UI
         accRangeSegmentedControl.rx.controlEvent.subscribe(onNext: { [unowned self] _ in
-            for orp in ORPManager.sharedInstance.connectedORPDataArray{
-                switch self.accRangeSegmentedControl.selectedSegment {
-                case 0:
-                    orp.setAccRange(range: ._2)
-                case 1:
-                    orp.setAccRange(range: ._4)
-                case 2:
-                    orp.setAccRange(range: ._8)
-                case 3:
-                    orp.setAccRange(range: ._16)
-                    
-                default:
-                    break
-                }
+            var range = ORPAccRange._2
+            switch self.accRangeSegmentedControl.selectedSegment {
+            case 0:
+                range = ._2
+            case 1:
+                range = ._4
+            case 2:
+                range = ._8
+            case 3:
+                range = ._16
                 
-                OSCManager.sharedInstance.accRange = Float(orp.getCurrentAccRange().rawValue)
+            default:
+                break
             }
+            for orp in ORPManager.sharedInstance.connectedORPDataArray{
+                orp.setAccRange(range: range)
+            }
+            
+            OSCManager.sharedInstance.accRange = Float(range.rawValue)
         })
             .disposed(by: disposeBag)
         
         
         gyroRangeSegmentedControl.rx.controlEvent.subscribe(onNext: { [unowned self] _ in
-            for orp in ORPManager.sharedInstance.connectedORPDataArray{
-                switch self.gyroRangeSegmentedControl.selectedSegment {
-                case 0:
-                    orp.setGyroRange(range: ._250)
-                case 1:
-                    orp.setGyroRange(range: ._500)
-                case 2:
-                    orp.setGyroRange(range: ._1000)
-                case 3:
-                    orp.setGyroRange(range: ._2000)
-                    
-                default:
-                    break
-                }
+            var range = ORPGyroRange._250
+            switch self.gyroRangeSegmentedControl.selectedSegment {
+            case 0:
+                range = ._250
+            case 1:
+                range = ._500
+            case 2:
+                range = ._1000
+            case 3:
+                range = ._2000
                 
-                OSCManager.sharedInstance.gyroRange = Float(orp.getCurrentGyroRange().rawValue)
+            default:
+                break
             }
+            
+            for orp in ORPManager.sharedInstance.connectedORPDataArray{
+                orp.setGyroRange(range: ._2000)
+            }
+            
+            OSCManager.sharedInstance.gyroRange = Float(range.rawValue)
         })
             .disposed(by: disposeBag)
         

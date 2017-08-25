@@ -40,24 +40,24 @@ class OSCSettingViewController: ChildWindowViewController {
         oscReceiverPortTextField.stringValue = String(OSCManager.sharedInstance.serverPort)
         oscLogTextView.font = NSFont(name: oscLogTextView.font!.fontName, size: 10)
         
-        quatMapSettingView.mapValue = OSCManager.sharedInstance.quatMapValue
-        
-        eulerMapSettingView.mapValue = OSCManager.sharedInstance.eulerMapValue
         eulerMapSettingView.nameText.stringValue = mapSttingViewName.Angle.rawValue
-        
-        accMapSettingView.mapValue = OSCManager.sharedInstance.accMapValue
         accMapSettingView.nameText.stringValue = mapSttingViewName.Accelerometer.rawValue
-        
-        gyroMapSettingView.mapValue = OSCManager.sharedInstance.gyroMapValue
         gyroMapSettingView.nameText.stringValue = mapSttingViewName.Gyroscope.rawValue
-        
-        magMapSettingView.mapValue = OSCManager.sharedInstance.magMapValue
         magMapSettingView.nameText.stringValue = mapSttingViewName.Magnetometer.rawValue
-        
-        shockMapSettingView.mapValue = OSCManager.sharedInstance.shockMapValue
         shockMapSettingView.nameText.stringValue = mapSttingViewName.Shock.rawValue
         
         updateOSCLogTextView()
+    }
+    
+    override func windowDidBecomeMain(_ notification: Notification) {
+        super.windowDidBecomeMain(notification)
+        
+        quatMapSettingView.mapValue = OSCManager.sharedInstance.quatMapValue
+        eulerMapSettingView.mapValue = OSCManager.sharedInstance.eulerMapValue
+        accMapSettingView.mapValue = OSCManager.sharedInstance.accMapValue
+        gyroMapSettingView.mapValue = OSCManager.sharedInstance.gyroMapValue
+        magMapSettingView.mapValue = OSCManager.sharedInstance.magMapValue
+        shockMapSettingView.mapValue = OSCManager.sharedInstance.shockMapValue
     }
     
     @IBAction func oscHostTextFieldInput(_ sender: NSTextField) {
