@@ -16,8 +16,7 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var tableView: NSTableView!
     
-    @IBOutlet weak var activeLEDButton: NSButton!
-    @IBOutlet weak var deactiveLEDButton: NSButton!
+    @IBOutlet weak var blePriorityModeSegmentedControl: NSSegmentedControl!
     @IBOutlet weak var selectSCENEPopuUpButton: NSPopUpButton!
     
     var rssiTimer: Timer?
@@ -47,23 +46,17 @@ class ViewController: NSViewController {
         
         rssiTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(ViewController.readRSSI), userInfo: nil, repeats: true)
         
-        activeLEDButton.rx.tap.subscribe(onNext: { [weak self] _ in
+        blePriorityModeSegmentedControl.rx.controlEvent.subscribe(onNext: { [unowned self] _ in
+            let isActive = self.blePriorityModeSegmentedControl.selectedSegment == 1
             for orphe in ORPManager.sharedInstance.connectedORPDataArray{
-                orphe.setBLECommunicationSpeedPriorityMode(isActive: true)
+                orphe.setBLECommunicationSpeedPriorityMode(isActive: isActive)
             }
-        })
-            .disposed(by: disposeBag)
-        deactiveLEDButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            for orphe in ORPManager.sharedInstance.connectedORPDataArray{
-                orphe.setBLECommunicationSpeedPriorityMode(isActive: false)
-            }
-        })
-            .disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
         
         animationSpeedSegmentControl.rx.controlEvent.subscribe(onNext: { [unowned self] _ in
             self.setAnimationInterval(segment: self.animationSpeedSegmentControl.selectedSegment)
-        })
-            .disposed(by: disposeBag)
+        }).disposed(by: disposeBag)
+        
         setAnimationInterval(segment: self.animationSpeedSegmentControl.selectedSegment)
         
         var sceneArray = [String]()
