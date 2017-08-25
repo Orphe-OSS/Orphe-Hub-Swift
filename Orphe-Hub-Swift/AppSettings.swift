@@ -20,6 +20,8 @@ class AppSettings {
         static let oscHost: String = "localhost"
         static let oscSenderPort: Int = 1234
         static let oscReceiverPort: Int = 4321
+        static let accRange: Int = 2
+        static let gyroRange: Int = 2000
     }
     
     class var oscHost: String {
@@ -54,5 +56,27 @@ class AppSettings {
             ud.synchronize()
         }
     }
-
+    
+    
+    class var accRange: Int {
+        get {
+            ud.register(defaults: ["accRange": DefaultSetting.accRange])
+            return ud.object(forKey: "accRange") as! Int
+        }
+        set(newValue) {
+            ud.set(newValue, forKey: "accRange")
+            ud.synchronize()
+        }
+    }
+    
+    class var gyroRange: Int {
+        get {
+            ud.register(defaults: ["gyroRange": DefaultSetting.gyroRange])
+            return ud.object(forKey: "gyroRange") as! Int
+        }
+        set(newValue) {
+            ud.set(newValue, forKey: "gyroRange")
+            ud.synchronize()
+        }
+    }
 }

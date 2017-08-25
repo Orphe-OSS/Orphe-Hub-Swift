@@ -38,6 +38,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         activity = ProcessInfo().beginActivity(options: ProcessInfo.ActivityOptions.userInitiated, reason: "Good Reason")
         
+        AppSettings.accRange = AppSettings.DefaultSetting.accRange
+        AppSettings.gyroRange = AppSettings.DefaultSetting.gyroRange
+        
         OSCManager.sharedInstance.startReceive()
         
     }

@@ -58,6 +58,13 @@ class OSCSettingViewController: ChildWindowViewController {
         gyroMapSettingView.mapValue = OSCManager.sharedInstance.gyroMapValue
         magMapSettingView.mapValue = OSCManager.sharedInstance.magMapValue
         shockMapSettingView.mapValue = OSCManager.sharedInstance.shockMapValue
+        
+        quatMapSettingView.nameText.stringValue = mapSttingViewName.Quaternion.rawValue + " | Min:-1, Max:1"
+        eulerMapSettingView.nameText.stringValue = mapSttingViewName.Angle.rawValue + " | Min:-180, Max:180"
+        accMapSettingView.nameText.stringValue = mapSttingViewName.Accelerometer.rawValue + " | Min:-\(AppSettings.accRange), Max:\(AppSettings.accRange)"
+        gyroMapSettingView.nameText.stringValue = mapSttingViewName.Gyroscope.rawValue + " | Min:-\(AppSettings.gyroRange), Max:\(AppSettings.gyroRange)"
+        magMapSettingView.nameText.stringValue = mapSttingViewName.Magnetometer.rawValue + " | Min:0, Max:359"
+        shockMapSettingView.nameText.stringValue = mapSttingViewName.Shock.rawValue + " | Min:0, Max:255"
     }
     
     @IBAction func oscHostTextFieldInput(_ sender: NSTextField) {

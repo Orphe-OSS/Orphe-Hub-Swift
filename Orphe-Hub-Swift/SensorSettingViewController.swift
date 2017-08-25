@@ -66,7 +66,10 @@ class SensorSettingViewController: ChildWindowViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("s s sdidload")
+        //設定値反映
+        accRangeSegmentedControl.selectedSegment = ORPAccRange(rawValue: CUnsignedInt(AppSettings.accRange))!.hashValue
+        gyroRangeSegmentedControl.selectedSegment = ORPGyroRange(rawValue: CUnsignedInt(AppSettings.gyroRange))!.hashValue
         
         //レンジ設定UI
         accRangeSegmentedControl.rx.controlEvent.subscribe(onNext: { [unowned self] _ in
@@ -89,6 +92,7 @@ class SensorSettingViewController: ChildWindowViewController {
             }
             
             OSCManager.sharedInstance.accRange = Float(range.rawValue)
+            AppSettings.accRange = Int(range.rawValue)
         })
             .disposed(by: disposeBag)
         
@@ -114,6 +118,7 @@ class SensorSettingViewController: ChildWindowViewController {
             }
             
             OSCManager.sharedInstance.gyroRange = Float(range.rawValue)
+            AppSettings.gyroRange = Int(range.rawValue)
         })
             .disposed(by: disposeBag)
         

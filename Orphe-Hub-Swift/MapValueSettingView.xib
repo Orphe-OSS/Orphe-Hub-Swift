@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="MapValueSettingView" customModule="Orphe_Hub_Swift" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="MapValueSettingView" customModule="Orphe_Hub" customModuleProvider="target">
             <connections>
                 <outlet property="maxValueTextField" destination="7bG-80-cdP" id="7iS-SM-qBw"/>
                 <outlet property="minValueTextField" destination="CcO-aL-zoY" id="hD9-Wp-VcJ"/>
@@ -20,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOW-2v-gP4">
-                    <rect key="frame" x="-2" y="33" width="164" height="17"/>
+                    <rect key="frame" x="-2" y="33" width="212" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Quaternion" id="zt0-88-dpE">
                         <font key="font" metaFont="smallSystemBold"/>
