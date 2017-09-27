@@ -180,7 +180,7 @@ class OSCManager:NSObject, OSCServerDelegate{
         switch oscAddress[2] {
         case "triggerLight":
             for orphe in orphes{
-                orphe.triggerLight(lightNum: message.arguments[3] as! UInt8)
+                orphe.triggerLight(lightNum: message.arguments[0] as! UInt8)
             }
             
         case "triggerLightWithHSVColor":
