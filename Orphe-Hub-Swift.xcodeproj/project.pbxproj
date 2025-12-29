@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AAAA00001E0A5A8200A2C89F /* Orphe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAAA00011E0A5A8200A2C89F /* Orphe.framework */; };
+		AAAA00021E0A5A8200A2C89F /* Orphe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AAAA00011E0A5A8200A2C89F /* Orphe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1B3E39041E950921008DA5D1 /* DrawShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E39031E950921008DA5D1 /* DrawShape.swift */; };
 		1BF25CB71E9797FB00C1D576 /* LabelGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */; };
 		6ADCBB8F73F10784C8C69865 /* Pods_Orphe_Hub_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59FAF910D4516659E01E5E99 /* Pods_Orphe_Hub_Swift.framework */; };
@@ -50,6 +52,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				AAAA00021E0A5A8200A2C89F /* Orphe.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +60,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AAAA00011E0A5A8200A2C89F /* Orphe.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Orphe.framework; sourceTree = "<group>"; };
 		101FC98D10FB2EBC7A8AD8BA /* Pods-Orphe-Hub-SwiftUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Orphe-Hub-SwiftUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Orphe-Hub-SwiftUITests/Pods-Orphe-Hub-SwiftUITests.release.xcconfig"; sourceTree = "<group>"; };
 		1B3E39031E950921008DA5D1 /* DrawShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawShape.swift; path = "Orphe-Hub-Swift/DrawShape.swift"; sourceTree = SOURCE_ROOT; };
 		1BF25CB61E9797FB00C1D576 /* LabelGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelGraphView.swift; path = "Orphe-Hub-Swift/LabelGraphView.swift"; sourceTree = SOURCE_ROOT; };
@@ -92,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAA00001E0A5A8200A2C89F /* Orphe.framework in Frameworks */,
 				E61393721E926EF9002DD502 /* CoreMIDI.framework in Frameworks */,
 				6ADCBB8F73F10784C8C69865 /* Pods_Orphe_Hub_Swift.framework in Frameworks */,
 			);
@@ -130,6 +135,7 @@
 		E6117CF71E0A5A8200A2C89F = {
 			isa = PBXGroup;
 			children = (
+				AAAA00011E0A5A8200A2C89F /* Orphe.framework */,
 				E6117D021E0A5A8200A2C89F /* Orphe-Hub-Swift */,
 				E6117D011E0A5A8200A2C89F /* Products */,
 				F8CE49B909FF879396EA5470 /* Pods */,
@@ -213,7 +219,6 @@
 				E6117CFE1E0A5A8200A2C89F /* Resources */,
 				E61393001E8E521F002DD502 /* Embed Frameworks */,
 				8AB9377101E264CBE9F5F1B9 /* [CP] Embed Pods Frameworks */,
-				32F879624B9078C5939E8EC5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,8 +237,6 @@
 				E6117D0D1E0A5A8200A2C89F /* Sources */,
 				E6117D0E1E0A5A8200A2C89F /* Frameworks */,
 				E6117D0F1E0A5A8200A2C89F /* Resources */,
-				6F0E670B26148F1BA709CCF2 /* [CP] Embed Pods Frameworks */,
-				D8967FA3FC385C70D3062335 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,8 +256,6 @@
 				E6117D181E0A5A8200A2C89F /* Sources */,
 				E6117D191E0A5A8200A2C89F /* Frameworks */,
 				E6117D1A1E0A5A8200A2C89F /* Resources */,
-				8F0BF09CD3D00CD59F915850 /* [CP] Embed Pods Frameworks */,
-				3BB52A3D043FD1BA6243696D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,6 +279,7 @@
 				TargetAttributes = {
 					E6117CFF1E0A5A8200A2C89F = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 6L55687EJP;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -300,6 +302,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -344,49 +347,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32F879624B9078C5939E8EC5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3BB52A3D043FD1BA6243696D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Orphe-Hub-SwiftUITests/Pods-Orphe-Hub-SwiftUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		57239120FBD1228198E4B4DE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Orphe-Hub-Swift-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		58E3EF964903FCC24D6024C0 /* [CP] Check Pods Manifest.lock */ = {
@@ -395,28 +371,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Orphe-Hub-SwiftTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6F0E670B26148F1BA709CCF2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Orphe-Hub-SwiftTests/Pods-Orphe-Hub-SwiftTests-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8AB9377101E264CBE9F5F1B9 /* [CP] Embed Pods Frameworks */ = {
@@ -425,43 +389,18 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/OSCKit/OSCKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OSCKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8F0BF09CD3D00CD59F915850 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Orphe-Hub-SwiftUITests/Pods-Orphe-Hub-SwiftUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D8967FA3FC385C70D3062335 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Orphe-Hub-SwiftTests/Pods-Orphe-Hub-SwiftTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Orphe-Hub-Swift/Pods-Orphe-Hub-Swift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DEC8971B34659B9C7833EC02 /* [CP] Check Pods Manifest.lock */ = {
@@ -470,13 +409,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Orphe-Hub-SwiftUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -568,10 +510,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.12;
+				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -611,9 +553,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx10.12;
+				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
@@ -626,20 +568,20 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6L55687EJP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Orphe-Hub-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.no-new-folk.Orphe-Hub-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -651,19 +593,19 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6L55687EJP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "Orphe-Hub-Swift/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.no-new-folk.Orphe-Hub-Swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/$(PROJECT_NAME)/$(PROJECT_NAME)-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -679,7 +621,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nakanisynth.OrpheExample-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphe-Hub-Swift.app/Contents/MacOS/Orphe-Hub-Swift";
 			};
 			name = Debug;
@@ -696,7 +638,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nakanisynth.OrpheExample-macOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Orphe-Hub-Swift.app/Contents/MacOS/Orphe-Hub-Swift";
 			};
 			name = Release;
@@ -712,7 +654,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nakanisynth.OrpheExample-macOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = OrpheExample_macOS;
 			};
 			name = Debug;
@@ -728,7 +670,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nakanisynth.OrpheExample-macOSUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = OrpheExample_macOS;
 			};
 			name = Release;

@@ -15,7 +15,7 @@ import OSCKit
 class DrawCircle: NSView{
     override func draw(_ dirtyRect: NSRect) {
         
-        let context = NSGraphicsContext.current()?.cgContext
+        let context = NSGraphicsContext.current?.cgContext
         NSColor.blue.set()
         context?.addEllipse(in: dirtyRect)
         context?.fillPath()
@@ -25,15 +25,33 @@ class DrawCircle: NSView{
 
 class DrawRectangle: NSView{
     var bColor:NSColor = NSColor.blue
-    
+
     override func draw(_ dirtyRect: NSRect) {
-        let context = NSGraphicsContext.current()?.cgContext
+        let context = NSGraphicsContext.current?.cgContext
         bColor.set()
-        context?.addRect(dirtyRect)
+        context?.addRect(bounds)
         context?.fillPath()
     }
-    
+
     func setColor(_ color:NSColor){
         bColor = color
+        needsDisplay = true
+    }
+}
+
+class BorderRectangle: NSView{
+    var borderColor:NSColor = NSColor.gray
+    var borderWidth:CGFloat = 1.0
+
+    override func draw(_ dirtyRect: NSRect) {
+        let context = NSGraphicsContext.current?.cgContext
+        // Clear background
+        NSColor.clear.set()
+        context?.fill(bounds)
+        // Draw border
+        borderColor.set()
+        let borderRect = bounds.insetBy(dx: borderWidth/2, dy: borderWidth/2)
+        context?.setLineWidth(borderWidth)
+        context?.stroke(borderRect)
     }
 }

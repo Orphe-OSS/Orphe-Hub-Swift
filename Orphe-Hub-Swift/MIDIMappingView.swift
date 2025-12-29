@@ -10,7 +10,13 @@ import Cocoa
 import Orphe
 
 class MIDIMappingView : NSView{
-    
+
+    override var isOpaque: Bool { return false }
+
+    override func draw(_ dirtyRect: NSRect) {
+        // Don't draw anything - keep transparent
+    }
+
     weak var orphe:ORPData?{
         didSet{
             if orphe != nil{
@@ -66,14 +72,14 @@ class MIDIMappingView : NSView{
     @IBOutlet weak var outputValueGraph: LabelGraphView!
     
     class func newMIDIMappingView() -> MIDIMappingView {
-        
-        var topLevelObjects: NSArray? = []
-        let nib = NSNib(nibNamed: "MIDIMappingView", bundle: Bundle.main)!
-        nib.instantiate(withOwner: self, topLevelObjects: &topLevelObjects!)
-        
+
+        var topLevelObjects: NSArray?
+        let nib = NSNib(nibNamed: NSNib.Name("MIDIMappingView"), bundle: Bundle.main)!
+        nib.instantiate(withOwner: self, topLevelObjects: &topLevelObjects)
+
         var view: MIDIMappingView!
-        
-        for object: Any in topLevelObjects! {
+
+        for object: Any in topLevelObjects ?? [] {
             if let obj = object as? MIDIMappingView {
                 view = obj
                 break
@@ -86,6 +92,10 @@ class MIDIMappingView : NSView{
     }
     
     func commonInit(){
+        // Make background transparent
+        self.wantsLayer = true
+        self.layer?.backgroundColor = NSColor.clear.cgColor
+
         //PopUpButtonのリストをリセット
         var skArray = [String]()
         for sk in SensorKind.cases{
@@ -102,20 +112,24 @@ class MIDIMappingView : NSView{
         midiStatusPopUp.addItems(withTitles: msArray)
         
         //----------Quat----------
+        let quatWidth = Int(QuatView.bounds.width)
+        let quatRowHeight = Int(QuatView.bounds.height) / 4
         for i in 0..<QuatSubView.count {
-            //LEFT
-            QuatSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(QuatView.bounds.height) - 25*(i+1), width: 200, height: 25))
+            QuatSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: Int(QuatView.bounds.height) - quatRowHeight*(i+1), width: quatWidth, height: quatRowHeight))
             QuatView.addSubview(QuatSubView[i])
         }
         //----------Euler----------
+        let eulerWidth = Int(EulerView.bounds.width)
+        let eulerRowHeight = Int(EulerView.bounds.height) / 3
         for i in 0..<EulerSubView.count {
-            //LEFT
-            EulerSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(EulerView.bounds.height) - 25*(i+1), width: 200, height: 25))
+            EulerSubView[i] = LabelGraphView(frame: NSRect(x: 0, y: Int(EulerView.bounds.height) - eulerRowHeight*(i+1), width: eulerWidth, height: eulerRowHeight))
             EulerView.addSubview(EulerSubView[i])
         }
-        
+
         //----SelectedData----
-        selectedDataSubView = LabelGraphView(frame: NSRect(x: 0, y: 1+Int(selectedDataView.bounds.height) - 25, width: 200, height: 25))
+        let selectedWidth = Int(selectedDataView.bounds.width)
+        let selectedHeight = Int(selectedDataView.bounds.height)
+        selectedDataSubView = LabelGraphView(frame: NSRect(x: 0, y: 0, width: selectedWidth, height: selectedHeight))
         selectedDataView.addSubview(selectedDataSubView)
         
         
@@ -177,7 +191,7 @@ class MIDIMappingView : NSView{
     }
     
     @IBAction func invertCheckButtonAction(_ sender: NSButton) {
-        msMapper?.isInvert = sender.state == 1
+        msMapper?.isInvert = sender.state == .on
     }
     
     

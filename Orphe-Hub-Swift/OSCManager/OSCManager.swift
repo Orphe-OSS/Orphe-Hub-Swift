@@ -99,9 +99,15 @@ class OSCManager:NSObject, OSCServerDelegate{
         address += "/gesture"
         var arguments = [Any]()
         switch gesture.getGestureKind() {
-        case .KICK:
+        case .KICK_LOW:
             arguments.append("KICK")
-            arguments.append("")
+            arguments.append("LOW")
+        case .KICK_MID:
+            arguments.append("KICK")
+            arguments.append("MID")
+        case .KICK_HIGH:
+            arguments.append("KICK")
+            arguments.append("HIGH")
         case .STEP_TOE:
             arguments.append("STEP")
             arguments.append("TOE")
@@ -207,13 +213,13 @@ class OSCManager:NSObject, OSCServerDelegate{
     }
     
     //MARK: - Notifications
-    func OrpheDidUpdateSensorData(notification:Notification){
+    @objc func OrpheDidUpdateSensorData(notification:Notification){
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
         sendSensorValues(orphe: orphe)
     }
     
-    func OrpheDidCatchGestureEvent(notification:Notification){
+    @objc func OrpheDidCatchGestureEvent(notification:Notification){
         guard let userInfo = notification.userInfo else {return}
         let gestureEvent = userInfo[OrpheGestureUserInfoKey] as! ORPGestureEventArgs
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData

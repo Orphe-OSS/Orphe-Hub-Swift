@@ -19,31 +19,17 @@ public protocol EnumEnumerable {
     associatedtype Case = Self
 }
 
-public extension EnumEnumerable where Case: Hashable {
-    fileprivate static var generator: AnyIterator<Case> {
-        var n = 0
-        return AnyIterator {
-            defer { n += 1 }
-            let next = withUnsafePointer(to: &n) { UnsafeRawPointer($0).load(as: Case.self) }
-            return next.hashValue == n ? next : nil
-        }
+public extension EnumEnumerable where Case: CaseIterable {
+    static var cases: [Case] {
+        return Array(Case.allCases) as! [Case]
     }
-    
-    @warn_unused_result
-    public static func enumerate() -> EnumeratedSequence<AnySequence<Case>> {
-        return AnySequence(generator).enumerated()
-    }
-    
-    public static var cases: [Case] {
-        return Array(generator)
-    }
-    
-    public static var count: Int {
+
+    static var count: Int {
         return cases.count
     }
 }
 
-enum SensorKind:String, EnumEnumerable{
+enum SensorKind:String, EnumEnumerable, CaseIterable{
     case eulerX = "eulerX"
     case eulerY = "eulerY"
     case eulerZ = "eulerZ"
@@ -56,7 +42,7 @@ enum SensorKind:String, EnumEnumerable{
 
 }
 
-enum MIDIStatus:String, EnumEnumerable{
+enum MIDIStatus:String, EnumEnumerable, CaseIterable{
     case pitchBend = "Pitch Bend"
     case controlChange = "Control Change"
 }
@@ -94,10 +80,7 @@ class MIDISensorMapper:NSObject{
             case .pitchBend:
                 outputMinValue = 0
                 outputMaxValue = pitchBendMaxValue
-            default:
-                break
             }
-            
         }
     }
     var sensorKind:SensorKind = .eulerX {
@@ -136,8 +119,6 @@ class MIDISensorMapper:NSObject{
             case .gyroZ:
                 maxValue = 1
                 minValue = -1
-            default:
-                break
             }
         }
     }
@@ -178,7 +159,7 @@ class MIDISensorMapper:NSObject{
     }
     
     func map(value:Double, inputMin:Double, inputMax:Double, outputMin:Double, outputMax:Double, clamp:Bool)->Double{
-        if fabs(inputMin - inputMax) < DBL_EPSILON{
+        if fabs(inputMin - inputMax) < Double.ulpOfOne{
             return outputMin;
         }
         else {
@@ -244,7 +225,7 @@ class MIDISensorMapper:NSObject{
     }
     
     var sendMessageOrpheTimeStamp:Double = 0
-    func orpheDidUpdateSensorData(notification:Notification){
+    @objc func orpheDidUpdateSensorData(notification:Notification){
         guard let userInfo = notification.userInfo else {return}
         let orphe = userInfo[OrpheDataUserInfoKey] as! ORPData
         if self.orphe == nil {return}
@@ -293,10 +274,7 @@ class MIDISensorMapper:NSObject{
             return orphe.getGyro()[1]
         case .gyroZ:
             return orphe.getGyro()[2]
-        default:
-            break
         }
-        return 0
     }
     
     let EULER_MAX = 180
@@ -321,10 +299,7 @@ class MIDISensorMapper:NSObject{
             return orphe.getGyro()[1]
         case .gyroZ:
             return orphe.getGyro()[2]
-        default:
-            break
         }
-        return 0
     }
     
     func getNormalizedCurrnetValue()->Double{
@@ -333,8 +308,6 @@ class MIDISensorMapper:NSObject{
             return currentOutputValue/pitchBendMaxValue
         case .controlChange:
             return currentOutputValue/controlChangeMaxValue
-        default:
-            return 0
         }
     }
     

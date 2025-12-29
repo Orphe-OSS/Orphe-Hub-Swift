@@ -667,7 +667,7 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="100" y="100" width="1400" height="800"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                     </window>
                     <connections>
@@ -683,11 +683,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Orphe_Hub_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="640"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1400" height="800"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLd-Hr-cnL">
-                                <rect key="frame" x="0.0" y="293" width="193" height="347"/>
+                                <rect key="frame" x="0.0" y="400" width="210" height="360"/>
                                 <clipView key="contentView" id="fjx-ZI-vKz">
                                     <rect key="frame" x="1" y="0.0" width="191" height="346"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -774,8 +774,8 @@
                                     </subviews>
                                 </clipView>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="347" id="cII-5l-3AR"/>
-                                    <constraint firstAttribute="width" constant="193" id="yHP-dH-Xuh"/>
+                                    <constraint firstAttribute="height" constant="360" id="cII-5l-3AR"/>
+                                    <constraint firstAttribute="width" constant="210" id="yHP-dH-Xuh"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="VYX-IK-g0g">
                                     <rect key="frame" x="1" y="330" width="191" height="16"/>
@@ -791,7 +791,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCT-pe-jBa">
-                                <rect key="frame" x="10" y="240" width="37" height="11"/>
+                                <rect key="frame" x="10" y="350" width="37" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="HOST" id="Dnp-wk-ThV">
                                     <font key="font" metaFont="miniSystem"/>
@@ -800,7 +800,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFR-xI-H97">
-                                <rect key="frame" x="10" y="218" width="73" height="11"/>
+                                <rect key="frame" x="10" y="320" width="80" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="PORT[SENDER]" id="PVp-b8-Imo">
                                     <font key="font" metaFont="miniSystem"/>
@@ -809,7 +809,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JmK-68-KHU">
-                                <rect key="frame" x="10" y="180" width="80" height="11"/>
+                                <rect key="frame" x="10" y="290" width="85" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="PORT[RECEIVER]" id="CNf-Mc-r85">
                                     <font key="font" metaFont="miniSystem"/>
@@ -818,7 +818,7 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QNz-tl-c4K">
-                                <rect key="frame" x="0.0" y="0.0" width="193" height="135"/>
+                                <rect key="frame" x="0.0" y="0.0" width="210" height="200"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <clipView key="contentView" ambiguous="YES" id="e4d-U5-8jd">
                                     <rect key="frame" x="1" y="1" width="191" height="133"/>
@@ -845,7 +845,7 @@
                                 </scroller>
                             </scrollView>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcH-oy-LY3">
-                                <rect key="frame" x="97" y="238" width="96" height="16"/>
+                                <rect key="frame" x="100" y="348" width="105" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="GR5-kf-5gn">
                                     <font key="font" metaFont="miniSystem"/>
@@ -857,7 +857,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whu-rb-lWs">
-                                <rect key="frame" x="97" y="216" width="96" height="16"/>
+                                <rect key="frame" x="100" y="318" width="105" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="o6g-OQ-x1J">
                                     <font key="font" metaFont="miniSystem"/>
@@ -869,7 +869,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f60-z6-bkU">
-                                <rect key="frame" x="97" y="178" width="96" height="16"/>
+                                <rect key="frame" x="100" y="288" width="105" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="wfg-cq-ZeI">
                                     <font key="font" metaFont="miniSystem"/>
@@ -881,7 +881,7 @@
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qV0-9f-78T">
-                                <rect key="frame" x="96" y="142" width="98" height="16"/>
+                                <rect key="frame" x="100" y="250" width="105" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="switch" bezelStyle="rounded" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kJf-1C-wsD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -892,7 +892,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ED-qq-j4X">
-                                <rect key="frame" x="10" y="143" width="37" height="11"/>
+                                <rect key="frame" x="10" y="254" width="80" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="LorR" id="WnP-Ty-ULz">
                                     <font key="font" metaFont="miniSystem"/>
@@ -901,11 +901,11 @@
                                 </textFieldCell>
                             </textField>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqi-2w-1fL">
-                                <rect key="frame" x="193" y="0.0" width="400" height="640"/>
+                                <rect key="frame" x="220" y="0.0" width="560" height="760"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aTZ-oN-v8K">
-                                <rect key="frame" x="624" y="0.0" width="400" height="640"/>
+                                <rect key="frame" x="810" y="0.0" width="560" height="760"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </customView>
                         </subviews>

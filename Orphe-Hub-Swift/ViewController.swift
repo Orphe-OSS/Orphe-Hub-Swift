@@ -11,29 +11,39 @@ import Orphe
 import OSCKit
 
 class ViewController: NSViewController {
-    
+
     @IBOutlet weak var tableView: NSTableView!
-    
+
     @IBOutlet weak var oscHostTextField: NSTextField!
     @IBOutlet weak var oscSenderTextField: NSTextField!
     @IBOutlet weak var oscReceiverTextField: NSTextField!
     @IBOutlet var oscLogTextView: NSTextView!
-    
+
     @IBOutlet weak var rightMIDIMappingViewHolder:NSView!
     @IBOutlet weak var leftMIDIMappingViewHolder:NSView!
     var rightMIDIMappingView:MIDIMappingView!
     var leftMIDIMappingView:MIDIMappingView!
-    
+
     var rssiTimer: Timer?
+
+    // Scene selection buttons
+    var sceneButtonsContainer: NSView!
     
     
     override func viewDidLoad() {
-        
+
         super.viewDidLoad()
-        
+
+        // Set background color to prevent blue overlay
+        view.wantsLayer = true
+        view.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+
+        // Setup Scene selection buttons at the top
+        setupSceneButtons()
+
         rightMIDIMappingView = MIDIMappingView.newMIDIMappingView()
         rightMIDIMappingViewHolder.addSubview(rightMIDIMappingView)
-        
+
         leftMIDIMappingView = MIDIMappingView.newMIDIMappingView()
         leftMIDIMappingViewHolder.addSubview(leftMIDIMappingView)
         
@@ -114,7 +124,64 @@ class ViewController: NSViewController {
         leftMIDIMappingView.orphe = rightMIDIMappingView.orphe
         rightMIDIMappingView.orphe = tempOrphe
     }
-    
+
+    // MARK: - Scene Selection
+
+    func setupSceneButtons() {
+        // Create container view for scene buttons
+        let containerHeight: CGFloat = 40
+        let containerY = view.bounds.height - containerHeight
+        sceneButtonsContainer = NSView(frame: NSRect(x: 0, y: containerY, width: view.bounds.width, height: containerHeight))
+        sceneButtonsContainer.wantsLayer = true
+        sceneButtonsContainer.layer?.backgroundColor = NSColor.darkGray.cgColor
+        sceneButtonsContainer.autoresizingMask = [.width, .minYMargin]
+
+        // Add label
+        let label = NSTextField(labelWithString: "Scene:")
+        label.frame = NSRect(x: 10, y: 10, width: 50, height: 20)
+        label.textColor = NSColor.white
+        label.font = NSFont.systemFont(ofSize: 12)
+        sceneButtonsContainer.addSubview(label)
+
+        // Scene button titles and tags
+        let scenes: [(String, Int)] = [
+            ("1", 1), ("2", 2), ("3", 3), ("4", 4), ("5", 5), ("6", 6), ("7", 7), ("SDK", 11)
+        ]
+
+        let buttonWidth: CGFloat = 50
+        let buttonHeight: CGFloat = 24
+        let buttonSpacing: CGFloat = 5
+        var xOffset: CGFloat = 65
+
+        for (title, tag) in scenes {
+            let button = NSButton(frame: NSRect(x: xOffset, y: 8, width: buttonWidth, height: buttonHeight))
+            button.title = title
+            button.bezelStyle = .rounded
+            button.tag = tag
+            button.target = self
+            button.action = #selector(sceneButtonClicked(_:))
+            sceneButtonsContainer.addSubview(button)
+            xOffset += buttonWidth + buttonSpacing
+        }
+
+        view.addSubview(sceneButtonsContainer)
+    }
+
+    @objc func sceneButtonClicked(_ sender: NSButton) {
+        let sceneTag = sender.tag
+        guard let scene = ORPScene(rawValue: sceneTag) else {
+            PRINT("Invalid scene tag: \(sceneTag)")
+            return
+        }
+
+        PRINT("Switching to scene: \(scene)")
+
+        // Apply scene to all connected Orphes
+        for orphe in ORPManager.sharedInstance.connectedORPDataArray {
+            orphe.setScene(scene)
+        }
+    }
+
 }
 
 //MARK: - NSTableViewDelegate
@@ -123,7 +190,7 @@ extension  ViewController: NSTableViewDelegate{
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView?{
         let cellIdentifier: String = "NameCell"
         
-        if let cell = tableView.make(withIdentifier: cellIdentifier, owner: nil) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(cellIdentifier), owner: nil) as? NSTableCellView {
             if tableColumn == tableView.tableColumns[0] {
                 cell.textField?.stringValue = ORPManager.sharedInstance.availableORPDataArray[row].name
                 cell.textField?.drawsBackground = true
@@ -164,7 +231,7 @@ extension ViewController: NSTableViewDataSource {
 //MARK: - ORPManagerDelegate
 extension  ViewController: ORPManagerDelegate{
     
-    func orpheDidUpdateBLEState(state:CBCentralManagerState){
+    func orpheDidUpdateBLEState(state:CBManagerState){
         PRINT("didUpdateBLEState", state)
         switch state {
         case .poweredOn:
@@ -175,20 +242,20 @@ extension  ViewController: ORPManagerDelegate{
     }
     
     func orpheDidUpdateRSSI(orphe:ORPData){
-        if let index = ORPManager.sharedInstance.availableORPDataArray.index(of: orphe){
+        if let index = ORPManager.sharedInstance.availableORPDataArray.firstIndex(of: orphe){
             if let cell = tableView.view(atColumn: 1, row: index, makeIfNecessary: false) as? NSTableCellView{
                 cell.textField?.stringValue = String(describing: orphe.RSSI)
             }
         }
     }
     
-    func orpheDidDiscoverOrphe(orphe:ORPData){
+    func orpheDidDiscover(orphe:ORPData){
         PRINT("didDiscoverOrphe")
         tableView.reloadData()
         updateCellsState()
     }
-    
-    func orpheDidDisappearOrphe(orphe:ORPData){
+
+    func orpheDidDisappear(orphe:ORPData){
         PRINT("didDisappearOrphe")
         tableView.reloadData()
         updateCellsState()
@@ -228,7 +295,7 @@ extension  ViewController: ORPManagerDelegate{
         PRINT("didUpdateOrpheInfo")
     }
     
-    func readRSSI(){
+    @objc func readRSSI(){
         for orp in ORPManager.sharedInstance.connectedORPDataArray {
             orp.readRSSI()
         }
@@ -250,6 +317,6 @@ extension  ViewController: ORPManagerDelegate{
 
 extension ViewController: OSCManagerDelegate{
     func oscDidReceiveMessage(message:String) {
-        oscLogTextView.string = message + "\n" + oscLogTextView.string!
+        oscLogTextView.string = message + "\n" + oscLogTextView.string
     }
 }
